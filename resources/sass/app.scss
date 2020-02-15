@@ -1,113 +1,24 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates:100,200,300,400,500,600,700,800,900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat+Alternates:100,200,300,400,500,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700&display=swap");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Fontawesome
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-@import '~@fortawesome/fontawesome-free/scss/brands';
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/brands";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
-$font-family: Montserrat, 'Montserrat Alternates', sans-serif;
+@import "colors";
+@import "fonts";
 
-body {
-  font-family: $font-family;
-
-  #banner {
-    position: absolute;
-    margin: auto;
-    z-index: 10;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-  }
-
-  #lil-point {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    display: none;
-  }
-
-  .bg-header {
-    background-image: radial-gradient($mygreen, $darkblue);
-  }
-
-  .carousel-indicator {
-     width: 20px !important;
-     height: 20px !important;
-     border-radius: 50%;
-
-     &.active {
-       background-color: $myyellow !important;
-     }
-  }
-
-  .language-flag {
-    overflow: hidden;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    border: 2px solid #fff;
-  }
-
-  .nav-link {
-    &.active {
-      color: $myyellow !important;
-      font-weight: bold;
-      font-size: large;
-    }
-  }
-}
-
-// Colors
-$colors: "green" $mygreen #fff, "darkblue" $darkblue #fff, "yellow" $myyellow #000, "red" $myred #fff, "orange" $myorange #fff;
-@each $name, $color, $font in $colors {
-  .text-#{$name} {
-    color: $color !important;
-  }
-
-  .bg-#{$name} {
-    background-color: $color !important;
-  }
-
-  .bg-#{$name}-50 {
-    background-color: rgba($color, .5) !important;
-  }
-
-  .bg-#{$name}-80 {
-    background-color: rgba($color, .8) !important;
-  }
-
-  .btn-#{$name} {
-    background-color: $color !important;
-    color: $font !important;
-  }
-}
-
-// Fonts
-$fonts: "baloo" 'Baloo Bhaina' cursive, "comfortaa" Comfortaa, "montserrat-alt" 'Montserrat Alternates';
-@each $name, $font, $second in $fonts {
-  .font-family-#{$name} {
-    font-family: $font, $second;
-  }
-}
-
-$sizes: "xx-small" xx-small, "x-small" x-small, "small" small, "normal" normal, "medium" medium, "large" large, "x-large" x-large, "xx-large" xx-large;
-@each $name, $size in $sizes {
-  .font-size-#{$name} {
-    font-size: $size !important;
-  }
-}
-
-.rounded-xl {
-  border-radius: 26px;
-}
+@import "body";
+@import "header";
+@import "home";

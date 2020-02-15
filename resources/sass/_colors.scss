@@ -1,0 +1,88 @@
+// My colors
+$myblue: #005eb1;
+$mydarkblue: #002f59;
+$mypink: #c10168;
+$scarlet: #610134;
+$myred: #f95f5f;
+$myorange: #ff9936;
+$myoranger: #f67e09;
+$brown: #7b3f05;
+$myyellow: #f6b709;
+$darkyellow: darken($myyellow, 10%);
+$mygreen: #008564;
+$darkgreen: #0a2e25;
+$white: #ffffff;
+$black: #000000;
+
+// Colors
+$colors: "green" $mygreen $white, "darkblue" $darkgreen $white, "yellow" $myyellow $black,
+  "darkyellow" $darkyellow $white, "red" $myred $white, "orange" $myorange $white, "scarlet" $scarlet $white,
+  "blue" $myblue $white, "pink" $mypink $white, "mydarkblue" $mydarkblue $white, "white" $white $black,
+  "black" $black $white;
+@each $name, $color, $font in $colors {
+  .text-#{$name} {
+    color: $color !important;
+  }
+
+  .text-#{$name}-10 {
+    color: rgba($color, 0.1);
+  }
+
+  .text-#{$name}-20 {
+    color: rgba($color, 0.2);
+  }
+
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+
+  .bg-#{$name}-20 {
+    background-color: rgba($color, 0.2) !important;
+  }
+
+  .bg-#{$name}-33 {
+    background-color: rgba($color, 0.33) !important;
+  }
+
+  .bg-#{$name}-50 {
+    background-color: rgba($color, 0.5) !important;
+  }
+
+  .bg-#{$name}-80 {
+    background-color: rgba($color, 0.8) !important;
+  }
+
+  .btn-#{$name} {
+    background-color: $color;
+    color: $font !important;
+
+    &:hover,
+    &:focus,
+    &.active {
+      background-color: darken($color, 5%);
+    }
+
+    &.disabled {
+      background-color: rgba($color, 0.5);
+    }
+  }
+
+  .border-#{$name}-20 {
+    border-color: rgba($color, 0.2) !important;
+  }
+
+  .border-#{$name}-50 {
+    border-color: rgba($color, 0.5) !important;
+  }
+
+  .border-#{$name} {
+    border-color: $color !important;
+  }
+}
+
+$gradients: "pink" $mypink $scarlet 114deg, "orange" $myoranger $brown 253deg, "blue" $myblue $mydarkblue 210deg;
+@each $name, $primary, $secondary, $angle in $gradients {
+  .bg-#{$name}-gradient {
+    background-image: linear-gradient($angle, $primary 0%, $secondary 100%) !important;
+  }
+}

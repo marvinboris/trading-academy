@@ -1,0 +1,26 @@
+#lil-point {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: none;
+}
+
+.bg-header {
+  background-image: radial-gradient(circle at 50% 50%, $mygreen, $darkgreen);
+}
+
+.language-flag {
+  overflow: hidden;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+}
+
+.nav-link {
+  &.active {
+    color: $myyellow !important;
+    font-weight: bold;
+    font-size: large;
+  }
+}

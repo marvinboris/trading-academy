@@ -38,7 +38,7 @@ $(function () {
     const lilPoint = $('#lil-point');
     lilPoint.css({ top: height - 15, left: width - 5 });
 
-    $('.nav-link:not(.active)').hover(function () {
+    $('.nav-item:not(.dropdown) .nav-link:not(.active)').hover(function () {
         const current = $(this);
         current.stop().animate({ fontSize: 18 }, 'fast', function () { current.css({ fontWeight: 'bold' }) });
         activeNavLink.stop().animate({ fontSize: 15 }, 'fast');
@@ -49,9 +49,9 @@ $(function () {
     }).click(function () {
         const current = $(this);
         const { left } = current.position();
-        $('.nav-link').off();
+        $('.nav-link').off('hover');
         activeNavLink.removeClass('active');
-        current.stop().animate({ fontSize: 18 }, 'fast', function () { current.css({ fontWeight: 'bold', color: '#ffe710' }) });
-        lilPoint.show('fast').animate({ top: height - 15, left: width - 5 + left });
+        current.stop().animate({ fontSize: 18 }, 'fast', function () { current.css({ fontWeight: 'bold' }).removeClass('text-white').addClass('text-yellow') });
+        lilPoint.show('fast').animate({ top: height - 15, left: width - 5 + left }, 'fast');
     });
 });

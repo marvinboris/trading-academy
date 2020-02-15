@@ -1,0 +1,26 @@
+section.home {
+  #banner {
+    position: absolute;
+    margin: auto;
+    z-index: 10;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%) scale(0.9);
+  }
+
+  #carousel .carousel-indicator {
+    &.active {
+      background-color: $myyellow !important;
+    }
+  }
+
+  #carousel-testimonials {
+    .carousel-indicator {
+      background-color: $secondary !important;
+
+      &.active {
+        background-color: $darkgreen !important;
+      }
+    }
+  }
+}

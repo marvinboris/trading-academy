@@ -49535,7 +49535,7 @@ $(function () {
     top: height - 15,
     left: width - 5
   });
-  $('.nav-link:not(.active)').hover(function () {
+  $('.nav-item:not(.dropdown) .nav-link:not(.active)').hover(function () {
     var current = $(this);
     current.stop().animate({
       fontSize: 18
@@ -49565,20 +49565,19 @@ $(function () {
     var _current$position = current.position(),
         left = _current$position.left;
 
-    $('.nav-link').off();
+    $('.nav-link').off('hover');
     activeNavLink.removeClass('active');
     current.stop().animate({
       fontSize: 18
     }, 'fast', function () {
       current.css({
-        fontWeight: 'bold',
-        color: '#ffe710'
-      });
+        fontWeight: 'bold'
+      }).removeClass('text-white').addClass('text-yellow');
     });
     lilPoint.show('fast').animate({
       top: height - 15,
       left: width - 5 + left
-    });
+    }, 'fast');
   });
 });
 

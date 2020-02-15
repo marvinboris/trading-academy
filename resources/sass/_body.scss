@@ -1,0 +1,14 @@
+.carousel-indicator {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  overflow: hidden;
+}
+
+.bg-soft-gradient {
+  background-image: radial-gradient(circle at 50% 50%, rgba($mygreen, 0.34) 0%, rgba($myorange, 0.34) 100%);
+}
+
+.rounded-xl {
+  border-radius: 26px;
+}
