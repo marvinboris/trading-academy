@@ -15,6 +15,10 @@ class Participant
      */
     public function handle($request, Closure $next)
     {
+        if (in_array(Auth::user()->role->name, ['Student', 'Teacher'])) {
+            return route('login');
+        }
+
         return $next($request);
     }
 }

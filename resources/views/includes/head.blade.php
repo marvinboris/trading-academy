@@ -11,4 +11,3 @@
     </head>
     <body class="min-vh-100">
         <div id="app">
-        @include('includes.header')

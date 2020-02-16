@@ -150,7 +150,7 @@ Route::get('/', function () {
 
 Route::redirect('home', '/');
 
-Route::get('blog', function () {
+Route::name('blog')->get('blog', function () {
     $posts = [
         [
             'title' => 'First real estate token base project from Global Investment Trading',
@@ -172,9 +172,9 @@ Route::get('blog', function () {
         ]
     ];
     return view('blog', compact('posts'));
-})->name('blog');
+});
 
-Route::get('courses/{course}', function ($level) {
+Route::name('courses.show')->get('courses/{course}', function ($level) {
     $courses = [
         [
             'color' => 'pink',
@@ -513,9 +513,9 @@ Route::get('courses/{course}', function ($level) {
     $ranks = ['bronze' => 0, 'silver' => 1, 'diamond' => 2];
     $course = $courses[$ranks[$level]];
     return view('course', compact('course'));
-})->name('courses.show');
+});
 
-Route::get('about-us', function () {
+Route::name('about-us')->get('about-us', function () {
     $trainersData = [
         [
             'img' => '/images/11-6.jpg',
@@ -574,13 +574,15 @@ Route::get('about-us', function () {
         ]
     ];
     return view('about-us', compact('trainersData'));
-})->name('about-us');
+});
 
-Route::view('contact', 'contact');
+Route::name('contact')->get('contact', function () {
+    return view('contact');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::namespace('Admin')->name('admin.')->middleware('admin')->group(function () {
-        Route::resource('administrators', 'AdministratorsController');
+    Route::namespace('Admin')->name('admin.')->middleware('admin')->prefix('admin')->group(function () {
+        Route::resource('admins', 'AdminsController');
         Route::resource('authors', 'AuthorsController');
         Route::resource('channels', 'ChannelsController');
         Route::resource('comments/replies', 'CommentRepliesController');
@@ -597,17 +599,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('views', 'ViewsController');
     });
 
-    Route::namespace('Author')->name('author.')->middleware('author')->group(function () {
+    Route::namespace('Author')->name('author.')->middleware('author')->prefix('author')->group(function () {
         Route::resource('posts', 'PostsController');
     });
 
     Route::middleware('participant')->group(function () {
-        Route::namespace('Student')->name('student.')->middleware('student')->group(function () {
+        Route::namespace('Student')->name('student.')->middleware('student')->prefix('student')->group(function () {
 
         });
         
-        Route::namespace('Teacher')->name('teacher.')->middleware('teacher')->group(function () {
-            
+        Route::namespace('Teacher')->name('teacher.')->middleware('teacher')->prefix('teacher')->group(function () {
+
         });
     });
     

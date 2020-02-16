@@ -8,10 +8,11 @@ class Admin extends Model
 {
     //
     protected $fillable = [
-        'user_id'
+        'name', 'email', 'password', 'is_active', 'phone', 'lang'
     ];
 
-    public function user() {
-        return $this->belongsTo('App\User');
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
     }
 }

@@ -46,9 +46,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo('App\Photo');
     }
-
-    public function posts()
-    {
-        return $this->hasMany('App\Post');
-    }
 }

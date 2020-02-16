@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\Admin;
 
-class AdminstratorsController extends Controller
+class AdminsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +16,11 @@ class AdminstratorsController extends Controller
     public function index()
     {
         //
+        $admins = [];
+        foreach (Admin::all() as $value) {
+            $admins[] = $value;
+        }
+        return view('admin.admins.index', compact('admins'));
     }
 
     /**
@@ -25,6 +31,7 @@ class AdminstratorsController extends Controller
     public function create()
     {
         //
+        return view('admin.admins.create');
     }
 
     /**
@@ -33,9 +40,11 @@ class AdminstratorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Admin $request)
     {
         //
+        $validated = $request->validated();
+        return $validated;
     }
 
     /**
