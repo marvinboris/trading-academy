@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class Student
 {
@@ -15,7 +16,7 @@ class Student
      */
     public function handle($request, Closure $next)
     {
-        if (in_array(Auth::user()->role->name, ['Admin', 'Student'])) {
+        if (!in_array(Auth::user()->role->name, ['Admin', 'Student'])) {
             return route('login');
         }
 

@@ -582,6 +582,7 @@ Route::name('contact')->get('contact', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::namespace('Admin')->name('admin.')->middleware('admin')->prefix('admin')->group(function () {
+        Route::get('dashboard', 'DashboardController@index');
         Route::resource('admins', 'AdminsController');
         Route::resource('authors', 'AuthorsController');
         Route::resource('channels', 'ChannelsController');
@@ -600,15 +601,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::namespace('Author')->name('author.')->middleware('author')->prefix('author')->group(function () {
+        Route::get('dashboard', 'DashboardController@index');
         Route::resource('posts', 'PostsController');
     });
 
     Route::middleware('participant')->group(function () {
         Route::namespace('Student')->name('student.')->middleware('student')->prefix('student')->group(function () {
+            Route::get('dashboard', 'DashboardController@index');
 
         });
         
         Route::namespace('Teacher')->name('teacher.')->middleware('teacher')->prefix('teacher')->group(function () {
+            Route::get('dashboard', 'DashboardController@index');
 
         });
     });

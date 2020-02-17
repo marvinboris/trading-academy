@@ -15,9 +15,12 @@ class CreateCourseDocumentTable extends Migration
     {
         Schema::create('course_document', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('course_id')->index();
-            $table->integer('document_id')->index();
+            $table->bigInteger('course_id')->unsigned()->index();
+            $table->bigInteger('document_id')->unsigned()->index();
             $table->timestamps();
+            
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
         });
     }
 

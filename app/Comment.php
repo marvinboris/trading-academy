@@ -8,8 +8,12 @@ class Comment extends Model
 {
     //
     protected $fillable = [
-        'post_id', 'author', 'email', 'photo', 'body', 'is_active'
+        'post_id', 'body', 'is_active', 'commentable_id', 'commentable_type'
     ];
+
+    public function commentable() {
+        return $this->morphTo();
+    }
 
     public function post()
     {

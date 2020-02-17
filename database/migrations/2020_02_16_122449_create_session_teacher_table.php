@@ -15,9 +15,12 @@ class CreateSessionTeacherTable extends Migration
     {
         Schema::create('session_teacher', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('session_id')->index();
-            $table->integer('teacher_id')->index();
+            $table->bigInteger('session_id')->unsigned()->index();
+            $table->bigInteger('teacher_id')->unsigned()->index();
             $table->timestamps();
+            
+            $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
         });
     }
 

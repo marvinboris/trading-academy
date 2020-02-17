@@ -1,6 +1,6 @@
 <header class="px-md-5 d-flex align-items-center bg-header position-sticky shadow" style="height: 95px; top: -35px; z-index: 1100;">
     <nav class="navbar navbar-expand-md navbar-dark flex-fill position-sticky" style="top: -35px;">
-        <a href="#" class="d-block position-sticky" style="top: 10px; height: 60px;">
+        <a href="{{ url('/') }}" class="d-block position-sticky" style="top: 10px; height: 60px;">
             <img src="/images/Groupe 130@2x.png" class="h-100" alt="Logo">
         </a>
 

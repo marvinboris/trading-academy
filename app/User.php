@@ -36,7 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     public function role()
     {
         return $this->belongsTo('App\Role');
@@ -45,5 +45,34 @@ class User extends Authenticatable implements MustVerifyEmail
     public function photo()
     {
         return $this->belongsTo('App\Photo');
+    }
+
+    public static function generateNewRef()
+    {
+        $letters = range('A', 'Z');
+        $numbers = range(0, 9);
+        $chars = array_merge($letters, $numbers);
+        $length = count($chars);
+
+        $code = '';
+
+        for ($i = 0; $i < 6; $i++) {
+            $index = rand(0, $length - 1);
+            $code .= $chars[$index];
+        }
+
+        return $code;
+    }
+
+    public static function ref()
+    {
+        $ref = self::generateNewRef();
+        $user = self::where('ref', $ref)->first();
+        while ($user) {
+            $ref = self::generateNewRef();
+            $user = self::where('ref', $ref)->first();
+        }
+
+        return $ref;
     }
 }

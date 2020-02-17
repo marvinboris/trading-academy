@@ -25,6 +25,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('author.dashboard');
+        return view('user.author.dashboard');
     }
 }

@@ -13,6 +13,6 @@ class Admin extends Model
 
     public function posts()
     {
-        return $this->hasMany('App\Post');
+        return $this->morphMany('App\Post', 'postable');
     }
 }

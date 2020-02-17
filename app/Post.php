@@ -13,7 +13,7 @@ class Post extends Model
     use SluggableScopeHelpers;
 
     protected $fillable = [
-        'user_id', 'category_id', 'photo_id', 'title', 'body'
+        'photo_id', 'title', 'body', 'postable_id', 'postable_type', 'slug'
     ];
 
     public function sluggable()
@@ -24,10 +24,9 @@ class Post extends Model
             ]
         ];
     }
-
-    public function user()
-    {
-        return $this->belongsTo('App\User');
+    
+    public function postable() {
+        return $this->morphTo();
     }
 
     public function photo()
