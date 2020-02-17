@@ -75,4 +75,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return $ref;
     }
+
+    public function abbreviation() {
+        $names = explode(' ', $this->name);
+        $string = '';
+
+        foreach ($names as $name) {
+            $string .= strtoupper($name[0]);
+        }
+
+        return $string;
+    }
 }

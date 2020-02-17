@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Author;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -15,6 +16,8 @@ class PostsController extends Controller
     public function index()
     {
         //
+        $posts = Post::all();
+        return view('user.author.posts.index', compact('posts'));
     }
 
     /**
@@ -25,6 +28,7 @@ class PostsController extends Controller
     public function create()
     {
         //
+        return view('user.author.posts.create');
     }
 
     /**

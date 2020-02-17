@@ -14,7 +14,7 @@
                 @csrf
 
                 <div class="form-group">
-                    <input id="email" type="email" class="form-control text-fa text-900 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="&#xf0e0; E-mail Address" required autocomplete="email" autofocus>
+                    <input id="email" type="email" class="form-control border-green text-fa text-900 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="&#xf0e0;   E-mail Address" required autocomplete="email" autofocus>
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input id="password" type="password" class="form-control text-fa text-900 @error('password') is-invalid @enderror" name="password" placeholder="&#xf084; Password" required autocomplete="current-password">
+                    <input id="password" type="password" class="form-control border-green text-fa text-900 @error('password') is-invalid @enderror" name="password" placeholder="&#xf084;   Password" required autocomplete="current-password">
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -57,8 +57,9 @@
                         </a>
                     @endif
                     @if (Route::has('register'))
-                        <a class="text-darkblue" href="{{ route('register') }}">
-                            {{ __('I have no account.') }}
+                        Have no account ?
+                        <a class="text-green" href="{{ route('register') }}">
+                            {{ __('Sign Up') }}
                         </a>
                     @endif
                 </div>

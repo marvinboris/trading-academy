@@ -9,7 +9,7 @@
                 @csrf
 
                 <div class="form-group">
-                    <input id="name" type="text" class="form-control text-fa text-900 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="&#xf5b7; {{ __('Name') }}" required autocomplete="name" autofocus>
+                    <input id="name" type="text" class="form-control text-fa border-green text-900 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="&#xf007;   {{ __('Name') }}" required autocomplete="name" autofocus>
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input id="email" type="email" class="form-control text-fa text-900 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="&#xf0e0; {{ __('E-Mail Address') }}" required autocomplete="email">
+                    <input id="email" type="email" class="form-control text-fa border-green text-900 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="&#xf0e0;   {{ __('E-Mail Address') }}" required autocomplete="email">
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input id="password" type="password" class="form-control text-fa text-900 @error('password') is-invalid @enderror" name="password" placeholder="&#xf084; {{ __('Password') }}" required autocomplete="new-password">
+                    <input id="password" type="password" class="form-control text-fa border-green text-900 @error('password') is-invalid @enderror" name="password" placeholder="&#xf084;   {{ __('Password') }}" required autocomplete="new-password">
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -39,7 +39,17 @@
                 </div>
 
                 <div class="form-group">
-                    <input id="password-confirm" type="password" class="form-control text-fa text-900" name="password_confirmation" placeholder="&#xf09c; {{ __('Confirm Password') }}" required autocomplete="new-password">
+                    <input id="password-confirm" type="password" class="form-control text-fa border-green text-900" name="password_confirmation" placeholder="&#xf09c;   {{ __('Confirm Password') }}" required autocomplete="new-password">
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="terms" id="terms" {{ old('terms') ? 'checked' : '' }}>
+
+                        <label class="form-check-label" for="terms">
+                            {{ __('I have read and accepted Privacy policy and Terms and Conditions') }}
+                        </label>
+                    </div>
                 </div>
 
                 <div class="form-group">

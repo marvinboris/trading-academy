@@ -14,6 +14,7 @@
                     <li data-target="#carousel" data-slide-to="0" class="carousel-indicator active"></li>
                     <li data-target="#carousel" data-slide-to="1" class="carousel-indicator"></li>
                     <li data-target="#carousel" data-slide-to="2" class="carousel-indicator"></li>
+                    <div class="bg-transparent circle-carousel-indicator rounded-circle border border-thick border-yellow position-absolute d-none" style="width: 26px; height: 26px; transform: translateX(-50%);"></div>
                 </ol>
                 <div class="carousel-inner h-100 position-relative">
                     <div id="banner" class="w-75">
@@ -58,12 +59,12 @@
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                    <span class="fas fa-arrow-alt-circle-left fa-4x text-white" aria-hidden="true"></span>
+                    <span class="fas fa-arrow-alt-circle-left fa-3x text-white" aria-hidden="true"></span>
                     {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
                     <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                    <span class="fas fa-arrow-alt-circle-right fa-4x text-white" aria-hidden="true"></span>
+                    <span class="fas fa-arrow-alt-circle-right fa-3x text-white" aria-hidden="true"></span>
                     {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
                     <span class="sr-only">Next</span>
                 </a>
@@ -288,6 +289,12 @@
         $(function () {
             $(".owl-carousel").owlCarousel({ items: 2, loop: true });
 
+            const carousel = $('#carousel');
+
+            const activeCarouselIndicator = $('.carousel-indicator.active');
+            const { top, left } = activeCarouselIndicator.position();
+            $('.circle-carousel-indicator').css({ top: top + 4, left: left + 14 }).removeClass('d-none');
+
             const data = [
                 {
                     title: 'Welcome to',
@@ -317,7 +324,7 @@
                     orange: { bottom: 24, right: 10 }
                 }
             ];
-            $('#carousel').on('slide.bs.carousel', function () {
+            carousel.on('slide.bs.carousel', function () {
                 setTimeout(() => {
                     const index = +$('#carousel .carousel-indicator.active').attr('data-slide-to');
                     const { title, content, subcontent, green, link, white, orange } = data[index];
@@ -330,6 +337,10 @@
                     $('#banner .circle.green').animate(green);
                     $('#banner .circle.white').animate(white);
                     $('#banner .circle.orange').animate(orange);
+
+                    const activeCarouselIndicator = $('#carousel .carousel-indicator.active');
+                    const { top, left } = activeCarouselIndicator.position();
+                    $('.circle-carousel-indicator').animate({ top: top + 4, left: left + 14 }, 'fast');
                 }, 1);
             });
 

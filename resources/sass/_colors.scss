@@ -36,6 +36,10 @@ $colors: "green" $mygreen $white, "darkblue" $darkgreen $white, "yellow" $myyell
     background-color: $color !important;
   }
 
+  .bg-#{$name}-10 {
+    background-color: rgba($color, 0.1) !important;
+  }
+
   .bg-#{$name}-20 {
     background-color: rgba($color, 0.2) !important;
   }

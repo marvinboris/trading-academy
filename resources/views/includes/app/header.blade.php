@@ -77,7 +77,7 @@
             </div>
             <div class="ml-md-4">
                 <div class="mb-3 d-none d-md-block">
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-center">
                         <a href="#" class="fab fa-lg fa-facebook-square text-white text-decoration-none"></a>
                         <a href="#" class="fab fa-lg fa-twitter-square text-white text-decoration-none ml-2"></a>
                         <a href="#" class="fab fa-lg fa-linkedin text-white text-decoration-none ml-2"></a>
@@ -85,9 +85,39 @@
                     </div>
                 </div>
                 <div>
+                    @guest
                     <a href="{{ route('login') }}" class="btn btn-light text-green rounded-sm text-x-small">
                         Sign In <i class="fas fa-sign-in-alt fa-lg ml-2"></i>
                     </a>
+                    @else
+                    <div class="dropdown text-white">
+                        <a href="#" class="pl-2 dropdown-toggle d-flex align-items-center dropdown-toggle-split text-decoration-none text-reset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="pr-1">
+                                <div class="rounded-circle d-flex justify-content-center align-items-center bg-yellow overflow-hidden" style="width: 40px; height: 40px;">
+                                    <div class="rounded-circle d-flex justify-content-center align-items-center bg-darkblue overflow-hidden" style="width: 36px; height: 36px;">
+                                        {!! Auth::user()->photo ? 
+                                        '<img src="' . Auth::user()->photo .'" alt="User" class="rounded-circle img-fluid" style="width: 32px; height: 32px;">'
+                                        : 
+                                        '<div class="d-flex justify-content-center align-items-center font-weight-bold text-green text-montserrat rounded-circle bg-white" style="width: 32px; height: 32px;">' . Auth::user()->abbreviation() . '</div>'
+                                        !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="pr-1">{{ Auth::user()->name }}</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="{{ route(strtolower(Auth::user()->role->name) . '.dashboard') }}" class="dropdown-item {{ Request::segment(2) === 'dashboard' ? 'active' : null }}"><i class="fa mr-2 fa-dashboard"></i>Dashboard</a>                            
+                            <a class="dropdown-item border-top" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fas fa-power-off mr-2"></i> {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </div>
+                    @endguest
                 </div>
             </div>
         </div>

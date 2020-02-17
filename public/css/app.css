@@ -17302,6 +17302,10 @@ a.text-dark:focus {
   background-color: #008564 !important;
 }
 
+.bg-green-10 {
+  background-color: rgba(0, 133, 100, 0.1) !important;
+}
+
 .bg-green-20 {
   background-color: rgba(0, 133, 100, 0.2) !important;
 }
@@ -17359,6 +17363,10 @@ a.text-dark:focus {
 
 .bg-darkblue {
   background-color: #0a2e25 !important;
+}
+
+.bg-darkblue-10 {
+  background-color: rgba(10, 46, 37, 0.1) !important;
 }
 
 .bg-darkblue-20 {
@@ -17420,6 +17428,10 @@ a.text-dark:focus {
   background-color: #f6b709 !important;
 }
 
+.bg-yellow-10 {
+  background-color: rgba(246, 183, 9, 0.1) !important;
+}
+
 .bg-yellow-20 {
   background-color: rgba(246, 183, 9, 0.2) !important;
 }
@@ -17477,6 +17489,10 @@ a.text-dark:focus {
 
 .bg-darkyellow {
   background-color: #c59207 !important;
+}
+
+.bg-darkyellow-10 {
+  background-color: rgba(197, 146, 7, 0.1) !important;
 }
 
 .bg-darkyellow-20 {
@@ -17538,6 +17554,10 @@ a.text-dark:focus {
   background-color: #f95f5f !important;
 }
 
+.bg-red-10 {
+  background-color: rgba(249, 95, 95, 0.1) !important;
+}
+
 .bg-red-20 {
   background-color: rgba(249, 95, 95, 0.2) !important;
 }
@@ -17595,6 +17615,10 @@ a.text-dark:focus {
 
 .bg-orange {
   background-color: #ff9936 !important;
+}
+
+.bg-orange-10 {
+  background-color: rgba(255, 153, 54, 0.1) !important;
 }
 
 .bg-orange-20 {
@@ -17656,6 +17680,10 @@ a.text-dark:focus {
   background-color: #610134 !important;
 }
 
+.bg-scarlet-10 {
+  background-color: rgba(97, 1, 52, 0.1) !important;
+}
+
 .bg-scarlet-20 {
   background-color: rgba(97, 1, 52, 0.2) !important;
 }
@@ -17713,6 +17741,10 @@ a.text-dark:focus {
 
 .bg-blue {
   background-color: #005eb1 !important;
+}
+
+.bg-blue-10 {
+  background-color: rgba(0, 94, 177, 0.1) !important;
 }
 
 .bg-blue-20 {
@@ -17774,6 +17806,10 @@ a.text-dark:focus {
   background-color: #c10168 !important;
 }
 
+.bg-pink-10 {
+  background-color: rgba(193, 1, 104, 0.1) !important;
+}
+
 .bg-pink-20 {
   background-color: rgba(193, 1, 104, 0.2) !important;
 }
@@ -17831,6 +17867,10 @@ a.text-dark:focus {
 
 .bg-mydarkblue {
   background-color: #002f59 !important;
+}
+
+.bg-mydarkblue-10 {
+  background-color: rgba(0, 47, 89, 0.1) !important;
 }
 
 .bg-mydarkblue-20 {
@@ -17892,6 +17932,10 @@ a.text-dark:focus {
   background-color: #ffffff !important;
 }
 
+.bg-white-10 {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
 .bg-white-20 {
   background-color: rgba(255, 255, 255, 0.2) !important;
 }
@@ -17949,6 +17993,10 @@ a.text-dark:focus {
 
 .bg-black {
   background-color: #000000 !important;
+}
+
+.bg-black-10 {
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 .bg-black-20 {
@@ -18120,6 +18168,11 @@ a.text-dark:focus {
   border-radius: 26px;
 }
 
+.btn,
+.form-control {
+  border-radius: 0 !important;
+}
+
 #lil-point {
   width: 5px;
   height: 5px;
@@ -18155,8 +18208,24 @@ section.home #banner {
           transform: translate(-50%, 0%) scale(0.9);
 }
 
+section.home #carousel .carousel-indicator {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
 section.home #carousel .carousel-indicator.active {
-  background-color: #f6b709 !important;
+  width: 14px !important;
+  height: 14px !important;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+}
+
+section.home #carousel .carousel-inner .carousel-item {
+  background-position: center;
+  background-size: cover;
 }
 
 section.home #carousel-testimonials .carousel-indicator {
