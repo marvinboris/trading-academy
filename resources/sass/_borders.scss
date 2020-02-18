@@ -1,0 +1,9 @@
+@for $i from 2 through 15 {
+    .border-#{$i} {
+        border-width: $i * 1px;
+    }
+}
+
+.border-thin {
+    border-width: .25px !important;
+}

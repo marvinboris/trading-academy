@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('section', 'Author Panel')
+
 @section('content')
     <section class="d-flex align-items-center py-3 justify-content-center">
         <div class="mr-2">

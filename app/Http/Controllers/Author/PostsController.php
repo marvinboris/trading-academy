@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Author;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Author;
 use App\Post;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -16,8 +19,20 @@ class PostsController extends Controller
     public function index()
     {
         //
-        $posts = Post::all();
-        return view('user.author.posts.index', compact('posts'));
+        $posts = Author::where('user_id', Auth::user()->id)->first()->posts;
+        $data = [
+            'index' => ['name' => 'My Posts', 'link' => route('author.posts.index')],
+            'create' => ['name' => 'Add Post', 'link' => route('author.posts.create')],
+            'list' => $posts,
+            'table' => [
+                ['key' => 'Title', 'value' => function ($item) { return $item->title; }],
+                ['key' => 'Body', 'value' => function ($item) { return Str::limit($item->body); }],
+                ['key' => 'Slug', 'value' => function ($item) { return $item->slug; }],
+                ['key' => 'Created at', 'value' => function ($item) { return $item->created_at->diffForHumans(); }],
+                ['key' => 'Updated at', 'value' => function ($item) { return $item->updated_at->diffForHumans(); }]
+            ]
+        ];
+        return view('user.author.posts.index', compact('data'));
     }
 
     /**
@@ -28,7 +43,11 @@ class PostsController extends Controller
     public function create()
     {
         //
-        return view('user.author.posts.create');
+        $data = [
+            'index' => ['name' => 'My Posts', 'link' => route('author.posts.index')],
+            'create' => ['name' => 'Add Post', 'link' => route('author.posts.create')],
+        ];
+        return view('user.author.posts.create', compact('data'));
     }
 
     /**

@@ -1,18 +1,20 @@
 <div class="bg-mydarkblue">
-    <div class="d-flex py-2 px-3 align-items-center justify-content-between bg-black-50 text-white">
+    <div class="d-flex px-3 align-items-center justify-content-between bg-black text-white">
         <div>
             <div class="d-flex align-items-center">
-                <div class="pr-5">
+                <div class="pr-4">
                     <i class="fas fa-align-left fa-fw fa-2x text-white-50"></i>
                 </div>
                 
                 <div class="d-flex">
                     <div class="pt-2 pr-3">
-                        <i class="fas fa-blog fa-2x text-orange"></i>
+                        <div class="py-2">
+                            <i class="fas fa-tachometer-alt fa-lg text-orange"></i>
+                        </div>
                     </div>
                     <div class="py-2 text-montserrat-alt">
-                        <div class="py-1 font-weight-bold text-white text-large">Blog</div>
-                        <div class="text-muted">My Posts</div>
+                        <div class="py-1 font-weight-bold text-white text-large">Dashboard</div>
+                        <div class="text-muted">@yield('section')</div>
                     </div>
                 </div>
             </div>
