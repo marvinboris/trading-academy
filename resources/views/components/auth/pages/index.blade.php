@@ -11,38 +11,40 @@
             </select>
         </div>
     </div>
-    
 
-    <div class="row col-10 align-items-center">
-        <div class="col-5">
-            <div class="bg-black-10 d-flex text-black justify-content-around align-items-center font-weight-bold py-2">
-                <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-file-excel text-darkblue mr-2"></i>Excel</a>
-                <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-file-pdf text-danger mr-2"></i>PDF</a>
-                <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-file-csv text-green mr-2"></i>CSV</a>
-                <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-print text-primary mr-2"></i>Print</a>
-            </div>
+    <div class="col-4">
+        <div class="bg-black-10 d-flex text-black justify-content-around align-items-center font-weight-bold py-2">
+            <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-file-excel text-darkblue mr-2"></i>Excel</a>
+            <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-file-pdf text-danger mr-2"></i>PDF</a>
+            <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-file-csv text-green mr-2"></i>CSV</a>
+            <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-print text-primary mr-2"></i>Print</a>
         </div>
-        
-
-        <div class="col-2">
-            <input type="search" class="form-control bg-black-10 border-0" placeholder="Search...">
-        </div>
-
-        <div class="col-5">
-            <div class="text-right text-montserrat text-900">
-                <a href="{{ $index['link'] }}" class="btn font-weight-bold btn-orange d-inline-flex p-0">
-                    <div class="py-2 px-3 border-right border-white-50"><i class="fas fa-list"></i></div>
-                    <div class="py-2 px-3">{{ $index['name'] }}</div>
-                </a>
-                <a href="{{ $create['link'] }}" class="btn font-weight-bold btn-green d-inline-flex p-0">
-                    <div class="py-2 px-3 border-right border-white-50"><i class="fas fa-plus"></i></div>
-                    <div class="py-2 px-3">{{ $create['name'] }}</div>
-                </a>
-            </div>
-        </div>
-        
     </div>
-    
+
+    <div class="col-6">
+        <div class="row align-items-center">
+            <div class="col-3">
+                <input type="search" class="form-control bg-black-10 border-0" placeholder="Search...">
+            </div>
+
+            <div class="col-9">
+                <div class="text-right text-montserrat text-900 row">
+                    <div class="col-6 pr-1">
+                        <a href="{{ $index['link'] }}" class="btn font-weight-bold btn-orange d-flex p-0">
+                            <div class="py-2 px-3 border-right border-white-50"><i class="fas fa-list"></i></div>
+                            <div class="py-2 px-3">{{ $index['name'] }}</div>
+                        </a>
+                    </div>
+                    <div class="col-6 pl-1">
+                        <a href="{{ $create['link'] }}" class="btn font-weight-bold btn-green d-flex p-0">
+                            <div class="py-2 px-3 border-right border-white-50"><i class="fas fa-plus"></i></div>
+                            <div class="py-2 px-3">{{ $create['name'] }}</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="table-responsive mb-2">

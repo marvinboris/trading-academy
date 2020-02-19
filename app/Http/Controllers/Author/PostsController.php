@@ -46,6 +46,34 @@ class PostsController extends Controller
         $data = [
             'index' => ['name' => 'My Posts', 'link' => route('author.posts.index')],
             'create' => ['name' => 'Add Post', 'link' => route('author.posts.create')],
+            'action' => route('author.posts.store'),
+            'method' => 'post',
+            'file' => true,
+            'size' => 8,
+            'content' => [
+                [
+                    'type' => 'text',
+                    'size' => 12,
+                    'data' => [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'type' => 'text',
+                        'required' => 'required',
+                        'size' => 4
+                    ]
+                ],
+                [
+                    'type' => 'text',
+                    'size' => 12,
+                    'data' => [
+                        'name' => 'body',
+                        'label' => 'Body',
+                        'type' => 'textarea',
+                        'required' => 'required',
+                        'size' => 4
+                    ]
+                ]
+            ]
         ];
         return view('user.author.posts.create', compact('data'));
     }
