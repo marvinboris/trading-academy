@@ -1,5 +1,5 @@
 <div class="col-xl-4 col-lg-6 col-md-8 col-sm-12 pb-3 pb-lg-0">
-    <div class="card border-0" style="background: transparent url('{{ $img ? $img : 'https://placehold.it/150x100' }}') no-repeat center; background-size: cover;">
+    <div class="card border-0" style="background: transparent url('{{ $img ? asset($img) : 'https://placehold.it/150x100' }}') no-repeat center; background-size: cover;">
         <div class="card-img-top embed-responsive embed-responsive-16by9 position-relative">
             <div class="bg-black-33 py-2 px-3 rounded-left position-absolute" style="top: 20px; right: 0px;">
                 <div class="d-flex align-items-center">

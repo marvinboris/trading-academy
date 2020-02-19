@@ -1,7 +1,7 @@
 <div class="col-12">
     <div class="row">
         <div class="col-lg-6 col-md-8 pb-3 pb-lg-0">
-            <div class="card border-0 bg-transparent" style="background: url('{{ $img ? $img : 'https://placehold.it/150x100' }}') no-repeat center; background-size: cover;">
+            <div class="card border-0 bg-transparent" style="background: url('{{ $img ? asset($img) : 'https://placehold.it/150x100' }}') no-repeat center; background-size: cover;">
                 <div class="card-img-top embed-responsive embed-responsive-4by3">
                 </div>
                 <div class="card-body bg-darkblue-80 text-white">

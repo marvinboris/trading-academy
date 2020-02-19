@@ -50,15 +50,15 @@
                         
                     </div>
                     <div class="carousel-item h-100 active">
-                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('/images/wp2054297.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset('/images/wp2054297.jpg') }}'); background-size: cover; background-position: center;"></div>
                     </div>
     
                     <div class="carousel-item h-100">
-                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('/images/DX-margin-trade-crypto.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset('/images/DX-margin-trade-crypto.jpg') }}'); background-size: cover; background-position: center;"></div>
                     </div>
     
                     <div class="carousel-item h-100">
-                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('/images/3commas-cover.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset('/images/3commas-cover.jpg') }}'); background-size: cover; background-position: center;"></div>
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
@@ -87,7 +87,7 @@
         <div class="px-md-5">
             <div class="row align-items-center">
                 <div class="col-lg-4 pr-lg-5 pb-3 pb-lg-0">
-                    <img src="{{ url('/images/cryptocurrency_esoteric-768x768@2x.png') }}" alt="Pic" class="img-fluid w-100">
+                    <img src="{{ asset('/images/cryptocurrency_esoteric-768x768@2x.png') }}" alt="Pic" class="img-fluid w-100">
                 </div>
                 <div class="col-lg-4 pb-3 pb-lg-0">
                     <div class="d-inline-block h3 border-bottom pb-3 mb-3 text-allexist">
@@ -110,7 +110,7 @@
                 </div>
                 <div class="col-lg-4 pl-lg-5 pb-3 pb-lg-0">
                     <div class="rounded-lg shadow border bg-white" style="padding: 9px 12px;">
-                        <img src="{{ url('/images/IronX-Crypto-exchange-Blog.jpg') }}" alt="Pic" class="img-fluid w-100 border shadow">
+                        <img src="{{ asset('/images/IronX-Crypto-exchange-Blog.jpg') }}" alt="Pic" class="img-fluid w-100 border shadow">
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@
             <div class="bg-white w-100 h-100" style="clip-path: polygon(100% 0%, 20% 0%, 0% 20%, 50% 100%, 100% 100%);"></div>
         </div>
         <div class="position-absolute" style="top: -5%; right: 0; width: 23%; height: 84%; filter: drop-shadow(-5px 0px 5px rgba(50, 50, 0, 0.5));">
-            <div class="w-100 h-100" style="clip-path: polygon(100% 0%, calc(20% + 15px) 0%, 30px 20%, calc(50% + 15px) 100%, 100% 100%); background-image: url('{{ url('/images/ss-shattering-ath-bitcoin.jpg') }}'); background-position: center; background-size: cover;"></div>
+            <div class="w-100 h-100" style="clip-path: polygon(100% 0%, calc(20% + 15px) 0%, 30px 20%, calc(50% + 15px) 100%, 100% 100%); background-image: url('{{ asset('/images/ss-shattering-ath-bitcoin.jpg') }}'); background-position: center; background-size: cover;"></div>
         </div>
         <div class="px-md-5 row">
             <div class="col-12 pr-0" style="transform: scale(.78) translate(-11%, -11%);">

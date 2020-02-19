@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid px-md-5 px-4 py-5 bg-dark text-white" style="background: linear-gradient(to right, rgba(0, 0, 0, .9), rgba(0, 0, 0, .9)), url('{{ $course['img'] }}') no-repeat center; background-size: cover;">
+    <div class="container-fluid px-md-5 px-4 py-5 bg-dark text-white" style="background: linear-gradient(to right, rgba(0, 0, 0, .9), rgba(0, 0, 0, .9)), url('{{ asset($course['img']) }}') no-repeat center; background-size: cover;">
         <div class="pt-4 px-md-5">
             <div class="row text-montserrat">
                 <div class="col-lg-8">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-lg-4 position-relative">
                     <aside class="card border-0 bg-transparent shadow position-absolute w-100">
-                        <div class="d-flex justify-content-center align-items-center overflow-hidden card-img-top embed-responsive embed-responsive-16by9" style="background: url('{{ $course['img'] }}') no-repeat center; background-size: cover;"></div>
+                        <div class="d-flex justify-content-center align-items-center overflow-hidden card-img-top embed-responsive embed-responsive-16by9" style="background: url('{{ asset($course['img']) }}') no-repeat center; background-size: cover;"></div>
                         <div class="card-body bg-{{ $course['color'] }}-gradient position-relative">
                             <span class="position-absolute bg-yellow text-black text-baloo text-x-large px-3 rounded shadow pt-2" style="top: -.5rem; right: 1rem; transform: translateY(-50%);">$ {{ $course['price'] }}</span>
                             <div class="d-flex justify-content-between">

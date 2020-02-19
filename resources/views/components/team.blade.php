@@ -5,7 +5,7 @@
             <div class="rounded-circle position-absolute embed-responsive embed-responsive-1by1" style="background-color: #008564; top: 0; left: 0; z-index: -2; transform: scale(1);"></div>
         </div>
         <div class="position-relative" style="top: 15px;">
-            <div class="rounded-circle embed-responsive embed-responsive-1by1" style="background: url('{{ url($img) }}') no-repeat center; background-size: cover;"></div>
+            <div class="rounded-circle embed-responsive embed-responsive-1by1" style="background: url('{{ asset($img) }}') no-repeat center; background-size: cover;"></div>
             <div class="d-flex flex-column align-items-center details small mt-3" style="opacity: 0;">
                 <div class="bg-dark" style="clip-path: polygon(50% 0%, calc(50% - .5rem) 100%, calc(50% + .5rem) 100%); height: 1rem; width: 100%;"></div>
                 <div class="bg-dark py-2 px-3">

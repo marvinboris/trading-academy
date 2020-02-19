@@ -2,8 +2,7 @@
     <div class="bg-black-50 h-100">
         <div class="pt-2 pb-3 px-4 border-bottom border-white-20 border-thin bg-blac">
             <a href="{{ url('/') }}" class="d-flex align-items-center" style="top: 10px; height: 50px;">
-                <img src="/images/Groupe 130@2x.png" class="h-100" alt="Logo">
-                {{-- <i class="fas fa-minus text-orange fa-4x"></i> --}}
+                <img src="{{ asset('/images/Groupe 130@2x.png') }}" class="h-100" alt="Logo">
             </a>
         </div>
         <div class="flex-fill text-white text-montserrat pt-3">

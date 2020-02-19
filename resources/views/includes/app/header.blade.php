@@ -1,7 +1,7 @@
 <header class="px-md-5 d-flex align-items-center bg-header position-sticky shadow" style="height: 95px; top: -35px; z-index: 1100;">
     <nav class="navbar navbar-expand-md navbar-dark flex-fill position-sticky" style="top: -35px;">
         <a href="{{ url('/') }}" class="d-block position-sticky" style="top: 10px; height: 60px;">
-            <img src="/images/Groupe 130@2x.png" class="h-100" alt="Logo">
+            <img src="{{ asset('/images/Groupe 130@2x.png') }}" class="h-100" alt="Logo">
         </a>
 
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +94,7 @@
                         <a href="#" class="pl-2 dropdown-toggle d-flex align-items-center dropdown-toggle-split text-decoration-none text-reset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="pr-1">
                                 {!! Auth::user()->photo ? 
-                                '<img src="' . Auth::user()->photo .'" alt="User" class="rounded-circle img-fluid" style="width: 32px; height: 32px;">'
+                                '<img src="' . asset(Auth::user()->photo) .'" alt="User" class="rounded-circle img-fluid" style="width: 32px; height: 32px;">'
                                 : 
                                 '<div class="d-flex justify-content-center align-items-center font-weight-bold text-white text-montserrat rounded-circle bg-black-50 text-x-small" style="width: 32px; height: 32px; outline-offset: 4px; box-shadow: 0 0 0 2px white;">' . Auth::user()->abbreviation() . '</div>'
                                 !!}

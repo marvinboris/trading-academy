@@ -28,7 +28,7 @@
             </div>
             <div class="col-lg-5">
                 <div class="p-2 rounded bg-white border shadow">
-                    <img src="{{ url('/images/germanys-2nd-largest-stock-exchange-stuttgart-solarisbank-make-zero-trading-fee-crypto-exchange-1600x900.jpg') }}" alt="About Us under-banner" class="img-fluid shadow">
+                    <img src="{{ asset('/images/germanys-2nd-largest-stock-exchange-stuttgart-solarisbank-make-zero-trading-fee-crypto-exchange-1600x900.jpg') }}" alt="About Us under-banner" class="img-fluid shadow">
                 </div>
             </div>
         </div>
