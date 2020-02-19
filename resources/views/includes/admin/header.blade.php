@@ -70,17 +70,12 @@
                 <div class="px-3">
                     <a href="#" class="pl-2 dropdown-toggle d-flex align-items-center dropdown-toggle-split text-decoration-none text-reset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="pr-1">
-                            <div class="rounded-circle d-flex justify-content-center align-items-center bg-yellow overflow-hidden" style="width: 40px; height: 40px;">
-                                <div class="rounded-circle d-flex justify-content-center align-items-center bg-darkblue overflow-hidden" style="width: 36px; height: 36px;">
-                                    {!! Auth::user()->photo ? 
-                                    '<img src="' . Auth::user()->photo .'" alt="User" class="rounded-circle img-fluid" style="width: 32px; height: 32px;">'
-                                    : 
-                                    '<div class="d-flex justify-content-center align-items-center font-weight-bold text-green text-montserrat rounded-circle bg-white" style="width: 32px; height: 32px;">' . Auth::user()->abbreviation() . '</div>'
-                                    !!}
-                                </div>
-                            </div>
+                            {!! Auth::user()->photo ? 
+                            '<img src="' . Auth::user()->photo .'" alt="User" class="rounded-circle img-fluid" style="width: 32px; height: 32px;">'
+                            : 
+                            '<div class="d-flex justify-content-center align-items-center font-weight-bold text-white text-montserrat rounded-circle bg-black-50 text-x-small" style="width: 32px; height: 32px; outline-offset: 4px; box-shadow: 0 0 0 2px white;">' . Auth::user()->abbreviation() . '</div>'
+                            !!}
                         </div>
-                        <span class="pr-1">{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu">
                         <a href="{{ route(strtolower(Auth::user()->role->name) . '.dashboard') }}" class="dropdown-item {{ Request::segment(2) === 'dashboard' ? 'active' : null }}"><i class="fa mr-2 fa-dashboard"></i>Dashboard</a>                            

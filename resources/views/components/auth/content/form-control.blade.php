@@ -1,2 +1,4 @@
-<label for="{{ $name }}" class="control-label col-{{ $size or 12 }}">{{ $label }}</label>
-<input type="{{ $type }}" class="form-control col-{{ $size ? 12 - $size : 12 }}" name="{{ $name }}" id="{{ $name }}" {{ $required or '' }}>
+<div class="row">
+    <label for="{{ $name }}" class="control-label col-{{ $size }}">{{ $label }}</label>
+    <input type="{{ $type }}" class="form-control text-fa text-900 col-{{ 12 - $size }}" value="{{ $value ?? '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{!! $placeholder !!}" {{ $required or '' }}>
+</div>

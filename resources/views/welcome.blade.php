@@ -18,7 +18,7 @@
                 </ol>
                 <div class="carousel-inner h-100 position-relative">
                     <div id="banner" class="w-75">
-                        <div class=" text-orange h1 title">
+                        <div class=" text-orange text-montserrat h1 title">
                             Welcome to
                         </div>  
                         <div class="my-5">
@@ -37,14 +37,17 @@
                                 </div>
                             </div>
                         </div>
+                        @guest
                         <div>
-                            <a href="#" class="btn-group text-allexist link text-decoration-none">
+                            <a href="{{ route('register') }}" class="btn-group text-allexist link text-decoration-none">
                                 <span class="btn btn-green btn-lg rounded-0 px-5 py-3">Sign Up</span>
                                 <div class="d-inline-flex justify-content-center align-items-center bg-darkblue text-white rounded-0 pr-3 pl-3">
                                     <i class="fas fa-2x fa-arrow-alt-circle-right"></i>
                                 </div>
                             </a>
                         </div>
+                        @endguest
+                        
                     </div>
                     <div class="carousel-item h-100 active">
                         <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('/images/wp2054297.jpg'); background-size: cover; background-position: center;"></div>

@@ -49580,6 +49580,17 @@ $(function () {
     }, 'fast');
   });
 });
+$(function () {
+  $('#messages-controller').click(function () {
+    if ($('#notifications').hasClass('show') || $('#menu').hasClass('show')) $('#notifications, #menu').removeClass('show');
+  });
+  $('#notifications-controller').click(function () {
+    if ($('#messages').hasClass('show') || $('#menu').hasClass('show')) $('#messages, #menu').removeClass('show');
+  });
+  $('#menu-controller').click(function () {
+    if ($('#messages').hasClass('show') || $('#notifications').hasClass('show')) $('#messages, #notifications').removeClass('show');
+  });
+});
 
 /***/ }),
 

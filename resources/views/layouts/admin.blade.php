@@ -1,4 +1,5 @@
 @include('includes.head')
+
 <div class="d-flex min-vh-100">
     @include('includes.admin.aside')
     <div class="flex-fill">
@@ -11,4 +12,5 @@
         </div>
     </div>
 </div>
+
 @include('includes.foot')

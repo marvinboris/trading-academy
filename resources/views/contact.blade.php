@@ -82,7 +82,12 @@
                             <textarea name="" id="" class="form-control" required placeholder="Your message"></textarea>
                         </div>
                         <div class="col-12 form-group">
-                            <button class="btn btn-green">Submit</button>
+                            <button class="btn-group btn text-allexist link text-decoration-none">
+                                <span class="btn btn-green btn-lg rounded-0 px-5 py-3">Submit</span>
+                                <div class="d-inline-flex justify-content-center align-items-center bg-darkblue text-white rounded-0 pr-3 pl-3">
+                                    <i class="fas fa-2x fa-arrow-alt-circle-right"></i>
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </form>

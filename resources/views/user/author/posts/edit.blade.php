@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('section', 'Blog')
-@section('title', 'Add Post')
+@section('title', 'Edit Post')
 
 @section('content')
 @component('components.auth.page')
 @component('components.auth.pages.create', ['data' => $data])
 <div class="col-lg-3">
     <div class="p-4 bg-white border mb-3">
-        <div class="border rounded-circle embed-responsive embed-responsive-1by1 mb-3"></div>
+        <div class="border rounded-circle embed-responsive embed-responsive-1by1 mb-3" style="background: url('{{ asset($data['data']->photo->path) }}') no-repeat center; background-size: cover;"></div>
         <div class="text-center">
             <a href="#" id="upload" data-target="{{ $data['content'][2]['data']['name'] }}" class="text-green">Click to upload image</a>
         </div>

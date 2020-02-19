@@ -29,6 +29,26 @@
                 </div>
 
                 <div class="form-group">
+                    <input id="phone" type="tel" class="form-control text-fa border-green text-900 @error('phone') is-invalid @enderror" name="phone" placeholder="&#xf095;   {{ __('Phone Number') }}" value="{{ old('phone') }}" required autocomplete="phone">
+
+                    @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <input id="sponsor" type="text" class="form-control text-fa border-green text-900 @error('sponsor') is-invalid @enderror" name="sponsor" placeholder="&#xf500;   {{ __('Sponsor ID') }}" @if (Request::query('ref')) readonly value="{{ Request::query('ref') }}" @else value="{{ old('sponsor') }}" @endif autocomplete="sponsor">
+
+                    @error('sponsor')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <input id="password" type="password" class="form-control text-fa border-green text-900 @error('password') is-invalid @enderror" name="password" placeholder="&#xf084;   {{ __('Password') }}" required autocomplete="new-password">
 
                     @error('password')

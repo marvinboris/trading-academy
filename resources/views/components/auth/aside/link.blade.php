@@ -1,4 +1,4 @@
-<a href="{{ $link }}" class="btn btn-green text-left @if (url()->current() === $link) border-top-0 border-bottom-0 border-right-0 border-8 border-white active @else border-0 @endif p-0 d-block text-decoration-none text-reset mb-2">
+<a href="{{ $link }}" class="btn btn-green text-left @if (url()->current() === $link) border-top-0 border-bottom-0 border-right-0 border-8 border-white active @else border-0 @endif p-0 d-block text-decoration-none text-reset" style="box-shadow: none !important;">
     <div class="bg-black-50 h-100 d-flex">
         <div class="h-100 bg-orange" style="width: 5px;"></div>
         <div class="flex-fill py-2 px-3">

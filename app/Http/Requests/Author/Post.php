@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Author;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends FormRequest
 {
@@ -13,7 +14,7 @@ class Post extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return in_array(Auth::user()->role->name, ['Admin', 'Author']);
     }
 
     /**
@@ -26,8 +27,7 @@ class Post extends FormRequest
         return [
             //
             'title' => 'required|max:255',
-            'body' => 'required',
-            'photo' => 'required|image',
+            'body' => 'required'
         ];
     }
 }

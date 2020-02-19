@@ -8,6 +8,9 @@ use App\Author;
 use App\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Author\Post as PostRequest;
+use App\Http\Requests\Teacher\Session;
+use App\Photo;
 
 class PostsController extends Controller
 {
@@ -21,8 +24,12 @@ class PostsController extends Controller
         //
         $posts = Author::where('user_id', Auth::user()->id)->first()->posts;
         $data = [
-            'index' => ['name' => 'My Posts', 'link' => route('author.posts.index')],
-            'create' => ['name' => 'Add Post', 'link' => route('author.posts.create')],
+            'links' => [
+                'base' => 'author.posts.',
+                'index' => 'My Posts',
+                'create' => 'Add Post',
+                'edit' => 'Edit Post',
+            ],
             'list' => $posts,
             'table' => [
                 ['key' => 'Title', 'value' => function ($item) { return $item->title; }],
@@ -44,33 +51,49 @@ class PostsController extends Controller
     {
         //
         $data = [
-            'index' => ['name' => 'My Posts', 'link' => route('author.posts.index')],
-            'create' => ['name' => 'Add Post', 'link' => route('author.posts.create')],
+            'links' => [
+                'base' => 'author.posts.',
+                'index' => 'My Posts',
+                'create' => 'Add Post',
+                'edit' => 'Edit Post',
+            ],
             'action' => route('author.posts.store'),
             'method' => 'post',
             'file' => true,
-            'size' => 8,
+            'size' => '9',
             'content' => [
                 [
                     'type' => 'text',
-                    'size' => 12,
+                    'size' => '12',
                     'data' => [
                         'name' => 'title',
                         'label' => 'Title',
                         'type' => 'text',
                         'required' => 'required',
-                        'size' => 4
+                        'placeholder' => '&#xf1dc;   Title',
+                        'size' => '3'
                     ]
                 ],
                 [
-                    'type' => 'text',
-                    'size' => 12,
+                    'type' => 'textarea',
+                    'size' => '12',
                     'data' => [
                         'name' => 'body',
                         'label' => 'Body',
-                        'type' => 'textarea',
                         'required' => 'required',
-                        'size' => 4
+                        'placeholder' => '&#xf1dd;   Body',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'file',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'photo',
+                        'label' => 'Photo',
+                        'required' => 'required',
+                        'hidden' => true,
+                        'size' => '3'
                     ]
                 ]
             ]
@@ -84,9 +107,21 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         //
+        $input = $request->validated();
+        if ($file = $request->file('photo')) {
+            $fileName = time() . $file->getClientOriginalName();
+            $file->move('images', $fileName);
+            $input['photo'] = htmlspecialchars($fileName);
+        }
+        $photo = Photo::create(['path' => $input['photo']]);
+        $input['photo_id'] = $photo->id;
+        $post = Post::create($input);
+        Author::find(Auth::id())->posts()->save($post);
+        Session::flash('created_post', 'The post ' . $post->title . ' has been successfully added.');
+        return redirect(route('user.author.posts.index'));
     }
 
     /**
@@ -109,6 +144,59 @@ class PostsController extends Controller
     public function edit($id)
     {
         //
+        $post = Author::where('user_id', Auth::id())->first()->posts()->find($id);
+        $data = [
+            'links' => [
+                'base' => 'author.posts.',
+                'index' => 'My Posts',
+                'create' => 'Add Post',
+                'edit' => 'Edit Post',
+            ],
+            'data' => $post,
+            'action' => route('author.posts.update', $id),
+            'method' => 'post',
+            'file' => true,
+            'size' => '9',
+            'content' => [
+                [
+                    'type' => 'text',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'type' => 'text',
+                        'required' => 'required',
+                        'value' => $post->title,
+                        'placeholder' => '&#xf1dc;   Title',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'textarea',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'body',
+                        'label' => 'Body',
+                        'required' => 'required',
+                        'value' => $post->body,
+                        'placeholder' => '&#xf1dd;   Body',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'file',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'photo',
+                        'label' => 'Photo',
+                        'required' => 'required',
+                        'hidden' => true,
+                        'size' => '3'
+                    ]
+                ]
+            ]
+        ];
+        return view('user.author.posts.edit', compact('data'));
     }
 
     /**
@@ -118,9 +206,22 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         //
+        $post = Author::where('user_id', Auth::id())->first()->posts()->find($id);
+        $photo = $post->photo;
+        $input = $request->validated();
+        if ($file = $request->file('photo')) {
+            $path = public_path() . '/images/' . $photo->path;
+            if (file_exists($path)) unlink($path);
+            $fileName = time() . $file->getClientOriginalName();
+            $file->move('images', $fileName);
+            $photo->update(['path' => htmlspecialchars($fileName)]);
+        }
+        $post->save($input);
+        Session::flash('updated_post', 'The post ' . $post->title . ' has been successfully updated.');
+        return redirect(route('user.author.posts.index'));
     }
 
     /**

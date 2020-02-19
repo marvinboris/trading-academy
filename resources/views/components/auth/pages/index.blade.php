@@ -30,15 +30,15 @@
             <div class="col-9">
                 <div class="text-right text-montserrat text-900 row">
                     <div class="col-6 pr-1">
-                        <a href="{{ $index['link'] }}" class="btn font-weight-bold btn-orange d-flex p-0">
+                        <a href="{{ route($links['base'] . 'index') }}" class="btn font-weight-bold btn-orange d-flex p-0">
                             <div class="py-2 px-3 border-right border-white-50"><i class="fas fa-list"></i></div>
-                            <div class="py-2 px-3">{{ $index['name'] }}</div>
+                            <div class="py-2 px-3">{{ $links['index'] }}</div>
                         </a>
                     </div>
                     <div class="col-6 pl-1">
-                        <a href="{{ $create['link'] }}" class="btn font-weight-bold btn-green d-flex p-0">
+                        <a href="{{ route($links['base'] . 'create') }}" class="btn font-weight-bold btn-green d-flex p-0">
                             <div class="py-2 px-3 border-right border-white-50"><i class="fas fa-plus"></i></div>
-                            <div class="py-2 px-3">{{ $create['name'] }}</div>
+                            <div class="py-2 px-3">{{ $links['create'] }}</div>
                         </a>
                     </div>
                 </div>
@@ -66,9 +66,9 @@
                 <td>{{ $value['value']($item) }}</td>
                 @endforeach
                 <td>
-                    <a href="#" class="fas text-decoration-none mr-2 fa-eye text-success"></a>
+                    <a href="{{ route($links['base'] . 'show', $item->id) }}" class="fas text-decoration-none mr-2 fa-eye text-success"></a>
                     <a href="#" class="fas text-decoration-none mr-2 fa-trash text-danger"></a>
-                    <a href="#" class="fas text-decoration-none fa-edit text-primary"></a>
+                    <a href="{{ route($links['base'] . 'edit', $item->id) }}" class="fas text-decoration-none fa-edit text-primary"></a>
                 </td>
             </tr>
             @endforeach
