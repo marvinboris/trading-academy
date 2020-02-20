@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    @component('components.banner', ['intro' => 'About Us', 'title' => 'Crypto Trading<br>courses here'])
+    @component('components.banner', ['title' => 'About Us'])
     @endcomponent
     @component('components.section', [
         'bgColor' => 'light',

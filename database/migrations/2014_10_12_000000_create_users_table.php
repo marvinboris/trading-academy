@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('ref', 10)->unique();
             $table->string('sponsor', 10)->default("0");
             $table->integer('is_active')->default(0);
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email', 50)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

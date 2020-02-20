@@ -580,6 +580,10 @@ Route::name('contact')->get('contact', function () {
     return view('contact');
 });
 
+Route::get('countries', function () {
+    return Countries::getList('en', 'json');
+});
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::namespace('Admin')->name('admin.')->middleware('admin')->prefix('admin')->group(function () {
         Route::name('dashboard')->get('dashboard', 'DashboardController@index');
@@ -600,6 +604,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('views', 'ViewsController');
     });
 
+    Route::name('user.')->prefix('user')->group(function () {
+        Route::name('team')->get('team', 'TeamController@index');
+        Route::name('messages')->get('messages', 'MessagesController@index');
+        Route::name('notifications')->get('notifications', 'NotificationsController@index');
+    });
+
+
     Route::namespace('Author')->name('author.')->middleware('author')->prefix('author')->group(function () {
         Route::name('dashboard')->get('dashboard', 'DashboardController@index');
         Route::resource('posts', 'PostsController');
@@ -608,13 +619,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware('participant')->group(function () {
         Route::namespace('Student')->name('student.')->middleware('student')->prefix('student')->group(function () {
             Route::name('dashboard')->get('dashboard', 'DashboardController@index');
-
         });
-        
+
         Route::namespace('Teacher')->name('teacher.')->middleware('teacher')->prefix('teacher')->group(function () {
             Route::name('dashboard')->get('dashboard', 'DashboardController@index');
-
         });
     });
-    
 });

@@ -9,12 +9,19 @@
             </div>
         </div>
         <div class="col-md-5">
-            <h1 class="text-center text-allexist mb-3 text-green">Sign In</h1>
+            <h1 class="text-center text-montserrat font-weight-bold mb-3 text-green">Sign In</h1>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="form-group">
-                    <input id="email" type="email" class="form-control border-green text-fa text-900 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="&#xf0e0;   E-mail Address" required autocomplete="email" autofocus>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text border-0 rounded-0 bg-black-10">
+                                <label for="email" class="m-0"><i class="fas fa-fw fa-envelope"></i></label>
+                            </div>
+                        </div>
+                        <input id="email" type="email" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required autocomplete="email">
+                    </div>
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -24,7 +31,14 @@
                 </div>
 
                 <div class="form-group">
-                    <input id="password" type="password" class="form-control border-green text-fa text-900 @error('password') is-invalid @enderror" name="password" placeholder="&#xf084;   Password" required autocomplete="current-password">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text border-0 rounded-0 bg-black-10">
+                                <label for="password" class="m-0"><i class="fas fa-fw fa-key"></i></label>
+                            </div>
+                        </div>
+                        <input id="password" type="password" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('password') is-invalid @enderror" name="password" placeholder="{{ __('Password') }}" required autocomplete="new-password">
+                    </div>
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">

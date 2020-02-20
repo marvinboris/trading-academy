@@ -17601,6 +17601,69 @@ a.text-dark:focus {
   border-color: #f95f5f !important;
 }
 
+.text-purered {
+  color: #f60929 !important;
+}
+
+.text-purered-10 {
+  color: rgba(246, 9, 41, 0.1);
+}
+
+.text-purered-20 {
+  color: rgba(246, 9, 41, 0.2);
+}
+
+.bg-purered {
+  background-color: #f60929 !important;
+}
+
+.bg-purered-10 {
+  background-color: rgba(246, 9, 41, 0.1) !important;
+}
+
+.bg-purered-20 {
+  background-color: rgba(246, 9, 41, 0.2) !important;
+}
+
+.bg-purered-33 {
+  background-color: rgba(246, 9, 41, 0.33) !important;
+}
+
+.bg-purered-50 {
+  background-color: rgba(246, 9, 41, 0.5) !important;
+}
+
+.bg-purered-80 {
+  background-color: rgba(246, 9, 41, 0.8) !important;
+}
+
+.btn-purered {
+  background-color: #f60929;
+  color: #ffffff !important;
+}
+
+.btn-purered:hover,
+.btn-purered:focus,
+.btn-purered.active {
+  background-color: #dd0825;
+}
+
+.btn-purered.disabled {
+  background-color: rgba(246, 9, 41, 0.5);
+}
+
+.border-purered-20 {
+  border-color: rgba(246, 9, 41, 0.2) !important;
+}
+
+.border-purered-50 {
+  border-color: rgba(246, 9, 41, 0.5) !important;
+}
+
+.border-purered {
+  border-color: #f60929 !important;
+}
+
 .text-orange {
   color: #ff9936 !important;
 }
@@ -17662,6 +17725,69 @@ a.text-dark:focus {
 
 .border-orange {
   border-color: #ff9936 !important;
+}
+
+.text-oranger {
+  color: #f67e09 !important;
+}
+
+.text-oranger-10 {
+  color: rgba(246, 126, 9, 0.1);
+}
+
+.text-oranger-20 {
+  color: rgba(246, 126, 9, 0.2);
+}
+
+.bg-oranger {
+  background-color: #f67e09 !important;
+}
+
+.bg-oranger-10 {
+  background-color: rgba(246, 126, 9, 0.1) !important;
+}
+
+.bg-oranger-20 {
+  background-color: rgba(246, 126, 9, 0.2) !important;
+}
+
+.bg-oranger-33 {
+  background-color: rgba(246, 126, 9, 0.33) !important;
+}
+
+.bg-oranger-50 {
+  background-color: rgba(246, 126, 9, 0.5) !important;
+}
+
+.bg-oranger-80 {
+  background-color: rgba(246, 126, 9, 0.8) !important;
+}
+
+.btn-oranger {
+  background-color: #f67e09;
+  color: #ffffff !important;
+}
+
+.btn-oranger:hover,
+.btn-oranger:focus,
+.btn-oranger.active {
+  background-color: #dd7108;
+}
+
+.btn-oranger.disabled {
+  background-color: rgba(246, 126, 9, 0.5);
+}
+
+.border-oranger-20 {
+  border-color: rgba(246, 126, 9, 0.2) !important;
+}
+
+.border-oranger-50 {
+  border-color: rgba(246, 126, 9, 0.5) !important;
+}
+
+.border-oranger {
+  border-color: #f67e09 !important;
 }
 
 .text-scarlet {

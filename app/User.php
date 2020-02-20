@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'is_active', 'photo_id', 'phone', 'lang', 'ref'
+        'first_name', 'last_name', 'email', 'password', 'role_id', 'is_active', 'photo_id', 'phone', 'lang', 'ref'
     ];
 
     /**
@@ -77,7 +77,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function abbreviation() {
-        $names = explode(' ', $this->name);
+        $names = explode(' ', $this->name());
         $string = '';
 
         foreach ($names as $name) {
@@ -85,5 +85,17 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return $string;
+    }
+
+    public function referrals() {
+        return self::where('sponsor', $this->ref)->get();
+    }
+
+    public function name() {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function sponsor() {
+        return self::where('ref', $this->sponsor)->first();
     }
 }

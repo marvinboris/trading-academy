@@ -1,6 +1,7 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 
 @section('section', 'Blog')
+@section('parent') <a href="{{ route('author.posts.index') }}" class="text-green text-900">My Posts</a> @endsection
 @section('title', 'Edit Post')
 
 @section('content')

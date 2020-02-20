@@ -7,16 +7,16 @@
                 <div class="form-group col-{{ $item['size'] }}">
                     @switch($item['type'])
                         @case('file')
-                            @component('components.auth.content.file-input', $item['data']) @endcomponent
+                            @component('components.auth.content.form.file-input', $item['data']) @endcomponent
                             @break
                         @case('checkbox')
-                            @component('components.auth.content.checkbox', $item['data']) @endcomponent
+                            @component('components.auth.content.form.checkbox', $item['data']) @endcomponent
                             @break
                         @case('textarea')
-                            @component('components.auth.content.textarea', $item['data']) @endcomponent
+                            @component('components.auth.content.form.textarea', $item['data']) @endcomponent
                             @break
                         @default
-                            @component('components.auth.content.form-control', $item['data']) @endcomponent
+                            @component('components.auth.content.form.form-control', $item['data']) @endcomponent
                     @endswitch
                 </div>
             </div>

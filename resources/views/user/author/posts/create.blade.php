@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 
 @section('section', 'Blog')
 @section('title', 'Add Post')

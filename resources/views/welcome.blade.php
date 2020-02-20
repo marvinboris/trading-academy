@@ -24,10 +24,12 @@
                         <div class="my-5">
                             <div>
                                 <div class="w-75 position-relative">
-                                    <div class="rounded-circle bg-orange shadow position-absolute" style="width: 100px; height: 100px; top: -20px; right: 20px;"></div>
-                                    <div class="rounded-circle bg-light shadow position-absolute" style="width: 57px; height: 57px; top: 60px; right: -20px;"></div>
-                                    <div class="rounded-circle bg-green shadow position-absolute" style="width: 62px; height: 62px; top: 20px; right: -10px;"></div>
-                                    <div class="text-allexist text-white display-4 content py-4 pl-5 mb-4 rounded-0 bg-soft-gradient">
+                                    <div class="d-none">
+                                        <div class="rounded-circle bg-orange shadow position-absolute" style="width: 100px; height: 100px; top: -20px; right: 20px;"></div>
+                                        <div class="rounded-circle bg-light shadow position-absolute" style="width: 57px; height: 57px; top: 60px; right: -20px;"></div>
+                                        <div class="rounded-circle bg-green shadow position-absolute" style="width: 62px; height: 62px; top: 20px; right: -10px;"></div>
+                                    </div>
+                                    <div class="text-allexist text-white display-4 content pb-4 pl-4 rounded-0">
                                         The best African Crypto <br>
                                         Trading School
                                     </div>

@@ -2,8 +2,13 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row align-items-center justify-content-between py-5">
+        <div class="col-md-6">
+            <div class="position-relative">
+                <img src="{{ asset('images/Groupe 157.png') }}" alt="First pic sign in" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-md-5">
             <div class="card">
                 <div class="card-header">{{ __('Confirm Password') }}</div>
 

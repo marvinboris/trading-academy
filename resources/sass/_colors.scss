@@ -4,6 +4,7 @@ $mydarkblue: #002f59;
 $mypink: #c10168;
 $scarlet: #610134;
 $myred: #f95f5f;
+$purered: #f60929;
 $myorange: #ff9936;
 $myoranger: #f67e09;
 $brown: #7b3f05;
@@ -17,9 +18,9 @@ $black: #000000;
 
 // Colors
 $colors: "green" $mygreen $white, "darkblue" $darkgreen $white, "yellow" $myyellow $black,
-  "darkyellow" $darkyellow $white, "red" $myred $white, "orange" $myorange $white, "scarlet" $scarlet $white,
-  "blue" $myblue $white, "pink" $mypink $white, "mydarkblue" $mydarkblue $white, "white" $white $black,
-  "black" $black $white, "gray" $gray $white;
+  "darkyellow" $darkyellow $white, "red" $myred $white, "purered" $purered $white, "orange" $myorange $white,
+  "oranger" $myoranger $white, "scarlet" $scarlet $white, "blue" $myblue $white, "pink" $mypink $white,
+  "mydarkblue" $mydarkblue $white, "white" $white $black, "black" $black $white, "gray" $gray $white;
 @each $name, $color, $font in $colors {
   .text-#{$name} {
     color: $color !important;

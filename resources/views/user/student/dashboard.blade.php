@@ -1,8 +1,9 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 
 @section('section', 'Student Panel')
 
 @section('content')
+@component('components.auth.page')
 <section class="d-flex align-items-center py-3 justify-content-center">
     <div class="mr-2">
         Affiliate link :
@@ -25,10 +26,12 @@
         </strong>
     </div>
     <div class="row">
-        @component('components.auth.content.dashboard-item', ['bgColor' => 'orange', 'color' => 'white', 'title' => 'Total Posts', 'icon' => 'fas fa-mail-bulk']) 0 @endcomponent
-        @component('components.auth.content.dashboard-item', ['bgColor' => 'green', 'color' => 'white', 'title' => 'Team Members', 'icon' => 'fas fa-users']) 0 @endcomponent
-        @component('components.auth.content.dashboard-item', ['bgColor' => 'danger', 'color' => 'white', 'title' => 'Total Messages', 'icon' => 'fas fa-envelope']) 0 @endcomponent
-        @component('components.auth.content.dashboard-item', ['bgColor' => 'darkblue', 'color' => 'white', 'title' => 'Total Notifications', 'icon' => 'fas fa-bell']) 0 @endcomponent
+        @component('components.auth.content.dashboard.box', ['bgColor' => 'orange', 'color' => 'white', 'title' => 'Total Posts', 'icon' => 'fas fa-mail-bulk']) 0 @endcomponent
+        @component('components.auth.content.dashboard.box', ['bgColor' => 'green', 'color' => 'white', 'title' => 'Team Members', 'icon' => 'fas fa-users']) 0 @endcomponent
+        @component('components.auth.content.dashboard.box', ['bgColor' => 'danger', 'color' => 'white', 'title' => 'Total Messages', 'icon' => 'fas fa-envelope']) 0 @endcomponent
+        @component('components.auth.content.dashboard.box', ['bgColor' => 'darkblue', 'color' => 'white', 'title' => 'Total Notifications', 'icon' => 'fas fa-bell']) 0 @endcomponent
     </div>
 </section>
+@endcomponent
+
 @endsection

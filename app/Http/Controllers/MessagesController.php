@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class NotificationsController extends Controller
+class MessagesController extends Controller
 {
     //
     public function index() {
-        return view('user.notifications');
+        return view('user.messages');
     }
 }
