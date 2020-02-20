@@ -268,7 +268,7 @@ $countryArray = array(
                                     <label for="last_name" class="m-0"><i class="fas fa-fw fa-user"></i></label>
                                 </div>
                             </div>
-                            <input id="last_name" type="text" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('last_name') is-invalid @enderror" last_name="last_name" value="{{ old('last_name') }}" placeholder="{{ __('Last Name') }}" required autocomplete="last_name" autofocus>
+                            <input id="last_name" type="text" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" placeholder="{{ __('Last Name') }}" required autocomplete="last_name" autofocus>
                         </div>
 
                         @error('last_name')
