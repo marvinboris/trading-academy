@@ -16,3 +16,11 @@
 .btn, .form-control {
   border-radius: 0 !important;
 }
+
+.full-height-user {
+  min-height: calc(100vh - 75.8px);
+}
+
+.full-height-app {
+  min-height: calc(100vh - 92px);
+}

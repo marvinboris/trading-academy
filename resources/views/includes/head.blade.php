@@ -10,5 +10,6 @@
 
         <title>Trading Academy</title>
     </head>
-    <body class="min-vh-100" style="overflow-x: hidden;">
+    <body class="min-vh-100" style="overflow-x: auto;">
+        {{-- <body class="min-vh-100" style="overflow-x: hidden;"> --}}
         <div id="app">

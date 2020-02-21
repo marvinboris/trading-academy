@@ -18422,6 +18422,14 @@ a.text-dark:focus {
   border-radius: 0 !important;
 }
 
+.full-height-user {
+  min-height: calc(100vh - 75.8px);
+}
+
+.full-height-app {
+  min-height: calc(100vh - 92px);
+}
+
 #lil-point {
   width: 5px;
   height: 5px;

@@ -2,50 +2,29 @@
 
 @section('content')
 <div class="container">
-    <div class="row align-items-center justify-content-between py-5">
+    <div class="row align-items-center justify-content-between full-height-app py-5">
         <div class="col-md-6">
             <div class="position-relative">
                 <img src="{{ asset('images/Groupe 157.png') }}" alt="First pic sign in" class="img-fluid">
             </div>
         </div>
         <div class="col-md-5">
+            @if (Session::has('not_verified'))
+            @if (Session::has('new_registered'))
+            <div class="alert alert-info">{{ Session::get('not_verified') }}</div>
+            @else
+            <div class="alert alert-danger">{{ Session::get('not_verified') }}</div>
+            @endif
+            @endif
+            @if (Session::has('activated'))
+            <div class="alert alert-success">{{ Session::get('activated') }}</div>
+            @endif
             <h1 class="text-center text-montserrat font-weight-bold mb-3 text-green">Sign In</h1>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text border-0 rounded-0 bg-black-10">
-                                <label for="email" class="m-0"><i class="fas fa-fw fa-envelope"></i></label>
-                            </div>
-                        </div>
-                        <input id="email" type="email" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required autocomplete="email">
-                    </div>
-
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text border-0 rounded-0 bg-black-10">
-                                <label for="password" class="m-0"><i class="fas fa-fw fa-key"></i></label>
-                            </div>
-                        </div>
-                        <input id="password" type="password" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('password') is-invalid @enderror" name="password" placeholder="{{ __('Password') }}" required autocomplete="new-password">
-                    </div>
-
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                @component('components.ui.form-group', ['id' => 'email', 'type' => 'email', 'required' => 'required', 'class' => '', 'icon' => 'fas fa-at', 'name' => 'email', 'placeholder' => 'E-Mail Address', 'message' => $message ?? '']) value="{{ old('email') }}" @endcomponent
+                @component('components.ui.form-group', ['id' => 'password', 'type' => 'password', 'required' => 'required', 'class' => '', 'icon' => 'fas fa-key', 'name' => 'password', 'placeholder' => 'Password', 'message' => $message ?? '']) value="{{ old('password') }}" @endcomponent
 
                 <div class="form-group">
                     <div class="form-check">

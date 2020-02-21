@@ -66,6 +66,8 @@ class Kernel extends HttpKernel
         'participant' => \App\Http\Middleware\Participant::class,
         'student' => \App\Http\Middleware\Student::class,
         'teacher' => \App\Http\Middleware\Teacher::class,
+        'verification' => \App\Http\Middleware\Verification::class,
+        'logout_on_verification' => \App\Http\Middleware\LogoutOnVerification::class,
     ];
 
     /**

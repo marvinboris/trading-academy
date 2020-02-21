@@ -66,18 +66,11 @@
                 <div class="border-top pt-3 mt-3">
                     <form action="" method="post">
                         <div class="row">
-                            <div class="col-lg-12 form-group">
-                                <input type="text" class="form-control" required placeholder="Your name">
-                            </div>
-                            <div class="col-lg-12 form-group">
-                                <input type="email" name="" id="" class="form-control" required placeholder="Your email address">
-                            </div>
-                            <div class="col-lg-12 form-group">
-                                <input type="text" name="" id="" class="form-control" required placeholder="Subject">
-                            </div>
-                            <div class="col-12 form-group">
-                                <textarea name="" id="" class="form-control" required placeholder="Your message"></textarea>
-                            </div>
+                            @component('components.ui.form-group', ['id' => 'name', 'type' => 'text', 'required' => 'required', 'class' => 'col-12', 'icon' => 'fas fa-user', 'name' => 'name', 'placeholder' => 'Your name']) @endcomponent
+                            @component('components.ui.form-group', ['id' => 'email', 'type' => 'email', 'required' => 'required', 'class' => 'col-12', 'icon' => 'fas fa-at', 'name' => 'email', 'placeholder' => 'Your email address']) @endcomponent
+                            @component('components.ui.form-group', ['id' => 'subject', 'type' => 'text', 'required' => 'required', 'class' => 'col-12', 'icon' => 'fas fa-book', 'name' => 'subject', 'placeholder' => 'Subject']) @endcomponent
+                            @component('components.ui.form-group', ['id' => 'message', 'type' => 'textarea', 'required' => 'required', 'class' => 'col-12', 'icon' => 'fas fa-envelope', 'name' => 'message', 'placeholder' => 'Your message']) @endcomponent
+                            
                             <div class="col-12 form-group">
                                 <button class="btn-group btn text-allexist link text-decoration-none">
                                     <span class="btn btn-green btn-lg rounded-0 px-5 py-3">Submit</span>

@@ -1,4 +1,4 @@
-<div class="col-sm-6 col-md-4 col-lg-3">
+<div class="col-sm-6 col-md-4 col-lg-3 {{ $class }}">
     <div class="p-0 h-100 bg-{{ $bgColor }} text-{{ $color }} text-montserrat-alt">
         <div class="border-bottom border-white-20 px-4">
             <div class="py-2 position-relative font-weight-bold">

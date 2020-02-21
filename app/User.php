@@ -2,11 +2,10 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -16,7 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'role_id', 'is_active', 'photo_id', 'phone', 'lang', 'ref'
+        'first_name', 'last_name', 'email', 'password', 'role_id', 'is_active', 'photo_id', 'phone', 'lang', 'ref', 'sponsor'
     ];
 
     /**
@@ -76,7 +75,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $ref;
     }
 
-    public function abbreviation() {
+    public function abbreviation()
+    {
         $names = explode(' ', $this->name());
         $string = '';
 
@@ -87,15 +87,21 @@ class User extends Authenticatable implements MustVerifyEmail
         return $string;
     }
 
-    public function referrals() {
-        return self::where('sponsor', $this->ref)->get();
+    public function referrals($latest = false, $limit = 0)
+    {
+        $referrals = self::where('sponsor', $this->ref);
+        if ($latest) $referrals = $referrals->latest();
+        if ($limit > 0) $referrals = $referrals->limit($limit);
+        return $referrals->get();
     }
 
-    public function name() {
+    public function name()
+    {
         return $this->first_name . ' ' . $this->last_name;
     }
 
-    public function sponsor() {
+    public function sponsor()
+    {
         return self::where('ref', $this->sponsor)->first();
     }
 }

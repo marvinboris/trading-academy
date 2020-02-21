@@ -19,7 +19,7 @@
     ])
         <div class="row justify-content-between">
             <div class="col-lg-6">
-                <h1 class="text-allexist text-green">
+                <h1 class="text-montserrat font-weight-bold text-green">
                     About Trading Academy
                 </h1>
                 <div class="border-top pt-3 mt-3">
@@ -43,7 +43,7 @@
         ],
         'subtitle' => ''
     ])
-        <h1 class="text-white text-allexist">Our Mission</h1>
+        <h1 class="text-white text-montserrat font-weight-bold">Our Mission</h1>
         <div class="pt-3 mt-3 border-top bborder-white-50">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quod debitis, repellat pariatur adipisci ullam veniam quasi a doloremque autem ab culpa exercitationem nesciunt ad? Consectetur voluptas amet sed voluptatibus.
         </div>
@@ -58,7 +58,7 @@
         ],
         'subtitle' => ''
     ])
-        <h1 class="text-center text-allexist text-green mb-5">
+        <h1 class="text-center text-montserrat font-weight-bold text-green mb-5">
             <span class="pb-3 border-bottom">Trainers</span>
         </h1>
         <div class="w-75 mx-auto text-center">

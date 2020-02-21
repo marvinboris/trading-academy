@@ -6,6 +6,12 @@
 @endsection
 
 @section('content')
+@if (Session::has('not_verified'))
+<div class="position-absolute w-100 pt-3" style="top: 0; z-index: 1000;">
+    <div class="alert alert-danger container">{{ Session::get('not_verified') }}</div>
+</div>
+@endif
+
 <section class="home">
     <div class="position-relative" style="height: calc(100vh - 95px);">
         <div class="position-absolute h-100 w-100">
@@ -30,7 +36,7 @@
                                         <div class="rounded-circle bg-green shadow position-absolute" style="width: 62px; height: 62px; top: 20px; right: -10px;"></div>
                                     </div>
                                     <div class="text-allexist text-white display-4 content pb-4 pl-4 rounded-0">
-                                        The best African Crypto <br>
+                                        The best African Crypto
                                         Trading School
                                     </div>
                                 </div>
@@ -92,7 +98,7 @@
                     <img src="{{ asset('/images/cryptocurrency_esoteric-768x768@2x.png') }}" alt="Pic" class="img-fluid w-100">
                 </div>
                 <div class="col-lg-4 pb-3 pb-lg-0">
-                    <div class="d-inline-block h3 border-bottom pb-3 mb-3 text-allexist">
+                    <div class="d-inline-block h3 border-bottom pb-3 mb-3 text-montserrat text-700">
                         What you have to know on your Crypto Trading Academy
                     </div>
                     <div>
@@ -103,8 +109,8 @@
                             In order to become financially independent, Global Investment Trading is tagged to bring to you the one and only way that has made his name. THE CRYPTO TRADING ACADEMY (by Global Investment Trading). From this site, you are going to learn all the needed skills to get familiar with Crypto Currency Market and become financially independent.
                         </p>
                     </div>
-                    <a href="#" class="btn-group text-allexist link text-decoration-none">
-                        <span class="btn btn-green btn-lg rounded-0 px-5 py-3 text-x-large">Play Video</span>
+                    <a href="#" class="btn-group text-montserrat text-700 link text-decoration-none">
+                        <span class="btn btn-green btn-lg rounded-0 px-5 py-3 text-700 text-x-large">Play Video</span>
                         <div class="d-inline-flex justify-content-center align-items-center bg-darkblue text-white rounded-0 pl-3 pr-3">
                             <i class="fas fa-2x fa-arrow-alt-circle-right"></i>
                         </div>
@@ -131,7 +137,7 @@
                 <div class="text-left">
                     <div class="d-flex">
                         <i class="fas fa-play fa-3x"></i>
-                        <h1 class="text-allexist d-inline-block border-bottom border-white-50 pb-3 ml-4 mb-3">
+                        <h1 class="text-montserrat text-700 d-inline-block border-bottom border-white-50 pb-3 ml-4 mb-3">
                             We have the right course for you.
                         </h1>
                     </div>
@@ -153,7 +159,7 @@
                     <div class="text-left" style="width: 120%;">
                         <div class="d-flex">
                             <i class="fas fa-play fa-3x" style="opacity: 0;"></i>
-                            <h2 class="text-allexist flex-fill border-bottom border-white-50 pb-3 ml-4 mb-3">
+                            <h2 class="text-montserrat text-700 flex-fill border-bottom border-white-50 pb-3 ml-4 mb-3">
                                 <div class="d-inline-block position-relative">
                                     Why choose us ?
                                     <div class="rounded-circle bg-white position-absolute" style="bottom: -1rem; left: 50%; transform: translate(-50%, 50%); width: 12px; height: 12px;"></div>
@@ -170,7 +176,7 @@
                                 </div>
                                 <div>
                                     <div class=" text-x-large font-weight-light">Courses</div>
-                                    <div class="text-allexist text-xx-large">03</div>
+                                    <div class="text-montserrat text-700 text-xx-large">03</div>
                                 </div>
                             </div>
                         </div>
@@ -181,7 +187,7 @@
                                 </div>
                                 <div>
                                     <div class=" text-x-large font-weight-light">Total enrolled</div>
-                                    <div class="text-allexist text-xx-large">51</div>
+                                    <div class="text-montserrat text-700 text-xx-large">51</div>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +198,7 @@
                                 </div>
                                 <div>
                                     <div class=" text-x-large font-weight-light">Certified</div>
-                                    <div class="text-allexist text-xx-large">20</div>
+                                    <div class="text-montserrat text-700 text-xx-large">20</div>
                                 </div>
                             </div>
                         </div>
@@ -203,7 +209,7 @@
                                 </div>
                                 <div>
                                     <div class=" text-x-large font-weight-light">Trainers</div>
-                                    <div class="text-allexist text-xx-large">05</div>
+                                    <div class="text-montserrat text-700 text-xx-large">05</div>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +272,7 @@
         <div class="row">
             @foreach ($posts as $post)
                 @component('components.post', $post)
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum culpa minus quod
+                {!! $post['body'] !!}
                 @endcomponent    
             @endforeach
             <div class="col-12 text-montserrat">

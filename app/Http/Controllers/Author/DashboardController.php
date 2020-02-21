@@ -29,9 +29,9 @@ class DashboardController extends Controller
     public function index()
     {
         $team = Auth::user()->referrals();
-        $posts = Author::where('user_id', Auth::user()->id)->first()->posts;
+        $posts = Author::where('user_id', Auth::user()->id)->first()->posts()->latest()->get();
         $teamTable = [
-            'list' => $team,
+            'list' => Auth::user()->referrals(true, 5),
             'table' => [
                 ['key' => 'User ID', 'value' => function ($item) { return $item->ref; }],
                 ['key' => 'Name', 'value' => function ($item) { return $item->name(); }],
@@ -41,16 +41,6 @@ class DashboardController extends Controller
             'headBgColor' => 'green',
             'bodyBgColor' => 'light',
         ];
-        $postsTable = [
-            'list' => $posts,
-            'table' => [
-                ['key' => 'Title', 'value' => function ($item) { return $item->title; }],
-                ['key' => 'Body', 'value' => function ($item) { return Str::limit($item->body); }],
-                // ['key' => 'Comments', 'value' => function ($item) { return count($item->comments); }],
-            ],
-            'headBgColor' => 'green',
-            'bodyBgColor' => 'light',
-        ];
-        return view('user.author.dashboard', compact('team', 'posts', 'teamTable', 'postsTable'));
+        return view('user.author.dashboard', compact('team', 'posts', 'teamTable'));
     }
 }

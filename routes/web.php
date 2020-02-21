@@ -11,9 +11,14 @@
 |
 */
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
+use App\Post;
+use App\User;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Request;
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 if (!Session::has('lang')) Session::put('lang', 'en');
 
@@ -27,7 +32,22 @@ Route::get('fr', function () {
     return redirect()->back();
 });
 
-Route::get('/', function () {
+Route::get('email/verify/{id}/{code}', function ($id, $code) {
+    $user = User::findOrFail($id);
+    $string = $user->toJson();
+    if ($string === Crypt::decryptString($code)) {
+        $time = json_decode($string)->created_at;
+        $now = time();
+        if ($now - strtotime($time) < 24 * 60 * 60) {
+            $user->email_verified_at = $now;
+            Request::session()->flash('activated', 'Account activation successful.');
+            $user->save();
+        } else Request::session()->flash('not_verified', 'Your activation link has expired. Please, contact the administrator.');
+    } else Request::session()->flash('not_verified', 'Your activation link is incorrect. Please, contact the administrator.');
+    return redirect(route('login'));
+});
+
+Route::middleware('logout_on_verification')->get('/', function () {
     $courses = [
         [
             'color' => 'pink',
@@ -81,26 +101,17 @@ Route::get('/', function () {
             'link' => '/courses/diamond'
         ]
     ];
-    $posts = [
-        [
-            'title' => 'First real estate token base project from Global Investment Trading',
-            'img' => '/images/IronX-Crypto-exchange-Blog.jpg',
+    $postsData = Post::latest()->limit(3)->get();
+    $posts = [];
+    foreach ($postsData as $post) {
+        $posts[] = [
+            'title' => $post->title,
+            'img' => $post->photo->path,
             'link' => '#',
-            'date' => '16-01-2020'
-        ],
-        [
-            'title' => 'Simbcoin world tour started in the capital city of cameroon (yde)',
-            'img' => '/images/mycryptowallet-696x456.png',
-            'link' => '#',
-            'date' => '16-01-2020'
-        ],
-        [
-            'title' => 'Global investment trading launched a new crypto currency (simbcoin)',
-            'img' => '/images/shutterstock_1128653108-e1565938016868.jpg',
-            'link' => '#',
-            'date' => '16-01-2020'
-        ]
-    ];
+            'date' => $post->updated_at->format('d-m-Y'),
+            'body' => Str::limit($post->body)
+        ];
+    }
     $testimonials = [
         [
             'name' => 'John Doe',
@@ -148,29 +159,20 @@ Route::get('/', function () {
     return view('welcome', compact('courses', 'posts', 'testimonials'));
 });
 
-Route::redirect('home', '/');
+Route::redirect('home', url('/'));
 
 Route::name('blog')->get('blog', function () {
-    $posts = [
-        [
-            'title' => 'First real estate token base project from Global Investment Trading',
-            'img' => '/images/IronX-Crypto-exchange-Blog.jpg',
+    $postsData = Post::latest()->limit(12)->get();
+    $posts = [];
+    foreach ($postsData as $post) {
+        $posts[] = [
+            'title' => $post->title,
+            'img' => $post->photo->path,
             'link' => '#',
-            'date' => '16-01-2020'
-        ],
-        [
-            'title' => 'Simbcoin world tour started in the capital city of cameroon (yde)',
-            'img' => '/images/mycryptowallet-696x456.png',
-            'link' => '#',
-            'date' => '16-01-2020'
-        ],
-        [
-            'title' => 'Global investment trading launched a new crypto currency (simbcoin)',
-            'img' => '/images/shutterstock_1128653108-e1565938016868.jpg',
-            'link' => '#',
-            'date' => '16-01-2020'
-        ]
-    ];
+            'date' => $post->updated_at->format('d-m-Y'),
+            'body' => Str::limit($post->body)
+        ];
+    }
     return view('blog', compact('posts'));
 });
 
@@ -580,11 +582,7 @@ Route::name('contact')->get('contact', function () {
     return view('contact');
 });
 
-Route::get('countries', function () {
-    return Countries::getList('en', 'json');
-});
-
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verification'])->group(function () {
     Route::namespace('Admin')->name('admin.')->middleware('admin')->prefix('admin')->group(function () {
         Route::name('dashboard')->get('dashboard', 'DashboardController@index');
         Route::resource('admins', 'AdminsController');

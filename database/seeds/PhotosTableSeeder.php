@@ -14,7 +14,7 @@ class PhotosTableSeeder extends Seeder
     {
         //
         Photo::create([
-            'path' => '/images/11-6.jpg'
+            'path' => '11-6.jpg'
         ]);
     }
 }

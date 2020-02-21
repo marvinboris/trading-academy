@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Author;
 use App\Http\Controllers\Controller;
+use App\Mail\VerificationLink;
 use App\Providers\RouteServiceProvider;
 use App\Student;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -56,7 +60,7 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'sponsor' => ['exists:users,ref', 'string']
+            'sponsor' => ['exists:users,ref', 'string', 'nullable']
         ]);
     }
 
@@ -76,10 +80,14 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'is_active' => 1,
             'role_id' => 3,
-            'sponsor' => $data['sponsor'] ? Author::find(1)->user->ref : $data['sponsor'],
+            'sponsor' => $data['sponsor'] ?? Author::first()->user->ref,
             'ref' => User::ref()
         ]);
+        $user = User::find($user->id);
         Student::create(['user_id' => $user->id]);
+        $link = url('/email/verify/' . $user->id) . '/' . Crypt::encryptString($user->toJson());
+        Mail::to($user->email)->send(new VerificationLink($link));
+        Request::session()->flash('new_registered');
         return $user;
     }
 }

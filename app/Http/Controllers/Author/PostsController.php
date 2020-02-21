@@ -110,7 +110,7 @@ class PostsController extends Controller
     public function store(PostRequest $request)
     {
         //
-        $input = $request->validated();
+        $input = $request->all();
         if ($file = $request->file('photo')) {
             $fileName = time() . $file->getClientOriginalName();
             $file->move('images', $fileName);
@@ -120,7 +120,7 @@ class PostsController extends Controller
         $input['photo_id'] = $photo->id;
         $post = Post::create($input);
         Author::find(Auth::id())->posts()->save($post);
-        Session::flash('created_post', 'The post ' . $post->title . ' has been successfully added.');
+        $request->session()->flash('created_post', 'The post ' . $post->title . ' has been successfully added.');
         return redirect(route('user.author.posts.index'));
     }
 

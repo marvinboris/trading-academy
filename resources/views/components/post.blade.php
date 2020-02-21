@@ -21,10 +21,10 @@
         <div class="card-body bg-darkblue-80 text-white">
             <div class="">
                 <div class="">
-                    <div class="font-weight-bold border-bottom border-white-25 d-inline-block pb-1 mb-2 text-yellow text-montserrat">
-                        {{ $title }}
+                    <div class="font-weight-bold border-bottom border-white-25 pb-1 mb-2 text-yellow text-montserrat">
+                        <div class="text-truncate overflow-hidden w-100" title="{{ $title }}">{{ $title }}</div>
                     </div>
-                    <div class="card-text text-light font-weight-light text-justify pb-4">
+                    <div class="card-text text-light font-weight-light text-justify pb-3">
                         {{ $slot }}
                     </div>
                     <div class="d-flex justify-content-between align-items-center">

@@ -237,125 +237,20 @@ $countryArray = array(
 
 @section('content')
 <div class="container">
-    <div class="row align-items-center justify-content-between py-5">
+    <div class="row align-items-center justify-content-between full-height-app py-5">
         <div class="col-md-5">
             <h1 class="text-center text-montserrat font-weight-bold mb-3 text-green">Sign Up</h1>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <div class="row">
-                    <div class="form-group col-6 pr-1">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text border-0 rounded-0 bg-black-10">
-                                    <label for="first_name" class="m-0"><i class="fas fa-fw fa-user"></i></label>
-                                </div>
-                            </div>
-                            <input id="first_name" type="text" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" placeholder="{{ __('First Name') }}" required autocomplete="first_name" autofocus>
-                        </div>
-
-                        @error('first_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    
-                    <div class="form-group col-6 pl-1">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text border-0 rounded-0 bg-black-10">
-                                    <label for="last_name" class="m-0"><i class="fas fa-fw fa-user"></i></label>
-                                </div>
-                            </div>
-                            <input id="last_name" type="text" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" placeholder="{{ __('Last Name') }}" required autocomplete="last_name" autofocus>
-                        </div>
-
-                        @error('last_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col-12">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text border-0 rounded-0 bg-black-10">
-                                    <label for="phone" class="m-0"><i class="fas fa-fw fa-phone"></i></label>
-                                </div>
-                            </div>
-                            <input id="phone" type="tel" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('phone') is-invalid @enderror" name="phone" placeholder="{{ __('Phone Number') }}" value="{{ old('phone') }}" required autocomplete="phone">
-                        </div>
-
-                        @error('phone')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col-6 pr-1">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text border-0 rounded-0 bg-black-10">
-                                    <label for="email" class="m-0"><i class="fas fa-fw fa-envelope"></i></label>
-                                </div>
-                            </div>
-                            <input id="email" type="email" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required autocomplete="email">
-                        </div>
-
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col-6 pl-1">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text border-0 rounded-0 bg-black-10">
-                                    <label for="sponsor" class="m-0"><i class="fas fa-fw fa-user-friends"></i></label>
-                                </div>
-                            </div>
-                            <input id="sponsor" type="text" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('sponsor') is-invalid @enderror" name="sponsor" placeholder="{{ __('Sponsor ID') }}" @if (Request::query('ref')) readonly value="{{ Request::query('ref') }}" @else value="{{ old('sponsor') }}" @endif autocomplete="sponsor">
-                        </div>
-
-                        @error('sponsor')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col-6 pr-1">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text border-0 rounded-0 bg-black-10">
-                                    <label for="password" class="m-0"><i class="fas fa-fw fa-key"></i></label>
-                                </div>
-                            </div>
-                            <input id="password" type="password" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900 @error('password') is-invalid @enderror" name="password" placeholder="{{ __('Password') }}" required autocomplete="new-password">
-                        </div>
-
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col-6 pl-1">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text border-0 rounded-0 bg-black-10">
-                                    <label for="password-confirm" class="m-0"><i class="fas fa-fw fa-lock"></i></label>
-                                </div>
-                            </div>
-                            <input id="password-confirm" type="password" class="form-control text-fa border-0 bg-black-10 py-4 px-3 text-900" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required autocomplete="new-password">
-                        </div>
-                    </div>
+                    @component('components.ui.form-group', ['id' => 'first-name', 'type' => 'text', 'required' => 'required', 'class' => 'col-6 pr-1', 'icon' => 'fas fa-user', 'name' => 'first_name', 'placeholder' => 'First Name', 'message' => $message ?? '']) value="{{ old('first_name') }}" @endcomponent
+                    @component('components.ui.form-group', ['id' => 'last-name', 'type' => 'text', 'required' => 'required', 'class' => 'col-6 pl-1', 'icon' => 'fas fa-user', 'name' => 'last_name', 'placeholder' => 'Last Name', 'message' => $message ?? '']) value="{{ old('last_name') }}" @endcomponent
+                    @component('components.ui.form-group', ['id' => 'phone', 'type' => 'tel', 'required' => 'required', 'class' => 'col-12', 'icon' => 'fas fa-phone', 'name' => 'phone', 'placeholder' => 'Phone Number', 'message' => $message ?? '']) value="{{ old('phone') }}" @endcomponent
+                    @component('components.ui.form-group', ['id' => 'email', 'type' => 'email', 'required' => 'required', 'class' => 'col-6 pr-1', 'icon' => 'fas fa-at', 'name' => 'email', 'placeholder' => 'E-Mail Address', 'message' => $message ?? '']) value="{{ old('email') }}" @endcomponent
+                    @component('components.ui.form-group', ['id' => 'sponsor', 'type' => 'text', 'class' => 'col-6 pl-1', 'icon' => 'fas fa-user-friends', 'name' => 'sponsor', 'placeholder' => 'Sponsor ID', 'message' => $message ?? '']) @if (Request::query('ref')) readonly value="{{ Request::query('ref') }}" @else value="{{ old('sponsor') }}" @endif @endcomponent
+                    @component('components.ui.form-group', ['id' => 'password', 'type' => 'password', 'required' => 'required', 'class' => 'col-6 pr-1', 'icon' => 'fas fa-key', 'name' => 'password', 'placeholder' => 'Password', 'message' => $message ?? '']) value="{{ old('password') }}" @endcomponent
+                    @component('components.ui.form-group', ['id' => 'password-confirmation', 'type' => 'password', 'required' => 'required', 'class' => 'col-6 pl-1', 'icon' => 'fas fa-lock', 'name' => 'password_confirmation', 'placeholder' => 'Confirm Password', 'message' => $message ?? '']) value="{{ old('password_confirmation') }}" @endcomponent
 
                     <div class="form-group col-12">
                         <div class="form-check">

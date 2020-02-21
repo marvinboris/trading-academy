@@ -1,5 +1,5 @@
 <div class="{{ $size }}">
-    <div class="bg-{{ $bgColor }} overflow-hidden border border-{{ $borderColor }} text-{{ $color }}">
+    <div class="bg-{{ $bgColor }} h-100 overflow-hidden border border-{{ $borderColor }} text-{{ $color }}">
         <div class="border-bottom border-{{ $borderColor }} bg-{{ $headBgColor }} d-flex justify-content-between p-3">
             <div>
                 <i class="{{ $icon }} fa-lg mr-2"></i>

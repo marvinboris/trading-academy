@@ -20,10 +20,10 @@
 </section>
 
 <div class="row mb-5">
-    @component('components.auth.content.dashboard.box', ['bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-dollar-sign']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
-    @component('components.auth.content.dashboard.box', ['bgColor' => 'purered', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
-    @component('components.auth.content.dashboard.box', ['bgColor' => 'green', 'color' => 'white', 'title' => 'My Team', 'icon' => 'fas fa-users']) {{ count($team) }} <span class="text-medium">member{{ count($team) > 1 ? 's' : '' }}</span> @endcomponent
-    @component('components.auth.content.dashboard.box', ['bgColor' => 'darkblue', 'color' => 'white', 'title' => 'My Posts', 'icon' => 'fas fa-book']) {{ count($posts) }} <span class="text-medium">post{{ count($posts) > 1 ? 's' : '' }}</span> @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'pr-1', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-dollar-sign']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'px-1', 'bgColor' => 'purered', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'px-1', 'bgColor' => 'green', 'color' => 'white', 'title' => 'My Team', 'icon' => 'fas fa-users']) {{ count($team) }} <span class="text-medium">member{{ count($team) > 1 ? 's' : '' }}</span> @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'pl-1', 'bgColor' => 'darkblue', 'color' => 'white', 'title' => 'My Posts', 'icon' => 'fas fa-book']) {{ count($posts) }} <span class="text-medium">post{{ count($posts) > 1 ? 's' : '' }}</span> @endcomponent
 </div>
 
 <div class="row">
@@ -54,14 +54,6 @@
         <div class="col-3 border-right border-bottom border-black-20">
             <div class="py-1 overflow-hidden text-truncate">Action</div>
         </div>
-    </div>
-    @endcomponent
-    
-    @component('components.auth.content.dashboard.item', ['size' => 'col-lg-6 mb-4', 'bgColor' => 'white', 'color' => 'dark', 'headBgColor' => 'black-10', 'borderColor' => 'black-20', 'icon' => 'fas fa-users text-darkblue', 'title' => 'My Posts'])
-    @component('components.auth.content.table', $postsTable)
-    @endcomponent
-    <div>
-        <a href="{{ route('author.posts.index') }}" class="text-green">Show all entries</a>
     </div>
     @endcomponent
 
