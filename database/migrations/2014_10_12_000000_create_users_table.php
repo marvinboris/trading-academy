@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone', 20);
+            $table->float('balance')->default(0);
             $table->enum('lang', ['en', 'fr'])->default('en');
             $table->rememberToken();
             $table->timestamps();

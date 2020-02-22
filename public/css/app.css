@@ -18449,10 +18449,18 @@ a.text-dark:focus {
   border: 2px solid #fff;
 }
 
-.nav-link.active {
+.nav-link.active span {
   color: #f6b709 !important;
   font-weight: bold;
   font-size: large;
+}
+
+#courses div {
+  display: none;
+}
+
+#courses:hover div {
+  display: block;
 }
 
 section.home #banner {

@@ -32,13 +32,13 @@ const app = new Vue({
 });
 
 $(function () {
-    const activeNavLink = $('.nav-link.active');
+    const activeNavLink = $('.nav-link.active span');
     const width = activeNavLink.outerWidth();
     const height = activeNavLink.outerHeight();
     const lilPoint = $('#lil-point');
     lilPoint.css({ top: height - 15, left: width - 5 });
 
-    $('.nav-item:not(.dropdown) .nav-link:not(.active)').hover(function () {
+    $('.nav-item:not(.dropdown) .nav-link:not(.active) span').hover(function () {
         const current = $(this);
         current.stop().animate({ fontSize: 18 }, 'fast', function () { current.css({ fontWeight: 'bold' }) });
         activeNavLink.stop().animate({ fontSize: 15 }, 'fast');
@@ -49,7 +49,7 @@ $(function () {
     }).click(function () {
         const current = $(this);
         const { left } = current.position();
-        $('.nav-link').off('hover');
+        $('.nav-link span').off('hover');
         activeNavLink.removeClass('active');
         current.stop().animate({ fontSize: 18 }, 'fast', function () { current.css({ fontWeight: 'bold' }).removeClass('text-white').addClass('text-yellow') });
         lilPoint.show('fast').animate({ top: height - 15, left: width - 5 + left }, 'fast');

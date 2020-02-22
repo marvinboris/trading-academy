@@ -6,12 +6,6 @@
 @endsection
 
 @section('content')
-@if (Session::has('not_verified'))
-<div class="position-absolute w-100 pt-3" style="top: 0; z-index: 1000;">
-    <div class="alert alert-danger container">{{ Session::get('not_verified') }}</div>
-</div>
-@endif
-
 <section class="home">
     <div class="position-relative" style="height: calc(100vh - 95px);">
         <div class="position-absolute h-100 w-100">

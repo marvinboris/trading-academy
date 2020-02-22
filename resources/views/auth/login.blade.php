@@ -19,6 +19,16 @@
             @if (Session::has('activated'))
             <div class="alert alert-success">{{ Session::get('activated') }}</div>
             @endif
+
+            @if (count($errors->all()) > 0)
+                <div class="alert alert-danger">
+                    <ul class="mb-0 pb-0">
+                        @foreach ($errors->all() as $message)
+                        <li>{{ $message }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <h1 class="text-center text-montserrat font-weight-bold mb-3 text-green">Sign In</h1>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
@@ -27,34 +37,36 @@
                 @component('components.ui.form-group', ['id' => 'password', 'type' => 'password', 'required' => 'required', 'class' => '', 'icon' => 'fas fa-key', 'name' => 'password', 'placeholder' => 'Password', 'message' => $message ?? '']) value="{{ old('password') }}" @endcomponent
 
                 <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                        <label class="form-check-label" for="remember">
-                            {{ __('Remember Me') }}
-                        </label>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-green btn-block font-weight-bold">
-                        {{ __('Sign In') }}
-                        <i class="fas fa-sign-in-alt ml-2"></i>
-                    </button>
-                </div>
-
-                <div class="form-group">
-                    @if (Route::has('password.request'))
-                        <a class="text-green" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password ?') }}
-                        </a>
-                    @endif
-                    @if (Route::has('register'))
-                        Have no account ?
-                        <a class="text-green" href="{{ route('register') }}">
-                            {{ __('Sign Up') }}
-                        </a>
-                    @endif
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-green btn-block py-3 font-weight-bold">
+                                {{ __('Sign In') }}
+                                <i class="fas fa-sign-in-alt ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            @if (Route::has('password.request'))
+                                <a class="text-green" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password ?') }}
+                                </a>
+                            @endif
+                            @if (Route::has('register'))
+                                Have no account ?
+                                <a class="text-green" href="{{ route('register') }}">
+                                    {{ __('Sign Up') }}
+                                </a>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

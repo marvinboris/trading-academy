@@ -24,27 +24,33 @@
                     <ul class="navbar-nav d-flex align-items-center position-relative pt-2 text-montserrat-alt">
                         <li class="nav-item">
                             <a class="nav-link text-white {{ !Request::segment(1) ? 'active' : '' }}" href="{{ url('/') }}">
-                                <i class="fas fa-home fa-xs"></i>
-                                Home
+                                <span>
+                                    <i class="fas fa-home fa-xs"></i>
+                                    Home
+                                </span>
+                                
                             </a>
                             <div id="lil-point" class="bg-yellow position-absolute border-radius"></div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-white {{ Request::segment(1) === 'courses' ? 'active' : '' }}" href="#navbar-dropdown" id="navbarDropdown" role="button" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                Courses
-                                <i class="fas fa-caret-down {{ Request::segment(1) === 'courses' ? 'active' : '' }}"></i>
-                            </a>
-                            <div id="navbar-dropdown" class="p-2 rounded bg-light collapse position-absolute" style="top: calc(100% + 5px);">
-                                <a class="dropdown-item" href="{{ route('courses.show', 'bronze') }}">Bronze</a>
-                                <a class="dropdown-item" href="{{ route('courses.show', 'silver') }}">Silver</a>
-                                <a class="dropdown-item" href="{{ route('courses.show', 'diamond') }}">Diamond</a>
+                        <li class="nav-item">
+                            <div id="courses" class="nav-link text-white {{ Request::segment(1) === 'courses' ? 'active' : '' }}">
+                                <span>Courses</span>
+                                <div class="py-2 rounded bg-light position-absolute" style="top: calc(100%);">
+                                    <a class="dropdown-item {{ Request::segment(1) === 'courses' && Request::segment(2) === 'bronze' ? 'active' : '' }}" href="{{ route('courses.show', 'bronze') }}">Bronze</a>
+                                    <a class="dropdown-item {{ Request::segment(1) === 'courses' && Request::segment(2) === 'silver' ? 'active' : '' }}" href="{{ route('courses.show', 'silver') }}">Silver</a>
+                                    <a class="dropdown-item {{ Request::segment(1) === 'courses' && Request::segment(2) === 'diamond' ? 'active' : '' }}" href="{{ route('courses.show', 'diamond') }}">Diamond</a>
+                                </div>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ Request::segment(1) === 'about-us' ? 'active' : '' }}" href="{{ route('about-us') }}">About Us</a>
+                            <a class="nav-link text-white {{ Request::segment(1) === 'about-us' ? 'active' : '' }}" href="{{ route('about-us') }}">
+                                <span>About Us</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ Request::segment(1) === 'contact' ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a>
+                            <a class="nav-link text-white {{ Request::segment(1) === 'contact' ? 'active' : '' }}" href="{{ route('contact') }}">
+                                <span>Contact</span>
+                            </a>
                         </li>
                         <li class="nav-item position-relative text-montserrat">
                             <div class="text-white ml-1 px-1">
@@ -91,7 +97,7 @@
                     </a>
                     @else
                     <div class="dropdown text-white">
-                        <a href="#" class="pl-2 dropdown-toggle d-flex align-items-center dropdown-toggle-split text-decoration-none text-reset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="pl-2 pb-1 dropdown-toggle d-flex align-items-center text-decoration-none text-reset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="pr-1">
                                 {!! Auth::user()->photo ? 
                                 '<img src="' . asset(Auth::user()->photo) .'" alt="User" class="rounded-circle img-fluid" style="width: 32px; height: 32px;">'
@@ -100,7 +106,7 @@
                                 !!}
                             </div>
                         </a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu dropdown-menu-right">
                             <a href="{{ route(strtolower(Auth::user()->role->name) . '.dashboard') }}" class="dropdown-item {{ Request::segment(2) === 'dashboard' ? 'active' : null }}"><i class="fas mr-2 fa-tachometer-alt"></i>Dashboard</a>                            
                             <a class="dropdown-item border-top" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

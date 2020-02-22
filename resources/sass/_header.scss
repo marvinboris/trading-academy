@@ -18,9 +18,21 @@
 }
 
 .nav-link {
-  &.active {
+  &.active span {
     color: $myyellow !important;
     font-weight: bold;
     font-size: large;
+  }
+}
+
+#courses {
+  div {
+    display: none;
+  }
+
+  &:hover {
+    div {
+      display: block;
+    }
   }
 }

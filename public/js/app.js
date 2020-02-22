@@ -49527,7 +49527,7 @@ var app = new Vue({
   el: '#app'
 });
 $(function () {
-  var activeNavLink = $('.nav-link.active');
+  var activeNavLink = $('.nav-link.active span');
   var width = activeNavLink.outerWidth();
   var height = activeNavLink.outerHeight();
   var lilPoint = $('#lil-point');
@@ -49535,7 +49535,7 @@ $(function () {
     top: height - 15,
     left: width - 5
   });
-  $('.nav-item:not(.dropdown) .nav-link:not(.active)').hover(function () {
+  $('.nav-item:not(.dropdown) .nav-link:not(.active) span').hover(function () {
     var current = $(this);
     current.stop().animate({
       fontSize: 18
@@ -49565,7 +49565,7 @@ $(function () {
     var _current$position = current.position(),
         left = _current$position.left;
 
-    $('.nav-link').off('hover');
+    $('.nav-link span').off('hover');
     activeNavLink.removeClass('active');
     current.stop().animate({
       fontSize: 18

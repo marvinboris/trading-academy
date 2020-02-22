@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Author;
 use App\Http\Controllers\Controller;
 use App\Mail\VerificationLink;
+use App\Notifications\NewTeamMember;
 use App\Providers\RouteServiceProvider;
 use App\Student;
 use App\User;
@@ -59,8 +60,11 @@ class RegisterController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'numeric', 'max:20'],
+            'code' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'sponsor' => ['exists:users,ref', 'string', 'nullable']
+            'sponsor' => ['exists:users,ref', 'string', 'nullable'],
+            'terms' => ['accepted']
         ]);
     }
 
@@ -77,16 +81,18 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'phone' => $data['phone'],
+            'phone' => $data['code'] . $data['phone'],
             'is_active' => 1,
             'role_id' => 3,
             'sponsor' => $data['sponsor'] ?? Author::first()->user->ref,
             'ref' => User::ref()
         ]);
         $user = User::find($user->id);
+        $sponsor = User::where('ref', $user->sponsor)->first();
         Student::create(['user_id' => $user->id]);
         $link = url('/email/verify/' . $user->id) . '/' . Crypt::encryptString($user->toJson());
         Mail::to($user->email)->send(new VerificationLink($link));
+        $sponsor->notify(new NewTeamMember($user));
         Request::session()->flash('new_registered');
         return $user;
     }
