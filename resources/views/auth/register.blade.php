@@ -28,10 +28,10 @@ asort($namesData);
                     @component('components.ui.form-group', ['id' => 'first-name', 'type' => 'text', 'required' => 'required', 'class' => 'col-6 pr-1', 'icon' => 'fas fa-user', 'name' => 'first_name', 'placeholder' => 'First Name']) value="{{ old('first_name') }}" @endcomponent
                     @component('components.ui.form-group', ['id' => 'last-name', 'type' => 'text', 'required' => 'required', 'class' => 'col-6 pl-1', 'icon' => 'fas fa-user', 'name' => 'last_name', 'placeholder' => 'Last Name']) value="{{ old('last_name') }}" @endcomponent
                     <div class="form-group col-4 pr-1">
-                        <select id="country" class="form-control border-0 bg-black-10 h-100">
+                        <select id="country" name="country" class="form-control border-0 bg-black-10 h-100">
                             <option>Select your country</option>
                             @foreach ($namesData as $key => $value)
-                            <option value="{{ $phoneData[$key] }}">{{ $value }}</option>
+                            <option value="{{ $phoneData[$key] }}" @if (old('country') === $phoneData[$key]) selected @endif>{{ $value }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -43,11 +43,11 @@ asort($namesData);
                                 </div>
                             </div>
                             <div class="input-group-prepend">
-                                <input type="text" id="code" name="code" class="input-group-text border-0 rounded-0 bg-black-10" style="width: 4rem;" placeholder="Code" readonly required>
+                                <input type="text" id="code" name="code" class="input-group-text border-0 rounded-0 bg-black-10" value="{{ old('code') }}" style="width: 4rem;" placeholder="Code" readonly required>
                             </div>
                             <input id="phone" type="tel" class="form-control text-fa border-0 bg-black-10 py-4 px-3 @error('phone') border is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="{{ __('Phone Number') }}" required autocomplete="phone">
                         </div>
-                    
+
                         @error('phone')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -74,7 +74,7 @@ asort($namesData);
                                     <i class="fas fa-fw fa-user-plus mr-3"></i>
                                 </button>
                             </div>
-        
+
                             <div class="form-group col-6">
                                 @if (Route::has('login'))
                                     <a class="text-green" href="{{ route('login') }}">
@@ -85,7 +85,7 @@ asort($namesData);
                         </div>
                     </div>
                 </div>
-                
+
             </form>
         </div>
         <div class="col-md-6">

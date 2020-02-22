@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use App\Post;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Request;
 
@@ -583,6 +584,10 @@ Route::name('contact')->get('contact', function () {
 });
 
 Route::middleware(['auth', 'verification'])->group(function () {
+    Route::get('dashboard', function () {
+        return redirect(route(strtolower(Auth::user()->role->name) . '.dashboard'));
+    });
+
     Route::namespace('Admin')->name('admin.')->middleware('admin')->prefix('admin')->group(function () {
         Route::name('dashboard')->get('dashboard', 'DashboardController@index');
         Route::resource('admins', 'AdminsController');
