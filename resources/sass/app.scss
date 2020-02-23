@@ -16,10 +16,14 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
+// Flag icon
+@import "~flag-icon-css/sass/flag-icon";
+
 @import "colors";
 @import "fonts";
 @import "borders";
 
 @import "body";
 @import "header";
+@import "aside";
 @import "home";

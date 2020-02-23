@@ -1,5 +1,6 @@
 // My colors
 $myblue: #005eb1;
+$mylightblue: #62bafe;
 $mydarkblue: #002f59;
 $mypink: #c10168;
 $scarlet: #610134;
@@ -11,16 +12,18 @@ $brown: #7b3f05;
 $myyellow: #f6b709;
 $darkyellow: darken($myyellow, 10%);
 $mygreen: #008564;
+$mylemongreen: #f6ff01;
 $darkgreen: #0a2e25;
 $white: #ffffff;
 $gray: #aaa;
 $black: #000000;
 
 // Colors
-$colors: "green" $mygreen $white, "darkblue" $darkgreen $white, "yellow" $myyellow $black,
-  "darkyellow" $darkyellow $white, "red" $myred $white, "purered" $purered $white, "orange" $myorange $white,
-  "oranger" $myoranger $white, "scarlet" $scarlet $white, "blue" $myblue $white, "pink" $mypink $white,
-  "mydarkblue" $mydarkblue $white, "white" $white $black, "black" $black $white, "gray" $gray $white;
+$colors: "green" $mygreen $white, "lemongreen" $mylemongreen $dark, "darkblue" $darkgreen $white,
+  "yellow" $myyellow $black, "darkyellow" $darkyellow $white, "red" $myred $white, "purered" $purered $white,
+  "orange" $myorange $white, "oranger" $myoranger $white, "scarlet" $scarlet $white, "blue" $myblue $white,
+  "lightblue" $mylightblue $white, "pink" $mypink $white, "mydarkblue" $mydarkblue $white, "white" $white $black,
+  "black" $black $white, "gray" $gray $white;
 @each $name, $color, $font in $colors {
   .text-#{$name} {
     color: $color !important;

@@ -12,19 +12,19 @@
     </div>
     <div>
         <div class="input-group">
-           <input type="text" class="form-control" value="{{ route('register') . '/?ref=' . Auth::user()->ref }}" readonly>
+           <input type="text" id="referral-link" class="form-control" value="{{ route('register') . '/?ref=' . Auth::user()->ref }}" readonly>
            <div class="input-group-append">
-                <button class="btn btn-green">Copy</button>   
+                <button class="btn btn-green btn-copy" data-clipboard-target="#referral-link"><i class="far fa-copy mr-2"></i>Copy</button>   
             </div> 
         </div>
     </div>
 </section>
 
 <div class="row mb-5">
-    @component('components.auth.content.dashboard.box', ['class' => 'pr-1', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-dollar-sign']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
-    @component('components.auth.content.dashboard.box', ['class' => 'px-1', 'bgColor' => 'purered', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
-    @component('components.auth.content.dashboard.box', ['class' => 'px-1', 'bgColor' => 'green', 'color' => 'white', 'title' => 'My Team', 'icon' => 'fas fa-users']) {{ count($team) }} <span class="text-medium">member{{ count($team) > 1 ? 's' : '' }}</span> @endcomponent
-    @component('components.auth.content.dashboard.box', ['class' => 'pl-1', 'bgColor' => 'darkblue', 'color' => 'white', 'title' => 'Course documents', 'icon' => 'fas fa-book']) 0 <span class="text-medium">document</span> @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'pr-2', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-dollar-sign']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'px-2', 'bgColor' => 'mydarkblue', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'px-2', 'bgColor' => 'green', 'color' => 'white', 'title' => 'My Team', 'icon' => 'fas fa-users']) {{ count($team) }} <span class="text-medium">member{{ count($team) > 1 ? 's' : '' }}</span> @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'pl-2', 'bgColor' => 'darkblue', 'color' => 'white', 'title' => 'Course documents', 'icon' => 'fas fa-book']) 0 <span class="text-medium">document</span> @endcomponent
 </div>
 
 <div class="row">

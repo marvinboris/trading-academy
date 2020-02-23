@@ -13,7 +13,7 @@
             <tr>
                 <td>{{ $index + 1 }}</td>
                 @foreach ($table as $key => $value)
-                <td>{{ $value['value']($item) }}</td>
+                <td>@if ($raw ?? false) {{ $value['value']($item) }} @else {!! $value['value']($item) !!} @endif</td>
                 @endforeach
             </tr>
             @endforeach

@@ -31,10 +31,11 @@ asort($namesData);
                         <select id="country" name="country" class="form-control border-0 bg-black-10 h-100">
                             <option>Select your country</option>
                             @foreach ($namesData as $key => $value)
-                            <option value="{{ $phoneData[$key] }}" @if (old('country') === $phoneData[$key]) selected @endif>{{ $value }}</option>
+                            <option value="{{ $phoneData[$key] }}" country="{{ $key }}" @if (old('country') === $phoneData[$key]) selected @endif>{{ $value }}</option>
                             @endforeach
                         </select>
                     </div>
+                    <input type="hidden" name="country_code" id="country-code" value="{{ old('country_code') }}" required>
                     <div class="form-group col-8 pl-1">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -63,6 +64,18 @@ asort($namesData);
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" name="terms" id="terms" {{ old('terms') ? 'checked' : '' }}>
                             <label class="custom-control-label" for="terms">{{ __('I have read and accepted Privacy policy and Terms and Conditions') }}</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="password alert alert-danger">
+                            <div class="row">
+                                <div id="uppercase" class="text-purered col-6"><i class="fas fa-times-circle text-x-small"></i> An uppercase letter</div>
+                                <div id="lowercase" class="text-purered col-6"><i class="fas fa-times-circle text-x-small"></i> A lowercase letter</div>
+                                <div id="number" class="text-purered col-6"><i class="fas fa-times-circle text-x-small"></i> A number</div>
+                                <div id="special" class="text-purered col-6"><i class="fas fa-times-circle text-x-small"></i> A special character</div>
+                                <div id="minimum" class="text-purered col-6"><i class="fas fa-times-circle text-x-small"></i> At least 8 characters</div>
+                            </div>
                         </div>
                     </div>
 
@@ -101,8 +114,53 @@ asort($namesData);
 <script>
     $(function () {
         $('#country').change(function () {
-            const value = $(this).val();
+            const current = $(this);
+            const value = current.val();
+            const country = current.find('option:selected').attr('country');
             $('#code').val(value);
+            $('#country-code').val(country);
+            console.log(country);
+        });
+        $('#password').keyup(function () {
+            const current = $(this);
+            const value = current.val();
+
+            const uppercaseRegex = /[A-Z]/g;
+            const lowercaseRegex = /[a-z]/g;
+            const numberRegex = /[0-9]/g;
+            const specialRegex = /[!@#\$%\^\&*\)\(+=._-]/g;
+
+            const uppercase = $('#uppercase');
+            const lowercase = $('#lowercase');
+            const number = $('#number');
+            const special = $('#special');
+            const minimum = $('#minimum');
+
+            const passwordBlock = $('.password.alert');
+
+            const uppercaseTest = uppercaseRegex.test(value);
+            const lowercaseTest = lowercaseRegex.test(value);
+            const numberTest = numberRegex.test(value);
+            const specialTest = specialRegex.test(value);
+            const minimumTest = value.length > 7;
+
+            if (uppercaseTest && lowercaseTest && numberTest && specialTest && minimumTest) passwordBlock.removeClass('alert-danger').addClass('alert-success');
+            else passwordBlock.removeClass('alert-success').addClass('alert-danger');
+
+            if (uppercaseTest) uppercase.removeClass('text-purered').addClass('text-green').find('.fas').removeClass('fa-times-circle').addClass('fa-check-circle');
+            else uppercase.addClass('text-purered').removeClass('text-green').find('.fas').addClass('fa-times-circle').removeClass('fa-check-circle');
+
+            if (lowercaseTest) lowercase.removeClass('text-purered').addClass('text-green').find('.fas').removeClass('fa-times-circle').addClass('fa-check-circle');
+            else lowercase.addClass('text-purered').removeClass('text-green').find('.fas').addClass('fa-times-circle').removeClass('fa-check-circle');
+
+            if (numberTest) number.removeClass('text-purered').addClass('text-green').find('.fas').removeClass('fa-times-circle').addClass('fa-check-circle');
+            else number.addClass('text-purered').removeClass('text-green').find('.fas').addClass('fa-times-circle').removeClass('fa-check-circle');
+
+            if (specialTest) special.removeClass('text-purered').addClass('text-green').find('.fas').removeClass('fa-times-circle').addClass('fa-check-circle');
+            else special.addClass('text-purered').removeClass('text-green').find('.fas').addClass('fa-times-circle').removeClass('fa-check-circle');
+
+            if (minimumTest) minimum.removeClass('text-purered').addClass('text-green').find('.fas').removeClass('fa-times-circle').addClass('fa-check-circle');
+            else minimum.addClass('text-purered').removeClass('text-green').find('.fas').addClass('fa-times-circle').removeClass('fa-check-circle');
         });
     });
 </script>

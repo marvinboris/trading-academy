@@ -35,16 +35,21 @@ Route::get('fr', function () {
 
 Route::get('email/verify/{id}/{code}', function ($id, $code) {
     $user = User::findOrFail($id);
-    $string = $user->toJson();
-    if ($string === Crypt::decryptString($code)) {
-        $time = json_decode($string)->created_at;
-        $now = time();
-        if ($now - strtotime($time) < 24 * 60 * 60) {
-            $user->email_verified_at = $now;
-            Request::session()->flash('activated', 'Account activation successful.');
-            $user->save();
-        } else Request::session()->flash('not_verified', 'Your activation link has expired. Please, contact the administrator.');
-    } else Request::session()->flash('not_verified', 'Your activation link is incorrect. Please, contact the administrator.');
+    if ($user->email_verified_at) {
+        Request::session()->flash('already_verified', 'Account already activated. Please login.');
+    } else {
+        $string = $user->toJson();
+        if ($string === Crypt::decryptString($code)) {
+            $time = json_decode($string)->created_at;
+            $now = time();
+            if ($now - strtotime($time) < 24 * 60 * 60) {
+                $user->email_verified_at = $now;
+                Request::session()->flash('activated', 'Account activation successful.');
+                $user->save();
+            } else Request::session()->flash('not_verified', 'Your activation link has expired. Please, contact the administrator.');
+        } else Request::session()->flash('not_verified', 'Your activation link is incorrect. Please, contact the administrator.');
+    }
+
     return redirect(route('login'));
 });
 
@@ -610,6 +615,7 @@ Route::middleware(['auth', 'verification'])->group(function () {
     Route::name('user.')->prefix('user')->group(function () {
         Route::name('team')->get('team', 'TeamController@index');
         Route::name('messages')->get('messages', 'MessagesController@index');
+        Route::name('notifications.show')->get('notifications/details/{id}', 'NotificationsController@show');
         Route::name('notifications')->get('notifications', 'NotificationsController@index');
     });
 

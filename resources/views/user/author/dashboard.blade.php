@@ -5,25 +5,25 @@
 
 @section('content')
 @component('components.auth.page')
-<section class="d-flex position-absolute align-items-center justify-content-center w-100" style="top: -25px; right: 0; transform: translateY(-100%);">
-    <div class="mr-2">
+<section class="d-flex position-absolute align-items-center justify-content-center" style="top: -25px; right: 0; transform: translate(-75%, -100%); width: 40%;">
+    <div class="mr-2 text-small">
         Affiliate link :
     </div>
-    <div>
+    <div class="flex-fill">
         <div class="input-group">
-           <input type="text" class="form-control" value="{{ route('register') . '/?ref=' . Auth::user()->ref }}" readonly>
+           <input type="text" id="referral-link" class="form-control text-small" value="{{ route('register') . '/?ref=' . Auth::user()->ref }}" readonly>
            <div class="input-group-append">
-                <button class="btn btn-green">Copy</button>   
+                <button class="btn btn-green border-green btn-copy py-1" data-clipboard-target="#referral-link"><i class="far fa-copy mr-2"></i>Copy</button>   
             </div> 
         </div>
     </div>
 </section>
 
 <div class="row mb-5">
-    @component('components.auth.content.dashboard.box', ['class' => 'pr-1', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-dollar-sign']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
-    @component('components.auth.content.dashboard.box', ['class' => 'px-1', 'bgColor' => 'purered', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
-    @component('components.auth.content.dashboard.box', ['class' => 'px-1', 'bgColor' => 'green', 'color' => 'white', 'title' => 'My Team', 'icon' => 'fas fa-users']) {{ count($team) }} <span class="text-medium">member{{ count($team) > 1 ? 's' : '' }}</span> @endcomponent
-    @component('components.auth.content.dashboard.box', ['class' => 'pl-1', 'bgColor' => 'darkblue', 'color' => 'white', 'title' => 'My Posts', 'icon' => 'fas fa-book']) {{ count($posts) }} <span class="text-medium">post{{ count($posts) > 1 ? 's' : '' }}</span> @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'pr-2', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-wallet']) <span class="fas fa-dollar-sign"></span> {{ $balance }} @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'px-2', 'bgColor' => 'mydarkblue', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'px-2', 'bgColor' => 'green', 'color' => 'white', 'title' => 'My Team', 'icon' => 'fas fa-users']) {{ count($team) }} <span class="text-medium">member{{ count($team) > 1 ? 's' : '' }}</span> @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'pl-2', 'bgColor' => 'darkblue', 'color' => 'white', 'title' => 'My Posts', 'icon' => 'fas fa-book']) {{ count($posts) }} <span class="text-medium">post{{ count($posts) > 1 ? 's' : '' }}</span> @endcomponent
 </div>
 
 <div class="row">

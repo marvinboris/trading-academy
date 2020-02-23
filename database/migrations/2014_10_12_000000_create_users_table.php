@@ -20,11 +20,13 @@ class CreateUsersTable extends Migration
             $table->string('ref', 10)->unique();
             $table->string('sponsor', 10);
             $table->integer('is_active')->default(0);
+            $table->integer('is_verified')->default(0);
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email', 50)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('country', 5)->default('CM');
             $table->string('phone', 20);
             $table->float('balance')->default(0);
             $table->enum('lang', ['en', 'fr'])->default('en');

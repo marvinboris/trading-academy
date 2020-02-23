@@ -1,0 +1,10 @@
+.sidebar-link .bg-black-50 {
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    transition: padding .25s;
+
+    &:hover {
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+    }
+}

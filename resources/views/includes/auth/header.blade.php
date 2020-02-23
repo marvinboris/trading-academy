@@ -21,7 +21,7 @@
         </div>
 
         @php
-            $notifications = Auth::user()->notifications;
+            $notifications = Auth::user()->unreadNotifications;
         @endphp
 
         <div>

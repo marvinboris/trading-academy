@@ -18,10 +18,11 @@ class LogoutOnVerification
     public function handle($request, Closure $next)
     {
         if (Auth::check() && !Auth::user()->email_verified_at) {
+            $user = Auth::user();
             Auth::logout();
             if (Session::has('new_registered')) {
                 $request->session()->reflash();
-                $request->session()->flash('not_verified', 'Account created successfully. Please, check your mailbox and click on the activation link.');
+                $request->session()->flash('not_verified', 'Account created successfully. We sent a mail to <strong class="text-green">'. $user->email . '</strong>. Please, check your mailbox and click on the activation link.');
             } else {
                 $request->session()->flash('not_verified', 'Please, check your mailbox and click on the activation link.');
             }

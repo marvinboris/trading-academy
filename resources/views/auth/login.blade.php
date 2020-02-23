@@ -11,13 +11,16 @@
         <div class="col-md-5">
             @if (Session::has('not_verified'))
             @if (Session::has('new_registered'))
-            <div class="alert alert-info">{{ Session::get('not_verified') }}</div>
+            <div class="alert alert-info">{!! Session::get('not_verified') !!}</div>
             @else
-            <div class="alert alert-danger">{{ Session::get('not_verified') }}</div>
+            <div class="alert alert-danger">{!! Session::get('not_verified') !!}</div>
             @endif
             @endif
             @if (Session::has('activated'))
-            <div class="alert alert-success">{{ Session::get('activated') }}</div>
+            <div class="alert alert-success">{!! Session::get('activated') !!}</div>
+            @endif
+            @if (Session::has('already_verified'))
+            <div class="alert alert-info">{!! Session::get('already_verified') !!}</div>
             @endif
 
             @if (count($errors->all()) > 0)
