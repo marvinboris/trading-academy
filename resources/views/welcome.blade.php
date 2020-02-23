@@ -25,11 +25,11 @@
                             <div>
                                 <div class="w-75 position-relative">
                                     <div class="d-none">
-                                        <div class="rounded-circle bg-orange shadow position-absolute" style="width: 100px; height: 100px; top: -20px; right: 20px;"></div>
-                                        <div class="rounded-circle bg-light shadow position-absolute" style="width: 57px; height: 57px; top: 60px; right: -20px;"></div>
-                                        <div class="rounded-circle bg-green shadow position-absolute" style="width: 62px; height: 62px; top: 20px; right: -10px;"></div>
+                                        <div class="bullet-1 rounded-circle bg-orange shadow position-absolute" style="width: 100px; height: 100px; top: -20px; right: 20px;"></div>
+                                        <div class="bullet-2 rounded-circle bg-light shadow position-absolute" style="width: 57px; height: 57px; top: 60px; right: -20px;"></div>
+                                        <div class="bullet-3 rounded-circle bg-green shadow position-absolute" style="width: 62px; height: 62px; top: 20px; right: -10px;"></div>
                                     </div>
-                                    <div class="text-allexist text-white display-4 content pb-4 pl-4 rounded-0">
+                                    <div class="carousel-text-1 text-allexist text-white display-4 content pb-4 pl-4 rounded-0">
                                         The best African Crypto
                                         Trading School
                                     </div>
@@ -120,14 +120,14 @@
     </div>
     
     <div class="container-fluid px-4 py-5 text-white bg-darkblue position-relative">
-        <div class="position-absolute" style="top: -5%; right: 0; width: 23%; height: 84%; filter: drop-shadow(-5px 0px 5px rgba(50, 50, 0, 0.5));">
+        <div class="polygone position-absolute" style="top: -5%; right: 0; width: 23%; height: 84%; filter: drop-shadow(-5px 0px 5px rgba(50, 50, 0, 0.5));">
             <div class="bg-white w-100 h-100" style="clip-path: polygon(100% 0%, 20% 0%, 0% 20%, 50% 100%, 100% 100%);"></div>
         </div>
-        <div class="position-absolute" style="top: -5%; right: 0; width: 23%; height: 84%; filter: drop-shadow(-5px 0px 5px rgba(50, 50, 0, 0.5));">
+        <div class="polygone position-absolute" style="top: -5%; right: 0; width: 23%; height: 84%; filter: drop-shadow(-5px 0px 5px rgba(50, 50, 0, 0.5));">
             <div class="w-100 h-100" style="clip-path: polygon(100% 0%, calc(20% + 15px) 0%, 30px 20%, calc(50% + 15px) 100%, 100% 100%); background-image: url('{{ asset('/images/ss-shattering-ath-bitcoin.jpg') }}'); background-position: center; background-size: cover;"></div>
         </div>
         <div class="px-md-5 row">
-            <div class="col-12 pr-0" style="transform: scale(.78) translate(-11%, -11%);">
+            <div class="courses-section col-12 pr-0" style="transform: scale(.78) translate(-11%, -11%);">
                 <div class="text-left">
                     <div class="d-flex">
                         <i class="fas fa-play fa-3x"></i>
@@ -149,7 +149,7 @@
                 </div>
             </div>
             <div class="col-12 pl-0">
-                <div style="transform: scale(.8) translate(-10%, 0);">
+                <div class="why-us" style="transform: scale(.8) translate(-10%, 0);">
                     <div class="text-left" style="width: 120%;">
                         <div class="d-flex">
                             <i class="fas fa-play fa-3x" style="opacity: 0;"></i>
@@ -163,47 +163,47 @@
                     </div>
         
                     <div class="row pt-5" style="width: 120%;">
-                        <div class="col-lg-3">
+                    <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="d-flex justify-content-center">
                                 <div>
-                                    <i class="fas fa-book text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
+                                    <i class="why-us-content  fas fa-book text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
-                                <div>
-                                    <div class=" text-x-large font-weight-light">Courses</div>
-                                    <div class="text-montserrat text-700 text-xx-large">03</div>
+                                <div class="">
+                                    <div class="why-us-content text-x-large font-weight-light">Courses</div>
+                                    <div class="why-us-content text-allexist text-xx-large text-center">03</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="d-flex justify-content-center">
                                 <div>
-                                    <i class="fas fa-user-friends text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
+                                    <i class="why-us-content fas fa-user-friends text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
                                 <div>
-                                    <div class=" text-x-large font-weight-light">Total enrolled</div>
-                                    <div class="text-montserrat text-700 text-xx-large">51</div>
+                                    <div class="why-us-content text-x-large font-weight-light">Total enrolled</div>
+                                    <div class="why-us-content text-allexist text-xx-large text-center">51</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="d-flex justify-content-center">
                                 <div>
-                                    <i class="fas fa-graduation-cap text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
+                                    <i class="why-us-content fas fa-graduation-cap text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
                                 <div>
-                                    <div class=" text-x-large font-weight-light">Certified</div>
-                                    <div class="text-montserrat text-700 text-xx-large">20</div>
+                                    <div class="why-us-content text-x-large font-weight-light">Certified</div>
+                                    <div class="why-us-content text-allexist text-xx-large text-center">20</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="d-flex justify-content-center">
                                 <div>
-                                    <i class="fas fa-user-tie text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
+                                    <i class="why-us-content fas fa-user-tie text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
                                 <div>
-                                    <div class=" text-x-large font-weight-light">Trainers</div>
-                                    <div class="text-montserrat text-700 text-xx-large">05</div>
+                                    <div class="why-us-content text-x-large font-weight-light">Trainers</div>
+                                    <div class="why-us-content text-allexist text-xx-large text-center">05</div>
                                 </div>
                             </div>
                         </div>
@@ -292,7 +292,7 @@
     <script src="{{ asset('js/owl.carousel.min.js') }}" defer></script>
     <script>
         $(function () {
-            $(".owl-carousel").owlCarousel({ items: 2, loop: true });
+            $(".owl-carousel").owlCarousel({ responsive: {0: {items: 1}, 1000: {items: 2}}, loop: true });
 
             const carousel = $('#carousel');
 

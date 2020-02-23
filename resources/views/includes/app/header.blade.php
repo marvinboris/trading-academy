@@ -76,7 +76,7 @@
                     </ul>
                 </div>
             </div>
-            <div style="height: 75px;">
+            <div class="live-chat-text" style="height: 75px;">
                 <a href="#" class="text-yellow font-weight-bold position-sticky text-medium" style="top: 20px;">
                     <i class="fas fa-headset mr-2"></i><span class="text-montserrat">LiveChat</span>
                 </a>
@@ -92,8 +92,8 @@
                 </div>
                 <div>
                     @guest
-                    <a href="{{ route('login') }}" class="btn btn-light text-green rounded-sm font-weight-bold text-x-small">
-                        Sign In <i class="fas fa-sign-in-alt fa-lg ml-2"></i>
+                    <a href="{{ route('login') }}" class=" sign-in-btn btn btn-light text-green rounded-sm font-weight-bold text-x-small">
+                        Sign In <i class=" fas fa-sign-in-alt fa-lg ml-2"></i>
                     </a>
                     @else
                     <div class="dropdown text-white">

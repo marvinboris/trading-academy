@@ -97,15 +97,12 @@
             </div>
             <form action="" method="post">
                 <div class="form-group">
-                    <div class="input-group input-group-lg">
-                        <input type="email" class="form-control text-small py-4 h-100 text-white bg-darkblue" placeholder="Input your email..." required>
+                        <div class="input-group mb-3">
+                        <input type="text" class="news-letter-input form-control text-white bg-darkblue" placeholder="Input your email..." aria-label="Recipient's username" aria-describedby="button-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-scarlet">
-                                <i class="fab fa-telegram-plane fa-2x"></i>
-                            </button>
+                            <button class="btn btn-outline-secondary bg-scarlet text-white" type="button" id="button-addon2">Subscribe <i class="fab fa-telegram-plane fa-1x"></i></button>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
     </div>
