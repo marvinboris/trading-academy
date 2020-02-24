@@ -11,15 +11,20 @@
 |
 */
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Session;
 use App\Post;
 use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
 
 Auth::routes();
+
+Route::name('admin.login')->get('admin', 'Auth\AdminController@getLogin');
+Route::name('admin.verify')->get('admin/verify', 'Auth\AdminController@getVerify');
+Route::post('admin', 'Auth\AdminController@login');
+Route::post('admin/verify', 'Auth\AdminController@verify');
 
 if (!Session::has('lang')) Session::put('lang', 'en');
 

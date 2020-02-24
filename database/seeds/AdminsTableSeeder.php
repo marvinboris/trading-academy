@@ -21,5 +21,13 @@ class AdminsTableSeeder extends Seeder
             'password' => Hash::make('adminadmin'),
             'phone' => '237655588688'
         ]);
+        
+        Admin::create([
+            'is_active' => 1,
+            'name' => 'Admin',
+            'email' => 'jaris.ultio.21@gmail.com',
+            'password' => Hash::make('12345'),
+            'phone' => '237655588688'
+        ]);
     }
 }

@@ -1,5 +1,5 @@
 <div class="bg-mydarkblue">
-    <div class="d-flex px-3 py-2 align-items-center justify-content-between bg-black text-white">
+    <div class="d-flex px-3 pt-2 pb-2 pb-md-0 align-items-center justify-content-between bg-black text-white">
         <div>
             <div class="d-flex align-items-center">
                 <div class="pr-md-4">
@@ -21,7 +21,8 @@
         </div>
 
         @php
-            $notifications = Auth::user()->unreadNotifications;
+            $unreadNotifications = Auth::user()->unreadNotifications;
+            $notifications = Auth::user()->notifications;
         @endphp
 
         <div>
@@ -54,10 +55,10 @@
 
                 <div class="pl-3 position-relative border-right">
                     <i class="fas fa-lg fa-bell" id="notifications-controller" data-toggle="collapse" data-target="#notifications" aria-expanded="false" aria-controls="notifications"></i>
-                    <span class="badge rounded-circle badge-warning bg-orange text-white position-relative p-1" style="top: -10px; left: -10px; font-size: 50%;">{{ count($notifications) }}</span>
+                    <span class="badge rounded-circle badge-warning bg-orange text-white position-relative p-1" style="top: -10px; left: -10px; font-size: 50%;">{{ count($unreadNotifications) }}</span>
                     <div class="card collapse position-absolute text-dark" id="notifications" style="width: 18rem; right: 0; z-index: 1200;">
                         <div class="card-header py-2 px-3">
-                            You have {{ count($notifications) }} notification{{ count($notifications) > 1 ? 's' : '' }}
+                            You have {{ count($unreadNotifications) }} notification{{ count($unreadNotifications) > 1 ? 's' : '' }}
                         </div>
                         <ul class="list-group list-group-flush">
                             @foreach ($notifications as $key => $notification)
@@ -77,26 +78,14 @@
                 </div>
 
                 <div class="px-3">
-                    <a href="#" class="pl-2 dropdown-toggle d-flex align-items-center dropdown-toggle-split text-decoration-none text-reset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="pr-1">
-                            {!! Auth::user()->photo ?
-                            '<img src="' . Auth::user()->photo .'" alt="User" class="rounded-circle img-fluid" style="width: 32px; height: 32px;">'
-                            :
-                            '<div class="d-flex justify-content-center align-items-center font-weight-bold text-white text-montserrat rounded-circle bg-black-50 text-x-small" style="width: 32px; height: 32px; outline-offset: 4px; box-shadow: 0 0 0 2px white;">' . Auth::user()->abbreviation() . '</div>'
-                            !!}
-                        </div>
+                    <a class="text-decoration-none text-reset" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fas fa-power-off fa-2x"></i>
                     </a>
-                    <div class="dropdown-menu">
-                        <a href="{{ route(strtolower(Auth::user()->role->name) . '.dashboard') }}" class="dropdown-item {{ Request::segment(2) === 'dashboard' ? 'active' : null }}"><i class="fa mr-2 fa-dashboard"></i>Dashboard</a>
-                        <a class="dropdown-item border-top" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fas fa-power-off mr-2"></i> {{ __('Logout') }}
-                        </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>

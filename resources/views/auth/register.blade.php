@@ -10,7 +10,7 @@ asort($namesData);
 @section('content')
 <div class="container">
     <div class="row align-items-center justify-content-between full-height-app py-5">
-        <div class="col-md-5">
+        <div class="col-lg-6">
             @if (count($errors->all()) > 0)
                 <div class="alert alert-danger">
                     <ul class="pb-0 mb-0">
@@ -70,11 +70,11 @@ asort($namesData);
                     <div class="col-12">
                         <div class="password alert alert-danger">
                             <div class="row">
-                                <div id="uppercase" class="text-purered col-6"><i class="fas fa-times-circle text-x-small"></i> An uppercase letter</div>
-                                <div id="lowercase" class="text-purered col-6"><i class="fas fa-times-circle text-x-small"></i> A lowercase letter</div>
-                                <div id="number" class="text-purered col-6"><i class="fas fa-times-circle text-x-small"></i> A number</div>
-                                <div id="special" class="text-purered col-6"><i class="fas fa-times-circle text-x-small"></i> A special character</div>
-                                <div id="minimum" class="text-purered col-6"><i class="fas fa-times-circle text-x-small"></i> At least 8 characters</div>
+                                <div id="uppercase" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> An uppercase letter</div>
+                                <div id="lowercase" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> A lowercase letter</div>
+                                <div id="number" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> A number</div>
+                                <div id="special" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> A special character</div>
+                                <div id="minimum" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> At least 8 characters</div>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@ asort($namesData);
 
             </form>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6 order-first order-lg-2">
             <div class="position-relative">
                 <img src="{{ asset('images/Groupe 196.png') }}" alt="First pic sign in" class="img-fluid">
             </div>

@@ -1,5 +1,5 @@
-<header class="px-md-5 d-flex align-items-center bg-header position-sticky shadow" style="height: 95px; top: -35px; z-index: 1100;">
-    <nav class="navbar navbar-expand-md navbar-dark flex-fill position-sticky border-0" style="top: -35px;">
+<header class="bg-header position-sticky shadow" style="height: 95px; top: -35px; z-index: 1100;">
+    <nav class="navbar navbar-expand-md navbar-dark px-md-5 flex-fill position-sticky border-0 h-100 d-flex justify-content-between" style="top: -35px;">
         <a href="{{ url('/') }}" class="d-block position-sticky" style="top: 10px; height: 60px;">
             <img src="{{ asset('/images/Groupe 130@2x.png') }}" class="h-100" alt="Logo">
         </a>
@@ -79,8 +79,8 @@
             </div>
         </div>
 
-        <div class="d-flex justify-content-end align-items-center">
-            <span class="d-lg-none position-relative text-montserrat">
+        <div class="d-flex justify-content-end align-items-center position-sticky" style="top: 13px;">
+            <span class="d-lg-none position-relative text-montserrat pr-2">
                 <div class="text-white ml-1 px-1">
                     <a href="#language-dropdown" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="language-dropdown" class="text-white text-decoration-none d-flex justify-content-around align-items-center">
                         <span class="language-flag shadow-lg d-inline-flex mr-1 justify-content-center align-items-center overflow-hidden">
@@ -101,7 +101,7 @@
                     </div>
                 </div>
             </span>
-            <i class="fas fa-2x text-white pr-2 fa-bars d-lg-none" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"></i>
+            <i class="fas fa-2x text-white pr-2 fa-bars d-lg-none bg-transparent" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"></i>
             <div class="ml-md-4">
                 <div class="mb-3 d-none d-lg-block">
                     <div class="d-flex justify-content-center">
@@ -113,7 +113,7 @@
                 </div>
                 <div>
                     @guest
-                    <a href="{{ route('login') }}" class=" sign-in-btn btn btn-light text-green rounded-sm font-weight-bold text-x-small">
+                    <a href="{{ route('login') }}" class="sign-in-btn btn btn-light text-green rounded-sm font-weight-bold text-x-small">
                         Sign In <i class=" fas fa-sign-in-alt fa-lg ml-2"></i>
                     </a>
                     @else

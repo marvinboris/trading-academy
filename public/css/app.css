@@ -20715,12 +20715,6 @@ a.text-dark:focus {
   }
 }
 
-@media screen and (max-width: 435px) {
-  .sign-in-btn {
-    display: none;
-  }
-}
-
 .sidebar-link .bg-black-50 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;

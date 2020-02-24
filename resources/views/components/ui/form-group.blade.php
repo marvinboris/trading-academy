@@ -8,12 +8,12 @@
             </div>
             @switch($type)
                 @case('textarea')
-                <textarea id="{{ $id }}" class="form-control text-fa border-0 bg-black-10 py-4 px-3 @error($name) border is-invalid @enderror" name="{{ $name }}" placeholder="{{ __($placeholder) }}" {{ $required ?? '' }} autocomplete="{{ $name }}">{{ old($name) }}</textarea>
+                <textarea id="{{ $id }}" class="form-control text-fa border-0 bg-black-10 {{ $dark ?? '' }} py-4 px-3 @error($name) border is-invalid @enderror" name="{{ $name }}" placeholder="{{ __($placeholder) }}" {{ $required ?? '' }} autocomplete="{{ $name }}">{{ old($name) }}</textarea>
                     @break
                 @case('select')
                     @break
                 @default
-                    <input id="{{ $id }}" type="{{ $type }}" class="form-control text-fa border-0 bg-black-10 py-4 px-3 @error($name) border is-invalid @enderror" name="{{ $name }}" {{ $slot }} placeholder="{{ __($placeholder) }}" {{ $required ?? '' }} autocomplete="{{ $name }}">
+                    <input id="{{ $id }}" type="{{ $type }}" class="form-control text-fa border-0 bg-black-10 {{ $dark ?? '' }} py-4 px-3 @error($name) border is-invalid @enderror" name="{{ $name }}" {{ $slot }} placeholder="{{ __($placeholder) }}" {{ $required ?? '' }} autocomplete="{{ $name }}">
             @endswitch
         </div>
     </div>
