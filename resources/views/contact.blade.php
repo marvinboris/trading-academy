@@ -62,11 +62,11 @@
                             @component('components.ui.form-group', ['id' => 'email', 'type' => 'email', 'required' => 'required', 'class' => 'col-md-6 col-lg-12', 'icon' => 'fas fa-at', 'name' => 'email', 'placeholder' => 'Your email address']) @endcomponent
                             @component('components.ui.form-group', ['id' => 'subject', 'type' => 'text', 'required' => 'required', 'class' => ' col-lg-12', 'icon' => 'fas fa-book', 'name' => 'subject', 'placeholder' => 'Subject']) @endcomponent
                             @component('components.ui.form-group', ['id' => 'message', 'type' => 'textarea', 'required' => 'required', 'class' => ' col-lg-12', 'icon' => 'fas fa-envelope', 'name' => 'message', 'placeholder' => 'Your message']) @endcomponent
-                            
+
                             <div class="col-12 form-group">
-                                <button class="btn-group btn p-0 text-montserrat link text-decoration-none">
+                                <button class="btn-group btn d-inline-flex align-items-center p-0 text-montserrat link text-decoration-none">
                                     <span class="btn btn-green btn-lg rounded-0 text-700 px-5 py-3">Submit</span>
-                                    <div class="d-inline-flex justify-content-center align-items-center bg-darkblue text-white rounded-0 pr-3 pl-3">
+                                    <div class="d-flex justify-content-center align-items-center bg-darkblue text-white rounded-0 px-1 py-3">
                                         <i class="fas fa-fw fa-2x fa-arrow-alt-circle-right"></i>
                                     </div>
                                 </button>

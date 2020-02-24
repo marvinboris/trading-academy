@@ -29,7 +29,7 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <a href="{{ $link }}" class="btn btn-green btn-sm text-white shadow-lg rounded-0">
+                            <a href="{{ $link }}" class="btn btn-light btn-sm text-green shadow-lg rounded-0">
                                 <div class="small font-weight-bold text-montserrat px-3 py-1">
                                     Read More
                                 </div>

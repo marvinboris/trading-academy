@@ -93,7 +93,7 @@
                     .find('.circle').css({ opacity: 1 });
             });
 
-            owl.owlCarousel({ items: 5, loop: true, center: true, nav: true });
+            owl.owlCarousel({ responsive: {0: {items: 1}, 600: {items: 3}, 1000: {items: 5}}, loop: true, center: true, nav: true });
 
             owl.on('changed.owl.carousel', function () {
                 const center = $('.owl-item.active.center');

@@ -7,27 +7,18 @@
                 <div class="col-lg-8">
                     <h1>{{ $course['trader']['level'] }}</h1>
                     <h4>{{ $course['level'] }}</h4>
-                    <div class="d-flex align-items-center pt-2">
-                        <div class="mr-3">
-                            <span class="rounded-sm bg-{{ $course['color'] }}-gradient py-2 px-3 font-weight-bold d-inline-flex align-items-center">{{ $course['trader']['level'] }} Level <i class="fas fa-medal text-large fa-rotate-180 ml-2 pr-2 border-right border-white-50"></i> </span>
-                        </div>
-                        <div class="mr-3">
-                            <i class="fas fa-user-friends text-yellow"></i> <strong>{{ $course['reviews']['mark'] }} <i class="fas text-orange fa-star"></i></strong>  ({{ $course['reviews']['voters'] }} reviews)
-                        </div>
-                        <div>
-                            <i class="fas fa-comment text-yellow"></i> French
-                        </div>
+                    <div class="pt-2">
+                        <span class="rounded-sm bg-{{ $course['color'] }}-gradient py-2 px-3 font-weight-bold d-inline-flex mr-2 mb-2 d-lg-none align-items-center">{{ $course['trader']['level'] }} Level <i class="fas fa-medal text-large fa-rotate-180 ml-2 pr-2 border-right border-white-50"></i> </span>
+                        <span class="rounded-sm bg-{{ $course['color'] }}-gradient py-2 px-3 font-weight-bold d-lg-inline-flex d-none align-items-center">{{ $course['trader']['level'] }} Level <i class="fas fa-medal text-large fa-rotate-180 ml-2 pr-2 border-right border-white-50"></i> </span>
+                        <i class="fas fa-user-friends text-yellow"></i> <strong>{{ $course['reviews']['mark'] }} <i class="fas text-orange fa-star"></i></strong>  ({{ $course['reviews']['voters'] }} reviews)
+                        <i class="fas fa-comment text-yellow"></i> French
                     </div>
-                    <div class="d-flex align-items-center pt-2">
-                        <div class="mr-3">
-                            Created by <strong>Global Investment Trading Academy</strong>
-                        </div>
-                        <div class="mr-3">
-                            Last updated Sat, 06-Jul-2019
-                        </div>
+                    <div class="pt-2">
+                        Created by <strong>Global Investment Trading Academy</strong>.
+                        Last updated Sat, 06-Jul-2019
                     </div>
                 </div>
-                <div id="static-card" class="col-lg-4 position-relative">
+                <div id="static-card" class="col-lg-4 position-relative d-none d-lg-block">
                     <aside class="card border-0 bg-transparent shadow position-absolute w-100">
                         <div class="d-flex justify-content-center align-items-center overflow-hidden card-img-top embed-responsive embed-responsive-16by9" style="background: url('{{ asset($course['img']) }}') no-repeat center; background-size: cover;">
                             <div class="rounded-circle d-flex justify-content-center align-items-center">
@@ -107,7 +98,7 @@
                                             </button>
                                             </h2>
                                         </div>
-                                
+
                                         <div id="collapse{{ $key }}" class="collapse {{ $key === 0 ? 'show' : '' }} accordion-card-body" aria-labelledby="heading{{ $key }}" data-parent="#accordion-course-content">
                                             <div class="list-group list-group-flush border-top">
                                                 @foreach ($item['subcontent'] as $subcontent)
@@ -173,16 +164,20 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <div>
-                            <h2 class="text-montserrat">Requirements</h2>
-                            <div>
-                                <ul class="pl-3">
-                                    <li class="mb-2">Have a basic understanding of HTML, CSS and PHP (all courses I offer)</li>
-                                    <li class="mb-2">Have access to a code editor, free or otherwise. I suggest Coda 2, as that's the editor I use exclusively.</li>
-                                    <li class="mb-2">An Internet connection is required.</li>
-                                    <li class="mb-2">A fresh copy of Bootstrap and WordPress (we will go over this in the beginning of the course).</li>
-                                    <li class="mb-2">Download & Install MAMP (or alternatives — we cover this in the course)</li>
-                                </ul>
+                        <div class="pt-4 pt-lg-0">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 class="text-montserrat">Requirements</h2>
+                                    <div>
+                                        <ul class="pl-3">
+                                            <li class="mb-2">Have a basic understanding of HTML, CSS and PHP (all courses I offer)</li>
+                                            <li class="mb-2">Have access to a code editor, free or otherwise. I suggest Coda 2, as that's the editor I use exclusively.</li>
+                                            <li class="mb-2">An Internet connection is required.</li>
+                                            <li class="mb-2">A fresh copy of Bootstrap and WordPress (we will go over this in the beginning of the course).</li>
+                                            <li class="mb-2">Download & Install MAMP (or alternatives — we cover this in the course)</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -232,53 +227,90 @@
                     </div>
                 </div>
             </div>
-        </div>
-    @endcomponent
-
-    <div id="fixed-banner" class="container-fluid position-fixed px-md-5 bg-black-80 text-white" style="top: 60px; z-index: 1500px; display: none;">
-        <div class="px-md-5 pt-2 pb-3">
-            <div class="row text-montserrat">
-                <div class="col-lg-8">
-                    <h2>{{ $course['trader']['level'] }}</h2>
-                    <div class="d-flex align-items-center">
-                        <div class="mr-3">
-                            <span class="rounded-sm bg-{{ $course['color'] }}-gradient py-2 px-3 font-weight-bold d-inline-flex align-items-center">{{ $course['trader']['level'] }} Level <i class="fas fa-medal text-large fa-rotate-180 ml-2 pr-2 border-right border-white-50"></i> </span>
-                        </div>
-                        <div class="mr-3">
-                            <i class="fas fa-user-friends text-yellow"></i> <strong>{{ $course['reviews']['mark'] }} <i class="fas text-orange fa-star"></i></strong>  ({{ $course['reviews']['voters'] }} reviews)
-                        </div>
-                        <div>
-                            <i class="fas fa-comment text-yellow"></i> French
+            <div class="col-12 d-block d-lg-none">
+                <aside class="card border-0 bg-transparent shadow text-white w-100">
+                    <div class="d-flex justify-content-center align-items-center overflow-hidden card-img-top embed-responsive embed-responsive-16by9" style="background: url('{{ asset($course['img']) }}') no-repeat center; background-size: cover;">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center">
+                            <span class="fa-stack fa-4x">
+                                <i class="fas fa-circle text-black fa-stack-2x"></i>
+                                <i class="fas fa-play fa-stack-1x fa-inverse"></i>
+                            </span>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 position-relative">
-                    <aside class="card border-0 bg-transparent shadow position-absolute w-100">
-                        <div class="d-none justify-content-center align-items-center overflow-hidden card-img-top embed-responsive embed-responsive-16by9" style="background: url('{{ asset($course['img']) }}') no-repeat center; background-size: cover;"></div>
-                        <div class="card-body bg-{{ $course['color'] }}-gradient position-relative">
-                            <span class="position-absolute text-white text-baloo text-xx-large px-3 rounded pt-2" style="top: 1rem; right: 1rem;"><i class="fas fa-dollar-sign"></i> {{ $course['price'] }}</span>
-                            <div class="">
-                                <div class="d-flex flex-column justify-content-between h-100">
-                                    <div>
-                                        <a href="#" class="btn btn-yellow btn-block w-50 text-large font-weight-bold">Enroll Now</a>
-                                    </div>
-                                </div>
-                                <div class="pt-2">
+                    <div class="card-body bg-{{ $course['color'] }}-gradient position-relative">
+                        <span class="position-absolute bg-yellow text-black text-baloo text-x-large px-3 rounded shadow pt-2" style="top: -.5rem; right: 1rem; transform: translateY(-50%);">$ {{ $course['price'] }}</span>
+                        <div class="">
+                            <div class="d-flex flex-column justify-content-between h-100">
+                                <div class="pb-2">
                                     <i class="fas fa-certificate text-yellow"></i>
                                     Guaranteed certificate
                                 </div>
-                                <div class="pt-2">
-                                    <h5>Includes:</h5>
-                                    <ul class="fa-ul pb-0 pl-0 my-0 ml-4">
-                                        <li><i class="fas fa-file-video fa-li"></i> 23:47:22 Hours On demand videos</li>
-                                        <li><i class="fas fa-file fa-li"></i> 17 Lessons</li>
-                                        <li><i class="fas fa-compass fa-li"></i> Full lifetime access</li>
-                                        <li><i class="fas fa-mobile-alt fa-li"></i> Access on mobile and tv</li>
-                                    </ul>
+                                <div>
+                                    <a href="#" class="btn btn-yellow font-weight-bold">Enroll Now</a>
                                 </div>
                             </div>
+                            <div class="pt-2">
+                                <h5>Includes:</h5>
+                                <ul class="fa-ul pb-0 pl-0 my-0 ml-4">
+                                    <li><i class="fas fa-file-video fa-li"></i> 23:47:22 Hours On demand videos</li>
+                                    <li><i class="fas fa-file fa-li"></i> 17 Lessons</li>
+                                    <li><i class="fas fa-compass fa-li"></i> Full lifetime access</li>
+                                    <li><i class="fas fa-mobile-alt fa-li"></i> Access on mobile and tv</li>
+                                </ul>
+                            </div>
                         </div>
-                    </aside>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    @endcomponent
+
+    <div class="d-none d-lg-block">
+        <div id="fixed-banner" class="container-fluid position-fixed px-md-5 bg-black-80 text-white" style="top: 60px; z-index: 1500px; display: none;">
+            <div class="px-md-5 pt-2 pb-3">
+                <div class="row text-montserrat">
+                    <div class="col-lg-8">
+                        <h2>{{ $course['trader']['level'] }}</h2>
+                        <div class="d-flex align-items-center">
+                            <div class="mr-3">
+                                <span class="rounded-sm bg-{{ $course['color'] }}-gradient py-2 px-3 font-weight-bold d-inline-flex align-items-center">{{ $course['trader']['level'] }} Level <i class="fas fa-medal text-large fa-rotate-180 ml-2 pr-2 border-right border-white-50"></i> </span>
+                            </div>
+                            <div class="mr-3">
+                                <i class="fas fa-user-friends text-yellow"></i> <strong>{{ $course['reviews']['mark'] }} <i class="fas text-orange fa-star"></i></strong>  ({{ $course['reviews']['voters'] }} reviews)
+                            </div>
+                            <div>
+                                <i class="fas fa-comment text-yellow"></i> French
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 position-relative">
+                        <aside class="card border-0 bg-transparent shadow position-absolute w-100">
+                            <div class="d-none justify-content-center align-items-center overflow-hidden card-img-top embed-responsive embed-responsive-16by9" style="background: url('{{ asset($course['img']) }}') no-repeat center; background-size: cover;"></div>
+                            <div class="card-body bg-{{ $course['color'] }}-gradient position-relative">
+                                <span class="position-absolute text-white text-baloo text-xx-large px-3 rounded pt-2" style="top: 1rem; right: 1rem;"><i class="fas fa-dollar-sign"></i> {{ $course['price'] }}</span>
+                                <div class="">
+                                    <div class="d-flex flex-column justify-content-between h-100">
+                                        <div>
+                                            <a href="#" class="btn btn-yellow btn-block w-50 text-large font-weight-bold">Enroll Now</a>
+                                        </div>
+                                    </div>
+                                    <div class="pt-2">
+                                        <i class="fas fa-certificate text-yellow"></i>
+                                        Guaranteed certificate
+                                    </div>
+                                    <div class="pt-2">
+                                        <h5>Includes:</h5>
+                                        <ul class="fa-ul pb-0 pl-0 my-0 ml-4">
+                                            <li><i class="fas fa-file-video fa-li"></i> 23:47:22 Hours On demand videos</li>
+                                            <li><i class="fas fa-file fa-li"></i> 17 Lessons</li>
+                                            <li><i class="fas fa-compass fa-li"></i> Full lifetime access</li>
+                                            <li><i class="fas fa-mobile-alt fa-li"></i> Access on mobile and tv</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
                 </div>
             </div>
         </div>
@@ -292,7 +324,7 @@
             const staticBanner = $('#static-banner');
             const staticCard = $('#static-card');
             const bottom = staticBanner.offset().top + staticBanner.outerHeight();
-            
+
             if ($(document).scrollTop() < bottom) {
                 fixedBanner.hide();
                 staticCard.show();

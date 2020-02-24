@@ -20,7 +20,7 @@
                     <div id="banner" class="w-75">
                         <div class=" text-orange text-montserrat h1 title">
                             Welcome to
-                        </div>  
+                        </div>
                         <div class="my-5">
                             <div>
                                 <div class="w-75 position-relative">
@@ -49,16 +49,16 @@
                             </a>
                         </div>
                         @endguest
-                        
+
                     </div>
                     <div class="carousel-item h-100 active">
                         <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset('/images/wp2054297.jpg') }}'); background-size: cover; background-position: center;"></div>
                     </div>
-    
+
                     <div class="carousel-item h-100">
                         <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset('/images/DX-margin-trade-crypto.jpg') }}'); background-size: cover; background-position: center;"></div>
                     </div>
-    
+
                     <div class="carousel-item h-100">
                         <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset('/images/3commas-cover.jpg') }}'); background-size: cover; background-position: center;"></div>
                     </div>
@@ -76,7 +76,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container-fluid px-md-5 px-4 py-5 bg-light position-relative overflow-hidden">
         <div class="position-absolute" style="bottom: -50px; left: 0; transform: translateX(-50%);">
             <i class="fas fa-circle text-black-10 position-relative" style="font-size: 300px;"></i>
@@ -118,7 +118,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container-fluid px-4 py-5 text-white bg-darkblue position-relative">
         <div class="polygone position-absolute" style="top: -5%; right: 0; width: 23%; height: 84%; filter: drop-shadow(-5px 0px 5px rgba(50, 50, 0, 0.5));">
             <div class="bg-white w-100 h-100" style="clip-path: polygon(100% 0%, 20% 0%, 0% 20%, 50% 100%, 100% 100%);"></div>
@@ -127,7 +127,7 @@
             <div class="w-100 h-100" style="clip-path: polygon(100% 0%, calc(20% + 15px) 0%, 30px 20%, calc(50% + 15px) 100%, 100% 100%); background-image: url('{{ asset('/images/ss-shattering-ath-bitcoin.jpg') }}'); background-position: center; background-size: cover;"></div>
         </div>
         <div class="px-md-5 row">
-            <div class="courses-section col-12 pr-0" style="transform: scale(.78) translate(-11%, -11%);">
+            <div class="courses-section col-12" style="transform: scale(.78) translate(-11%, -11%);">
                 <div class="text-left">
                     <div class="d-flex">
                         <i class="fas fa-play fa-3x"></i>
@@ -139,12 +139,12 @@
                         The Crypto trading academy gives you the opportunity to start learning from the very basics. Getting into to Crypto Currency Trading has never been an easy decision to take. But as our Goal is to make everyone financially independent through this training, all the trainees will have to start from a beginner level and later can be qualified to go to the next level.
                     </p>
                 </div>
-        
+
                 <div class="row justify-content-center align-items-end">
                     @foreach ($courses as $course)
                         @component('components.course', $course)
                             Get started with us to learn the best crypto Training from the start...
-                        @endcomponent    
+                        @endcomponent
                     @endforeach
                 </div>
             </div>
@@ -161,7 +161,7 @@
                             </h2>
                         </div>
                     </div>
-        
+
                     <div class="row pt-5" style="width: 120%;">
                     <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="d-flex justify-content-center">
@@ -212,7 +212,7 @@
             </div>
         </div>
     </div>
-    
+
     @component('components.section', [
         'bgColor' => 'light',
         'fontColor' => 'dark',
@@ -253,7 +253,7 @@
             </div>
         </div>
     @endcomponent
-    
+
     @component('components.section', [
         'bgColor' => 'light',
         'fontColor' => 'dark',
@@ -267,7 +267,7 @@
             @foreach ($posts as $post)
                 @component('components.post', $post)
                 {!! $post['body'] !!}
-                @endcomponent    
+                @endcomponent
             @endforeach
             <div class="col-12 text-montserrat">
                 <div class="d-flex justify-content-end pt-4">

@@ -29,36 +29,36 @@
                 </div>
             </div>
             </div>
-            
+
             <dl class="row">
-                <dl class="col-sm-5 d-flex justify-content-between">
+                <dl class="col-5 d-flex justify-content-between">
                     <div>
                         <i class="fas fa-phone-square text-orange mr-2"></i><strong>Online</strong>
                     </div>
                     :
                 </dl>
-                <dl class="col-sm-7 pl-sm-4">
+                <dl class="col-7 pl-sm-4">
                     <div><a href="tel:+237123456789" class="text-white text-decoration-none">(+237) 123 456 789</a></div>
                 </dl>
-                
-                <dl class="col-sm-5 d-flex justify-content-between">
+
+                <dl class="col-5 d-flex justify-content-between">
                     <div>
                         <i class="far fa-envelope text-orange mr-2"></i><strong>Email</strong>
                     </div>
                     :
                 </dl>
-                <dl class="col-sm-7 pl-sm-4">
+                <dl class="col-7 pl-sm-4">
                     <div><a href="mailto:contact@liyeplimal.net" class="text-white text-decoration-none">contact@liyeplimal.net</a></div>
                     <div><a href="mailto:liyeplimal@gmail.com" class="text-white text-decoration-none">liyeplimal@gmail.com</a></div>
                 </dl>
-                
-                <dl class="col-sm-5 d-flex justify-content-between">
+
+                <dl class="col-5 d-flex justify-content-between">
                     <div>
                         <i class="fas fa-headset text-orange mr-2"></i><strong>Support</strong>
                     </div>
                     :
                 </dl>
-                <dl class="col-sm-7 pl-sm-4">
+                <dl class="col-7 pl-sm-4">
                     <div><a href="mailto:support@liyeplimal.net" class="text-white text-decoration-none">support@liyeplimal.net</a></div>
                 </dl>
             </dl>
@@ -107,11 +107,11 @@
         </div>
     </div>
     <div class="border-top border-white-50 pt-3">
-        <div class="d-flex justify-content-between">
-            <div>
+        <div class="row justify-content-between">
+            <div class="col-sm-6 text-center text-left-sm">
                 &copy; Copyright 2020 <a href="#" class="text-yellow text-decoration-none font-weight-bold">Trading Academy</a>. All rights reserved. A <strong>Global Investment Trading</strong> Product
             </div>
-            <div class="d-flex">
+            <div class="col-sm-6 pt-3 pt-sm-0 text-center text-right-sm">
                 <i class="fab fa-2x pl-3 fa-facebook-square"></i>
                 <i class="fab fa-2x pl-3 fa-twitter-square"></i>
                 <i class="fab fa-2x pl-3 fa-linkedin"></i>

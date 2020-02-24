@@ -6,19 +6,7 @@
 @section('content')
 @component('components.auth.page')
 @component('components.auth.page')
-<section class="d-flex position-absolute align-items-center justify-content-center w-100" style="top: -25px; right: 0; transform: translateY(-100%);">
-    <div class="mr-2">
-        Affiliate link :
-    </div>
-    <div>
-        <div class="input-group">
-           <input type="text" id="referral-link" class="form-control" value="{{ route('register') . '/?ref=' . Auth::user()->ref }}" readonly>
-           <div class="input-group-append">
-                <button class="btn btn-green btn-copy" data-clipboard-target="#referral-link"><i class="far fa-copy mr-2"></i>Copy</button>   
-            </div> 
-        </div>
-    </div>
-</section>
+@component('components.auth.content.dashboard.affiliate-link') @endcomponent
 
 <div class="row mb-5">
     @component('components.auth.content.dashboard.box', ['class' => 'pr-2', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-dollar-sign']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
@@ -35,14 +23,14 @@
         <a href="{{ route('user.team') }}" class="text-green">Show all entries</a>
     </div>
     @endcomponent
-    
+
     @component('components.auth.content.dashboard.item', ['size' => 'col-lg-5 mb-4', 'bgColor' => 'white', 'color' => 'dark', 'headBgColor' => 'black-10', 'borderColor' => 'black-20', 'icon' => 'fas fa-money-bill-wave text-green', 'title' => 'Commissions'])
     <div class="row mx-0 mb-4">
         <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Date</div>
         <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">User ID</div>
         <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Amount</div>
         <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Action</div>
-        
+
         <div class="col-3 border-right border-bottom border-black-20">
             <div class="py-1 overflow-hidden text-truncate">Date</div>
         </div>
@@ -65,7 +53,7 @@
                 <div class="row mx-0 mb-4">
                     <div class="col-4 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Title</div>
                     <div class="col-8 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Details</div>
-                    
+
                     <div class="col-4 border-right border-bottom border-black-20">
                         <div class="py-1 overflow-hidden text-truncate">User ID</div>
                         <div class="py-1 overflow-hidden text-truncate">Name</div>

@@ -20733,6 +20733,10 @@ a.text-dark:focus {
   padding-bottom: 0.5rem;
 }
 
+#affiliate-link {
+  min-width: 20rem;
+}
+
 section.home #banner {
   position: absolute;
   margin: auto;
@@ -20849,10 +20853,6 @@ section.home #carousel-testimonials .carousel-indicator.active {
     height: 15px !important;
     right: -3px !important;
     top: 5px !important;
-  }
-
-  #carousel {
-    height: 70vh !important;
   }
 }
 

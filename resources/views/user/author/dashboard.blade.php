@@ -5,25 +5,13 @@
 
 @section('content')
 @component('components.auth.page')
-<section class="d-flex position-absolute align-items-center justify-content-center" style="top: -25px; right: 0; transform: translate(-75%, -100%); width: 40%;">
-    <div class="mr-2 text-small">
-        Affiliate link :
-    </div>
-    <div class="flex-fill">
-        <div class="input-group">
-           <input type="text" id="referral-link" class="form-control text-small" value="{{ route('register') . '/?ref=' . Auth::user()->ref }}" readonly>
-           <div class="input-group-append">
-                <button class="btn btn-green border-green btn-copy py-1" data-clipboard-target="#referral-link"><i class="far fa-copy mr-2"></i>Copy</button>   
-            </div> 
-        </div>
-    </div>
-</section>
+@component('components.auth.content.dashboard.affiliate-link') @endcomponent
 
-<div class="row mb-5">
-    @component('components.auth.content.dashboard.box', ['class' => 'pr-2', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-wallet']) <span class="fas fa-dollar-sign"></span> {{ $balance }} @endcomponent
-    @component('components.auth.content.dashboard.box', ['class' => 'px-2', 'bgColor' => 'mydarkblue', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
-    @component('components.auth.content.dashboard.box', ['class' => 'px-2', 'bgColor' => 'green', 'color' => 'white', 'title' => 'My Team', 'icon' => 'fas fa-users']) {{ count($team) }} <span class="text-medium">member{{ count($team) > 1 ? 's' : '' }}</span> @endcomponent
-    @component('components.auth.content.dashboard.box', ['class' => 'pl-2', 'bgColor' => 'darkblue', 'color' => 'white', 'title' => 'My Posts', 'icon' => 'fas fa-book']) {{ count($posts) }} <span class="text-medium">post{{ count($posts) > 1 ? 's' : '' }}</span> @endcomponent
+<div class="row mb-4 mb-lg-5">
+    @component('components.auth.content.dashboard.box', ['class' => 'pr-lg-2', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-wallet']) <span class="fas fa-dollar-sign"></span> {{ $balance }} @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'px-lg-2', 'bgColor' => 'mydarkblue', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'px-lg-2', 'bgColor' => 'green', 'color' => 'white', 'title' => 'My Team', 'icon' => 'fas fa-users']) {{ count($team) }} <span class="text-medium">member{{ count($team) > 1 ? 's' : '' }}</span> @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'pl-lg-2', 'bgColor' => 'darkblue', 'color' => 'white', 'title' => 'My Posts', 'icon' => 'fas fa-book']) {{ count($posts) }} <span class="text-medium">post{{ count($posts) > 1 ? 's' : '' }}</span> @endcomponent
 </div>
 
 <div class="row">
@@ -34,14 +22,14 @@
         <a href="{{ route('user.team') }}" class="text-green">Show all entries</a>
     </div>
     @endcomponent
-    
+
     @component('components.auth.content.dashboard.item', ['size' => 'col-lg-5 mb-4', 'bgColor' => 'white', 'color' => 'dark', 'headBgColor' => 'black-10', 'borderColor' => 'black-20', 'icon' => 'fas fa-money-bill-wave text-green', 'title' => 'Commissions'])
     <div class="row mx-0 mb-4">
         <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Date</div>
         <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">User ID</div>
         <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Amount</div>
         <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Action</div>
-        
+
         <div class="col-3 border-right border-bottom border-black-20">
             <div class="py-1 overflow-hidden text-truncate">Date</div>
         </div>
@@ -64,7 +52,7 @@
                 <div class="row mx-0 mb-4">
                     <div class="col-4 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Title</div>
                     <div class="col-8 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Details</div>
-                    
+
                     <div class="col-4 border-right border-bottom border-black-20">
                         <div class="py-1 overflow-hidden text-truncate">User ID</div>
                         <div class="py-1 overflow-hidden text-truncate">Name</div>
@@ -87,7 +75,7 @@
                     @if (Auth::user()->sponsor()->photo)
                         <img src="{{ asset(Auth::user()->sponsor()->photo) }}" alt="{{ Auth::user()->sponsor()->name() }}" class="img-fluid">
                     @else
-                        <div class="d-flex position-absolute justify-content-center align-items-center font-weight-bold text-white text-montserrat bg-black display-3 w-100 h-100" style="top: 0; left: 0;">{{ Auth::user()->sponsor()->abbreviation() }}</div>
+                        <div class="d-flex position-absolute justify-content-center align-items-center font-weight-bold text-white text-montserrat bg-black display-4 w-100 h-100" style="top: 0; left: 0;">{{ Auth::user()->sponsor()->abbreviation() }}</div>
                     @endif
                 </div>
             </div>
