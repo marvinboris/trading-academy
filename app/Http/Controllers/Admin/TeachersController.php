@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Teacher;
 use Illuminate\Http\Request;
 
 class TeachersController extends Controller
@@ -15,6 +16,25 @@ class TeachersController extends Controller
     public function index()
     {
         //
+        $teachers = Teacher::get();
+        $data = [
+            'links' => [
+                'base' => 'admin.teachers.',
+                'index' => 'Teachers list',
+                'create' => 'Add an Teacher',
+                'edit' => 'Edit an Teacher',
+            ],
+            'list' => $teachers,
+            'table' => [
+                ['key' => 'User ID', 'value' => function ($item) { return $item->user->ref; }],
+                ['key' => 'Name', 'value' => function ($item) { return $item->user->name(); }],
+                ['key' => 'E-Mail Address', 'value' => function ($item) { return $item->user->email; }],
+                ['key' => 'Phone Number', 'value' => function ($item) { return $item->user->phone; }],
+                ['key' => 'Country', 'value' => function ($item) { return '<span class="flag-icon flag-icon-' . strtolower($item->user->country) . '"></span> ' . $item->user->country; }],
+                ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->user->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
+            ]
+        ];
+        return view('admin.teachers.index', compact('data'));
     }
 
     /**

@@ -16,10 +16,10 @@ class Author
      */
     public function handle($request, Closure $next)
     {
-        if (!in_array(Auth::user()->role->name, ['Admin', 'Author'])) {
-            return route('login');
+        if (Auth::user()->role->name === 'Author') {
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect(route('login'));
     }
 }

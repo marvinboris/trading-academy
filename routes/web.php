@@ -605,7 +605,7 @@ Route::middleware(['auth', 'verification'])->group(function () {
         Route::resource('channels', 'ChannelsController');
         Route::resource('comments/replies', 'CommentRepliesController');
         Route::resource('comments', 'CommentsController');
-        Route::resource('courses/documents', 'DocumentsController');
+        Route::resource('documents', 'DocumentsController');
         Route::resource('courses', 'CoursesController');
         Route::resource('messages', 'MessagesController');
         Route::resource('photos', 'PhotosController');

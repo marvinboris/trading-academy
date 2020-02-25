@@ -266,7 +266,7 @@
     @endcomponent
 
     <div class="d-none d-lg-block">
-        <div id="fixed-banner" class="container-fluid position-fixed px-md-5 bg-black-80 text-white" style="top: 60px; z-index: 1500px; display: none;">
+        <div id="fixed-banner" class="container-fluid position-fixed px-md-5 bg-black-80 text-white" style="top: 58px; z-index: 1500px; display: none;">
             <div class="px-md-5 pt-2 pb-3">
                 <div class="row text-montserrat">
                     <div class="col-lg-8">

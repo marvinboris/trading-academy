@@ -36,13 +36,14 @@ class AdminController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        $admin = Admin::where('email', $input['email'])->first();
+        $user = User::where('email', $input['email'])->first();
 
-        if ($admin) {
-            if (Hash::check($input['password'], $admin->password)) {
+        if ($user) {
+            if (Hash::check($input['password'], $user->password) && $user->is_admin === 1) {
                 $code = User::ref();
-                Mail::to($admin->email)->send(new VerificationCode($code));
+                Mail::to($user->email)->send(new VerificationCode($code));
                 $request->session()->flash('email', $input['email']);
+                $request->session()->flash('password', $input['password']);
                 $request->session()->flash('code', $code);
                 return redirect(route('admin.verify'));
             }
@@ -65,8 +66,7 @@ class AdminController extends Controller
         ]);
 
         if ($input['code'] === Session::get('code')) {
-            $admin = Admin::where('email', Session::get('email'))->first();
-            Auth::login($admin);
+            Auth::attempt(['email' => Session::get('email'), 'password' => Session::get('password')]);
             return redirect(route('admin.dashboard'));
         }
         $request->session()->flash('invalid', 'Verification code is incorrect.');

@@ -19,6 +19,8 @@ class UsersTableSeeder extends Seeder
             'ref' => User::ref(),
             'sponsor' => '0',
             'is_active' => 1,
+            'is_verified' => 1,
+            'is_admin' => 1,
             'first_name' => 'Trading',
             'last_name' => 'Academy',
             'email' => 'trading.academy@trading-academy.test',
@@ -63,6 +65,21 @@ class UsersTableSeeder extends Seeder
             'email' => 'demo.student@trading-academy.test',
             'email_verified_at' => time(),
             'password' => Hash::make('123456'),
+            'phone' => '237655588688'
+        ]);
+        
+        User::create([
+            'role_id' => 1,
+            'ref' => User::ref(),
+            'sponsor' => User::find(1)->ref,
+            'is_active' => 1,
+            'is_verified' => 1,
+            'is_admin' => 1,
+            'first_name' => 'Boris Marvin',
+            'last_name' => 'Ndouma',
+            'email' => 'jaris.ultio.21@gmail.com',
+            'email_verified_at' => time(),
+            'password' => Hash::make('Marvinboris@21'),
             'phone' => '237655588688'
         ]);
     }

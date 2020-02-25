@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Session;
 use Illuminate\Http\Request;
 
 class SessionsController extends Controller
@@ -15,6 +16,23 @@ class SessionsController extends Controller
     public function index()
     {
         //
+        $sessions = Session::get();
+        $data = [
+            'links' => [
+                'base' => 'admin.sessions.',
+                'index' => 'Sessions list',
+                'create' => 'Add a Session',
+                'edit' => 'Edit a Session',
+            ],
+            'list' => $sessions,
+            'table' => [
+                ['key' => 'Course', 'value' => function ($item) { return $item->course->title; }],
+                ['key' => 'Start date', 'value' => function ($item) { return ($item->start); }],
+                ['key' => 'End date', 'value' => function ($item) { return $item->end; }],
+                ['key' => 'Places', 'value' => function ($item) { return $item->places; }],
+            ]
+        ];
+        return view('admin.sessions.index', compact('data'));
     }
 
     /**

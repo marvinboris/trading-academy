@@ -14,6 +14,11 @@ class Admin extends Authenticatable
         'name', 'email', 'password', 'is_active', 'phone', 'lang'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function posts()
     {
         return $this->morphMany('App\Post', 'postable');

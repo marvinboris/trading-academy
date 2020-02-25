@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Author;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AuthorsController extends Controller
 {
@@ -15,6 +17,25 @@ class AuthorsController extends Controller
     public function index()
     {
         //
+        $authors = Author::get();
+        $data = [
+            'links' => [
+                'base' => 'admin.authors.',
+                'index' => 'Authors list',
+                'create' => 'Add an Author',
+                'edit' => 'Edit an Author',
+            ],
+            'list' => $authors,
+            'table' => [
+                ['key' => 'User ID', 'value' => function ($item) { return $item->user->ref; }],
+                ['key' => 'Name', 'value' => function ($item) { return Str::limit($item->user->name()); }],
+                ['key' => 'E-Mail Address', 'value' => function ($item) { return $item->user->email; }],
+                ['key' => 'Phone Number', 'value' => function ($item) { return $item->user->phone; }],
+                ['key' => 'Country', 'value' => function ($item) { return '<span class="flag-icon flag-icon-' . strtolower($item->user->country) . '"></span> ' . $item->user->country; }],
+                ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->user->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
+            ]
+        ];
+        return view('admin.authors.index', compact('data'));
     }
 
     /**
@@ -25,6 +46,91 @@ class AuthorsController extends Controller
     public function create()
     {
         //
+        $data = [
+            'links' => [
+                'base' => 'admin.authors.',
+                'index' => 'Authors list',
+                'create' => 'Add an Author',
+                'edit' => 'Edit an Author',
+            ],
+            'action' => route('admin.authors.store'),
+            'method' => 'post',
+            'file' => true,
+            'size' => '9',
+            'content' => [
+                [
+                    'type' => 'text',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'type' => 'text',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dc;   Title',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'text',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'type' => 'text',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dc;   Title',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'text',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'type' => 'text',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dc;   Title',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'text',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'type' => 'text',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dc;   Title',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'textarea',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'body',
+                        'label' => 'Body',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dd;   Body',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'file',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'photo',
+                        'label' => 'Photo',
+                        'required' => 'required',
+                        'hidden' => true,
+                        'size' => '3'
+                    ]
+                ]
+            ]
+        ];
+        return view('admin.authors.create', compact('data'));
     }
 
     /**

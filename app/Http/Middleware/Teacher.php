@@ -16,10 +16,10 @@ class Teacher
      */
     public function handle($request, Closure $next)
     {
-        if (!in_array(Auth::user()->role->name, ['Admin', 'Teacher'])) {
-            return route('login');
+        if (Auth::user()->role->name === 'Teacher') {
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect(route('login'));
     }
 }

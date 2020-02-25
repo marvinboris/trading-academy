@@ -16,10 +16,10 @@ class Student
      */
     public function handle($request, Closure $next)
     {
-        if (!in_array(Auth::user()->role->name, ['Admin', 'Student'])) {
-            return route('login');
+        if (Auth::user()->role->name === 'Student') {
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect(route('login'));
     }
 }

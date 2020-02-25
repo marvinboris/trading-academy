@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Document;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,21 @@ class DocumentsController extends Controller
     public function index()
     {
         //
+        $documents = Document::get();
+        $data = [
+            'links' => [
+                'base' => 'admin.documents.',
+                'index' => 'Documents list',
+                'create' => 'Add a Document',
+                'edit' => 'Edit a Document',
+            ],
+            'list' => $documents,
+            'table' => [
+                ['key' => 'Name', 'value' => function ($item) { return ($item->name); }],
+                ['key' => 'Path', 'value' => function ($item) { return $item->path; }],
+            ]
+        ];
+        return view('admin.documents.index', compact('data'));
     }
 
     /**

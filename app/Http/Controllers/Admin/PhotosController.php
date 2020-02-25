@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Photo;
 use Illuminate\Http\Request;
 
 class PhotosController extends Controller
@@ -15,6 +16,20 @@ class PhotosController extends Controller
     public function index()
     {
         //
+        $photos = Photo::get();
+        $data = [
+            'links' => [
+                'base' => 'admin.photos.',
+                'index' => 'Photos list',
+                'create' => 'Add an Photo',
+                'edit' => 'Edit an Photo',
+            ],
+            'list' => $photos,
+            'table' => [
+                ['key' => 'Path', 'value' => function ($item) { return $item->path; }],
+            ]
+        ];
+        return view('admin.photos.index', compact('data'));
     }
 
     /**

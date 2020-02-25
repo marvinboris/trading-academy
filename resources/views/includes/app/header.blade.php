@@ -1,4 +1,4 @@
-<header class="bg-header position-sticky shadow" style="height: 95px; top: -35px; z-index: 1100;">
+<header class="bg-header position-sticky shadow" style="height: 95px; top: -37px; z-index: 1100;">
     <nav class="navbar navbar-expand-md navbar-dark px-md-5 flex-fill position-sticky border-0 h-100 d-flex justify-content-between" style="top: -35px;">
         <a href="{{ url('/') }}" class="d-block position-sticky" style="top: 10px; height: 60px;">
             <img src="{{ asset('/images/Groupe 130@2x.png') }}" class="h-100" alt="Logo">

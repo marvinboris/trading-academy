@@ -15,13 +15,8 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('is_active')->default(0);
-            $table->string('name');
-            $table->string('email', 50)->unique();
-            $table->string('password');
-            $table->string('phone', 20);
-            $table->enum('lang', ['en', 'fr'])->default('en');
-            $table->rememberToken();
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->integer('is_active')->default(1);
             $table->timestamps();
         });
     }

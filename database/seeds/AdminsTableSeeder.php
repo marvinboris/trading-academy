@@ -15,19 +15,11 @@ class AdminsTableSeeder extends Seeder
     {
         //
         Admin::create([
-            'is_active' => 1,
-            'name' => 'Admin',
-            'email' => 'admin@trading-academy.test',
-            'password' => Hash::make('adminadmin'),
-            'phone' => '237655588688'
+            'user_id' => 1,
         ]);
         
         Admin::create([
-            'is_active' => 1,
-            'name' => 'Admin',
-            'email' => 'jaris.ultio.21@gmail.com',
-            'password' => Hash::make('12345'),
-            'phone' => '237655588688'
+            'user_id' => 5,
         ]);
     }
 }

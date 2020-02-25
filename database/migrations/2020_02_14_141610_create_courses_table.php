@@ -15,11 +15,17 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('teacher_id')->unsigned()->index();
             $table->string('title', 50)->unique();
-            $table->string('description');
-            $table->string('path');
+            $table->string('subtitle');
+            $table->text('description');
+            $table->text('course_content');
+            $table->text('requirements');
+            $table->text('what_you_will_learn');
+            $table->text('includes');
             $table->float('price');
             $table->integer('duration');
+            $table->string('lang')->default('French');
             $table->integer('level_rank');
             $table->string('level_name');
             $table->timestamps();

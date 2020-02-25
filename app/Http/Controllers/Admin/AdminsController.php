@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\Admin;
 
 class AdminsController extends Controller
 {
@@ -16,11 +16,25 @@ class AdminsController extends Controller
     public function index()
     {
         //
-        $admins = [];
-        foreach (Admin::all() as $value) {
-            $admins[] = $value;
-        }
-        return view('admin.admins.index', compact('admins'));
+        $admins = Admin::get();
+        $data = [
+            'links' => [
+                'base' => 'admin.admins.',
+                'index' => 'Admins list',
+                'create' => 'Add an Admin',
+                'edit' => 'Edit an Admin',
+            ],
+            'list' => $admins,
+            'table' => [
+                ['key' => 'User ID', 'value' => function ($item) { return $item->user->ref; }],
+                ['key' => 'Name', 'value' => function ($item) { return $item->user->name(); }],
+                ['key' => 'E-Mail Address', 'value' => function ($item) { return $item->user->email; }],
+                ['key' => 'Phone Number', 'value' => function ($item) { return $item->user->phone; }],
+                ['key' => 'Country', 'value' => function ($item) { return '<span class="flag-icon flag-icon-' . strtolower($item->user->country) . '"></span> ' . $item->user->country; }],
+                ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->user->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
+            ]
+        ];
+        return view('admin.admins.index', compact('data'));
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Course;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,6 +17,25 @@ class CoursesController extends Controller
     public function index()
     {
         //
+        $courses = Course::get();
+        $data = [
+            'links' => [
+                'base' => 'admin.courses.',
+                'index' => 'Courses list',
+                'create' => 'Add a Course',
+                'edit' => 'Edit a Course',
+            ],
+            'list' => $courses,
+            'table' => [
+                ['key' => 'Teacher', 'value' => function ($item) { return $item->teacher->user->name(); }],
+                ['key' => 'Title', 'value' => function ($item) { return ($item->title); }],
+                ['key' => 'Description', 'value' => function ($item) { return Str::limit($item->description); }],
+                ['key' => 'Price', 'value' => function ($item) { return $item->price; }],
+                ['key' => 'Duration', 'value' => function ($item) { return $item->duration; }],
+                ['key' => 'Language', 'value' => function ($item) { return $item->lang; }],
+            ]
+        ];
+        return view('admin.courses.index', compact('data'));
     }
 
     /**
