@@ -32,9 +32,12 @@
                             <div id="courses" class="nav-link text-white {{ Request::segment(1) === 'courses' ? 'active' : '' }}">
                                 <span>Courses</span>
                                 <div class="py-2 rounded bg-light position-absolute" style="top: calc(100%);">
-                                    <a class="dropdown-item {{ Request::segment(1) === 'courses' && Request::segment(2) === 'bronze' ? 'active' : '' }}" href="{{ route('courses.show', 'bronze') }}">Bronze</a>
-                                    <a class="dropdown-item {{ Request::segment(1) === 'courses' && Request::segment(2) === 'silver' ? 'active' : '' }}" href="{{ route('courses.show', 'silver') }}">Silver</a>
-                                    <a class="dropdown-item {{ Request::segment(1) === 'courses' && Request::segment(2) === 'diamond' ? 'active' : '' }}" href="{{ route('courses.show', 'diamond') }}">Diamond</a>
+                                    @php
+                                        $courses = App\Course::get();
+                                    @endphp
+                                    @foreach ($courses as $course)
+                                    <a class="dropdown-item {{ Request::segment(1) === 'courses' && Request::segment(2) === $course->slug ? 'active' : '' }}" href="{{ route('courses.show', $course->slug) }}">{{ $course->title }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </li>

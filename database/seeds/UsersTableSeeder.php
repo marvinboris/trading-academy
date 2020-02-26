@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
             'ref' => User::ref(),
             'sponsor' => User::find(1)->ref,
             'is_active' => 1,
-            'first_name' => 'Demo Teacher',
+            'first_name' => 'Global Investment Trading',
             'last_name' => 'Academy',
             'email' => 'demo.teacher@trading-academy.test',
             'email_verified_at' => time(),

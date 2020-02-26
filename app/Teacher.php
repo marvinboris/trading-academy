@@ -16,6 +16,11 @@ class Teacher extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function courses()
+    {
+        return $this->hasMany('App\Course');
+    }
+
     public function sessions()
     {
         return $this->belongsToMany('App\Session');

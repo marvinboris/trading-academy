@@ -20634,6 +20634,14 @@ a.text-dark:focus {
   min-height: calc(100vh - 92px);
 }
 
+.nav-tabs .nav-item .nav-link {
+  color: #008564 !important;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+  font-weight: 700;
+}
+
 #lil-point {
   width: 5px;
   height: 5px;

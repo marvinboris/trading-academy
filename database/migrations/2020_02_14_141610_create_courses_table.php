@@ -16,6 +16,7 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('teacher_id')->unsigned()->index();
+            $table->bigInteger('photo_id')->unsigned()->index();
             $table->string('title', 50)->unique();
             $table->string('subtitle');
             $table->text('description');
@@ -28,6 +29,7 @@ class CreateCoursesTable extends Migration
             $table->string('lang')->default('French');
             $table->integer('level_rank');
             $table->string('level_name');
+            $table->string('slug');
             $table->timestamps();
         });
     }

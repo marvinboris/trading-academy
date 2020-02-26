@@ -13,8 +13,10 @@ class PhotosTableSeeder extends Seeder
     public function run()
     {
         //
-        Photo::create([
-            'path' => '11-6.jpg'
-        ]);
+        $photos = ['11-6.jpg', '104098929_w640_h640_prodam-too-2007.jpg', 'forex-brokers.jpg', '1267555.jpg'];
+
+        foreach ($photos as $photo) {
+            Photo::create(['path' => $photo]);
+        }
     }
 }

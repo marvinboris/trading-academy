@@ -24,3 +24,15 @@
 .full-height-app {
   min-height: calc(100vh - 92px);
 }
+
+.nav-tabs {
+  .nav-item {
+    .nav-link {
+      color: $mygreen !important;
+
+      &.active {
+        font-weight: 700;
+      }
+    }
+  }
+}

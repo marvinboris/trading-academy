@@ -37,6 +37,20 @@
                     @component('components.auth.aside.dropdown-item', ['name' => 'Add a Post', 'link' => route('author.posts.create')]) @endcomponent
                 @endcomponent
             @endif
+            @if (Auth::user()->role->name === 'Teacher')
+                @component('components.auth.aside.dropdown', ['name' => 'courses', 'icon' => 'fas fa-book-open', 'title' => 'Courses', 'link' => route('teacher.courses.index')])
+                    @component('components.auth.aside.dropdown-item', ['name' => 'My Courses', 'link' => route('teacher.courses.index')]) @endcomponent
+                    @component('components.auth.aside.dropdown-item', ['name' => 'Add a Course', 'link' => route('teacher.courses.create')]) @endcomponent
+                @endcomponent
+                @component('components.auth.aside.dropdown', ['name' => 'sessions', 'icon' => 'fas fa-clock', 'title' => 'Sessions', 'link' => route('teacher.sessions.index')])
+                    @component('components.auth.aside.dropdown-item', ['name' => 'My Sessions', 'link' => route('teacher.sessions.index')]) @endcomponent
+                    @component('components.auth.aside.dropdown-item', ['name' => 'Add a Session', 'link' => route('teacher.sessions.create')]) @endcomponent
+                @endcomponent
+                @component('components.auth.aside.dropdown', ['name' => 'sms', 'icon' => 'fas fa-at', 'title' => 'SMS', 'link' => route('teacher.messages.index')])
+                    @component('components.auth.aside.dropdown-item', ['name' => 'SMS List', 'link' => route('teacher.messages.index')]) @endcomponent
+                    @component('components.auth.aside.dropdown-item', ['name' => 'Send SMS', 'link' => route('teacher.messages.create')]) @endcomponent
+                @endcomponent
+            @endif
             @component('components.auth.aside.link', ['link' => route('user.team'), 'icon' => 'fas fa-users']) Team @endcomponent
             @component('components.auth.aside.link', ['link' => route('user.messages'), 'icon' => 'fas fa-envelope']) Messages @endcomponent
             @component('components.auth.aside.link', ['link' => route('user.notifications'), 'icon' => 'fas fa-bell']) Notifications @endcomponent
