@@ -4,7 +4,7 @@
         <select name="{{ $name }}" id="{{ $name }}" class="form-control" {{ $required ?? '' }}>
             <option>{{ $placeholder }}</option>
             @foreach ($data['list'] as $item)
-            <option value="{{ $data['value']($item) }}">{{ $data['label']($item) }}</option>
+            <option value="{{ $data['value']($item) }}" {{ ($value ?? '') === $data['value']($item) ? 'selected' : '' }}>{{ $data['label']($item) }}</option>
             @endforeach
         </select>
     </div>

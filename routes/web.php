@@ -60,59 +60,47 @@ Route::get('email/verify/{id}/{code}', function ($id, $code) {
 });
 
 Route::middleware('logout_on_verification')->get('/', function () {
-    $courses = [
-        [
-            'color' => 'pink',
-            'iconColor' => 'scarlet',
-            'position' => 5,
-            'popular' => true,
-            'trader' => ['level' => 'Bronze', 'color' => 'transparent'],
-            'img' => '/images/104098929_w640_h640_prodam-too-2007.jpg',
-            'price' => 230,
-            'level' => 'Getting Started with Crypto Currency Trading',
-            'duration' => 148,
-            'reviews' => [
-                'mark' => 4.5,
-                'voters' => 103
-            ],
-            'certificate' => true,
-            'link' => '/courses/bronze'
-        ],
-        [
-            'color' => 'orange',
-            'iconColor' => 'scarlet',
-            'position' => 20,
-            'popular' => false,
-            'trader' => ['level' => 'Silver', 'color' => 'transparent'],
-            'img' => '/images/forex-brokers.jpg',
-            'price' => 230,
-            'level' => 'Getting Started with Crypto Currency Trading',
-            'duration' => 148,
-            'reviews' => [
-                'mark' => 4.5,
-                'voters' => 103
-            ],
-            'certificate' => true,
-            'link' => '/courses/silver'
-        ],
-        [
-            'color' => 'blue',
-            'iconColor' => 'orange',
-            'position' => 35,
-            'popular' => false,
-            'trader' => ['level' => 'Diamond', 'color' => 'orange'],
-            'img' => '/images/1267555.jpg',
-            'price' => 230,
-            'level' => 'Getting Started with Crypto Currency Trading',
-            'duration' => 148,
-            'reviews' => [
-                'mark' => 4.5,
-                'voters' => 103
-            ],
-            'certificate' => true,
-            'link' => '/courses/diamond'
-        ]
+    $coursesData = Course::get();
+    $courses = [];
+
+    $colors = [
+        'bronze' => 'pink',
+        'silver' => 'orange',
+        'diamond' => 'blue',
     ];
+    $iconColors = [
+        'bronze' => 'scarlet',
+        'silver' => 'scarlet',
+        'diamond' => 'orange',
+    ];
+    $traderColors = [
+        'bronze' => 'scarlet text-white',
+        'silver' => 'orange text-white',
+        'diamond' => 'blue text-white',
+    ];
+    $populars = [
+        'bronze' => true,
+        'silver' => false,
+        'diamond' => false,
+    ];
+
+    foreach ($coursesData as $course) {
+        $courseArray = $course->toArray();
+        $courseArray['img'] = $course->photo->path;
+        $courseArray['color'] = $colors[$course->slug];
+        $courseArray['trader'] = [
+            'level' => $course->title,
+            'color' => $traderColors[$course->slug]
+        ];
+        $courseArray['reviews'] = [
+            'mark' => $course->mark(),
+            'voters' => count($course->views)
+        ];
+        $courseArray['popular'] = $populars[$course->slug];
+        $courseArray['iconColor'] = $iconColors[$course->slug];
+        $courses[] = $courseArray;
+    }
+
     $postsData = Post::latest()->limit(3)->get();
     $posts = [];
     foreach ($postsData as $post) {
@@ -292,6 +280,11 @@ Route::middleware(['auth', 'verification'])->group(function () {
         Route::name('messages')->get('messages', 'MessagesController@index');
         Route::name('notifications.show')->get('notifications/details/{id}', 'NotificationsController@show');
         Route::name('notifications')->get('notifications', 'NotificationsController@index');
+        Route::name('finance.')->namespace('Finance')->prefix('finance')->group(function () {
+            Route::resource('transfers', 'TransfersController');
+            Route::resource('deposits', 'DepositsController');
+            Route::resource('withdraws', 'WithdrawsController');
+        });
     });
 
 
@@ -303,6 +296,10 @@ Route::middleware(['auth', 'verification'])->group(function () {
     Route::middleware('participant')->group(function () {
         Route::namespace('Student')->name('student.')->middleware('student')->prefix('student')->group(function () {
             Route::name('dashboard')->get('dashboard', 'DashboardController@index');
+            Route::name('courses.')->prefix('courses')->group(function () {
+                Route::name('index')->get('', 'CoursesController@index');
+                Route::name('mine')->get('mine', 'CoursesController@mine');
+            });
         });
 
         Route::namespace('Teacher')->name('teacher.')->middleware('teacher')->prefix('teacher')->group(function () {

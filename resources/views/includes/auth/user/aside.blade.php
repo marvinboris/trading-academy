@@ -51,6 +51,20 @@
                     @component('components.auth.aside.dropdown-item', ['name' => 'Send SMS', 'link' => route('teacher.messages.create')]) @endcomponent
                 @endcomponent
             @endif
+            @if (Auth::user()->role->name === 'Student')
+                @component('components.auth.aside.dropdown', ['name' => 'courses', 'icon' => 'fas fa-book', 'title' => 'Courses', 'link' => route('student.courses.index')])
+                    @component('components.auth.aside.dropdown-item', ['name' => 'My Courses', 'link' => route('student.courses.mine')]) @endcomponent
+                    @component('components.auth.aside.dropdown-item', ['name' => 'Courses List', 'link' => route('student.courses.index')]) @endcomponent
+                @endcomponent
+            @endif
+            @component('components.auth.aside.dropdown', ['name' => 'finance', 'icon' => 'fas fa-exchange-alt', 'title' => 'Finance', 'link' => url('user/finance')])
+                @component('components.auth.aside.dropdown-item', ['name' => 'Transfer', 'link' => route('user.finance.transfers.create')]) @endcomponent
+                @component('components.auth.aside.dropdown-item', ['name' => 'Transfer List', 'link' => route('user.finance.transfers.index')]) @endcomponent
+                @component('components.auth.aside.dropdown-item', ['name' => 'Add Deposit', 'link' => route('user.finance.deposits.create')]) @endcomponent
+                @component('components.auth.aside.dropdown-item', ['name' => 'Deposit List', 'link' => route('user.finance.deposits.index')]) @endcomponent
+                @component('components.auth.aside.dropdown-item', ['name' => 'Withdraw', 'link' => route('user.finance.withdraws.create')]) @endcomponent
+                @component('components.auth.aside.dropdown-item', ['name' => 'Withdraw List', 'link' => route('user.finance.withdraws.index')]) @endcomponent
+            @endcomponent
             @component('components.auth.aside.link', ['link' => route('user.team'), 'icon' => 'fas fa-users']) Team @endcomponent
             @component('components.auth.aside.link', ['link' => route('user.messages'), 'icon' => 'fas fa-envelope']) Messages @endcomponent
             @component('components.auth.aside.link', ['link' => route('user.notifications'), 'icon' => 'fas fa-bell']) Notifications @endcomponent

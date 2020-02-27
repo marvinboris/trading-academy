@@ -22,7 +22,7 @@ class PostsController extends Controller
     public function index()
     {
         //
-        $posts = Author::where('user_id', Auth::user()->id)->first()->posts;
+        $posts = Author::where('user_id', Auth::id())->first()->posts;
         $data = [
             'links' => [
                 'base' => 'author.posts.',

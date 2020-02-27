@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Session extends Model
@@ -21,5 +22,15 @@ class Session extends Model
 
     public function students() {
         return $this->belongsToMany('App\Student');
+    }
+
+    public function getStartAttribute($value)
+    {
+        return Carbon::createFromFormat('Y-m-d', $value);
+    }
+
+    public function getEndAttribute($value)
+    {
+        return Carbon::createFromFormat('Y-m-d', $value);
     }
 }

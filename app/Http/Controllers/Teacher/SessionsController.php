@@ -29,10 +29,18 @@ class SessionsController extends Controller
             ],
             'list' => $sessions,
             'table' => [
-                ['key' => 'Course', 'value' => function ($item) { return $item->course->title; }],
-                ['key' => 'Start date', 'value' => function ($item) { return ($item->start); }],
-                ['key' => 'End date', 'value' => function ($item) { return $item->end; }],
-                ['key' => 'Places', 'value' => function ($item) { return $item->places; }],
+                ['key' => 'Course', 'value' => function ($item) {
+                    return $item->course->title;
+                }],
+                ['key' => 'Start date', 'value' => function ($item) {
+                    return ($item->start->format('D, d M Y'));
+                }],
+                ['key' => 'End date', 'value' => function ($item) {
+                    return $item->end->format('D, d M Y');
+                }],
+                ['key' => 'Places', 'value' => function ($item) {
+                    return $item->places;
+                }],
             ]
         ];
         return view('user.teacher.sessions.index', compact('data'));
@@ -70,8 +78,12 @@ class SessionsController extends Controller
                         'size' => '3',
                         'data' => [
                             'list' => $courses,
-                            'value' => function ($item) { return $item->id; },
-                            'label' => function ($item) { return $item->title; },
+                            'value' => function ($item) {
+                                return $item->id;
+                            },
+                            'label' => function ($item) {
+                                return $item->title;
+                            },
                         ]
                     ]
                 ],
@@ -158,6 +170,83 @@ class SessionsController extends Controller
     public function edit($id)
     {
         //
+        $session = Session::findOrFail($id);
+        $courses = Course::get();
+        $data = [
+            'links' => [
+                'base' => 'teacher.sessions.',
+                'index' => 'My Sessions',
+                'create' => 'Add Session',
+                'edit' => 'Edit Session',
+            ],
+            'action' => route('teacher.sessions.update', $id),
+            'method' => 'post',
+            'file' => false,
+            'size' => '9',
+            'content' => [
+                [
+                    'type' => 'select',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'course_id',
+                        'label' => 'Course',
+                        'required' => 'required',
+                        'value' =>  $session->course_id,
+                        'placeholder' => 'Select a Course',
+                        'size' => '3',
+                        'data' => [
+                            'list' => $courses,
+                            'value' => function ($item) {
+                                return $item->id;
+                            },
+                            'label' => function ($item) {
+                                return $item->title;
+                            },
+                        ]
+                    ]
+                ],
+                [
+                    'type' => 'date',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'start',
+                        'label' => 'Starts on',
+                        'type' => 'date',
+                        'required' => 'required',
+                        'value' =>  $session->start->format('Y-m-d'),
+                        'placeholder' => '&#xf1dc;   Start',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'date',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'end',
+                        'label' => 'Ends on',
+                        'type' => 'date',
+                        'required' => 'required',
+                        'value' =>  $session->end->format('Y-m-d'),
+                        'placeholder' => '&#xf1dc;   End',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'number',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'places',
+                        'label' => 'Available places',
+                        'type' => 'number',
+                        'required' => 'required',
+                        'value' =>  $session->places,
+                        'placeholder' => '&#xf1dc;   Places',
+                        'size' => '3'
+                    ]
+                ],
+            ]
+        ];
+        return view('user.teacher.sessions.edit', compact('data'));
     }
 
     /**
@@ -170,6 +259,16 @@ class SessionsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $session = Session::findOrFail($id);
+        $input = $request->validate([
+            'course_id' => 'required|numeric',
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'places' => 'required|numeric',
+        ]);
+        $session->update($input);
+        $request->session()->flash('updated_session', 'The session has been successfully updated.');
+        return redirect(route('teacher.sessions.index'));
     }
 
     /**
