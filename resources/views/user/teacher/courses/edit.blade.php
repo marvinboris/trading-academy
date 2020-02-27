@@ -1,10 +1,8 @@
 @extends('layouts.user')
 
 @section('section', 'Courses')
+@section('parent') <a href="{{ route('teacher.courses.index') }}" class="text-green text-900">My Courses</a> @endsection
 @section('title', 'Edit a Course')
-@section('parent')
-    
-@endsection
 
 @section('content')
 @component('components.auth.page')
@@ -169,7 +167,7 @@
         $(function () {
             $('#upload').click(function (e) {
                 e.preventDefault();
-                
+
                 const targetName = $(this).attr('data-target');
                 const target = $('label[for="' + targetName + '"]').parent().find('input');
                 target.click();
@@ -178,7 +176,7 @@
             const deleteBtnEvent = function () {
                 const current = $(this);
                 current.parent().remove();
-                
+
                 if (current.hasClass('section')) {
                     const parents = current.parent().parent().children('.col-12');
                     parents.forEach((parent, index) => {

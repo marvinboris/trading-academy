@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Teacher;
 
+use App\Course;
 use App\Http\Controllers\Controller;
+use App\Session;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,13 +19,13 @@ class SessionsController extends Controller
     public function index()
     {
         //
-        $sessions = Teacher::where('user_id', Auth::user()->id)->first()->sessions;
+        $sessions = Teacher::where('user_id', Auth::id())->first()->sessions;
         $data = [
             'links' => [
                 'base' => 'teacher.sessions.',
                 'index' => 'My Sessions',
-                'create' => 'Add a Session',
-                'edit' => 'Edit a Session',
+                'create' => 'Add Session',
+                'edit' => 'Edit Session',
             ],
             'list' => $sessions,
             'table' => [
@@ -44,6 +46,74 @@ class SessionsController extends Controller
     public function create()
     {
         //
+        $courses = Course::get();
+        $data = [
+            'links' => [
+                'base' => 'teacher.sessions.',
+                'index' => 'My Sessions',
+                'create' => 'Add Session',
+                'edit' => 'Edit Session',
+            ],
+            'action' => route('teacher.sessions.store'),
+            'method' => 'post',
+            'file' => false,
+            'size' => '9',
+            'content' => [
+                [
+                    'type' => 'select',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'course_id',
+                        'label' => 'Course',
+                        'required' => 'required',
+                        'placeholder' => 'Select a Course',
+                        'size' => '3',
+                        'data' => [
+                            'list' => $courses,
+                            'value' => function ($item) { return $item->id; },
+                            'label' => function ($item) { return $item->title; },
+                        ]
+                    ]
+                ],
+                [
+                    'type' => 'date',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'start',
+                        'label' => 'Starts on',
+                        'type' => 'date',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dc;   Start',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'date',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'end',
+                        'label' => 'Ends on',
+                        'type' => 'date',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dc;   End',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'number',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'places',
+                        'label' => 'Available places',
+                        'type' => 'number',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dc;   Places',
+                        'size' => '3'
+                    ]
+                ],
+            ]
+        ];
+        return view('user.teacher.sessions.create', compact('data'));
     }
 
     /**
@@ -55,6 +125,17 @@ class SessionsController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->validate([
+            'course_id' => 'required|numeric',
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'places' => 'required|numeric',
+        ]);
+        $session = Session::create($input);
+        Course::findOrFail($input['course_id'])->sessions()->save($session);
+        Teacher::where('user_id', Auth::id())->first()->sessions()->save($session);
+        $request->session()->flash('created_session', 'The session has been successfully added.');
+        return redirect(route('teacher.sessions.index'));
     }
 
     /**

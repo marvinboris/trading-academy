@@ -12,6 +12,9 @@
                         @case('checkbox')
                             @component('components.auth.content.form.checkbox', $item['data']) @endcomponent
                             @break
+                        @case('select')
+                            @component('components.auth.content.form.select', $item['data']) @endcomponent
+                            @break
                         @case('textarea')
                             @component('components.auth.content.form.textarea', $item['data']) @endcomponent
                             @break
