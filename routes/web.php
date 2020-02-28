@@ -299,6 +299,7 @@ Route::middleware(['auth', 'verification'])->group(function () {
             Route::name('courses.')->prefix('courses')->group(function () {
                 Route::name('index')->get('', 'CoursesController@index');
                 Route::name('mine')->get('mine', 'CoursesController@mine');
+                Route::name('enroll')->get('{course}/enroll', 'CoursesController@enroll');
             });
         });
 

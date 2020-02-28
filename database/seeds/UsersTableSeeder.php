@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('123456'),
             'phone' => '237655588688'
         ]);
-        
+
         User::create([
             'role_id' => 1,
             'ref' => User::ref(),
@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('123456'),
             'phone' => '237655588688'
         ]);
-        
+
         User::create([
             'role_id' => 2,
             'ref' => User::ref(),
@@ -54,7 +54,7 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('123456'),
             'phone' => '237655588688'
         ]);
-        
+
         User::create([
             'role_id' => 3,
             'ref' => User::ref(),
@@ -65,9 +65,10 @@ class UsersTableSeeder extends Seeder
             'email' => 'demo.student@trading-academy.test',
             'email_verified_at' => time(),
             'password' => Hash::make('123456'),
-            'phone' => '237655588688'
+            'phone' => '237655588688',
+            'balance' => 500000
         ]);
-        
+
         User::create([
             'role_id' => 1,
             'ref' => User::ref(),
