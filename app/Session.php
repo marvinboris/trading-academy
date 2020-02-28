@@ -21,7 +21,7 @@ class Session extends Model
     }
 
     public function students() {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsToMany('App\Student')->using('App\SessionStudent')->withPivot(['amount', 'status', 'updated_at']);
     }
 
     public function getStartAttribute($value)

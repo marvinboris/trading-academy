@@ -98,6 +98,7 @@ Route::middleware('logout_on_verification')->get('/', function () {
         ];
         $courseArray['popular'] = $populars[$course->slug];
         $courseArray['iconColor'] = $iconColors[$course->slug];
+        $courseArray['link'] = route('courses.show', $course->slug);
         $courses[] = $courseArray;
     }
 
@@ -299,7 +300,10 @@ Route::middleware(['auth', 'verification'])->group(function () {
             Route::name('courses.')->prefix('courses')->group(function () {
                 Route::name('index')->get('', 'CoursesController@index');
                 Route::name('mine')->get('mine', 'CoursesController@mine');
+                Route::name('show')->get('mine/{course}', 'CoursesController@show');
                 Route::name('enroll')->get('{course}/enroll', 'CoursesController@enroll');
+                Route::name('confirm')->get('{course}/enroll/{session}/confirm', 'CoursesController@confirm');
+                Route::name('confirmed')->post('confirmed', 'CoursesController@confirmed');
             });
         });
 

@@ -9,7 +9,7 @@
 @component('components.auth.content.dashboard.affiliate-link') @endcomponent
 
 <div class="row mb-5">
-    @component('components.auth.content.dashboard.box', ['class' => 'pr-2', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-dollar-sign']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'pr-2', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-dollar-sign']) <span class="fas fa-dollar-sign"></span> {{ Auth::user()->balance }} @endcomponent
     @component('components.auth.content.dashboard.box', ['class' => 'px-2', 'bgColor' => 'mydarkblue', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
     @component('components.auth.content.dashboard.box', ['class' => 'px-2', 'bgColor' => 'green', 'color' => 'white', 'title' => 'My Team', 'icon' => 'fas fa-users']) {{ count($team) }} <span class="text-medium">member{{ count($team) > 1 ? 's' : '' }}</span> @endcomponent
     @component('components.auth.content.dashboard.box', ['class' => 'pl-2', 'bgColor' => 'darkblue', 'color' => 'white', 'title' => 'Course documents', 'icon' => 'fas fa-book']) 0 <span class="text-medium">document</span> @endcomponent

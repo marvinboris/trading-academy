@@ -10,7 +10,7 @@
     <div class="card overflow-hidden border-0 bg-transparent shadow-lg"  {!! ($popular ?? '') ? '' : 'style="transform: scale(.9) translateY(5%);"' !!}>
         <div class="card-img-top position-relative overflow-hidden embed-responsive embed-responsive-4by3" style="background: url({{ asset($img) }}) no-repeat center; background-size: cover;">
             {{-- <img src="{{ $img ? asset($img) : "https://placehold.it/150x100" }}" alt="card-1" class="card-img-top"> --}}
-            {!! ($popular ?? '') ? '<div class="bg-pink w-100 pt-2 pb-1 text-uppercase h3 text-center text-white position-absolute" style="top: -40%; right: -50%; transform: rotate(45deg); transform-origin: 0 0;">Bronze</div>' : '' !!}
+            {!! ($popular ?? '') ? '<div class="bg-' . $color . ' w-100 pt-2 pb-1 text-uppercase h3 text-center text-white position-absolute" style="top: -30%; right: -50%; transform: rotate(45deg); transform-origin: 0 0;">Bronze</div>' : '' !!}
         </div>
         <div class="card-body bg-{{ $color }}-gradient text-white position-relative">
             <div class="position-absolute bg-white d-flex justify-content-center align-items-center" style="width: 38px; height: 1px; left: 0; top: 25px;">
@@ -32,7 +32,7 @@
                     </div>
                     <div class="pt-3 overflow-hidden small">
                         <div class="d-flex flex-nowrap position-relative" style="left: -100%;">
-                            <a href="{{ route('courses.show', $slug) }}" class="btn btn-{{ $color }} btn-block btn-lg shadow-sm" style="left: 0; flex: 0 0 100%;">Enroll now <i class="fas fa-arrow-alt-circle-right text-white border-left border-white-50 ml-3 pl-3"></i></a>
+                            <a href="{{ $link }}" class="btn btn-{{ $color }} btn-block btn-lg shadow-sm" style="left: 0; flex: 0 0 100%;">Enroll now <i class="fas fa-arrow-alt-circle-right text-white border-left border-white-50 ml-3 pl-3"></i></a>
                             <div class="row m-0 position-relative" style="flex: 0 0 100%;">
                                 <div class="col-3 pl-0 pr-1">
                                     <div class="d-flex">

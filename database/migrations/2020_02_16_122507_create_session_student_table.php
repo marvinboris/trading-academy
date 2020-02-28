@@ -17,6 +17,8 @@ class CreateSessionStudentTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('session_id')->unsigned()->index();
             $table->bigInteger('student_id')->unsigned()->index();
+            $table->float('amount')->default(0);
+            $table->enum('status', ['preregistration', 'first-installment', 'cash'])->default('preregistration');
             $table->timestamps();
             
             $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');

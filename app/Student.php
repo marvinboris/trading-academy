@@ -18,6 +18,6 @@ class Student extends Model
 
     public function sessions()
     {
-        return $this->belongsToMany('App\Session');
+        return $this->belongsToMany('App\Session')->using('App\SessionStudent')->withPivot(['amount', 'status', 'updated_at']);
     }
 }

@@ -37,7 +37,7 @@
                                         Guaranteed certificate
                                     </div>
                                     <div>
-                                        <a href="#" class="btn btn-yellow font-weight-bold">Enroll Now</a>
+                                        <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow font-weight-bold">Enroll Now</a>
                                     </div>
                                 </div>
                                 <div class="pt-2">
@@ -207,7 +207,7 @@
                                     Guaranteed certificate
                                 </div>
                                 <div>
-                                    <a href="#" class="btn btn-yellow font-weight-bold">Enroll Now</a>
+                                    <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow font-weight-bold">Enroll Now</a>
                                 </div>
                             </div>
                             <div class="pt-2">
@@ -252,7 +252,7 @@
                                 <div class="">
                                     <div class="d-flex flex-column justify-content-between h-100">
                                         <div>
-                                            <a href="#" class="btn btn-yellow btn-block w-50 text-large font-weight-bold">Enroll Now</a>
+                                            <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow btn-block w-50 text-large font-weight-bold">Enroll Now</a>
                                         </div>
                                     </div>
                                     <div class="pt-2">
