@@ -35,6 +35,12 @@ class TransfersController extends Controller
                 ['key' => 'Amount', 'value' => function ($item) {
                     return $item->amount;
                 }],
+                ['key' => 'Fees', 'value' => function ($item) {
+                    return $item->fees;
+                }],
+                ['key' => 'Comments', 'value' => function ($item) {
+                    return $item->comments;
+                }],
                 ['key' => 'Created at', 'value' => function ($item) {
                     return $item->created_at->diffForHumans();
                 }],
@@ -72,11 +78,13 @@ class TransfersController extends Controller
         ]);
         $code = User::ref();
         $amount = $request->amount;
+        $comments = $request->comment;
         $receiver = User::where('ref', $request->ref)->first();
         $data = Crypt::encryptString(json_encode([
             'receiver' => $request->ref,
             'amount' => $amount,
-            'code' => $code
+            'code' => $code,
+            'comments' => $comments
         ]));
         if ($request->media === 'email') Mail::to(Auth::user()->email)->send(new VerificationCode($code));
         $request->session()->flash('hash', $data);
@@ -103,7 +111,13 @@ class TransfersController extends Controller
             $receiver = User::where('ref', $data->receiver)->first();
             $sender->update(['balance' => $sender->balance - $data->amount * 1.01]);
             $receiver->update(['balance' => $receiver->balance + $data->amount]);
-            Transfer::create(['sender' => $sender->ref, 'receiver' => $receiver->ref, 'amount' => $data->amount]);
+            Transfer::create([
+                'sender' => $sender->ref,
+                'receiver' => $receiver->ref,
+                'amount' => $data->amount,
+                'fees' => $data->amount * .01,
+                'comments' => $data->comments
+            ]);
             return redirect()
                 ->route('user.finance.transfers.index');
         }

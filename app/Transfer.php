@@ -8,6 +8,6 @@ class Transfer extends Model
 {
     //
     protected $fillable = [
-        'sender', 'receiver', 'amount'
+        'sender', 'receiver', 'amount', 'fees', 'comments'
     ];
 }

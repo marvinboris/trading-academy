@@ -18,6 +18,8 @@ class CreateTransfersTable extends Migration
             $table->string('sender');
             $table->string('receiver');
             $table->float('amount');
+            $table->float('fees');
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }
