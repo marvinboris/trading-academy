@@ -46,6 +46,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Photo');
     }
 
+    public function commissions()
+    {
+        return $this->hasMany('App\Commission');
+    }
+
     public static function generateNewRef()
     {
         $letters = range('A', 'Z');
@@ -103,5 +108,10 @@ class User extends Authenticatable
     public function sponsor()
     {
         return self::where('ref', $this->sponsor)->first();
+    }
+
+    public function transfers()
+    {
+        return Transfer::where('sender', $this->ref)->orWhere('receiver', $this->ref)->get();
     }
 }

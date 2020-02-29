@@ -12,9 +12,43 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 
 class LoginController extends Controller
 {
+    /**
+     * This trait has all the login throttling functionality.
+     */
+    use ThrottlesLogins;
+
+    //Your other code here...
+
+    /**
+     * Username used in ThrottlesLogins trait
+     * 
+     * @return string
+     */
+    public function username()
+    {
+        return 'email';
+    }
+
+    /**
+     * Only guests for "admin" guard are allowed except
+     * for logout.
+     * 
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest:admin')->except('logout');
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
+
     //
     /**
      * Show the login form.
@@ -44,11 +78,10 @@ class LoginController extends Controller
             if (Hash::check($input['password'], $admin->password)) {
                 $code = User::ref();
                 Mail::to($admin->email)->send(new VerificationCode($code));
-                $hash = Crypt::encryptString([
-                    'email' => $input['email'],
-                    'password' => $input['password'],
+                $hash = Crypt::encryptString(json_encode([
+                    'id' => $admin->id,
                     'code' => $code,
-                ]);
+                ]));
                 $request->session()->flash('hash', $hash);
                 return redirect(route('admin.verify'));
             }
@@ -62,7 +95,8 @@ class LoginController extends Controller
     {
         $request->session()->reflash();
         if (Session::has('hash')) return view('auth.admin.verification');
-        return redirect(route('admin.login'));
+        return redirect()
+            ->route('admin.login');
     }
 
     public function verify(Request $request)
@@ -72,12 +106,14 @@ class LoginController extends Controller
         ]);
 
         $data = json_decode(Crypt::decryptString(Session::get('hash')));
-        if ($input['code'] === $data['code']) {
-            Auth::guard('admin')->attempt(['email' => $data['email'], 'password' => $data['password']]);
-            return redirect(route('admin.dashboard'));
+        if ($input['code'] === $data->code) {
+            Auth::guard('admin')->login(Admin::findOrFail($data->id));
+            return redirect()
+                ->route('admin.dashboard');
         }
-        $request->session()->flash('invalid', 'Verification code is incorrect.');
-        return back();
+        return redirect()
+            ->back()
+            ->with('invalid', 'Verification code is incorrect.');
     }
 
     /**

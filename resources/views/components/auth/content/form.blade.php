@@ -1,4 +1,4 @@
-<form action="{{ $action }}" class="overflow-hidden" method="{{ $method }}" {{ $file ? 'enctype="application/x-www-form-urlencoded"' : '' }}>
+<form action="{{ $action }}" class="overflow-hidden" method="{{ $method }}" @if ($file) enctype="multipart/form-data" @endif>
     @csrf
     <div class="row">
         <div class="col-{{ $size }}">

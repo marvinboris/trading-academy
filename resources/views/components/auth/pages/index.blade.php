@@ -70,9 +70,13 @@
                 <td>{{ $value['value']($item) }}</td>
                 @endforeach
                 <td>
-                    <a href="{{ route($links['base'] . 'show', $item->id) }}" class="fas text-decoration-none mr-2 fa-eye text-success"></a>
-                    <a href="#" class="fas text-decoration-none mr-2 fa-trash text-danger"></a>
-                    <a href="{{ route($links['base'] . 'edit', $item->id) }}" class="fas text-decoration-none fa-edit text-primary"></a>
+                    <form action="{{ route($links['base'] . 'destroy', $item->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <a href="{{ route($links['base'] . 'show', $item->id) }}" class="fas text-decoration-none mr-2 fa-eye text-success"></a>
+                        <button class="border-0 p-0 fas text-decoration-none mr-2 fa-trash text-danger"></button>
+                        <a href="{{ route($links['base'] . 'edit', $item->id) }}" class="fas text-decoration-none fa-edit text-primary"></a>
+                    </form>
                 </td>
             </tr>
             @endforeach

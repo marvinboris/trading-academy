@@ -46,6 +46,10 @@
                     @component('components.auth.aside.dropdown-item', ['name' => 'My Sessions', 'link' => route('teacher.sessions.index')]) @endcomponent
                     @component('components.auth.aside.dropdown-item', ['name' => 'Add a Session', 'link' => route('teacher.sessions.create')]) @endcomponent
                 @endcomponent
+                @component('components.auth.aside.dropdown', ['name' => 'documents', 'icon' => 'fas fa-file', 'title' => 'Documents', 'link' => route('teacher.documents.index')])
+                    @component('components.auth.aside.dropdown-item', ['name' => 'My Documents', 'link' => route('teacher.documents.index')]) @endcomponent
+                    @component('components.auth.aside.dropdown-item', ['name' => 'Add a Document', 'link' => route('teacher.documents.create')]) @endcomponent
+                @endcomponent
                 @component('components.auth.aside.dropdown', ['name' => 'sms', 'icon' => 'fas fa-at', 'title' => 'SMS', 'link' => route('teacher.messages.index')])
                     @component('components.auth.aside.dropdown-item', ['name' => 'SMS List', 'link' => route('teacher.messages.index')]) @endcomponent
                     @component('components.auth.aside.dropdown-item', ['name' => 'Send SMS', 'link' => route('teacher.messages.create')]) @endcomponent

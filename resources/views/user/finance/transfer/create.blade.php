@@ -6,11 +6,12 @@
 @section('content')
 @component('components.auth.page')
 <form action="{{ route('user.finance.transfers.store') }}" method="post">
+    @csrf
     <div class="row">
         <div class="col-md-7">
             <div class="form-group row">
-                <label for="receiver" class="control-label col-4">Receiver ID</label>
-                <input type="text" name="receiver" id="receiver" class="form-control col-8" required>
+                <label for="ref" class="control-label col-4">Receiver ID</label>
+                <input type="text" name="ref" id="ref" class="form-control col-8" required>
             </div>
             <div class="form-group row">
                 <label for="amount" class="control-label col-4">Amount</label>
@@ -52,7 +53,7 @@
                 </div>
             </div>
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="policy">
+                <input type="checkbox" class="custom-control-input" name="policy" id="policy">
                 <label class="custom-control-label" for="policy">I read and accept Transfer Policy</label>
             </div>
         </div>

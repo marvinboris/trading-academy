@@ -16,8 +16,8 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        $admin = Auth::guard('admin')->user();
-        if ($admin && $admin->is_active === 1) {
+        $admin = Auth::guard('admin');
+        if ($admin->check() && $admin->user()->is_active === 1) {
             return $next($request);
         }
 

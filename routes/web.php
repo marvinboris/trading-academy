@@ -23,21 +23,25 @@ use Illuminate\Support\Facades\Session;
 
 Auth::routes();
 
+Route::get('guard', function () {
+    return dd(Auth::guard('admin'));
+});
+
 Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
     Route::redirect('/', 'admin/login');
 
-    Route::namespace('Auth')->group(function () {
+    Route::namespace('Auth')->middleware('guest:admin')->group(function () {
         //Login Routes
         Route::get('login', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login');
         Route::post('logout', 'LoginController@logout')->name('logout');
 
-        Route::get('verify', 'Auth\AdminController@getVerify')->name('verify');
-        Route::post('verify', 'Auth\AdminController@verify');
+        Route::get('verify', 'LoginController@getVerify')->name('verify');
+        Route::post('verify', 'LoginController@verify');
     });
 
-    Route::middleware('admin')->group(function () {
-        Route::name('dashboard')->get('dashboard', 'DashboardController@index');
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         Route::resource('admins', 'AdminsController');
         Route::resource('authors', 'AuthorsController');
         Route::resource('channels', 'ChannelsController');
@@ -295,6 +299,7 @@ Route::middleware(['auth', 'verification'])->group(function () {
         Route::name('notifications.show')->get('notifications/details/{id}', 'NotificationsController@show');
         Route::name('notifications')->get('notifications', 'NotificationsController@index');
         Route::name('finance.')->namespace('Finance')->prefix('finance')->group(function () {
+            Route::post('transfers/confirm', 'TransfersController@confirm')->name('transfers.confirm');
             Route::resource('transfers', 'TransfersController');
             Route::resource('deposits', 'DepositsController');
             Route::resource('withdraws', 'WithdrawsController');
@@ -324,6 +329,7 @@ Route::middleware(['auth', 'verification'])->group(function () {
             Route::resource('courses', 'CoursesController');
             Route::resource('messages', 'MessagesController');
             Route::resource('sessions', 'SessionsController');
+            Route::resource('documents', 'DocumentsController');
         });
     });
 });

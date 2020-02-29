@@ -27,4 +27,16 @@ class Admin extends Authenticatable
     {
         return $this->morphMany('App\Post', 'postable');
     }
+
+    public function abbreviation()
+    {
+        $names = explode(' ', $this->name);
+        $string = '';
+
+        foreach ($names as $name) {
+            $string .= strtoupper($name[0]);
+        }
+
+        return $string;
+    }
 }

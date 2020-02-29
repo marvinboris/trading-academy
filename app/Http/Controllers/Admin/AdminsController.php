@@ -26,12 +26,11 @@ class AdminsController extends Controller
             ],
             'list' => $admins,
             'table' => [
-                ['key' => 'User ID', 'value' => function ($item) { return $item->user->ref; }],
-                ['key' => 'Name', 'value' => function ($item) { return $item->user->name(); }],
-                ['key' => 'E-Mail Address', 'value' => function ($item) { return $item->user->email; }],
-                ['key' => 'Phone Number', 'value' => function ($item) { return $item->user->phone; }],
-                ['key' => 'Country', 'value' => function ($item) { return '<span class="flag-icon flag-icon-' . strtolower($item->user->country) . '"></span> ' . $item->user->country; }],
-                ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->user->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
+                ['key' => 'Name', 'value' => function ($item) { return $item->name; }],
+                ['key' => 'E-Mail Address', 'value' => function ($item) { return $item->email; }],
+                ['key' => 'Phone Number', 'value' => function ($item) { return $item->phone; }],
+                ['key' => 'Country', 'value' => function ($item) { return '<span class="flag-icon flag-icon-' . strtolower($item->country) . '"></span> ' . $item->country; }],
+                ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
             ]
         ];
         return view('admin.admins.index', compact('data'));

@@ -3,7 +3,14 @@
 namespace App\Http\Controllers\Finance;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VerificationCode;
+use App\Transfer;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class TransfersController extends Controller
 {
@@ -15,6 +22,27 @@ class TransfersController extends Controller
     public function index()
     {
         //
+        $transfers = Auth::user()->transfers();
+        $data = [
+            'list' => $transfers,
+            'table' => [
+                ['key' => 'Sender', 'value' => function ($item) {
+                    return $item->sender;
+                }],
+                ['key' => 'Receiver', 'value' => function ($item) {
+                    return ($item->receiver);
+                }],
+                ['key' => 'Amount', 'value' => function ($item) {
+                    return $item->amount;
+                }],
+                ['key' => 'Created at', 'value' => function ($item) {
+                    return $item->created_at->diffForHumans();
+                }],
+            ],
+            'headBgColor' => 'green',
+            'bodyBgColor' => 'light',
+        ];
+        return view('user.finance.transfer.index', compact('data'));
     }
 
     /**
@@ -25,7 +53,7 @@ class TransfersController extends Controller
     public function create()
     {
         //
-        return view('user.student.finance.transfer.create');
+        return view('user.finance.transfer.create');
     }
 
     /**
@@ -37,17 +65,51 @@ class TransfersController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'ref' => 'required|exists:users',
+            'amount' => 'required|numeric',
+            'policy' => 'accepted'
+        ]);
+        $code = User::ref();
+        $amount = $request->amount;
+        $receiver = User::where('ref', $request->ref)->first();
+        $data = Crypt::encryptString(json_encode([
+            'receiver' => $request->ref,
+            'amount' => $amount,
+            'code' => $code
+        ]));
+        if ($request->media === 'email') Mail::to(Auth::user()->email)->send(new VerificationCode($code));
+        $request->session()->flash('hash', $data);
+        return view('user.finance.transfer.confirm', compact('amount', 'receiver'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function confirm(Request $request)
     {
         //
+        $request->validate([
+            'code' => 'required|string'
+        ]);
+        $request->session()->reflash();
+        $sender = Auth::user();
+        $data = json_decode(Crypt::decryptString(Session::get('hash')));
+
+        if ($data->code == $request->code && $sender->balance >= $data->amount * 1.01) {
+            $receiver = User::where('ref', $data->receiver)->first();
+            $sender->update(['balance' => $sender->balance - $data->amount * 1.01]);
+            $receiver->update(['balance' => $receiver->balance + $data->amount]);
+            Transfer::create(['sender' => $sender->ref, 'receiver' => $receiver->ref, 'amount' => $data->amount]);
+            return redirect()
+                ->route('user.finance.transfers.index');
+        }
+
+        return redirect()
+            ->back();
     }
 
     /**

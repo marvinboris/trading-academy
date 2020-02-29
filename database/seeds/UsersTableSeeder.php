@@ -65,7 +65,7 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => time(),
             'password' => Hash::make('123456'),
             'phone' => '237655588688',
-            'balance' => 500000
+            'balance' => 500
         ]);
 
         User::create([
@@ -79,7 +79,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'jaris.ultio.21@gmail.com',
             'email_verified_at' => time(),
             'password' => Hash::make('Marvinboris@21'),
-            'phone' => '237655588688'
+            'phone' => '237655588688',
+            'balance' => 500
         ]);
     }
 }

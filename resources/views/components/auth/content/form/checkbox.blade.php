@@ -1,11 +1,11 @@
 <div class="row">
-    <label for="{{ $name }}" class="control-label col-{{ $size or 12 }}">{{ $label }}</label>
+    <label for="{{ $name }}" class="control-label col-{{ $size ?? 12 }}">{{ $label }}</label>
     <div class="col-{{ $size ? 12 - $size : 12 }}">
         <div class="row">
-            @foreach ($list as $item)
+            @foreach ($list as $key => $item)
                 <div class="col-6 col-md-4 col-lg-3 custom-control custom-checkbox">
-                    <input type="checkbox" name="{{ $name }}[]" class="custom-control-input" id="{{ $unit_name }}_{{ $item->{$id} }}" value="{{ $item->{$id} }}">
-                    <label for="{{ $unit_name }}_{{ $item->{$id} }}" class="custom-control-label">{{ $item->{$name} }}</label>
+                    <input type="checkbox" name="{{ $name }}[]" class="custom-control-input" id="{{ $name }}_{{ $item->{$id} }}" {{ ($checkedList ?? false) ? ($item->{$id} === $checkedList[$key]->{$id} ? 'checked' : '') : '' }} value="{{ $item->{$id} }}">
+                    <label for="{{ $name }}_{{ $item->{$id} }}" class="custom-control-label">{{ $item->{$unit_name} }}</label>
                 </div>
             @endforeach
         </div>
