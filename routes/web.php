@@ -16,27 +16,58 @@ use App\Post;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 Auth::routes();
 
-Route::name('admin.login')->get('admin', 'Auth\AdminController@getLogin');
-Route::name('admin.verify')->get('admin/verify', 'Auth\AdminController@getVerify');
-Route::post('admin', 'Auth\AdminController@login');
-Route::post('admin/verify', 'Auth\AdminController@verify');
+Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
+    Route::redirect('/', 'admin/login');
+
+    Route::namespace('Auth')->group(function () {
+        //Login Routes
+        Route::get('login', 'LoginController@showLoginForm')->name('login');
+        Route::post('login', 'LoginController@login');
+        Route::post('logout', 'LoginController@logout')->name('logout');
+
+        Route::get('verify', 'Auth\AdminController@getVerify')->name('verify');
+        Route::post('verify', 'Auth\AdminController@verify');
+    });
+
+    Route::middleware('admin')->group(function () {
+        Route::name('dashboard')->get('dashboard', 'DashboardController@index');
+        Route::resource('admins', 'AdminsController');
+        Route::resource('authors', 'AuthorsController');
+        Route::resource('channels', 'ChannelsController');
+        Route::resource('comments/replies', 'CommentRepliesController');
+        Route::resource('comments', 'CommentsController');
+        Route::resource('documents', 'DocumentsController');
+        Route::resource('courses', 'CoursesController');
+        Route::resource('messages', 'MessagesController');
+        Route::resource('photos', 'PhotosController');
+        Route::resource('posts', 'PostsController');
+        Route::resource('roles', 'RolesController');
+        Route::resource('sessions', 'SessionsController');
+        Route::resource('students', 'StudentsController');
+        Route::resource('teachers', 'TeachersController');
+        Route::resource('views', 'ViewsController');
+    });
+});
 
 if (!Session::has('lang')) Session::put('lang', 'en');
 
 Route::get('en', function () {
     Session::put('lang', 'en');
-    return redirect()->back();
+    return redirect()
+        ->back();
 });
 
 Route::get('fr', function () {
     Session::put('lang', 'fr');
-    return redirect()->back();
+    return redirect()
+        ->back();
 });
 
 Route::get('email/verify/{id}/{code}', function ($id, $code) {
@@ -56,7 +87,8 @@ Route::get('email/verify/{id}/{code}', function ($id, $code) {
         } else Request::session()->flash('not_verified', 'Your activation link is incorrect. Please, contact the administrator.');
     }
 
-    return redirect(route('login'));
+    return redirect()
+        ->route('login');
 });
 
 Route::middleware('logout_on_verification')->get('/', function () {
@@ -257,25 +289,6 @@ Route::middleware(['auth', 'verification'])->group(function () {
         return redirect(route(strtolower(Auth::user()->role->name) . '.dashboard'));
     });
 
-    Route::namespace('Admin')->name('admin.')->middleware('admin')->prefix('admin')->group(function () {
-        Route::name('dashboard')->get('dashboard', 'DashboardController@index');
-        Route::resource('admins', 'AdminsController');
-        Route::resource('authors', 'AuthorsController');
-        Route::resource('channels', 'ChannelsController');
-        Route::resource('comments/replies', 'CommentRepliesController');
-        Route::resource('comments', 'CommentsController');
-        Route::resource('documents', 'DocumentsController');
-        Route::resource('courses', 'CoursesController');
-        Route::resource('messages', 'MessagesController');
-        Route::resource('photos', 'PhotosController');
-        Route::resource('posts', 'PostsController');
-        Route::resource('roles', 'RolesController');
-        Route::resource('sessions', 'SessionsController');
-        Route::resource('students', 'StudentsController');
-        Route::resource('teachers', 'TeachersController');
-        Route::resource('views', 'ViewsController');
-    });
-
     Route::name('user.')->prefix('user')->group(function () {
         Route::name('team')->get('team', 'TeamController@index');
         Route::name('messages')->get('messages', 'MessagesController@index');
@@ -287,7 +300,6 @@ Route::middleware(['auth', 'verification'])->group(function () {
             Route::resource('withdraws', 'WithdrawsController');
         });
     });
-
 
     Route::namespace('Author')->name('author.')->middleware('author')->prefix('author')->group(function () {
         Route::name('dashboard')->get('dashboard', 'DashboardController@index');

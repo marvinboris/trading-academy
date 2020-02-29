@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('sponsor', 10);
             $table->integer('is_active')->default(0);
             $table->integer('is_verified')->default(0);
-            $table->integer('is_admin')->default(0);
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email', 50)->unique();
@@ -33,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('lang')->default('en');
             $table->rememberToken();
             $table->timestamps();
-            
+
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->foreign('photo_id')->references('id')->on('photos')->onDelete('cascade');
         });

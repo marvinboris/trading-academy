@@ -14,10 +14,14 @@ class Admin extends Authenticatable
         'name', 'email', 'password', 'is_active', 'phone', 'lang'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
     public function posts()
     {

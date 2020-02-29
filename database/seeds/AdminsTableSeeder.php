@@ -15,11 +15,10 @@ class AdminsTableSeeder extends Seeder
     {
         //
         Admin::create([
-            'user_id' => 1,
-        ]);
-        
-        Admin::create([
-            'user_id' => 5,
+            'name' => 'Boris Ndouma',
+            'email' => 'jaris.ultio.21@gmail.com',
+            'phone' => '237655588688',
+            'password' => Hash::make('adminadmin'),
         ]);
     }
 }

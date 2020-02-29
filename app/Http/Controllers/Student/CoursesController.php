@@ -80,7 +80,7 @@ class CoursesController extends Controller
                 ['key' => 'Session', 'value' => function ($item) {
                     return "
                     <div>From : <strong>" . $item->start->format('D, d M Y') . "</strong></div>
-                    <div>To : <strong>" . $item->end->format('D, d M Y') . "</strong></div>    
+                    <div>To : <strong>" . $item->end->format('D, d M Y') . "</strong></div>
                 ";
                 }],
                 ['key' => 'Amount paid', 'value' => function ($item) {
@@ -143,8 +143,12 @@ class CoursesController extends Controller
         $data = [
             'list' => $documents,
             'table' => [
-                ['key' => 'Name', 'value' => function ($item) { return $item->name; }],
-                ['key' => 'Action', 'value' => function ($item) { return '<a href="' . $item->path . '" class="fas fa-download"></a>'; }],
+                ['key' => 'Name', 'value' => function ($item) {
+                    return $item->name;
+                }],
+                ['key' => 'Action', 'value' => function ($item) {
+                    return '<a href="' . $item->path . '" class="fas fa-download"></a>';
+                }],
             ],
             'headBgColor' => 'green',
             'bodyBgColor' => 'light',
@@ -209,7 +213,7 @@ class CoursesController extends Controller
     {
         //
         $input = $request->all();
-        
+
         $courseData = Course::whereSlug($course)->first();
         $sessionData = Session::findOrFail($session);
         $payment = $input['payment'];
@@ -229,7 +233,7 @@ class CoursesController extends Controller
                 'cash' => ($courseData->price - 40) / 2
             ];
         }
-        
+
         $price = $prices[$payment];
         $hash = Crypt::encryptString(json_encode([
             'course' => $courseData->id,
@@ -266,6 +270,10 @@ class CoursesController extends Controller
         if ($user->balance < $price) return back()->with('balance', 'Insufficient balance');
 
         $user->update(['balance' => $user->balance - $price]);
+
+        $sponsor = $user->sponsor();
+        $sponsor->update(['balance' => $sponsor->balance + ($price * .1)]);
+
         $session = Course::findOrFail($courseId)->sessions()->findOrFail($sessionId);
         if ($new == 1) {
             $session->update(['places' => $session->places - 1]);
