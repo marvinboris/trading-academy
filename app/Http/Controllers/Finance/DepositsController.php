@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Finance;
 
 use App\Deposit;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Method\CryptoboxController;
 use App\Http\Controllers\Method\MonetbilController;
 use App\Method;
 use Illuminate\Http\Request;
@@ -79,13 +80,13 @@ class DepositsController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'method_id' => 'numeric|required|exists:methods',
+            'id' => 'numeric|required|exists:methods',
             'amount' => 'numeric|required',
         ]);
 
         $deposit = Deposit::create([
             'user_id' => $user->id,
-            'method_id' => $request->method_id,
+            'method_id' => $request->id,
             'amount' => $request->amount,
             'comments' => $request->comments,
             'status' => 0
@@ -99,6 +100,8 @@ class DepositsController extends Controller
                     'deposit_id' => $deposit->id
                 ]);
                 return redirect($monetbil['link']);
+            case 'Bitcoin':
+                return redirect(route('user.finance.deposits.cryptobox.get') . '?deposit_id=' . $deposit->id);
         }
 
         $deposit->update(['status' => 1]);

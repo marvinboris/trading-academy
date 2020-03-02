@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
-@section('section', 'Transfer')
-@section('title', 'Transfer')
+@section('section', 'Deposit')
+@section('title', 'Add a Deposit')
 
 @section('content')
 @component('components.auth.page')
@@ -14,8 +14,8 @@
                 <input type="number" name="amount" id="amount" class="form-control col-8" required>
             </div>
             <div class="form-group row">
-                <label for="method_id" class="control-label col-4">Method</label>
-                <select name="method_id" id="method_id" class="form-control col-8" required>
+                <label for="id" class="control-label col-4">Method</label>
+                <select name="id" id="id" class="form-control col-8" required>
                     <option>Select a method</option>
                     @foreach ($methods as $method)
                     <option value="{{ $method->id }}">{{ $method->name }}</option>
@@ -36,4 +36,8 @@
     </div>
 </form>
 @endcomponent
+@endsection
+
+@section('scripts')
+<script type="text/javascript" src="https://fr.monetbil.com/widget/v2/monetbil.min.js"></script>
 @endsection

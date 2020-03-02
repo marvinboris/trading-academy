@@ -11,14 +11,17 @@ class Deposit extends Notification
 {
     use Queueable;
 
+    public $deposit;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($deposit)
     {
         //
+        $this->deposit = $deposit;
     }
 
     /**
@@ -29,7 +32,7 @@ class Deposit extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -56,6 +59,7 @@ class Deposit extends Notification
     {
         return [
             //
+            'deposit_id' => $this->deposit->id
         ];
     }
 }

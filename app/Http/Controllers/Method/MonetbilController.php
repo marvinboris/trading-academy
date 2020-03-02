@@ -9,18 +9,17 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Notifications\Deposit;
 use App\Http\Controllers\Controller;
-use App\Method;
 use Illuminate\Support\Facades\Auth;
 
 class MonetbilController extends Controller
 {
-    private $settings;
+    protected static $settings;
 
     public function __construct()
     {
-        $this->settings = [
+        self::$settings = [
             'vendor' => 'monetbil',
-            'base_url' => 'https://api.monetbil.com/v2.1',
+            'base_url' => 'https://api.monetbil.com/widget/v2.1/',
             'apikey' => env('MONETBIL_SERVICE_KEY'),
         ];
     }
@@ -40,21 +39,19 @@ class MonetbilController extends Controller
         $user = Auth::user();
 
         $json = [
-            'amount' => $input['amount'],
+            'amount' => $input['amount'] * 600,
             'item_ref' => $input['deposit_id'],
             'payment_ref' => time(),
             'country' => 'XAF',
-            'logo' => asset('/images/LOGO%20AUTO%20ECOLE%20UNIVERSITE.png'),
+            'logo' => asset('/images/Groupe 130@2x.png'),
             'email' => $user->email,
-            'country' => 'CM'
+            'country' => 'CM',
+            'return_url' => route('monetbil.notify.get')
         ];
 
-        $client = new Client([
-            'base_uri' => $this->settings['base_url'],
-            'timeout' => 180
-        ]);
+        $client = new Client();
 
-        $response = $client->post('https://api.monetbil.com/widget/v2.1/' . $this->settings['apikey'], [
+        $response = $client->request('POST', self::$settings['base_url'] . self::$settings['apikey'], [
             'headers' => [
                 'Content-Type' => 'application/x-www-form-urlencoded'
             ],
@@ -100,7 +97,7 @@ class MonetbilController extends Controller
 
         if (!$transaction) {
             $transaction = Transaction::create([
-                'amount' => $request->amount ? $input['amount'] : 0,
+                'amount' => $deposit->amount,
                 'tx_id' => $input['payment_ref'],
                 'tx_hash' => $input['transaction_id'],
                 'deposit_id' => +$request->item_ref,
@@ -109,7 +106,7 @@ class MonetbilController extends Controller
                 'method' =>  $request->operator ? $input['operator'] : 'MTN',
                 'type' => 'deposit',
                 'status' => 'pending',
-                'currency' => 'CFA',
+                'currency' => 'USD',
                 'address' => $input['phone']
             ]);
         }
@@ -117,14 +114,14 @@ class MonetbilController extends Controller
         if ($request->currency) $transaction->currency = $input['currency'];
         if ($request->transaction_id) $transaction->tx_hash = $input['transaction_id'];
 
-        $transaction->vendor = $this->settings['vendor'];
+        $transaction->vendor = self::$settings['vendor'];
 
         if ($request->operator) $transaction->method = $input['operator'];
         if ($request->phone) $transaction->address = $input['phone'];
-        if ($request->amount) $transaction->amount = $input['amount'];
+        if ($request->amount) $transaction->amount = $deposit->amount;
 
         if ('success' === $input['status']) {
-            $user->update(['balance' => $user->balance + $input['amount']]);
+            $user->update(['balance' => $user->balance + $deposit->amount]);
             $deposit->update(['status' => 2]);
             $request->session()->flash('success', 'Successful transaction.');
             $transaction->status = 'completed';
@@ -141,7 +138,7 @@ class MonetbilController extends Controller
         $transaction->save();
 
         // Notify the user through an email
-        $user->notify(new Deposit);
+        $user->notify(new Deposit($deposit));
 
         if ('success' === $input['status'])
             return redirect()

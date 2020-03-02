@@ -289,6 +289,17 @@ Route::middleware(['auth', 'verification'])->group(function () {
         return redirect(route(strtolower(Auth::user()->role->name) . '.dashboard'));
     });
 
+    Route::namespace('Method')->group(function () {
+        Route::name('user.finance.deposits.cryptobox.callback.post')->post('user/finance/deposits/cryptobox/callback', 'CryptoboxController@callback');
+        Route::name('user.finance.deposits.cryptobox.callback.get')->get('user/finance/deposits/cryptobox/callback', 'CryptoboxController@callback');
+
+        Route::name('user.finance.deposits.cryptobox.post')->post('user/finance/deposits/cryptobox', 'CryptoboxController@index');
+        Route::name('user.finance.deposits.cryptobox.get')->get('user/finance/deposits/cryptobox', 'CryptoboxController@index');
+
+        Route::name('monetbil.notify.post')->post('monetbil/notify', 'MonetbilController@notify');
+        Route::name('monetbil.notify.get')->get('monetbil/notify', 'MonetbilController@notify');
+    });
+
     Route::name('user.')->prefix('user')->group(function () {
         Route::name('team')->get('team', 'TeamController@index');
         Route::name('messages')->get('messages', 'MessagesController@index');
@@ -297,7 +308,9 @@ Route::middleware(['auth', 'verification'])->group(function () {
         Route::name('finance.')->namespace('Finance')->prefix('finance')->group(function () {
             Route::post('transfers/confirm', 'TransfersController@confirm')->name('transfers.confirm');
             Route::resource('transfers', 'TransfersController');
+
             Route::resource('deposits', 'DepositsController');
+
             Route::resource('withdraws', 'WithdrawsController');
         });
     });
@@ -328,7 +341,4 @@ Route::middleware(['auth', 'verification'])->group(function () {
             Route::resource('documents', 'DocumentsController');
         });
     });
-
-    Route::name('monetbil.notify.post')->post('/monetbil/notify', 'MonetbilController@notify');
-    Route::name('monetbil.notify.get')->get('/monetbil/notify', 'MonetbilController@notify');
 });

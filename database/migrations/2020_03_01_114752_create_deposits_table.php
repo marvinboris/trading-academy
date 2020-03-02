@@ -19,7 +19,7 @@ class CreateDepositsTable extends Migration
             $table->bigInteger('method_id')->unsigned()->index();
             $table->float('amount');
             $table->float('fees')->default(0);
-            $table->text('comments');
+            $table->text('comments')->nullable();
             $table->integer('status');
             $table->timestamps();
         });
