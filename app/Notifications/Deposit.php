@@ -7,21 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class Commission extends Notification
+class Deposit extends Notification
 {
     use Queueable;
-
-    public $commission;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($commission)
+    public function __construct()
     {
         //
-        $this->commission = $commission;
     }
 
     /**
@@ -32,7 +29,7 @@ class Commission extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['mail'];
     }
 
     /**
@@ -59,7 +56,6 @@ class Commission extends Notification
     {
         return [
             //
-            'commission_id' => $this->commission->id
         ];
     }
 }

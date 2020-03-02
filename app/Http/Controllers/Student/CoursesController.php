@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Commission;
 use App\Course;
 use App\Http\Controllers\Controller;
+use App\Notifications\Commission as NotificationsCommission;
 use App\Photo;
 use App\Session;
 use App\SessionStudent;
@@ -275,6 +277,14 @@ class CoursesController extends Controller
         $sponsor->update(['balance' => $sponsor->balance + ($price * .1)]);
 
         $session = Course::findOrFail($courseId)->sessions()->findOrFail($sessionId);
+
+        $commission = Commission::create([
+            'user_id' => $sponsor->id,
+            'session_id' => $sessionId,
+            'amount' => $price * .1,
+            'referral' => $user->ref
+        ]);
+
         if ($new == 1) {
             $session->update(['places' => $session->places - 1]);
             SessionStudent::create([
@@ -290,6 +300,8 @@ class CoursesController extends Controller
                 'status' => $payment
             ]);
         }
+
+        $sponsor->notify(new NotificationsCommission($commission));
 
         return redirect(route('student.courses.mine'));
     }

@@ -22,7 +22,7 @@
 
         @php
             $unreadNotifications = Auth::user()->unreadNotifications;
-            $notifications = Auth::user()->notifications;
+            $notifications = Auth::user()->notifications()->latest()->limit(5)->get();
         @endphp
 
         <div>
@@ -62,13 +62,18 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             @foreach ($notifications as $key => $notification)
-                            @if ($key < 5)
                             <li class="list-group-item py-2 px-3">
                                 <div class="text-truncate">
-                                    <i class="text-orange fas fa-bell fa-fw"></i><strong>{{ App\User::find($notification->data['user_id'])->name() }}</strong> just joined your team.
+                                    @switch($notification->type)
+                                        @case('App\Notifications\NewTeamMember')
+                                            <i class="text-orange fas fa-bell fa-fw"></i><strong>{{ App\User::find($notification->data['user_id'])->name() }}</strong> just joined your team.
+                                            @break
+                                        @case('App\Notifications\Commission')
+                                            <i class="text-orange fas fa-bell fa-fw"></i>You received a referral commission of <strong>${{ App\Commission::find($notification->data['commission_id'])->amount }}</strong>.
+                                            @break
+                                    @endswitch
                                 </div>
                             </li>
-                            @endif
                             @endforeach
                         </ul>
                         <a href="#" class="card-footer small p-2 text-center">

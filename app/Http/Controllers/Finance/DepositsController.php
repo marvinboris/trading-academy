@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Finance;
 
+use App\Deposit;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Method\MonetbilController;
+use App\Method;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepositsController extends Controller
 {
@@ -15,6 +19,38 @@ class DepositsController extends Controller
     public function index()
     {
         //
+        $deposits = Auth::user()->deposits;
+        $data = [
+            'list' => $deposits,
+            'table' => [
+                ['key' => 'Amount', 'value' => function ($item) {
+                    return $item->amount;
+                }],
+                ['key' => 'Method', 'value' => function ($item) {
+                    return ($item->method->name);
+                }],
+                ['key' => 'Fees', 'value' => function ($item) {
+                    return $item->fees;
+                }],
+                ['key' => 'Comments', 'value' => function ($item) {
+                    return $item->comments;
+                }],
+                ['key' => 'Date', 'value' => function ($item) {
+                    return $item->created_at->format('D, d M Y');
+                }],
+                ['key' => 'Status', 'value' => function ($item) {
+                    $statuses = [
+                        'Pending',
+                        'Failed',
+                        'Success'
+                    ];
+                    return $statuses[$item->status];
+                }],
+            ],
+            'headBgColor' => 'green',
+            'bodyBgColor' => 'light',
+        ];
+        return view('user.finance.deposit.index', compact('data'));
     }
 
     /**
@@ -25,6 +61,10 @@ class DepositsController extends Controller
     public function create()
     {
         //
+        $methods = Method::where('name', '!=', 'Admin')->get();
+        return view('user.finance.deposit.create', [
+            'methods' => $methods
+        ]);
     }
 
     /**
@@ -36,6 +76,36 @@ class DepositsController extends Controller
     public function store(Request $request)
     {
         //
+        $user = Auth::user();
+
+        $request->validate([
+            'method_id' => 'numeric|required|exists:methods',
+            'amount' => 'numeric|required',
+        ]);
+
+        $deposit = Deposit::create([
+            'user_id' => $user->id,
+            'method_id' => $request->method_id,
+            'amount' => $request->amount,
+            'comments' => $request->comments,
+            'status' => 0
+        ]);
+
+        switch ($deposit->method->name) {
+            case 'Mobile':
+                new MonetbilController();
+                $monetbil = MonetbilController::generateWidgetData([
+                    'amount' => $request->amount,
+                    'deposit_id' => $deposit->id
+                ]);
+                return redirect($monetbil['link']);
+        }
+
+        $deposit->update(['status' => 1]);
+
+        return redirect()
+            ->back()
+            ->with('danger', 'Unavailable payment method.');
     }
 
     /**

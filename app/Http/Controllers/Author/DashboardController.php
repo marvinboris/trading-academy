@@ -44,6 +44,11 @@ class DashboardController extends Controller
             'headBgColor' => 'green',
             'bodyBgColor' => 'light',
         ];
-        return view('user.author.dashboard', compact('team', 'posts', 'balance', 'teamTable'));
+        $commissions = $user->commissions;
+        $commission = 0;
+        foreach ($commissions as $item) {
+            $commission += $item->amount;
+        }
+        return view('user.author.dashboard', compact('team', 'posts', 'balance', 'commission', 'teamTable'));
     }
 }

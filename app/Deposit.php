@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Commission extends Model
+class Deposit extends Model
 {
     //
     protected $fillable = [
-        'user_id', 'amount', 'session_id', 'referral'
+        'user_id', 'method_id', 'amount', 'fees', 'comments', 'status'
     ];
 
     public function user()
@@ -16,8 +16,8 @@ class Commission extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function session()
+    public function method()
     {
-        return $this->belongsTo('App\Session');
+        return $this->belongsTo('App\Method');
     }
 }

@@ -11,9 +11,9 @@
 |
 */
 
-use App\Course;
 use App\Post;
 use App\User;
+use App\Course;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,12 +23,8 @@ use Illuminate\Support\Facades\Session;
 
 Auth::routes();
 
-Route::get('guard', function () {
-    return dd(Auth::guard('admin'));
-});
-
 Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
-    Route::redirect('/', 'admin/login');
+    Route::redirect('/', url('admin/login'));
 
     Route::namespace('Auth')->middleware('guest:admin')->group(function () {
         //Login Routes
@@ -332,4 +328,7 @@ Route::middleware(['auth', 'verification'])->group(function () {
             Route::resource('documents', 'DocumentsController');
         });
     });
+
+    Route::name('monetbil.notify.post')->post('/monetbil/notify', 'MonetbilController@notify');
+    Route::name('monetbil.notify.get')->get('/monetbil/notify', 'MonetbilController@notify');
 });

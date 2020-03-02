@@ -9,7 +9,7 @@
 
 <div class="row mb-4 mb-lg-5">
     @component('components.auth.content.dashboard.box', ['class' => 'pr-lg-2', 'bgColor' => 'oranger', 'color' => 'white', 'title' => 'Balance', 'icon' => 'fas fa-wallet']) <span class="fas fa-dollar-sign"></span> {{ $balance }} @endcomponent
-    @component('components.auth.content.dashboard.box', ['class' => 'px-lg-2', 'bgColor' => 'mydarkblue', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> 0 @endcomponent
+    @component('components.auth.content.dashboard.box', ['class' => 'px-lg-2', 'bgColor' => 'mydarkblue', 'color' => 'white', 'title' => 'Commissions', 'icon' => 'fas fa-money-bill-wave']) <span class="fas fa-dollar-sign"></span> {{ $commission }} @endcomponent
     @component('components.auth.content.dashboard.box', ['class' => 'px-lg-2', 'bgColor' => 'green', 'color' => 'white', 'title' => 'My Team', 'icon' => 'fas fa-users']) {{ count($team) }} <span class="text-medium">member{{ count($team) > 1 ? 's' : '' }}</span> @endcomponent
     @component('components.auth.content.dashboard.box', ['class' => 'pl-lg-2', 'bgColor' => 'darkblue', 'color' => 'white', 'title' => 'My Posts', 'icon' => 'fas fa-book']) {{ count($posts) }} <span class="text-medium">post{{ count($posts) > 1 ? 's' : '' }}</span> @endcomponent
 </div>

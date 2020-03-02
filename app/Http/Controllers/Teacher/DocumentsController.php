@@ -108,7 +108,7 @@ class DocumentsController extends Controller
                 ],
             ]
         ];
-        
+
         return view('user.teacher.documents.create', compact('data'));
     }
 
@@ -132,7 +132,7 @@ class DocumentsController extends Controller
         }
         $document = Document::create($input);
         $document->courses()->sync($request->course_id);
-        $request->session()->flash('created_document', 'The document ' . $document->name . ' has been successfully added.');
+        $request->session()->flash('success', 'The document ' . $document->name . ' has been successfully added.');
         return redirect()
             ->route('teacher.documents.index');
     }
@@ -211,7 +211,7 @@ class DocumentsController extends Controller
                 ],
             ]
         ];
-        
+
         return view('user.teacher.documents.edit', compact('data'));
     }
 
@@ -240,7 +240,7 @@ class DocumentsController extends Controller
         }
         $document->update($input);
         $document->courses()->sync($request->course_id);
-        $request->session()->flash('updated_document', 'The document ' . $document->name . ' has been successfully updated.');
+        $request->session()->flash('success', 'The document ' . $document->name . ' has been successfully updated.');
         return redirect()
             ->route('teacher.documents.index');
     }
@@ -258,7 +258,7 @@ class DocumentsController extends Controller
         $document->delete();
         $path = public_path() . '/documents/' . $document->path;
         if (file_exists($path)) unlink($path);
-        $request->session()->flash('deleted_document', 'The document ' . $document->name . ' has been successfully deleted.');
+        $request->session()->flash('success', 'The document ' . $document->name . ' has been successfully deleted.');
         return redirect()
             ->route('teacher.documents.index');
     }
@@ -280,7 +280,7 @@ class DocumentsController extends Controller
             if (file_exists($path)) unlink($path);
             else unlink(public_path() . '../www/documents/' . $documents[+$id]->path);
         }
-        $request->session()->flash('deleted_documents', $documents);
+        $request->session()->flash('success', $documents);
         return redirect()
             ->route('teacher.documents.index');
     }

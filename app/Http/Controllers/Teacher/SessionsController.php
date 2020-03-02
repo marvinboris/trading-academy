@@ -146,7 +146,7 @@ class SessionsController extends Controller
         $session = Session::create($input);
         Course::findOrFail($input['course_id'])->sessions()->save($session);
         Teacher::where('user_id', Auth::id())->first()->sessions()->save($session);
-        $request->session()->flash('created_session', 'The session has been successfully added.');
+        $request->session()->flash('success', 'The session has been successfully added.');
         return redirect(route('teacher.sessions.index'));
     }
 
@@ -267,7 +267,7 @@ class SessionsController extends Controller
             'places' => 'required|numeric',
         ]);
         $session->update($input);
-        $request->session()->flash('updated_session', 'The session has been successfully updated.');
+        $request->session()->flash('success', 'The session has been successfully updated.');
         return redirect(route('teacher.sessions.index'));
     }
 

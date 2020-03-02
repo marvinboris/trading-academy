@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Commission;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
@@ -27,6 +28,15 @@ class NotificationsController extends Controller
                     <strong>' . User::find($notification->data['user_id'])->name() . '</strong> just joined your team.
                 </div>
                 ';
+            }
+            if ($notification->type === 'App\Notifications\Commission') {
+                $icon = 'fas fa-dollar-sign text-orange';
+                $title = 'Commission';
+                $content = '
+                    <div class="text-truncate">
+                        You received a referral commission of <strong>$' . Commission::find($notification->data['commission_id'])->amount . '</strong>.
+                    </div>
+                    ';
             }
 
             $data[] = [
@@ -61,6 +71,15 @@ class NotificationsController extends Controller
             $content = '
                 <div class="text-truncate">
                     <strong>' . User::find($notification->data['user_id'])->name() . '</strong> just joined your team.
+                </div>
+                ';
+        }
+        if ($notification->type === 'App\Notifications\Commission') {
+            $icon = 'fas fa-dollar-sign text-orange';
+            $title = 'Commission';
+            $content = '
+                <div class="text-truncate">
+                    You received a referral commission of <strong>$' . Commission::find($notification->data['commission_id'])->amount . '</strong>.
                 </div>
                 ';
         }

@@ -25,7 +25,7 @@ class LoginController extends Controller
 
     /**
      * Username used in ThrottlesLogins trait
-     * 
+     *
      * @return string
      */
     public function username()
@@ -36,7 +36,7 @@ class LoginController extends Controller
     /**
      * Only guests for "admin" guard are allowed except
      * for logout.
-     * 
+     *
      * @return void
      */
     public function __construct()
@@ -83,7 +83,8 @@ class LoginController extends Controller
                     'code' => $code,
                 ]));
                 $request->session()->flash('hash', $hash);
-                return redirect(route('admin.verify'));
+                return redirect()
+                    ->route('admin.verify');
             }
         }
         $request->session()->flash('credentials', 'These credentials do not match our records.');

@@ -26,7 +26,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $team = Auth::user()->referrals();
+        $user = Auth::user();
+
+        $balance = $user->balance;
+        $team = $user->referrals();
         $teamTable = [
             'list' => $team,
             'table' => [
@@ -38,6 +41,11 @@ class DashboardController extends Controller
             'headBgColor' => 'green',
             'bodyBgColor' => 'light',
         ];
-        return view('user.student.dashboard', compact('team', 'teamTable'));
+        $commissions = $user->commissions;
+        $commission = 0;
+        foreach ($commissions as $item) {
+            $commission += $item->amount;
+        }
+        return view('user.student.dashboard', compact('team', 'teamTable', 'balance', 'commission'));
     }
 }
