@@ -284,15 +284,17 @@ Route::name('contact')->get('contact', function () {
     return view('contact');
 });
 
+Route::namespace('Method')->group(function () {
+    Route::post('/cryptobox/callback', 'CryptoboxController@callback');
+    Route::get('/cryptobox/callback', 'CryptoboxController@callback');
+});
+
 Route::middleware(['auth', 'verification'])->group(function () {
     Route::get('dashboard', function () {
         return redirect(route(strtolower(Auth::user()->role->name) . '.dashboard'));
     });
 
     Route::namespace('Method')->group(function () {
-        Route::name('user.finance.deposits.cryptobox.callback.post')->post('user/finance/deposits/cryptobox/callback', 'CryptoboxController@callback');
-        Route::name('user.finance.deposits.cryptobox.callback.get')->get('user/finance/deposits/cryptobox/callback', 'CryptoboxController@callback');
-
         Route::name('user.finance.deposits.cryptobox.post')->post('user/finance/deposits/cryptobox', 'CryptoboxController@index');
         Route::name('user.finance.deposits.cryptobox.get')->get('user/finance/deposits/cryptobox', 'CryptoboxController@index');
 
