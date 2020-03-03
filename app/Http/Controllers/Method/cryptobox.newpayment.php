@@ -1,8 +1,8 @@
 <?php
 
 use App\Deposit;
+use App\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 /**
  *  ... Please MODIFY this file ...
@@ -81,38 +81,30 @@ use Illuminate\Support\Facades\Mail;
 
 function cryptobox_new_payment($paymentID = 0, $payment_details = array(), $box_status = "")
 {
+	$deposit = Deposit::findOrFail($paymentID);
+	$user = User::findOrFail($deposit->user_id);
+
 	$recordExists = run_sql("select paymentID as nme FROM `crypto_payments` WHERE paymentID = " . intval($paymentID));
 	if (!$recordExists) run_sql("INSERT INTO `crypto_payments` VALUES(" . intval($paymentID) . ",'" . addslashes($payment_details["user"]) . "','" . addslashes($payment_details["order"]) . "'," . floatval($payment_details["amount"]) . "," . floatval($payment_details["amountusd"]) . ",'" . addslashes($payment_details["coinlabel"]) . "'," . intval($payment_details["confirmed"]) . ",'" . addslashes($payment_details["status"]) . "')");
 
 	// Received second IPN notification (optional) - Bitcoin payment confirmed (6+ transaction confirmations)
-	if ($recordExists && $box_status == "cryptobox_updated")  run_sql("UPDATE `crypto_payments` SET txconfirmed = " . intval($payment_details["confirmed"]) . " WHERE paymentID = " . intval($paymentID));
+	if ($recordExists && $box_status == "cryptobox_updated") {
+		if (!$payment_details['confirmed']) $deposit->update(['status' => 1]);
+		run_sql("UPDATE `crypto_payments` SET txconfirmed = " . intval($payment_details["confirmed"]) . " WHERE paymentID = " . intval($paymentID));
+	}
 
 	// Onetime action when payment confirmed (6+ transaction confirmations)
 	$processed = run_sql("select processed as nme FROM `crypto_payments` WHERE paymentID = " . intval($paymentID) . " LIMIT 1");
 	if (!$processed && $payment_details["confirmed"]) {
 		// ... Your code ...
+		$deposit->update(['status' => 2]);
+		$user->update(['balance' => $user->balance + $deposit->amount]);
+		Auth::user()->notify($deposit);
 
 		// ... and update status in default table where all payments are stored - https://github.com/cryptoapi/Payment-Gateway#mysql-table
 		$sql = "UPDATE crypto_payments SET processed = 1, processedDate = '" . gmdate("Y-m-d H:i:s") . "' WHERE paymentID = " . intval($paymentID) . " LIMIT 1";
 		run_sql($sql);
 	}
-
-	$deposit = Deposit::findOrFail($paymentID);
-	if ($payment_details['confirmed'] == 0) $deposit->update(['status' => 1]);
-	else {
-		$deposit->update(['status' => 2]);
-		Auth::user()->notify($deposit);
-	}
-
-
-	// Debug - new payment email notification for webmaster
-	// Uncomment lines below and make any test payment
-	// --------------------------------------------
-	$email = "jaris.ultio.21@gmail.com";
-	Mail::to($email)->subject("Payment - " . $paymentID . " - " . $box_status)->setBody(" \n Payment ID: " . $paymentID . " \n\n Status: " . $box_status . " \n\n Details: " . print_r($payment_details, true));
-
-
-
 
 	return true;
 }

@@ -5,8 +5,10 @@
 
 @section('styles')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.12.0/js/all.js" crossorigin="anonymous"></script>
-<script src="{{ asset('js/support.min.js') }}"></script>
+{{-- <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/all.js" crossorigin="anonymous"></script> --}}
+<script src="{{ asset('js/ajax.min.js') }}" crossorigin="anonymous"></script>
+<script src="{{ asset('js/cryptobox.min.js') }}" crossorigin="anonymous"></script>
+<script src="{{ asset('js/support.min.js') }}" crossorigin="anonymous"></script>
 
 <style>
     html { font-size: 14px; }
@@ -35,7 +37,10 @@ echo $box->display_cryptobox_bootstrap($coins, $def_coin, $def_language, $custom
 // You can setup method='curl' in function above and use code below on this webpage -
 // if successful bitcoin payment received .... allow user to access your premium data/files/products, etc.
 // if ($box->is_paid()) { ... your code here ... }
-
+if ($box->is_paid()) {
+    return redirect()
+        ->route('user.finance.deposits.index');
+}
 
 @endphp
 @endcomponent
