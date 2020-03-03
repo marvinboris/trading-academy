@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Commission;
+use App\Deposit;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
@@ -35,6 +36,15 @@ class NotificationsController extends Controller
                 $content = '
                     <div class="text-truncate">
                         You received a referral commission of <strong>$' . Commission::find($notification->data['commission_id'])->amount . '</strong>.
+                    </div>
+                    ';
+            }
+            if ($notification->type === 'App\Notifications\Deposit') {
+                $icon = 'fas fa-wallet text-orange';
+                $title = 'Deposit';
+                $content = '
+                    <div class="text-truncate">
+                        You successfully made a deposit of <strong>$' . Deposit::find($notification->data['deposit_id'])->amount . '</strong>.
                     </div>
                     ';
             }
@@ -80,6 +90,15 @@ class NotificationsController extends Controller
             $content = '
                 <div class="text-truncate">
                     You received a referral commission of <strong>$' . Commission::find($notification->data['commission_id'])->amount . '</strong>.
+                </div>
+                ';
+        }
+        if ($notification->type === 'App\Notifications\Deposit') {
+            $icon = 'fas fa-wallet text-orange';
+            $title = 'Deposit';
+            $content = '
+                <div class="text-truncate">
+                    You successfully made a deposit of <strong>$' . Deposit::find($notification->data['deposit_id'])->amount . '</strong>.
                 </div>
                 ';
         }

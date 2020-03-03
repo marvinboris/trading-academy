@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <div class="d-flex">
+    <div class="row m-0">
         @foreach ($data as $item)
             @component('components.auth.content.notification', $item)
                 {!! $item['content'] !!}

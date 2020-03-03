@@ -43,8 +43,9 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
         Route::resource('channels', 'ChannelsController');
         Route::resource('comments/replies', 'CommentRepliesController');
         Route::resource('comments', 'CommentsController');
-        Route::resource('documents', 'DocumentsController');
         Route::resource('courses', 'CoursesController');
+        Route::resource('deposits', 'DepositsController');
+        Route::resource('documents', 'DocumentsController');
         Route::resource('messages', 'MessagesController');
         Route::resource('photos', 'PhotosController');
         Route::resource('posts', 'PostsController');

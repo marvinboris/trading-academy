@@ -58,6 +58,10 @@
                 @component('components.auth.aside.admin.dropdown-item', ['name' => 'Sessions List', 'link' => route('admin.sessions.index')]) @endcomponent
                 @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Session', 'link' => route('admin.sessions.create')]) @endcomponent
             @endcomponent
+            @component('components.auth.aside.admin.dropdown', ['name' => 'deposit', 'icon' => 'fas fa-dollar-sign', 'title' => 'Deposits', 'link' => route('admin.deposits.index')])
+                @component('components.auth.aside.admin.dropdown-item', ['name' => 'Deposits List', 'link' => route('admin.deposits.index')]) @endcomponent
+                @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Deposit', 'link' => route('admin.deposits.create')]) @endcomponent
+            @endcomponent
             @component('components.auth.aside.admin.link', ['link' => url('admin/notifications'), 'icon' => 'fas fa-bell']) Notifications @endcomponent
             @component('components.auth.aside.admin.dropdown', ['name' => 'settings', 'icon' => 'fas fa-cog', 'title' => 'Settings', 'link' => url('admin/settings')])
                 @component('components.auth.aside.admin.dropdown-item', ['name' => 'Change password', 'link' => '#']) @endcomponent
