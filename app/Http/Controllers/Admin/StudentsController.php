@@ -19,7 +19,7 @@ class StudentsController extends Controller
         $students = Student::get();
         $data = [
             'links' => [
-                'base' => 'admin.students.',
+                'base' => 'admin.users.students.',
                 'index' => 'Students list',
                 'create' => 'Add an Student',
                 'edit' => 'Edit an Student',
@@ -34,7 +34,7 @@ class StudentsController extends Controller
                 ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->user->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
             ]
         ];
-        return view('admin.students.index', compact('data'));
+        return view('admin.users.students.index', compact('data'));
     }
 
     /**

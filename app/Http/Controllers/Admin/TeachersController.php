@@ -19,7 +19,7 @@ class TeachersController extends Controller
         $teachers = Teacher::get();
         $data = [
             'links' => [
-                'base' => 'admin.teachers.',
+                'base' => 'admin.users.teachers.',
                 'index' => 'Teachers list',
                 'create' => 'Add an Teacher',
                 'edit' => 'Edit an Teacher',
@@ -34,7 +34,7 @@ class TeachersController extends Controller
                 ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->user->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
             ]
         ];
-        return view('admin.teachers.index', compact('data'));
+        return view('admin.users.teachers.index', compact('data'));
     }
 
     /**

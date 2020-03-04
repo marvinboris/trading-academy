@@ -41,9 +41,9 @@
 @component('components.auth.aside.link', ['link' => route('user.messages'), 'icon' => 'fas fa-envelope']) Messages @endcomponent
 @component('components.auth.aside.link', ['link' => route('user.notifications'), 'icon' => 'fas fa-bell']) Notifications @endcomponent
 @component('components.auth.aside.dropdown', ['name' => 'settings', 'icon' => 'fas fa-cog', 'title' => 'Settings', 'link' => url('user/settings')])
-    @component('components.auth.aside.dropdown-item', ['name' => 'Change password', 'link' => '#']) @endcomponent
+    @component('components.auth.aside.dropdown-item', ['name' => 'Change password', 'link' => route('user.settings.change-password.get')]) @endcomponent
     @if (!Auth::user()->is_verified)
-    @component('components.auth.aside.dropdown-item', ['name' => 'Verify my account', 'link' => '#']) @endcomponent
+    @component('components.auth.aside.dropdown-item', ['name' => 'Verify my account', 'link' => route('user.settings.verification.get')]) @endcomponent
     @endif
-    @component('components.auth.aside.dropdown-item', ['name' => 'Edit language', 'link' => '#']) @endcomponent
+    @component('components.auth.aside.dropdown-item', ['name' => 'Edit language', 'link' => route('user.settings.edit-language.get')]) @endcomponent
 @endcomponent

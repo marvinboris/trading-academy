@@ -14,6 +14,7 @@
 use App\Post;
 use App\User;
 use App\Course;
+use App\Language;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -38,35 +39,49 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-        Route::resource('admins', 'AdminsController');
-        Route::resource('authors', 'AuthorsController');
+
+        Route::name('users.')->prefix('users')->group(function () {
+            Route::resource('admins', 'AdminsController');
+            Route::resource('authors', 'AuthorsController');
+            Route::resource('students', 'StudentsController');
+            Route::resource('teachers', 'TeachersController');
+        });
+
+        Route::name('media.')->prefix('media')->group(function () {
+            Route::resource('photos', 'PhotosController');
+            Route::resource('documents', 'DocumentsController');
+        });
+
+        Route::name('about-user.')->prefix('about-user')->group(function () {
+            Route::name('verifications.cancelled')->get('verifications/cancelled', 'VerifyController@cancelled');
+            Route::name('verifications.approved')->get('verifications/approved', 'VerifyController@approved');
+            Route::name('verifications.get')->get('verifications/pending', 'VerifyController@get');
+            Route::name('verifications.show')->get('verifications/{verification}', 'VerifyController@show');
+            Route::name('verifications.post')->post('verifications/{verification}', 'VerifyController@post');
+            
+            Route::name('commissions')->get('commissions', 'CommissionsController@get');
+        });
+
         Route::resource('channels', 'ChannelsController');
         Route::resource('comments/replies', 'CommentRepliesController');
         Route::resource('comments', 'CommentsController');
         Route::resource('courses', 'CoursesController');
         Route::resource('deposits', 'DepositsController');
-        Route::resource('documents', 'DocumentsController');
         Route::resource('messages', 'MessagesController');
-        Route::resource('photos', 'PhotosController');
         Route::resource('posts', 'PostsController');
         Route::resource('roles', 'RolesController');
         Route::resource('sessions', 'SessionsController');
-        Route::resource('students', 'StudentsController');
-        Route::resource('teachers', 'TeachersController');
         Route::resource('views', 'ViewsController');
     });
 });
 
-if (!Session::has('lang')) Session::put('lang', 'en');
+if (!Session::has('lang')) {
+    if (Auth::check()) Session::put('lang', Auth::user()->lang);
+    else Session::put('lang', 'en');
+}
 
-Route::get('en', function () {
-    Session::put('lang', 'en');
-    return redirect()
-        ->back();
-});
-
-Route::get('fr', function () {
-    Session::put('lang', 'fr');
+Route::get('lang/{lang}', function ($lang) {
+    Session::put('lang', $lang);
     return redirect()
         ->back();
 });
@@ -132,6 +147,7 @@ Route::middleware('logout_on_verification')->get('/', function () {
         $courseArray['popular'] = $populars[$course->slug];
         $courseArray['iconColor'] = $iconColors[$course->slug];
         $courseArray['link'] = route('courses.show', $course->slug);
+        $courseArray['class'] = 'bounceInUp';
         $courses[] = $courseArray;
     }
 
@@ -315,6 +331,16 @@ Route::middleware(['auth', 'verification'])->group(function () {
             Route::resource('deposits', 'DepositsController');
 
             Route::resource('withdraws', 'WithdrawsController');
+        });
+        Route::name('settings.')->prefix('settings')->namespace('Settings')->group(function () {
+            Route::post('change-password', 'ChangePasswordController@post')->name('change-password.post');
+            Route::get('change-password', 'ChangePasswordController@get')->name('change-password.get');
+
+            Route::post('verification', 'VerificationController@post')->name('verification.post');
+            Route::get('verification', 'VerificationController@get')->name('verification.get');
+
+            Route::post('edit-language', 'EditLanguageController@post')->name('edit-language.post');
+            Route::get('edit-language', 'EditLanguageController@get')->name('edit-language.get');
         });
     });
 

@@ -13,7 +13,8 @@ class MethodsTableSeeder extends Seeder
     public function run()
     {
         //
-        $names = ['Bitcoin', 'Payeer', 'Admin', 'Mobile', 'Ethereum', 'LIMO', 'Credit Card', 'Bank'];
+        $names = ['Bitcoin', 'Admin', 'Mobile', 'LIMO'];
+        // $names = ['Bitcoin', 'Payeer', 'Admin', 'Mobile', 'Ethereum', 'LIMO', 'Credit Card', 'Bank'];
         foreach ($names as $name) {
             Method::create(['name' => $name]);
         }

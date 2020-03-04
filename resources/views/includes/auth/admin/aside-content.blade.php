@@ -1,28 +1,22 @@
 @component('components.auth.aside.admin.link', ['link' => route('admin.dashboard'), 'icon' => 'fas fa-tachometer-alt']) Dashboard @endcomponent
-@component('components.auth.aside.admin.dropdown', ['name' => 'admin', 'icon' => 'fas fa-user-cog', 'title' => 'Admins', 'link' => route('admin.admins.index')])
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Admins List', 'link' => route('admin.admins.index')]) @endcomponent
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add an Admin', 'link' => route('admin.admins.create')]) @endcomponent
+
+@component('components.auth.aside.admin.dropdown', ['name' => 'users', 'icon' => 'fas fa-users', 'title' => 'Users', 'link' => url('admin/users')])
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Admins', 'link' => route('admin.users.admins.index')]) @endcomponent
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Authors', 'link' => route('admin.users.authors.index')]) @endcomponent
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Teachers', 'link' => route('admin.users.teachers.index')]) @endcomponent
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Students', 'link' => route('admin.users.students.index')]) @endcomponent
 @endcomponent
-@component('components.auth.aside.admin.dropdown', ['name' => 'author', 'icon' => 'fas fa-user-tag', 'title' => 'Authors', 'link' => route('admin.authors.index')])
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Authors List', 'link' => route('admin.authors.index')]) @endcomponent
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add an Author', 'link' => route('admin.authors.create')]) @endcomponent
+
+@component('components.auth.aside.admin.dropdown', ['name' => 'about-user', 'icon' => 'fas fa-user-cog', 'title' => 'About User', 'link' => url('admin/about-user')])
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Verify User', 'link' => route('admin.about-user.verifications.get')]) @endcomponent
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Commissions', 'link' => route('admin.about-user.commissions')]) @endcomponent
 @endcomponent
-@component('components.auth.aside.admin.dropdown', ['name' => 'teacher', 'icon' => 'fas fa-chalkboard-teacher', 'title' => 'Teachers', 'link' => route('admin.teachers.index')])
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Teachers List', 'link' => route('admin.teachers.index')]) @endcomponent
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Teacher', 'link' => route('admin.teachers.create')]) @endcomponent
+
+@component('components.auth.aside.admin.dropdown', ['name' => 'media', 'icon' => 'fas fa-file', 'title' => 'Media', 'link' => url('admin/media')])
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Photos', 'link' => route('admin.media.photos.index')]) @endcomponent
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Documents', 'link' => route('admin.media.documents.index')]) @endcomponent
 @endcomponent
-@component('components.auth.aside.admin.dropdown', ['name' => 'student', 'icon' => 'fas fa-user-graduate', 'title' => 'Students', 'link' => route('admin.students.index')])
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Students List', 'link' => route('admin.students.index')]) @endcomponent
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Student', 'link' => route('admin.students.create')]) @endcomponent
-@endcomponent
-@component('components.auth.aside.admin.dropdown', ['name' => 'photo', 'icon' => 'fas fa-file-image', 'title' => 'Photos', 'link' => route('admin.photos.index')])
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Photos List', 'link' => route('admin.photos.index')]) @endcomponent
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Photo', 'link' => route('admin.photos.create')]) @endcomponent
-@endcomponent
-@component('components.auth.aside.admin.dropdown', ['name' => 'document', 'icon' => 'fas fa-file', 'title' => 'Documents', 'link' => route('admin.documents.index')])
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Documents List', 'link' => route('admin.documents.index')]) @endcomponent
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Document', 'link' => route('admin.documents.create')]) @endcomponent
-@endcomponent
+
 @component('components.auth.aside.admin.dropdown', ['name' => 'course', 'icon' => 'fas fa-school', 'title' => 'Courses', 'link' => route('admin.courses.index')])
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Courses List', 'link' => route('admin.courses.index')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Course', 'link' => route('admin.courses.create')]) @endcomponent

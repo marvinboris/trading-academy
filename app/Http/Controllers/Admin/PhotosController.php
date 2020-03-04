@@ -19,7 +19,7 @@ class PhotosController extends Controller
         $photos = Photo::get();
         $data = [
             'links' => [
-                'base' => 'admin.photos.',
+                'base' => 'admin.media.photos.',
                 'index' => 'Photos list',
                 'create' => 'Add an Photo',
                 'edit' => 'Edit an Photo',
@@ -29,7 +29,7 @@ class PhotosController extends Controller
                 ['key' => 'Path', 'value' => function ($item) { return $item->path; }],
             ]
         ];
-        return view('admin.photos.index', compact('data'));
+        return view('admin.media.photos.index', compact('data'));
     }
 
     /**

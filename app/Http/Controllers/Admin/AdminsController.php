@@ -19,7 +19,7 @@ class AdminsController extends Controller
         $admins = Admin::get();
         $data = [
             'links' => [
-                'base' => 'admin.admins.',
+                'base' => 'admin.users.admins.',
                 'index' => 'Admins list',
                 'create' => 'Add an Admin',
                 'edit' => 'Edit an Admin',
@@ -33,7 +33,7 @@ class AdminsController extends Controller
                 ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
             ]
         ];
-        return view('admin.admins.index', compact('data'));
+        return view('admin.users.admins.index', compact('data'));
     }
 
     /**
@@ -44,7 +44,7 @@ class AdminsController extends Controller
     public function create()
     {
         //
-        return view('admin.admins.create');
+        return view('admin.users.admins.create');
     }
 
     /**

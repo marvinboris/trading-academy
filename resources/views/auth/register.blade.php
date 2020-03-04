@@ -75,6 +75,7 @@ asort($namesData);
                                 <div id="number" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> A number</div>
                                 <div id="special" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> A special character</div>
                                 <div id="minimum" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> At least 8 characters</div>
+                                <div id="confirm" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> Confirm password</div>
                             </div>
                         </div>
                     </div>
@@ -121,6 +122,7 @@ asort($namesData);
             $('#country-code').val(country);
             console.log(country);
         });
+        
         $('#password').keyup(function () {
             const current = $(this);
             const value = current.val();
@@ -135,6 +137,7 @@ asort($namesData);
             const number = $('#number');
             const special = $('#special');
             const minimum = $('#minimum');
+            const confirm = $('#confirm');
 
             const passwordBlock = $('.password.alert');
 
@@ -143,8 +146,9 @@ asort($namesData);
             const numberTest = numberRegex.test(value);
             const specialTest = specialRegex.test(value);
             const minimumTest = value.length > 7;
+            const confirmTest = value === $('#password-confirmation').val();
 
-            if (uppercaseTest && lowercaseTest && numberTest && specialTest && minimumTest) passwordBlock.removeClass('alert-danger').addClass('alert-success');
+            if (uppercaseTest && lowercaseTest && numberTest && specialTest && minimumTest && confirmTest) passwordBlock.removeClass('alert-danger').addClass('alert-success');
             else passwordBlock.removeClass('alert-success').addClass('alert-danger');
 
             if (uppercaseTest) uppercase.removeClass('text-purered').addClass('text-green').find('.fas').removeClass('fa-times-circle').addClass('fa-check-circle');
@@ -161,6 +165,17 @@ asort($namesData);
 
             if (minimumTest) minimum.removeClass('text-purered').addClass('text-green').find('.fas').removeClass('fa-times-circle').addClass('fa-check-circle');
             else minimum.addClass('text-purered').removeClass('text-green').find('.fas').addClass('fa-times-circle').removeClass('fa-check-circle');
+            
+            if (confirmTest) confirm.removeClass('text-purered').addClass('text-green').find('.fas').removeClass('fa-times-circle').addClass('fa-check-circle');
+            else confirm.addClass('text-purered').removeClass('text-green').find('.fas').addClass('fa-times-circle').removeClass('fa-check-circle');
+        });
+
+        $('#password-confirmation').keyup(function () {
+            $('#password').keyup();
+        });
+
+        $('form').submit(function (e) {
+            if ($('.password.alert').hasClass('alert-danger')) e.preventDefault();
         });
     });
 </script>

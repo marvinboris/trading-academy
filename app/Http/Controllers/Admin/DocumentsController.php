@@ -19,18 +19,22 @@ class DocumentsController extends Controller
         $documents = Document::get();
         $data = [
             'links' => [
-                'base' => 'admin.documents.',
+                'base' => 'admin.media.documents.',
                 'index' => 'Documents list',
                 'create' => 'Add a Document',
                 'edit' => 'Edit a Document',
             ],
             'list' => $documents,
             'table' => [
-                ['key' => 'Name', 'value' => function ($item) { return ($item->name); }],
-                ['key' => 'Path', 'value' => function ($item) { return $item->path; }],
+                ['key' => 'Name', 'value' => function ($item) {
+                    return ($item->name);
+                }],
+                ['key' => 'Path', 'value' => function ($item) {
+                    return $item->path;
+                }],
             ]
         ];
-        return view('admin.documents.index', compact('data'));
+        return view('admin.media.documents.index', compact('data'));
     }
 
     /**

@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover {{ $class ?? '' }} table-bordered">
         <thead class="bg-{{ $headBgColor }} text-white text-montserrat">
             <tr>
                 <th class="py-2">SL</th>

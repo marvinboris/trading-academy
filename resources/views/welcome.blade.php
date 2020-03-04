@@ -140,7 +140,7 @@
                     </p>
                 </div>
 
-                <div class="row justify-content-center align-items-end">
+                <div class="row justify-content-center align-items-end pt-3">
                     @foreach ($courses as $course)
                         @component('components.course', $course)
                             Get started with us to learn the best crypto Training from the start...

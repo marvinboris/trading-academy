@@ -20,7 +20,7 @@ class AuthorsController extends Controller
         $authors = Author::get();
         $data = [
             'links' => [
-                'base' => 'admin.authors.',
+                'base' => 'admin.users.authors.',
                 'index' => 'Authors list',
                 'create' => 'Add an Author',
                 'edit' => 'Edit an Author',
@@ -35,7 +35,7 @@ class AuthorsController extends Controller
                 ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->user->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
             ]
         ];
-        return view('admin.authors.index', compact('data'));
+        return view('admin.users.authors.index', compact('data'));
     }
 
     /**
@@ -48,12 +48,12 @@ class AuthorsController extends Controller
         //
         $data = [
             'links' => [
-                'base' => 'admin.authors.',
+                'base' => 'admin.users.authors.',
                 'index' => 'Authors list',
                 'create' => 'Add an Author',
                 'edit' => 'Edit an Author',
             ],
-            'action' => route('admin.authors.store'),
+            'action' => route('admin.users.authors.store'),
             'method' => 'post',
             'file' => true,
             'size' => '9',
@@ -130,7 +130,7 @@ class AuthorsController extends Controller
                 ]
             ]
         ];
-        return view('admin.authors.create', compact('data'));
+        return view('admin.users.authors.create', compact('data'));
     }
 
     /**
