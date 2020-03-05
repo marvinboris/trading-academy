@@ -147,7 +147,7 @@ Route::middleware('logout_on_verification')->get('/', function () {
         $courseArray['popular'] = $populars[$course->slug];
         $courseArray['iconColor'] = $iconColors[$course->slug];
         $courseArray['link'] = route('courses.show', $course->slug);
-        $courseArray['class'] = 'bounceInUp animated infinite';
+        $courseArray['class'] = 'bounceInUp to-animate';
         $courses[] = $courseArray;
     }
 
