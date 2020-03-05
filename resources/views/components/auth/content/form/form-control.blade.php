@@ -1,4 +1,8 @@
 <div class="row">
-    <label for="{{ $name }}" class="control-label col-{{ $size }}">{{ $label }}</label>
-    <input type="{{ $type }}" class="form-control text-fa text-900 col-{{ 12 - $size }}" value="{{ $value ?? '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{!! $placeholder !!}" {{ $required ?? '' }}>
+    <div class="col-md-{{ $size }}">
+        <label for="{{ $name }}" class="control-label">{{ $label }}</label>
+    </div>
+    <div class="col-md-{{ 12 - $size }}">
+        <input type="{{ $type }}" class="form-control text-fa text-900" value="{{ $value ?? '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{!! $placeholder !!}" {{ $required ?? '' }}>
+    </div>
 </div>

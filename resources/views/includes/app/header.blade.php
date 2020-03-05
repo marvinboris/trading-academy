@@ -6,14 +6,14 @@
 
         <div class="d-none d-lg-flex justify-content-end ml-auto align-items-center">
             <div class="mr-md-4">
-                <div class="text-white text-montserrat pl-2">
-                    <span class="mr-3">
+                <div class="text-white text-montserrat pl-2 d-flex justify-content-start">
+                    <span class="mr-4">
                         <i class="far fa-envelope text-yellow"></i>
-                        contact@globalacademy.com
+                        contact@gitacademy.net
                     </span>
                     <span>
                         <i class="fas fa-phone-square text-yellow"></i>
-                        +237 123 456 789
+                        +237 655 888 468
                     </span>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" style="height: 44px;">
@@ -51,6 +51,11 @@
                                 <span>Contact</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white {{ Request::segment(1) === 'faq' ? 'active' : '' }}" href="{{ route('faq') }}">
+                                <span>FAQ</span>
+                            </a>
+                        </li>
                         <li class="nav-item position-relative text-montserrat">
                             <div class="text-white ml-1 px-1">
                                 <a href="#language-dropdown" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="language-dropdown" class="text-white text-decoration-none d-flex justify-content-around align-items-center">
@@ -76,13 +81,13 @@
                 </div>
             </div>
             <div class="live-chat-text" style="height: 75px;">
-                <a href="#" class="text-yellow font-weight-bold position-sticky text-medium" style="top: 20px;">
+                <a href="#" class="text-yellow font-weight-bold position-sticky text-medium" style="top: 17px;">
                     <i class="fas fa-headset mr-2"></i><span class="text-montserrat">LiveChat</span>
                 </a>
             </div>
         </div>
 
-        <div class="d-flex justify-content-end align-items-center position-sticky" style="top: 13px;">
+        <div class="d-flex justify-content-end align-items-center position-sticky" style="top: -20px;">
             <span class="d-lg-none position-relative text-montserrat pr-2">
                 <div class="text-white ml-1 px-1">
                     <a href="#language-dropdown" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="language-dropdown" class="text-white text-decoration-none d-flex justify-content-around align-items-center">
@@ -104,7 +109,6 @@
                     </div>
                 </div>
             </span>
-            <i class="fas fa-2x text-white pr-2 fa-bars d-lg-none bg-transparent" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"></i>
             <div class="ml-md-4">
                 <div class="mb-3 d-none d-lg-block">
                     <div class="d-flex justify-content-center">
@@ -116,8 +120,8 @@
                 </div>
                 <div>
                     @guest
-                    <a href="{{ route('login') }}" class="sign-in-btn btn btn-light text-green rounded-sm font-weight-bold text-x-small">
-                        Sign In <i class=" fas fa-sign-in-alt fa-lg ml-2"></i>
+                    <a href="{{ route('login') }}" class="btn btn-light text-green rounded-sm font-weight-bold text-x-small">
+                        <span class="">Sign In</span> <i class=" fas fa-sign-in-alt fa-lg ml-2"></i>
                     </a>
                     @else
                     <div class="dropdown text-white">
@@ -145,6 +149,7 @@
                     @endguest
                 </div>
             </div>
+            <i class="fas fa-2x text-white pl-3 fa-bars d-lg-none bg-transparent" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"></i>
         </div>
     </nav>
     <div id="navbar" class="position-absolute collapse d-lg-none w-100 bg-white" style="top: 100%">

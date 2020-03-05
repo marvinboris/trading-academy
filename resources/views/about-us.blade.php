@@ -84,22 +84,22 @@
                 const owlItems = $('.owl-item');
 
                 owlItems
-                    .css({ opacity: .5, transform: 'scale(.8)' })
+                    .css({ opacity: .5, transform: 'scale(.7)' })
                     .find('.circle').css({ opacity: 0 });
                 center
-                    .css({ opacity: 1, transform: 'scale(1)' })
+                    .css({ opacity: 1, transform: 'scale(.9)' })
                     .find('.details').css({ opacity: 1 });
                 center
                     .find('.circle').css({ opacity: 1 });
             });
 
-            owl.owlCarousel({ responsive: {0: {items: 1}, 600: {items: 3}, 1000: {items: 5}}, loop: true, center: true, nav: true });
+            owl.owlCarousel({ responsive: {0: {items: 1}, 600: {items: 2}, 800: {items: 3}, 1000: {items: 4}, 1200: {items: 5}}, loop: true, center: true, nav: true });
 
             owl.on('changed.owl.carousel', function () {
                 const center = $('.owl-item.active.center');
 
                 center
-                    .css({ transform: 'scale(.8)' }).stop().animate({ opacity: .5 }, 'fast')
+                    .css({ transform: 'scale(.7)' }).stop().animate({ opacity: .5 }, 'fast')
                     .find('.details').css({ opacity: 0 });
                 center
                     .find('.circle').css({ opacity: 0 });
@@ -108,7 +108,7 @@
                     const center = $('.owl-item.active.center');
 
                     center
-                        .css({ transform: 'scale(1)' }).stop().animate({ opacity: 1 }, 'fast')
+                        .css({ transform: 'scale(.9)' }).stop().animate({ opacity: 1 }, 'fast')
                         .find('.details').animate({ opacity: 1 }, 'fast');
                     center
                         .find('.circle').animate({ opacity: 1 }, 'fast');

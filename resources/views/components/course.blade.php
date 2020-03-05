@@ -1,4 +1,4 @@
-<div class="col-xl-4 col-lg-4 col-sm-6 pb-3 pb-lg-0 d-flex flex-column position-relative level-card {{ $class ?? '' }}">
+<div class="col-xl-4 col-lg-4 col-sm-6 pb-3 pb-lg-0 d-flex flex-column position-relative level-card" {!! $add ?? '' !!}>
     {!! ($popular ?? '') ? '' : '
         <div class="trader-level position-absolute d-none" style="top: -25px; left: 4%; width: 92%;">
             <div class="mb-3 text-allexist text-larger border bg-' . $trader['color'] . ' border-white-50 py-2 px-2 d-flex" style="transform: scale(.9)">

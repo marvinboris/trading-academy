@@ -1,6 +1,8 @@
 <div class="row">
-    <label for="{{ $name }}" class="control-label col-{{ $size }}">{{ $label }}</label>
-    <div class="col-{{ 12 - $size }} p-0">
+    <div class="col-md-{{ $size }}">
+        <label for="{{ $name }}" class="control-label">{{ $label }}</label>
+    </div>
+    <div class="col-md-{{ 12 - $size }}">
         <select name="{{ $name }}" id="{{ $name }}" class="form-control" {{ $required ?? '' }}>
             <option>{{ $placeholder }}</option>
             @foreach ($data['list'] as $item)

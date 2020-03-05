@@ -15,15 +15,21 @@ class PostsTableSeeder extends Seeder
     {
         //
         Author::find(1)->posts()->save(Post::create([
-            'title' => 'One for all',
-            'body' => "Il s'agit bien évidemment de l'alter de Deku",
-            'photo_id' => 1
+            'title' => 'FIRST REAL ESTATE TOKEN BASE PROJECT FROM GLOBAL INVESTMENT TRADING',
+            'body' => "Hello everyone and weicome to this concept of national verbalistic",
+            'photo_id' => 5
         ]));
         
-        Author::find(2)->posts()->save(Post::create([
-            'title' => 'One for all',
-            'body' => "Il s'agit bien évidemment de l'alter de Deku",
-            'photo_id' => 1
+        Author::find(1)->posts()->save(Post::create([
+            'title' => 'SIMBCOIN WORLD TOUR STARTED IN THE CAPITAL CITY OF CAMEROON (YDE)',
+            'body' => "Hello everyone and weicome to this concept of national verbalistic",
+            'photo_id' => 6
+        ]));
+        
+        Author::find(1)->posts()->save(Post::create([
+            'title' => 'GLOBAL INVESTMENT TRADING LUNCHED A NEW CRYPTO CURRENCY (SIMBCOIN)',
+            'body' => "Hello everyone and weicome to this concept of national verbalistic",
+            'photo_id' => 7
         ]));
     }
 }

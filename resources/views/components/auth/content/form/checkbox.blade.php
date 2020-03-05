@@ -1,6 +1,8 @@
 <div class="row">
-    <label for="{{ $name }}" class="control-label col-{{ $size ?? 12 }}">{{ $label }}</label>
-    <div class="col-{{ $size ? 12 - $size : 12 }}">
+    <div class="col-md-{{ $size ?? 12 }}">
+        <label for="{{ $name }}" class="control-label">{{ $label }}</label>
+    </div>
+    <div class="col-md-{{ $size ? 12 - $size : 12 }}">
         <div class="row">
             @foreach ($list as $key => $item)
                 <div class="col-6 col-md-4 col-lg-3 custom-control custom-checkbox">

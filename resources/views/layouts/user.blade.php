@@ -2,7 +2,7 @@
 
 <div class="d-flex min-vh-100 mw-100">
     @include('includes.auth.user.aside')
-    <div class="flex-fill">
+    <div class="flex-fill w-100">
         @include('includes.auth.user.header')
         <div class="d-flex flex-column justify-content-between full-height-user">
             <main class="bg-white flex-fill">

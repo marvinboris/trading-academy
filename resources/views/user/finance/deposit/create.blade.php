@@ -10,24 +10,36 @@
     <div class="row">
         <div class="col-md-7">
             <div class="form-group row">
-                <label for="amount" class="control-label col-4">Amount</label>
-                <input type="number" name="amount" id="amount" class="form-control col-8" required>
+                <div class="col-md-4">
+                    <label for="amount" class="control-label">Amount</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="number" name="amount" id="amount" class="form-control" required>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="id" class="control-label col-4">Method</label>
-                <select name="id" id="id" class="form-control col-8" required>
-                    <option>Select a method</option>
-                    @foreach ($methods as $method)
-                    <option value="{{ $method->id }}">{{ $method->name }}</option>
-                    @endforeach
-                </select>
+                <div class="col-md-4">
+                    <label for="id" class="control-label">Method</label>
+                </div>
+                <div class="col-md-8">
+                    <select name="id" id="id" class="form-control" required>
+                        <option>Select a method</option>
+                        @foreach ($methods as $method)
+                        <option value="{{ $method->id }}">{{ $method->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="comment" class="control-label col-4">Comment</label>
-                <textarea name="comment" id="comment" class="form-control col-8"></textarea>
+                <div class="col-md-4">
+                    <label for="comment" class="control-label">Comment</label>
+                </div>
+                <div class="col-md-8">                    
+                    <textarea name="comment" id="comment" class="form-control"></textarea>
+                </div>
             </div>
             <div class="form-group row">
-                <div class="offset-4 col-8">
+                <div class="offset-md-4 col-md-8">
                     <button class="btn btn-green">Deposit <i class="fas fa-arrow-circle-right ml-2"></i></button>
                     <button type="reset" class="btn btn-orange">Cancel <i class="fas fa-arrow-circle-left ml-2"></i></button>
                 </div>

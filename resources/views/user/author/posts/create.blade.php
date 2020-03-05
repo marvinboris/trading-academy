@@ -6,7 +6,7 @@
 @section('content')
 @component('components.auth.page')
 @component('components.auth.pages.create', ['data' => $data])
-<div class="col-lg-3">
+<div class="col-lg-3 col-md-6 col-sm-8">
     <div class="p-4 bg-white border mb-3">
         <div class="border rounded-circle embed-responsive embed-responsive-1by1 mb-3"></div>
         <div class="text-center">

@@ -7,23 +7,37 @@
 @component('components.auth.page')
 <form action="{{ route('user.finance.transfers.store') }}" method="post">
     @csrf
-    <div class="row">
-        <div class="col-md-7">
+    <div class="row justify-content-center justify-content-lg-start">
+        <div class="col-lg-7 col-md-8 col-sm-10">
             <div class="form-group row">
-                <label for="ref" class="control-label col-4">Receiver ID</label>
-                <input type="text" name="ref" id="ref" class="form-control col-8" required>
+                <div class="col-md-4">
+                    <label for="ref" class="control-label">Receiver ID</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="ref" id="ref" class="form-control" required>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="amount" class="control-label col-4">Amount</label>
-                <input type="number" name="amount" id="amount" class="form-control col-8" required>
+                <div class="col-md-4">
+                    <label for="amount" class="control-label">Amount</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="number" name="amount" id="amount" class="form-control" required>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="comment" class="control-label col-4">Comment</label>
-                <textarea name="comment" id="comment" class="form-control col-8"></textarea>
+                <div class="col-md-4">
+                    <label for="comment" class="control-label">Comment</label>
+                </div>
+                <div class="col-md-8">
+                    <textarea name="comment" id="comment" class="form-control"></textarea>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="media" class="control-label col-4">OTP receiving media</label>
-                <div class="col-8">
+                <div class="col-md-4">
+                    <label for="media" class="control-label">OTP receiving media</label>
+                </div>
+                <div class="col-md-8">
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="sms" name="media" value="sms" class="custom-control-input">
                         <label class="custom-control-label" for="sms">SMS</label>
@@ -35,13 +49,13 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="offset-4 col-8">
+                <div class="offset-md-4 col-md-8">
                     <button class="btn btn-green">Transfer <i class="fas fa-arrow-circle-right ml-2"></i></button>
                     <button type="reset" class="btn btn-orange">Cancel <i class="fas fa-arrow-circle-left ml-2"></i></button>
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-lg-5 col-md-8 col-sm-10">
             <h4 class="text-white bg-danger d-flex justify-content-between align-items-center py-2 px-3">
                 <span>Read carefully</span>
                 <span><i class="fas fa-exclamation-triangle"></i></span>

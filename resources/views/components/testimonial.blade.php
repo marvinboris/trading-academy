@@ -1,10 +1,11 @@
-<div class="col-12">
+<div class="col-12 testimonial" {!! $add ?? '' !!}>
     <div class="row">
         <div class="col-lg-6 col-md-8 pb-3 pb-lg-0">
-            <div class="card border-0 bg-transparent" style="background: url('{{ $img ? asset($img) : 'https://placehold.it/150x100' }}') no-repeat center; background-size: cover;">
+            <div class="card border-0 bg-transparent overflow-hidden position-relative">
+                <div class="position-absolute w-100 h-100 bg" style="background-image: url('{{ $img ? asset($img) : 'https://placehold.it/150x100' }}');"></div>
                 <div class="card-img-top embed-responsive embed-responsive-4by3">
                 </div>
-                <div class="card-body bg-darkblue-80 text-white">
+                <div class="card-body bg-darkblue-80 text-white position-relative">
                     <div class="ml-3">
                         <div class="font-weight-normal text-allexist h4">
                             {{ $name }}

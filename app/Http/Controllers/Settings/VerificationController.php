@@ -27,7 +27,7 @@ class VerificationController extends Controller
     public function post(Request $request)
     {
         $verification = Verification::where('user_id', Auth::id())->first();
-        if ($verification->status === 0) {
+        if ($verification && $verification->status === 0) {
             return redirect()
                 ->route('user.settings.verification.get')
                 ->with('danger', 'Verification request is being processed. Please wait for answer.');

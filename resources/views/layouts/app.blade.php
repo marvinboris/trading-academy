@@ -1,7 +1,7 @@
 @include('includes.head')
 @include('includes.app.header')
 
-        <main class="position-relative">
+        <main class="position-relative full-height-app">
             @yield('content')
         </main>
 

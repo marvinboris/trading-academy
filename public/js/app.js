@@ -50512,6 +50512,21 @@ var app = new Vue({
 });
 new ClipboardJS('.btn-copy');
 $(function () {
+  $.getScript('/js/summernote-bs4.min.js', function () {
+    $('.summernote').summernote({
+      tabsize: 2
+    });
+  });
+  $.getScript('/js/aos.js', function () {
+    AOS.init();
+  });
+  $.getScript('/js/jquery.waypoints.min.js', function () {
+    $.getScript('/js/jquery.countup.min.js', function () {
+      $('.counter').countUp();
+    });
+  });
+});
+$(function () {
   var activeNavLink = $('.nav-link.active span');
   var width = activeNavLink.outerWidth();
   var height = activeNavLink.outerHeight();

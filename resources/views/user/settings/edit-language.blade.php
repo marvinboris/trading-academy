@@ -7,7 +7,7 @@
 @component('components.auth.page')
 <form action="{{ route('user.settings.edit-language.post') }}" class="d-flex justify-content-center align-items-center" method="post">
     @csrf
-    <div class="card w-50">
+    <div class="card col-md-6">
         <div class="card-body">
             <div class="form-group">
                 <label for="lang" class="control-label">Language</label>

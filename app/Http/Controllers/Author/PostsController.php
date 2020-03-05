@@ -60,7 +60,7 @@ class PostsController extends Controller
             'action' => route('author.posts.store'),
             'method' => 'post',
             'file' => true,
-            'size' => '9',
+            'size' => 'lg-9',
             'content' => [
                 [
                     'type' => 'text',

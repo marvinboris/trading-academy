@@ -13,7 +13,8 @@
   border-radius: 26px;
 }
 
-.btn, .form-control {
+.btn,
+.form-control {
   border-radius: 0 !important;
 }
 
@@ -33,6 +34,66 @@
       &.active {
         font-weight: 700;
       }
+    }
+  }
+}
+
+.post {
+  .card {
+    &:hover {
+      .position-absolute.bg {
+        transform: scale(1.2);
+      }
+    }
+
+    .position-absolute.bg {
+      top: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      transform-origin: center;
+      z-index: -1;
+      transition: all 0.5s;
+    }
+  }
+}
+
+.testimonial {
+  .card {
+    .card-text {
+      opacity: 0;
+      transition: all 0.5s;
+    }
+
+    .card-body {
+      top: 40px;
+      transition: all 0.5s;
+    }
+
+    &:hover {
+      .position-absolute.bg {
+        transform: scale(1.2);
+      }
+
+      .card-text {
+        opacity: 1;
+      }
+
+      .card-body {
+        top: 0;
+      }
+    }
+
+    .position-absolute.bg {
+      top: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      transform-origin: center;
+      z-index: -1;
+      transition: all 0.5s;
     }
   }
 }

@@ -14,27 +14,27 @@
                     <li data-target="#carousel" data-slide-to="0" class="carousel-indicator active"></li>
                     <li data-target="#carousel" data-slide-to="1" class="carousel-indicator"></li>
                     <li data-target="#carousel" data-slide-to="2" class="carousel-indicator"></li>
-                    <div class="bg-transparent circle-carousel-indicator rounded-circle border border-thick border-yellow position-absolute d-none" style="width: 26px; height: 26px; transform: translateX(-50%);"></div>
+                    <div class="bg-transparent circle-carousel-indicator rounded-circle border border-3 border-yellow position-absolute d-none" style="width: 26px; height: 26px; transform: translate(-14px, -2px);"></div>
                 </ol>
-                <div class="carousel-inner h-100 position-relative">
-                    <div id="banner" class="w-75">
+                <div class="carousel-inner h-100 position-relative d-flex align-items-center">
+                    <div id="banner" class="w-75 mx-auto text-center text-sm-left">
                         <div class=" text-orange text-montserrat h1 title">
                             Welcome to
                         </div>
                         <div class="my-5">
                             <div>
-                                <div class="w-75 position-relative">
+                                <div class="w-sm-75 mb-4">
                                     <div class="d-none">
                                         <div class="bullet-1 rounded-circle bg-orange shadow position-absolute" style="width: 100px; height: 100px; top: -20px; right: 20px;"></div>
                                         <div class="bullet-2 rounded-circle bg-light shadow position-absolute" style="width: 57px; height: 57px; top: 60px; right: -20px;"></div>
                                         <div class="bullet-3 rounded-circle bg-green shadow position-absolute" style="width: 62px; height: 62px; top: 20px; right: -10px;"></div>
                                     </div>
-                                    <div class="carousel-text-1 text-allexist text-white display-4 content pb-4 pl-4 rounded-0">
-                                        The best African Crypto
-                                        Trading School
-                                    </div>
+
+                                    <div class="text-allexist text-white content d-sm-none" style="font-size: 2.5rem;">The best African Crypto <br>Trading School</div>
+                                    <div class="text-allexist text-white display-4 d-none d-sm-block content pb-4 pl-4">The best African Crypto <br>Trading School</div>
+                                
                                 </div>
-                                <div class="lead text-white  subcontent">
+                                <div class="lead text-white subcontent">
                                     Get started with to learn the best crypto trading<br>Techniques and be the best
                                 </div>
                             </div>
@@ -170,7 +170,7 @@
                                 </div>
                                 <div class="">
                                     <div class="why-us-content text-x-large font-weight-light">Courses</div>
-                                    <div class="why-us-content text-allexist text-xx-large text-center">03</div>
+                                    <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">03</span></div>
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                                 </div>
                                 <div>
                                     <div class="why-us-content text-x-large font-weight-light">Total enrolled</div>
-                                    <div class="why-us-content text-allexist text-xx-large text-center">51</div>
+                                    <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">51</span></div>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +192,7 @@
                                 </div>
                                 <div>
                                     <div class="why-us-content text-x-large font-weight-light">Certified</div>
-                                    <div class="why-us-content text-allexist text-xx-large text-center">20</div>
+                                    <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">20</span></div>
                                 </div>
                             </div>
                         </div>
@@ -203,7 +203,7 @@
                                 </div>
                                 <div>
                                     <div class="why-us-content text-x-large font-weight-light">Trainers</div>
-                                    <div class="why-us-content text-allexist text-xx-large text-center">05</div>
+                                    <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">05</span></div>
                                 </div>
                             </div>
                         </div>
