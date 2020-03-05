@@ -26,6 +26,13 @@ class VerificationController extends Controller
 
     public function post(Request $request)
     {
+        $verification = Verification::where('user_id', Auth::id())->first();
+        if ($verification->status === 0) {
+            return redirect()
+                ->route('user.settings.verification.get')
+                ->with('danger', 'Verification request is being processed. Please wait for answer.');
+        }
+
         $input = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -57,7 +64,6 @@ class VerificationController extends Controller
         $input['user_id'] = Auth::id();
         $input['status'] = 0;
 
-        $verification = Verification::where('user_id', Auth::id())->first();
         if (!$verification) $verification = Verification::create($input);
         else $verification->update($input);
 

@@ -26,7 +26,20 @@
                 </div>
             </div>
             <div class="text-700 pt-2 text-large text-montserrat-alt">{{ Auth::user()->name() }}</div>
-            <div class="text-x-small {{ Auth::user()->is_verified ? 'text-lemongreen' : 'text-purered' }}"><i class="far {{ Auth::user()->is_verified ? 'fa-check-circle' : 'fa-times-circle' }} mr-2"></i>Account {{ Auth::user()->is_verified ? 'Verified' : 'not Verified' }}</div>
+            {{-- <div class="text-x-small {{ Auth::user()->is_verified ? 'text-lemongreen' : 'text-purered' }}"><i class="far {{ Auth::user()->is_verified ? 'fa-check-circle' : 'fa-times-circle' }} mr-2"></i>Account {{ Auth::user()->is_verified ? 'Verified' : 'not Verified' }}</div> --}}
+            @if (Auth::user()->is_verified)
+                <div class="text-x-small text-lemongreen"><i class="far fa-check-circle mr-2"></i>Account Verified</div>
+            @else
+                @if (Auth::user()->verification())
+                    @if (Auth::user()->verification()->status === 0)
+                    <div class="text-x-small text-primary"><i class="fas fa-spinner fa-spin"></i><span class="ml-2">Pending Verification</span></div>
+                    @else
+                    <div class="text-x-small text-purered"><i class="far fa-times-circle mr-2"></i>Verification Cancelled</div>
+                    @endif
+                @else
+                    <div class="text-x-small text-purered"><i class="far fa-times-circle mr-2"></i>Account Not Verified</div>
+                @endif
+            @endif
             <div class="text-yellow text-x-small text-comfortaa pt-1"><i class="far fa-address-card fa-fw mr-1"></i>ID: <span class="text-900" id="ref">{{ Auth::user()->ref }}</span><i class="far fa-copy btn-copy ml-2 text-lightblue bg-transparent fa-lg" type="button" data-clipboard-target="#ref"></i></div>
         </div>
         <div class="flex-fill text-white text-montserrat border-top border-white-20 pt-4">

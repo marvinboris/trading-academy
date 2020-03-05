@@ -58,7 +58,7 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
             Route::name('verifications.get')->get('verifications/pending', 'VerifyController@get');
             Route::name('verifications.show')->get('verifications/{verification}', 'VerifyController@show');
             Route::name('verifications.post')->post('verifications/{verification}', 'VerifyController@post');
-            
+
             Route::name('commissions')->get('commissions', 'CommissionsController@get');
         });
 
@@ -147,7 +147,7 @@ Route::middleware('logout_on_verification')->get('/', function () {
         $courseArray['popular'] = $populars[$course->slug];
         $courseArray['iconColor'] = $iconColors[$course->slug];
         $courseArray['link'] = route('courses.show', $course->slug);
-        $courseArray['class'] = 'bounceInUp';
+        $courseArray['class'] = 'bounceInUp animated infinite';
         $courses[] = $courseArray;
     }
 

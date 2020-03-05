@@ -119,4 +119,9 @@ class User extends Authenticatable
     {
         return Transfer::where('sender', $this->ref)->orWhere('receiver', $this->ref)->get();
     }
+
+    public function verification()
+    {
+        return Verification::where('user_id', $this->id)->first();
+    }
 }
