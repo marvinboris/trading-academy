@@ -30,25 +30,20 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            {{-- <a href="{{ $link }}" class="btn btn-light btn-sm text-green shadow-lg rounded-0">
-                                <div class="small font-weight-bold text-montserrat px-3 py-1">
-                                    Read More
-                                </div>
-                            </a> --}}
                             <a class="btn-animate" href="#">
                                 <div class="btn btn-light btn-sm pd-x-0 primary text-green overflow-hidden rounded-sm static link text-montserrat position-relative">
                                     <span class="d-block small font-weight-bold text-montserrat px-3 py-1">{{ __('Read More') }}</span>
                                     <div class="bg-black-20 secondary align-items-center d-none active rounded-sm-right px-3 py-2 position-absolute h-100" style="top: 0; right: 0;">
-                                        <i class="fas fa-plus"></i>
+                                        <i class="fas fa-external-link-alt"></i>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div>
-                            <i class="fab fa-2x pl-2 fa-facebook-square"></i>
-                            <i class="fab fa-2x pl-2 fa-twitter-square"></i>
-                            <i class="fab fa-2x pl-2 fa-instagram"></i>
-                            <i class="fab fa-2x pl-2 fa-whatsapp"></i>
+                            <i class="fab fa-lg pl-2 fa-facebook-square"></i>
+                            <i class="fab fa-lg pl-2 fa-twitter-square"></i>
+                            <i class="fab fa-lg pl-2 fa-instagram"></i>
+                            <i class="fab fa-lg pl-2 fa-whatsapp"></i>
                         </div>
                     </div>
                 </div>
