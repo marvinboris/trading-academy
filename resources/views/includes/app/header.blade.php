@@ -24,7 +24,6 @@
                                     <i class="fas fa-home fa-xs"></i>
                                     Home
                                 </span>
-
                             </a>
                             <div id="lil-point" class="bg-yellow position-absolute border-radius"></div>
                         </li>
@@ -59,21 +58,25 @@
                         <li class="nav-item position-relative text-montserrat">
                             <div class="text-white ml-1 px-1">
                                 <a href="#language-dropdown" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="language-dropdown" class="text-white text-decoration-none d-flex justify-content-around align-items-center">
-                                    <span class="language-flag shadow-lg d-inline-flex mr-1 justify-content-center align-items-center overflow-hidden">
-                                        <img src="{{ session('lang') === 'en' ? asset('/images/641ad9571c9ade545faf3ef16810b143.png') : asset('/images/1.jpg') }}" class="h-100" alt="en-flag">
+                                    <span class="language-flag shadow-lg mr-1 overflow-hidden d-inline-flex justify-content-center align-items-center position-relative">
+                                        <span class="flag-icon position-absolute flag-icon-{{ session('flag') }}"></span>
                                     </span>
-                                    <span class="px-1 border-left border-white-50">{{ session('lang') === 'en' ? 'En' : 'Fr' }}</span>
+                                    <span class="px-1 border-left border-white-50">{{ ucwords(session('lang')) }}</span>
                                     <i class="fas fa-caret-down"></i>
                                 </a>
                             </div>
                             <div id="language-dropdown" class="collapse position-absolute">
                                 <div class="p-2 rounded bg-white border position-absolute" style="top: calc(100% + 5px);">
-                                    <a href="{{ session('lang') === 'en' ? url('fr') : url('en') }}" class="rounded-lg ml-1 px-1 d-flex justify-content-around align-items-center text-black-50 text-decoration-none">
-                                        <span class="language-flag shadow-lg d-inline-flex mr-1 justify-content-center align-items-center overflow-hidden">
-                                            <img src="{{ session('lang') === 'en' ? asset('/images/1.jpg') : asset('/images/641ad9571c9ade545faf3ef16810b143.png') }}" class="h-100" alt="fr-flag">
+                                    @foreach (App\Language::get() as $language)
+                                    @if ($language->lang !== session('lang'))
+                                    <a href="{{ route('lang', $language->lang) }}" class="px-1 d-flex justify-content-around align-items-center text-black-50 text-decoration-none">
+                                        <span class="language-flag border-black-50 shadow-lg mr-1 overflow-hidden d-inline-flex justify-content-center align-items-center position-relative">
+                                            <span class="flag-icon position-absolute flag-icon-{{ $language->flag }}"></span>
                                         </span>
-                                        <span class="mr-1">{{ session('lang') === 'en' ? 'Fr' : 'En' }}</span>
+                                        <span class="px-1 border-left border-black-50">{{ ucwords($language->lang) }}</span>
                                     </a>
+                                    @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </li>
@@ -91,21 +94,25 @@
             <span class="d-lg-none position-relative text-montserrat pr-2">
                 <div class="text-white ml-1 px-1">
                     <a href="#language-dropdown" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="language-dropdown" class="text-white text-decoration-none d-flex justify-content-around align-items-center">
-                        <span class="language-flag shadow-lg d-inline-flex mr-1 justify-content-center align-items-center overflow-hidden">
-                            <img src="{{ session('lang') === 'en' ? asset('/images/641ad9571c9ade545faf3ef16810b143.png') : asset('/images/1.jpg') }}" class="h-100" alt="en-flag">
+                        <span class="language-flag shadow-lg mr-1 overflow-hidden d-inline-flex justify-content-center align-items-center position-relative">
+                            <span class="flag-icon position-absolute flag-icon-{{ session('flag') }}"></span>
                         </span>
-                        <span class="px-1 border-left border-white-50">{{ session('lang') === 'en' ? 'En' : 'Fr' }}</span>
+                        <span class="px-1 border-left border-white-50">{{ ucwords(session('lang')) }}</span>
                         <i class="fas fa-caret-down"></i>
                     </a>
                 </div>
                 <div id="language-dropdown" class="collapse position-absolute">
                     <div class="p-2 rounded bg-white border position-absolute" style="top: calc(100% + 5px);">
-                        <a href="{{ session('lang') === 'en' ? url('fr') : url('en') }}" class="rounded-lg ml-1 px-1 d-flex justify-content-around align-items-center text-black-50 text-decoration-none">
-                            <span class="language-flag shadow-lg d-inline-flex mr-1 justify-content-center align-items-center overflow-hidden">
-                                <img src="{{ session('lang') === 'en' ? asset('/images/1.jpg') : asset('/images/641ad9571c9ade545faf3ef16810b143.png') }}" class="h-100" alt="fr-flag">
+                        @foreach (App\Language::get() as $language)
+                        @if ($language->lang !== session('lang'))
+                        <a href="{{ route('lang', $language->lang) }}" class="px-1 d-flex justify-content-around align-items-center text-black-50 text-decoration-none">
+                            <span class="language-flag border-black-50 shadow-lg mr-1 overflow-hidden d-inline-flex justify-content-center align-items-center position-relative">
+                                <span class="flag-icon position-absolute flag-icon-{{ $language->flag }}"></span>
                             </span>
-                            <span class="mr-1">{{ session('lang') === 'en' ? 'Fr' : 'En' }}</span>
+                            <span class="px-1 border-left border-black-50">{{ ucwords($language->lang) }}</span>
                         </a>
+                        @endif
+                        @endforeach
                     </div>
                 </div>
             </span>
@@ -120,9 +127,21 @@
                 </div>
                 <div>
                     @guest
-                    <a href="{{ route('login') }}" class="btn btn-light text-green rounded-sm font-weight-bold text-x-small">
-                        <span class="">Sign In</span> <i class=" fas fa-sign-in-alt fa-lg ml-2"></i>
-                    </a>
+                    {{-- <a href="{{ route('login') }}" class="btn btn-light text-green rounded-sm font-weight-bold text-x-small">
+                        <span class="">Sign In</span> <i class="fas fa-sign-in-alt fa-lg ml-2"></i>
+                    </a> --}}
+                    <div class="position-relative">
+                        <a class="btn-animate position-absolute" href="{{ route('login') }}" style="top: -3px; left: 0;">
+                            <div class="btn btn-light btn-sm pd-x-0 primary text-green overflow-hidden rounded-sm static position-relative">
+                                <span class="d-block text-x-small font-weight-bold px-3 py-1 text-truncate">{{ __('Sign In') }}</span>
+                                <div class="bg-black-20 secondary align-items-center d-none active rounded-sm-right px-2 py-2 position-absolute h-100" style="top: 0; right: 0;">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <span style="opacity: 0;">o</span>
+                    </div>
+                    
                     @else
                     <div class="dropdown text-white">
                         <a href="#" class="pl-2 pb-1 dropdown-toggle d-flex align-items-center text-decoration-none text-reset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -154,26 +173,28 @@
     </nav>
     <div id="navbar" class="position-absolute collapse d-lg-none w-100 bg-white" style="top: 100%">
         <div>
-            <a class="dropdown-item {{ !Request::segment(1) ? 'active' : '' }}" href="{{ url('/') }}">
+            <a class="dropdown-item {{ !Request::segment(1) ? 'bg-orange text-white' : '' }}" href="{{ url('/') }}">
                 <span>
                     <i class="fas fa-home fa-xs"></i>
                     Home
                 </span>
-
             </a>
-            <div id="courses" class="dropdown-item {{ Request::segment(1) === 'courses' ? 'active' : '' }}">
-                <span>Courses</span>
-                <div class="py-2 rounded bg-light position-absolute" style="top: calc(100%);">
-                    <a class="dropdown-item {{ Request::segment(1) === 'courses' && Request::segment(2) === 'bronze' ? 'active' : '' }}" href="{{ route('courses.show', 'bronze') }}">Bronze</a>
-                    <a class="dropdown-item {{ Request::segment(1) === 'courses' && Request::segment(2) === 'silver' ? 'active' : '' }}" href="{{ route('courses.show', 'silver') }}">Silver</a>
-                    <a class="dropdown-item {{ Request::segment(1) === 'courses' && Request::segment(2) === 'diamond' ? 'active' : '' }}" href="{{ route('courses.show', 'diamond') }}">Diamond</a>
+            <div id="courses" class="dropdown-item {{ Request::segment(1) === 'courses' ? 'py-0' : '' }}">
+                <span class="d-block py-1 px-4 {{ Request::segment(1) === 'courses' ? 'bg-orange text-white' : '' }}" style="margin: 0 -1.5rem;">Courses</span>
+                <div class="border-left pl-4">
+                    <a class="d-block text-decoration-none text-dark {{ Request::segment(1) === 'courses' && Request::segment(2) === 'bronze' ? 'text-orange' : '' }}" href="{{ route('courses.show', 'bronze') }}">Bronze</a>
+                    <a class="d-block text-decoration-none text-dark {{ Request::segment(1) === 'courses' && Request::segment(2) === 'silver' ? 'text-orange' : '' }}" href="{{ route('courses.show', 'silver') }}">Silver</a>
+                    <a class="d-block text-decoration-none text-dark {{ Request::segment(1) === 'courses' && Request::segment(2) === 'diamond' ? 'text-orange' : '' }}" href="{{ route('courses.show', 'diamond') }}">Diamond</a>
                 </div>
             </div>
-            <a class="dropdown-item {{ Request::segment(1) === 'about-us' ? 'active' : '' }}" href="{{ route('about-us') }}">
+            <a class="dropdown-item {{ Request::segment(1) === 'about-us' ? 'bg-orange text-white' : '' }}" href="{{ route('about-us') }}">
                 <span>About Us</span>
             </a>
-            <a class="dropdown-item {{ Request::segment(1) === 'contact' ? 'active' : '' }}" href="{{ route('contact') }}">
+            <a class="dropdown-item {{ Request::segment(1) === 'contact' ? 'bg-orange text-white' : '' }}" href="{{ route('contact') }}">
                 <span>Contact</span>
+            </a>
+            <a class="dropdown-item {{ Request::segment(1) === 'faq' ? 'bg-orange text-white' : '' }}" href="{{ route('faq') }}">
+                <span>FAQ</span>
             </a>
         </div>
     </div>

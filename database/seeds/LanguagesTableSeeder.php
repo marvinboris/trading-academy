@@ -15,11 +15,13 @@ class LanguagesTableSeeder extends Seeder
         //
         Language::create([
             'lang' => 'en',
+            'flag' => 'gb',
             'name' => 'English'
         ]);
         
         Language::create([
             'lang' => 'fr',
+            'flag' => 'fr',
             'name' => 'Français'
         ]);
     }

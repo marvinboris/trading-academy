@@ -1,0 +1,131 @@
+{
+    "global": {
+        "website": "infos@gitacademy.net",
+        "phone": "+237 655 888 468",
+        "email": "liyeplimal@gmail.com / contact@liyeplimal.net",
+        "support_content": "support@liyeplimal.net",
+        "bronze": "Bronze",
+        "silver": "Silver",
+        "diamond": "Diamond",
+        "sponsor": "Sponsor ID"
+    },
+    "language": {
+        "en": {
+            "header": {
+                "nav": {
+                    "home": "Home",
+                    "courses": "Courses",
+                    "about": "About Us",
+                    "contact": "Contact",
+                    "livechat": "LiveChat",
+                    "signin": "Sign In"
+                }
+            },
+            "pages": {
+                "home": {
+                    "slider": {
+                        "signup": "Sign up",
+                        "readmore": "Read more",
+                        "content": [
+                            {
+                                "first": "Welcome to",
+                                "second": "The best African Crypto<br>Trading School",
+                                "third": "Get started with to learn the best crypto trading Techniques and be the best",
+                                "img": ""
+                            },
+                            {
+                                "first": "Learn More",
+                                "second": "We offer the best Crypto<br>Trading courses",
+                                "third": "Want to know more ?",
+                            },
+                            {
+                                "first": "Get the best",
+                                "second": "Crypto Trading<br>courses here",
+                                "third": "Get started with to learn the best crypto trading Techniques and be the best",
+                            }
+                        ]
+                    },
+                    "presentation": {
+                        "title": "What you have to know on your Crypto Trading Academy",
+                        "description": "Get started with to learn the best crypto trading Technics and be the best In order to become financially independent, Global Investment Trading is tagged to bring to you the one and only way that has made his name. THE CRYPTO TRADING ACADEMY (by Global Investment Trading). From this site, you are going to learn all the needed skills to get familiar with Crypto Currency Market and become financially independent.",
+                        "play_video": "Play video"
+                    },
+                    "level_courses": {
+                        "title": "We have the right course for you.",
+                        "description": "The Crypto trading academy gives you the opportunity to start learning from the very basics. Getting into to Crypto Currency Trading has never been an easy decision to take. But as our Goal is to make everyone financially independent through this training, all the trainees will have to start from a beginner level and later can be qualified to go to the next level.",
+                        "enroll_now": "Enroll now"
+                    },
+                    "statics": {
+                        "title": "Why choose us ?",
+                        "course": "Courses",
+                        "enrolled": " Total enrolled",
+                        "certified": "Certified",
+                        "trainer": "Trainers"
+                    },
+                    "testimonial": {
+                        "title": "What they are saying on our course content",
+                        "description": "We always wanted go give out the best to all our trainees. We alone cannot convince you. Check out by yourself if we are credible or not.",
+                        "full_list": "View full list"
+                    },
+                    "blog": {
+                        "title": "Our Blog",
+                        "description": "Find out the latest news from our blog"
+                    }
+                },
+                "about": {
+                    "about_title": "About Trading Academy",
+                    "about_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quod debitis, repellat pariatur adipisci ullam veniam quasi a doloremque autem ab culpa exercitationem nesciunt ad? Consectetur voluptas amet sed voluptatibus.",
+                    "mission": "Our mission",
+                    "mission_descrption": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quod debitis, repellat pariatur adipisci ullam veniam quasi a doloremque autem ab culpa exercitationem nesciunt ad? Consectetur voluptas amet sed voluptatibus.",
+                    "trainer": "Trainers",
+                    "trainer_description": "One thing you need to know about Global Investment Company is our satisfying customer service. Tagged with a young team of expert, we put all our effort together so you can get the best customer satisfaction experience out of our company. "
+                },
+                "contact": {
+                    "contact_info": "Contact information",
+                    "name": "Your name",
+                    "email_address": "Your email address",
+                    "subject_message": "Subject",
+                    "message_label": "Your message",
+                    "send": "Submit"
+                },
+                "signup": {
+                    "first_name": "First Name",
+                    "last_name": "Last Name",
+                    "phone_number": "Phone Number",
+                    "email_address": "E-Mail Address",
+                    "password": "Password",
+                    "cpassword": "Confirm Password",
+                    "term_condition": "I have read and accepted Privacy policy and Terms and Conditions",
+                    "register": "Register",
+                    "message_reg": "I already have an account."
+                },
+                "signin": {
+                    "email_address": "E-Mail Address",
+                    "password": "Password",
+                    "remember": "Remember Me",
+                    "register": "Register",
+                    "message_reg": "Forgot Your Password ? Have no account ? Sign Up"
+                },
+                "courses": {
+                    "title": "Getting Started with Crypto Currency Trading",
+                    "presentation": "What you will learn",
+                    "course_content": "Course content",
+                    "comment": "Comments",
+                    "search_comment": "Search a comment",
+                    "certificate_guaranteed": " Guaranteed certificate"
+                }
+            },
+            "footer": {
+                "address": "Address",
+                "address_content": "1135, Rue Mandessi Bell Bali, <br>Between Carrefour Kayo Elie <br>and Montagne Manga Bell,<br>Douala Cameroon",
+                "phone_email": "Phone & Email ",
+                "online": "Online",
+                "support": "Support",
+                "partner": "Our partners",
+                "map": "Find us on Maps",
+                "newsletter": "Subscribe to our newsletter",
+                "email_news": "Input your email"
+            }
+        }
+    }
+}

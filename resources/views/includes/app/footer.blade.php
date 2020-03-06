@@ -1,6 +1,6 @@
 <footer class="bg-darkblue text-white text-montserrat container-fluid p-5">
     <div class="row pb-3">
-        <div class="col-sm-6 col-lg-3">
+        <div class="col-sm-6 pb-3 pb-sm-0 col-lg-3">
             <div class="pb-0 mb-3 d-inline-block position-relative mb-3">
                 <div class="h4 font-weight-bold">Address</div>
                 <div class="position-absolute w-50 d-flex justify-content-center align-items-center" style="bottom: 0; height: 1px;">
@@ -13,14 +13,14 @@
                 1135, Rue Mandessi Bell Bali, <br>Between Carrefour Kayo Elie <br>and Montagne Manga Bell, <br>Douala Cameroon
             </p>
         </div>
-        <div class="d-none col-sm-6 col-lg-3">
+        <div class="d-none col-sm-6 pb-3 pb-sm-0 col-lg-3">
             <div class="row justify-content-center">
                 <div class="col-8">
                     <img src="/images/Groupe 130@2x.png" class="img-fluid" alt="Logo">
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
+        <div class="col-sm-6 pb-3 pb-sm-0 col-lg-3">
             <div class="pb-0 mb-3 d-inline-block position-relative mb-3">
                 <div class="h4 font-weight-bold">Phone & Email</div>
             <div class="position-absolute w-50 d-flex justify-content-center align-items-center" style="bottom: 0; height: 1px;">
@@ -63,7 +63,7 @@
                 </dl>
             </dl>
         </div>
-        <div class="col-sm-6 col-lg-3">
+        <div class="col-sm-6 pb-3 pb-sm-0 col-lg-3">
             <div class="pb-0 mb-3 d-inline-block position-relative mb-3">
                 <div class="h4 font-weight-bold">Our partners</div>
                 <div class="position-absolute w-50 d-flex justify-content-center align-items-center" style="bottom: 0; height: 1px;">
@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
+        <div class="col-sm-6 pb-3 pb-sm-0 col-lg-3">
             <div class="pb-0 mb-3 d-inline-block position-relative mb-3">
                 <div class="h4 font-weight-bold">Find us on Maps</div>
                 <div class="position-absolute w-50 d-flex justify-content-center align-items-center" style="bottom: 0; height: 1px;">
@@ -86,7 +86,7 @@
                 <iframe width="100%" height="150" src="https://maps.google.com/maps?width=700&amp;height=150&amp;hl=en&amp;q=La%20maison%20du%20bitcoin+(Auto-%C3%A9cole%20Universit%C3%A9)&amp;ie=UTF8&amp;t=&amp;z=17&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-4">
+        <div class="col-sm-6 pb-3 pb-sm-0 col-lg-4">
             <div class="pb-0 mb-3 d-inline-block position-relative mb-3">
                 <div class="h4 font-weight-bold">Subscribe to our newsletter</div>
                 <div class="position-absolute w-50 d-flex justify-content-center align-items-center" style="bottom: 0; height: 1px;">
@@ -97,16 +97,16 @@
             </div>
             <form action="" method="post">
                 <div class="form-group">
-                        <div class="input-group mb-3">
-                        <input type="text" class="news-letter-input form-control text-white bg-darkblue" placeholder="Input your email..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary bg-scarlet text-white" type="button" id="button-addon2">Subscribe <i class="fab fa-telegram-plane fa-1x"></i></button>
-                        </div>
+                    <div class="input-group mb-3">
+                    <input type="text" class="news-letter-input form-control text-white bg-darkblue" placeholder="Input your email..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-orange text-white" type="button" id="button-addon2">Subscribe <i class="fab fa-telegram-plane fa-1x"></i></button>
                     </div>
+                </div>
             </form>
         </div>
     </div>
-    <div class="border-top border-white-50 pt-3">
+    <div class="border-top border-white-50 pt-3 col-12">
         <div class="row justify-content-between">
             <div class="col-sm-6 text-center text-left-sm">
                 &copy; Copyright 2020 <a href="#" class="text-yellow text-decoration-none font-weight-bold">Trading Academy</a>. All rights reserved. A <strong>Global Investment Trading</strong> Product

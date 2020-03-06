@@ -1,5 +1,5 @@
-<div class="col-12 testimonial" {!! $add ?? '' !!}>
-    <div class="row">
+<div class="col-12 pb-3 testimonial" {!! $add ?? '' !!}>
+    <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 pb-3 pb-lg-0">
             <div class="card border-0 bg-transparent overflow-hidden position-relative">
                 <div class="position-absolute w-100 h-100 bg" style="background-image: url('{{ $img ? asset($img) : 'https://placehold.it/150x100' }}');"></div>

@@ -1,4 +1,4 @@
-<div class="col-xl-4 col-lg-6 col-md-8 col-sm-12 pb-3 pb-lg-0 post" {!! $add ?? '' !!}>
+<div class="col-xl-4 col-lg-6 col-md-8 col-sm-12 pb-3 post" {!! $add ?? '' !!}>
     <div class="card border-0 position-relative overflow-hidden bg-transparent">
         <div class="position-absolute w-100 h-100 bg" style="background-image: linear-gradient(rgba(0, 0, 0, .25), rgba(0, 0, 0, .25)), url('{{ $img ? asset($img) : 'https://placehold.it/150x100' }}');"></div>
         <a href="{{ $link }}" class="card-img-top embed-responsive embed-responsive-16by9 position-relative">
@@ -30,9 +30,17 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <a href="{{ $link }}" class="btn btn-light btn-sm text-green shadow-lg rounded-0">
+                            {{-- <a href="{{ $link }}" class="btn btn-light btn-sm text-green shadow-lg rounded-0">
                                 <div class="small font-weight-bold text-montserrat px-3 py-1">
                                     Read More
+                                </div>
+                            </a> --}}
+                            <a class="btn-animate" href="#">
+                                <div class="btn btn-light btn-sm pd-x-0 primary text-green overflow-hidden rounded-sm static link text-montserrat position-relative">
+                                    <span class="d-block small font-weight-bold text-montserrat px-3 py-1">{{ __('Read More') }}</span>
+                                    <div class="bg-black-20 secondary align-items-center d-none active rounded-sm-right px-3 py-2 position-absolute h-100" style="top: 0; right: 0;">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
                                 </div>
                             </a>
                         </div>

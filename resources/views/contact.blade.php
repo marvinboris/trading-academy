@@ -64,10 +64,12 @@
                             @component('components.ui.form-group', ['id' => 'message', 'type' => 'textarea', 'required' => 'required', 'class' => ' col-lg-12', 'icon' => 'fas fa-envelope', 'name' => 'message', 'placeholder' => 'Your message']) @endcomponent
 
                             <div class="col-12 form-group">
-                                <button class="btn-group btn d-inline-flex align-items-center p-0 text-montserrat link text-decoration-none">
-                                    <span class="btn btn-green btn-lg rounded-0 text-700 px-5 py-3">Submit</span>
-                                    <div class="d-flex justify-content-center align-items-center bg-darkblue text-white rounded-0 px-1 py-3">
-                                        <i class="fas fa-fw fa-2x fa-arrow-alt-circle-right"></i>
+                                <button class="border-0 p-0 btn-animate" href="#">
+                                    <div class="btn btn-lg btn-green primary pd-x-0 overflow-hidden rounded-sm static link text-montserrat position-relative">
+                                        <span class="d-block text-x-large py-1 pd-x-3">{{ __('Submit') }}</span>
+                                        <div class="bg-darkblue secondary align-items-center d-none active rounded-sm-right px-3 py-2 position-absolute h-100" style="top: 0; right: 0;">
+                                            <i class="fas fa-lg fa-arrow-alt-circle-right"></i>
+                                        </div>
                                     </div>
                                 </button>
                             </div>

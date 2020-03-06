@@ -11,7 +11,7 @@
         </div>
     </div>
 </section>
-<section class="d-sm-flex pb-3 d-xl-none text-center align-items-center justify-content-center" style="margin: auto; width: 60%; min-width: 23rem; max-width: 100%;">
+<section class="d-sm-flex pb-3 d-xl-none text-center align-items-center justify-content-center mx-auto" style="width: 60%; min-width: 20rem; max-width: 100%;">
     <div class="mr-2 text-small">
         Affiliate link :
     </div>

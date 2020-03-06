@@ -27,6 +27,9 @@
                 <li class="nav-item">
                 <a class="nav-link" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="false">Description</a>
                 </li>
+                <li class="nav-item">
+                <a class="nav-link" id="includes-tab" data-toggle="tab" href="#includes" role="tab" aria-controls="includes" aria-selected="false">Includes</a>
+                </li>
             </ul>
             <div class="tab-content border-right" id="myTabContent">
                 <div class="tab-pane py-3 fade show overflow-hidden active" id="basics" role="tabpanel" aria-labelledby="basics-tab">
@@ -101,20 +104,20 @@
                             <button type="button" class="btn btn-transparent p-0 text-purered delete"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-minus fa-stack-1x fa-inverse"></i></span></button>
                             <div class="row mb-3">
                                 <div class="col md-3">
-                                    <label for="course_content[{{ $key }}]['title']" class="control-label">Title</label>
+                                    <label for="course_content[{{ $key }}][title]" class="control-label">Title</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="text" name="course_content[{{ $key }}]['title']" value="{{ $course->course_content[$key]->title }}" class="form-control title">
+                                    <input type="text" name="course_content[{{ $key }}][title]" value="{{ $course->course_content[$key]->title }}" class="form-control title">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col md-3">
-                                    <label for="course_content[{{ $key }}]['content']" class="control-label">Content</label>
+                                    <label for="course_content[{{ $key }}][content]" class="control-label">Content</label>
                                 </div>
                                 <div class="col-md-9">
                                     @foreach ($item->content as $subitem)
                                     <div class="d-flex mb-3">
-                                        <input type="text" name="course_content[{{ $key }}]['content'][]" class="form-control subitem" value="{{ $subitem }}" required>
+                                        <input type="text" name="course_content[{{ $key }}][content][]" class="form-control subitem" value="{{ $subitem }}" required>
                                         <button type="button" class="btn btn-transparent p-0 text-blue ml-1 add"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-plus fa-stack-1x fa-inverse"></i></span></button>
                                         <button type="button" class="btn btn-transparent p-0 text-purered delete"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-minus fa-stack-1x fa-inverse"></i></span></button>
                                     </div>
@@ -141,6 +144,20 @@
                 <div class="tab-pane py-3 fade" id="description" role="tabpanel" aria-labelledby="description-tab">
                     <div class="col-12">
                         <textarea name="description" id="description" class="form-control summernote">{!! $course->description !!}</textarea>
+                    </div>
+                </div>
+                <div class="tab-pane py-3 fade" id="includes" role="tabpanel" aria-labelledby="includes-tab">
+                    <div class="form-group row mx-0">
+                        <div class="col-12">
+                            @foreach ($course->includes as $key => $item)
+                            <div class="d-flex mb-3">
+                                <div class="col-md-3">
+                                    <label for="includes-{{ $key }}" class="control-label">{{ ucwords($key) }}</label>
+                                </div>
+                                <input type="text" name="includes[{{ $key }}]" id="includes-{{ $key }}" class="form-control" value="{{ $item }}" required>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -179,11 +196,12 @@
 
                 if (current.hasClass('section')) {
                     const parents = current.parent().parent().children('.col-12');
-                    parents.forEach((parent, index) => {
-                        parent.children('label.title').html('Section ' + (index + 1));
-                        parent.find('label:not(.text-large)').attr('for', "course_content[" + index + "]['title']");
-                        parent.find('input.title').attr('name', "course_content[" + index + "]['title']");
-                        parent.find('input.subitem').attr('name', "course_content[" + index + "]['content'][]");
+                    parents.each(function (index) {
+                        const elem = $(this);
+                        elem.find('label.title').html('Section ' + (index + 1));
+                        elem.find('label:not(.text-large)').attr('for', "course_content[" + index + "]['title']");
+                        elem.find('input.title').attr('name', "course_content[" + index + "]['title']");
+                        elem.find('input.subitem').attr('name', "course_content[" + index + "]['content'][]");
                     });
                 }
             };
@@ -196,11 +214,12 @@
 
                 if (current.hasClass('section')) {
                     const parents = current.parent().parent().children('.col-12');
-                    parents.each(function (index, parent) {
-                        parent.find('label.title').html('Section ' + (index + 1));
-                        parent.find('label:not(.text-large)').attr('for', "course_content[" + index + "]['title']");
-                        parent.find('input.title').attr('name', "course_content[" + index + "]['title']");
-                        parent.find('input.subitem').attr('name', "course_content[" + index + "]['content'][]");
+                    parents.each(function (index) {
+                        const elem = $(this);
+                        elem.find('label.title').html('Section ' + (index + 1));
+                        elem.find('label:not(.text-large)').attr('for', "course_content[" + index + "]['title']");
+                        elem.find('input.title').attr('name', "course_content[" + index + "]['title']");
+                        elem.find('input.subitem').attr('name', "course_content[" + index + "]['content'][]");
                     });
                 }
             };

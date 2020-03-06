@@ -75,13 +75,21 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
     });
 });
 
-if (!Session::has('lang')) {
-    if (Auth::check()) Session::put('lang', Auth::user()->lang);
-    else Session::put('lang', 'en');
+if (!Session::has('lang') || !Session::has('flag')) {
+    if (Auth::check()) {
+        $lang = Auth::user()->lang;
+        Session::put('lang', $lang);
+        Session::put('flag', Language::where('lang', $lang)->first()->flag);
+    }
+    else {
+        Session::put('lang', 'en');
+        Session::put('flag', 'gb');
+    }
 }
 
-Route::get('lang/{lang}', function ($lang) {
+Route::name('lang')->get('lang/{lang}', function ($lang) {
     Session::put('lang', $lang);
+    Session::put('flag', Language::where('lang', $lang)->first()->flag);
     return redirect()
         ->back();
 });

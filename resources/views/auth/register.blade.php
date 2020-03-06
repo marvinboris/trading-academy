@@ -120,10 +120,15 @@ asort($namesData);
             const country = current.find('option:selected').attr('country');
             $('#code').val(value);
             $('#country-code').val(country);
-            console.log(country);
         });
         
+        const passwordBlock = $('.password.alert');
+
+        passwordBlock.hide();
+        
         $('#password').keyup(function () {
+            passwordBlock.slideDown();
+
             const current = $(this);
             const value = current.val();
 
@@ -138,8 +143,6 @@ asort($namesData);
             const special = $('#special');
             const minimum = $('#minimum');
             const confirm = $('#confirm');
-
-            const passwordBlock = $('.password.alert');
 
             const uppercaseTest = uppercaseRegex.test(value);
             const lowercaseTest = lowercaseRegex.test(value);

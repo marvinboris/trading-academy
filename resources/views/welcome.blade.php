@@ -9,7 +9,7 @@
 <section class="home">
     <div class="position-relative" style="height: calc(100vh - 95px);">
         <div class="position-absolute h-100 w-100">
-            <div id="carousel" class="carousel slide carousel-fade h-100" data-ride="carousel" data-interval="3000">
+            <div id="carousel" class="carousel slide carousel-fade h-100" data-ride="carousel" data-interval="2000">
                 <ol class="carousel-indicators">
                     <li data-target="#carousel" data-slide-to="0" class="carousel-indicator active"></li>
                     <li data-target="#carousel" data-slide-to="1" class="carousel-indicator"></li>
@@ -41,10 +41,18 @@
                         </div>
                         @guest
                         <div>
-                            <a href="{{ route('register') }}" class="btn-group text-allexist link text-decoration-none">
+                            {{-- <a href="{{ route('register') }}" class="btn-group text-allexist link text-decoration-none">
                                 <span class="btn btn-green btn-lg rounded-0 px-5 py-3">Sign Up</span>
                                 <div class="d-inline-flex justify-content-center align-items-center bg-darkblue text-white rounded-0 pr-3 pl-3">
                                     <i class="fas fa-2x fa-arrow-alt-circle-right"></i>
+                                </div>
+                            </a> --}}
+                            <a class="nav-link btn-group btn-animate" style="left: 0;" href="{{ route('register') }}">
+                                <div class="btn btn-lg btn-green primary pd-x-0 overflow-hidden rounded-sm static link text-allexist position-relative">
+                                    <span class="d-block pd-x-3 text-x-large py-1">{{ __('Sign Up') }}</span>
+                                    <div class="bg-darkblue secondary align-items-center d-none active rounded-sm-right px-3 py-2 position-absolute h-100" style="top: 0; right: 0;">
+                                        <i class="fas fa-lg fa-arrow-alt-circle-right"></i>
+                                    </div>
                                 </div>
                             </a>
                         </div>
@@ -103,10 +111,18 @@
                             In order to become financially independent, Global Investment Trading is tagged to bring to you the one and only way that has made his name. THE CRYPTO TRADING ACADEMY (by Global Investment Trading). From this site, you are going to learn all the needed skills to get familiar with Crypto Currency Market and become financially independent.
                         </p>
                     </div>
-                    <a href="#" class="btn-group text-montserrat text-700 link text-decoration-none">
+                    {{-- <a href="#" class="btn-group text-montserrat text-700 link text-decoration-none">
                         <span class="btn btn-green btn-lg rounded-0 px-5 py-3 text-700 text-x-large">Play Video</span>
                         <div class="d-inline-flex justify-content-center align-items-center bg-darkblue text-white rounded-0 pl-3 pr-3">
                             <i class="fas fa-2x fa-arrow-alt-circle-right"></i>
+                        </div>
+                    </a> --}}
+                    <a class="btn-animate" href="#">
+                        <div class="btn btn-lg btn-green primary pd-x-0 overflow-hidden rounded-sm static link text-montserrat position-relative">
+                            <span class="d-block text-x-large py-1 pd-x-3">{{ __('Play Video') }}</span>
+                            <div class="bg-darkblue secondary align-items-center d-none active rounded-sm-right px-3 py-2 position-absolute h-100" style="top: 0; right: 0;">
+                                <i class="fas fa-lg fa-arrow-alt-circle-right"></i>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -163,45 +179,45 @@
                     </div>
 
                     <div class="row pt-5" style="width: 120%;">
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="d-flex justify-content-center">
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="d-flex justify-content-start px-5 justify-content-sm-center">
                                 <div>
                                     <i class="why-us-content  fas fa-book text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
-                                <div class="">
+                                <div class="flex-fill text-center">
                                     <div class="why-us-content text-x-large font-weight-light">Courses</div>
                                     <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">03</span></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-start px-5 justify-content-sm-center">
                                 <div>
                                     <i class="why-us-content fas fa-user-friends text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
-                                <div>
+                                <div class="flex-fill text-center">
                                     <div class="why-us-content text-x-large font-weight-light">Total enrolled</div>
                                     <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">51</span></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-start px-5 justify-content-sm-center">
                                 <div>
                                     <i class="why-us-content fas fa-graduation-cap text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
-                                <div>
+                                <div class="flex-fill text-center">
                                     <div class="why-us-content text-x-large font-weight-light">Certified</div>
                                     <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">20</span></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-start px-5 justify-content-sm-center">
                                 <div>
                                     <i class="why-us-content fas fa-user-tie text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
-                                <div>
+                                <div class="flex-fill text-center">
                                     <div class="why-us-content text-x-large font-weight-light">Trainers</div>
                                     <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">05</span></div>
                                 </div>
@@ -263,7 +279,7 @@
         ],
         'subtitle' => 'Find out the latest news from our blog'
     ])
-        <div class="row">
+        <div class="row justify-content-center">
             @foreach ($posts as $post)
                 @component('components.post', $post)
                 {!! $post['body'] !!}

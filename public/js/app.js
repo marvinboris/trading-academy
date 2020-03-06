@@ -50591,6 +50591,27 @@ $(function () {
     if ($('#messages').hasClass('show') || $('#notifications').hasClass('show')) $('#messages, #notifications').removeClass('show');
   });
 });
+$(function () {
+  $('.btn-animate .secondary').css({
+    display: 'flex'
+  }).hide().removeClass('d-none');
+  $('.btn-animate .primary').hover(function () {
+    var current = $(this);
+    var secondary = current.find('.secondary');
+    var secondaryWidth = secondary.outerWidth();
+    current.stop().animate({
+      paddingRight: secondaryWidth
+    }, 'fast');
+    secondary.stop().show('fast');
+  }, function () {
+    var current = $(this);
+    var secondary = current.find('.secondary');
+    current.stop().animate({
+      paddingRight: 0
+    }, 'fast');
+    secondary.stop().hide('fast');
+  });
+});
 
 /***/ }),
 

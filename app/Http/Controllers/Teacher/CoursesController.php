@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Photo;
 use App\Teacher;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -94,9 +95,30 @@ class CoursesController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $course = Teacher::where('user_id', Auth::user()->id)->first()->courses()->findOrFail($id);
+        $course = Teacher::where('user_id', Auth::id())->first()->courses()->findOrFail($id);
         $input = $request->all();
-        return $input['course_content'];
+
+        if ($file = $request->file('photo')) {
+            $photo = Photo::findOrFail($course->photo_id);
+            unlink(public_path() . $photo->path);
+
+            $fileName = time() . $file->getClientOriginalName();
+            $file->move('images', $fileName);
+            $photo->path = htmlspecialchars($fileName);
+
+            $photo->save();
+        }
+
+        $input['course_content'] = json_encode($input['course_content']);
+        $input['what_you_will_learn'] = json_encode($input['what_you_will_learn']);
+        $input['requirements'] = json_encode($input['requirements']);
+        $input['includes'] = json_encode($input['includes']);
+
+        $course->update($input);
+        
+        return redirect()
+            ->route('teacher.courses.index')
+            ->with('success', 'The course was successfully updated.');
     }
 
     /**
