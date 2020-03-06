@@ -127,10 +127,10 @@
                 </div>
                 <div>
                     @guest
-                    {{-- <a href="{{ route('login') }}" class="btn btn-light text-green rounded-sm font-weight-bold text-x-small">
+                    <a href="{{ route('login') }}" class="d-lg-none btn btn-light text-green rounded-sm font-weight-bold text-x-small">
                         <span class="">Sign In</span> <i class="fas fa-sign-in-alt fa-lg ml-2"></i>
-                    </a> --}}
-                    <div class="position-relative">
+                    </a>
+                    <div class="position-relative d-none d-lg-block">
                         <a class="btn-animate position-absolute" href="{{ route('login') }}" style="top: -3px; left: 0;">
                             <div class="btn btn-light btn-sm pd-x-0 primary text-green overflow-hidden rounded-sm static position-relative">
                                 <span class="d-block text-x-small font-weight-bold px-3 py-1 text-truncate">{{ __('Sign In') }}</span>
