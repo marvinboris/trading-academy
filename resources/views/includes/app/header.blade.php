@@ -1,7 +1,7 @@
 <header class="bg-header position-sticky shadow" style="height: 95px; top: -37px; z-index: 1100;">
     <nav class="navbar navbar-expand-md navbar-dark px-md-5 flex-fill position-sticky border-0 h-100 d-flex justify-content-between" style="top: -35px;">
         <a href="{{ url('/') }}" class="d-block position-sticky" style="top: 10px; height: 60px;">
-            <img src="{{ asset('/images/Groupe 130@2x.png') }}" class="h-100" alt="Logo">
+            <img src="{{ asset($globalContent['logo']) }}" class="h-100" alt="Logo">
         </a>
 
         <div class="d-none d-lg-flex justify-content-end ml-auto align-items-center">
@@ -9,11 +9,11 @@
                 <div class="text-white text-montserrat pl-2 d-flex justify-content-start">
                     <span class="mr-4">
                         <i class="far fa-envelope text-yellow"></i>
-                        contact@gitacademy.net
+                        {!! $globalContent['contact'] !!}
                     </span>
                     <span>
                         <i class="fas fa-phone-square text-yellow"></i>
-                        +237 655 888 468
+                        {!! $globalContent['phone'] !!}
                     </span>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" style="height: 44px;">
@@ -22,14 +22,14 @@
                             <a class="nav-link text-white {{ !Request::segment(1) ? 'active' : '' }}" href="{{ url('/') }}">
                                 <span>
                                     <i class="fas fa-home fa-xs"></i>
-                                    Home
+                                    {!! $headerContent['nav']['home'] !!}
                                 </span>
                             </a>
                             <div id="lil-point" class="bg-yellow position-absolute border-radius"></div>
                         </li>
                         <li class="nav-item">
                             <div id="courses" class="nav-link text-white {{ Request::segment(1) === 'courses' ? 'active' : '' }}">
-                                <span>Courses</span>
+                                <span>{!! $headerContent['nav']['courses'] !!}</span>
                                 <div class="py-2 rounded bg-light position-absolute" style="top: calc(100%);">
                                     @php
                                         $courses = App\Course::get();
@@ -42,17 +42,17 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white {{ Request::segment(1) === 'about-us' ? 'active' : '' }}" href="{{ route('about-us') }}">
-                                <span>About Us</span>
+                                <span>{!! $headerContent['nav']['about'] !!}</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white {{ Request::segment(1) === 'contact' ? 'active' : '' }}" href="{{ route('contact') }}">
-                                <span>Contact</span>
+                                <span>{!! $headerContent['nav']['contact'] !!}</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white {{ Request::segment(1) === 'faq' ? 'active' : '' }}" href="{{ route('faq') }}">
-                                <span>FAQ</span>
+                                <span>{!! $headerContent['nav']['faq'] !!}</span>
                             </a>
                         </li>
                         <li class="nav-item position-relative text-montserrat">
@@ -85,7 +85,7 @@
             </div>
             <div class="live-chat-text" style="height: 75px;">
                 <a href="#" class="text-yellow font-weight-bold position-sticky text-medium" style="top: 17px;">
-                    <i class="fas fa-headset mr-2"></i><span class="text-montserrat">LiveChat</span>
+                    <i class="fas fa-headset mr-2"></i><span class="text-montserrat">{!! $headerContent['nav']['livechat'] !!}</span>
                 </a>
             </div>
         </div>
@@ -128,12 +128,12 @@
                 <div>
                     @guest
                     <a href="{{ route('login') }}" class="d-lg-none btn btn-light text-green rounded-sm font-weight-bold text-x-small">
-                        <span class="">Sign In</span> <i class="fas fa-sign-in-alt fa-lg ml-2"></i>
+                        <span class="">{!! $headerContent['nav']['sign_in'] !!}</span> <i class="fas fa-sign-in-alt fa-lg ml-2"></i>
                     </a>
                     <div class="position-relative d-none d-lg-block">
                         <a class="btn-animate position-absolute" href="{{ route('login') }}" style="top: -3px; left: 0;">
                             <div class="btn btn-light btn-sm pd-x-0 primary text-green overflow-hidden rounded-sm static position-relative">
-                                <span class="d-block text-x-small font-weight-bold px-3 py-1 text-truncate">{{ __('Sign In') }}</span>
+                                <span class="d-block text-x-small font-weight-bold px-3 py-1 text-truncate">{{ __($headerContent['nav']['sign_in']) }}</span>
                                 <div class="bg-black-20 secondary align-items-center d-none active rounded-sm-right px-2 py-2 position-absolute h-100" style="top: 0; right: 0;">
                                     <i class="fas fa-sign-in-alt"></i>
                                 </div>
@@ -154,10 +154,10 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="{{ route(strtolower(Auth::user()->role->name) . '.dashboard') }}" class="dropdown-item {{ Request::segment(2) === 'dashboard' ? 'active' : null }}"><i class="fas mr-2 fa-tachometer-alt"></i>Dashboard</a>
+                            <a href="{{ route(strtolower(Auth::user()->role->name) . '.dashboard') }}" class="dropdown-item {{ Request::segment(2) === 'dashboard' ? 'active' : null }}"><i class="fas mr-2 fa-tachometer-alt"></i>{!! $headerContent['auth']['dashboard'] !!}</a>
                             <a class="dropdown-item border-top" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fas fa-power-off mr-2"></i> {{ __('Logout') }}
+                                <i class="fas fa-power-off mr-2"></i> {{ __($headerContent['auth']['logout']) }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -176,11 +176,11 @@
             <a class="dropdown-item {{ !Request::segment(1) ? 'bg-orange text-white' : '' }}" href="{{ url('/') }}">
                 <span>
                     <i class="fas fa-home fa-xs"></i>
-                    Home
+                    {!! $headerContent['nav']['home'] !!}
                 </span>
             </a>
             <div id="courses" class="dropdown-item {{ Request::segment(1) === 'courses' ? 'py-0' : '' }}">
-                <span class="d-block py-1 px-4 {{ Request::segment(1) === 'courses' ? 'bg-orange text-white' : '' }}" style="margin: 0 -1.5rem;">Courses</span>
+                <span class="d-block py-1 px-4 {{ Request::segment(1) === 'courses' ? 'bg-orange text-white' : '' }}" style="margin: 0 -1.5rem;">{!! $headerContent['nav']['courses'] !!}</span>
                 <div class="border-left pl-4">
                     <a class="d-block text-decoration-none text-dark {{ Request::segment(1) === 'courses' && Request::segment(2) === 'bronze' ? 'text-orange' : '' }}" href="{{ route('courses.show', 'bronze') }}">Bronze</a>
                     <a class="d-block text-decoration-none text-dark {{ Request::segment(1) === 'courses' && Request::segment(2) === 'silver' ? 'text-orange' : '' }}" href="{{ route('courses.show', 'silver') }}">Silver</a>
@@ -188,13 +188,13 @@
                 </div>
             </div>
             <a class="dropdown-item {{ Request::segment(1) === 'about-us' ? 'bg-orange text-white' : '' }}" href="{{ route('about-us') }}">
-                <span>About Us</span>
+                <span>{!! $headerContent['nav']['about'] !!}</span>
             </a>
             <a class="dropdown-item {{ Request::segment(1) === 'contact' ? 'bg-orange text-white' : '' }}" href="{{ route('contact') }}">
-                <span>Contact</span>
+                <span>{!! $headerContent['nav']['contact'] !!}</span>
             </a>
             <a class="dropdown-item {{ Request::segment(1) === 'faq' ? 'bg-orange text-white' : '' }}" href="{{ route('faq') }}">
-                <span>FAQ</span>
+                <span>{!! $headerContent['nav']['faq'] !!}</span>
             </a>
         </div>
     </div>

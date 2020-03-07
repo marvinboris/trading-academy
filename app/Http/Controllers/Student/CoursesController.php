@@ -61,7 +61,7 @@ class CoursesController extends Controller
             $coursesArray[] = $courseArray;
         }
 
-        return view('user.student.courses.index', compact('coursesArray'));
+        return view('pages.user.student.courses.index', compact('coursesArray'));
     }
 
     /**
@@ -130,7 +130,7 @@ class CoursesController extends Controller
             'bodyBgColor' => 'light',
         ];
 
-        return view('user.student.courses.mine', compact('data'));
+        return view('pages.user.student.courses.mine', compact('data'));
     }
 
     /**
@@ -156,7 +156,7 @@ class CoursesController extends Controller
             'bodyBgColor' => 'light',
         ];
 
-        return view('user.student.courses.show', compact('data'));
+        return view('pages.user.student.courses.show', compact('data'));
     }
 
     /**
@@ -202,7 +202,7 @@ class CoursesController extends Controller
         $courseArray['popular'] = true;
         $courseArray['link'] = route('student.courses.enroll', $course->id);
 
-        return view('user.student.courses.enroll', compact('courseArray', 'sessions'));
+        return view('pages.user.student.courses.enroll', compact('courseArray', 'sessions'));
     }
 
     /**
@@ -245,7 +245,7 @@ class CoursesController extends Controller
             'new' => $new
         ]));
 
-        return view('user.student.courses.confirm', compact('courseData', 'sessionData', 'payment', 'price', 'hash', 'new'));
+        return view('pages.user.student.courses.confirm', compact('courseData', 'sessionData', 'payment', 'price', 'hash', 'new'));
     }
 
     /**

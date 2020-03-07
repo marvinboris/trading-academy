@@ -38,7 +38,7 @@ class VerifyController extends Controller
             'bodyBgColor' => '',
         ];
 
-        return view('admin.about-user.verifications.pending', [
+        return view('pages.admin.about-user.verifications.pending', [
             'data' => $data
         ]);
     }
@@ -47,7 +47,7 @@ class VerifyController extends Controller
     {
         $verification = Verification::where('user_id', User::where('ref', $ref)->first()->id)->first();
 
-        return view('admin.about-user.verifications.show', [
+        return view('pages.admin.about-user.verifications.show', [
             'verification' => $verification
         ]);
     }
@@ -105,7 +105,7 @@ class VerifyController extends Controller
             'bodyBgColor' => '',
         ];
 
-        return view('admin.about-user.verifications.cancelled', [
+        return view('pages.admin.about-user.verifications.cancelled', [
             'data' => $data
         ]);
     }
@@ -137,7 +137,7 @@ class VerifyController extends Controller
             'bodyBgColor' => '',
         ];
 
-        return view('admin.about-user.verifications.approved', [
+        return view('pages.admin.about-user.verifications.approved', [
             'data' => $data
         ]);
     }

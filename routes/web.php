@@ -11,11 +11,8 @@
 |
 */
 
-use App\Post;
 use App\User;
-use App\Course;
 use App\Language;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Crypt;
@@ -72,6 +69,19 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
         Route::resource('roles', 'RolesController');
         Route::resource('sessions', 'SessionsController');
         Route::resource('views', 'ViewsController');
+        
+        Route::name('cms.')->prefix('cms')->namespace('CMS')->group(function () {
+            Route::name('global')->get('global', 'GlobalController@index');
+            Route::name('global.post')->post('global', 'GlobalController@post');
+
+            Route::name('components')->get('components', 'ComponentsController@index');
+            Route::name('components.post')->post('components', 'ComponentsController@post');
+
+            Route::name('front-end.page')->get('front-end/{page}', 'FrontEndController@page');
+            Route::name('front-end.index')->get('front-end', 'FrontEndController@index');
+            
+            Route::name('back-end.index')->get('back-end', 'BackEndController@index');
+        });
     });
 });
 

@@ -35,7 +35,7 @@ class CoursesController extends Controller
                 ['key' => 'Language', 'value' => function ($item) { return $item->lang; }],
             ]
         ];
-        return view('admin.courses.index', compact('data'));
+        return view('pages.admin.courses.index', compact('data'));
     }
 
     /**

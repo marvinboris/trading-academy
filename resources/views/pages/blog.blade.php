@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    @component('components.banner', ['title' => 'Our Blog'])
+    @component('components.banner', ['title' => $content['title']])
     @endcomponent
     @component('components.section', [
         'bgColor' => 'light',
         'fontColor' => 'dark',
         'title' => [
             'color' => 'green',
-            'text' => 'Our Blog'
+            'text' => $content['blog']['title']
         ],
-        'subtitle' => 'Find out the latest news from our blog !'
+        'subtitle' => $content['blog']['description']
     ])
         <div class="row">
             @foreach ($posts as $post)

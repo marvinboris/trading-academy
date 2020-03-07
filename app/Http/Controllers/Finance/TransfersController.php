@@ -48,7 +48,7 @@ class TransfersController extends Controller
             'headBgColor' => 'green',
             'bodyBgColor' => 'light',
         ];
-        return view('user.finance.transfer.index', compact('data'));
+        return view('pages.user.finance.transfer.index', compact('data'));
     }
 
     /**
@@ -59,7 +59,7 @@ class TransfersController extends Controller
     public function create()
     {
         //
-        return view('user.finance.transfer.create');
+        return view('pages.user.finance.transfer.create');
     }
 
     /**
@@ -88,7 +88,7 @@ class TransfersController extends Controller
         ]));
         if ($request->media === 'email') Mail::to(Auth::user()->email)->send(new VerificationCode($code));
         $request->session()->flash('hash', $data);
-        return view('user.finance.transfer.confirm', compact('amount', 'receiver'));
+        return view('pages.user.finance.transfer.confirm', compact('amount', 'receiver'));
     }
 
     /**

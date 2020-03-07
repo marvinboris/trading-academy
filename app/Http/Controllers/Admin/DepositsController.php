@@ -56,7 +56,7 @@ class DepositsController extends Controller
             'headBgColor' => 'green',
             'bodyBgColor' => 'light',
         ];
-        return view('admin.deposits.index', compact('data'));
+        return view('pages.admin.deposits.index', compact('data'));
     }
 
     /**
@@ -67,7 +67,7 @@ class DepositsController extends Controller
     public function create()
     {
         //
-        return view('admin.deposits.create');
+        return view('pages.admin.deposits.create');
     }
 
     /**

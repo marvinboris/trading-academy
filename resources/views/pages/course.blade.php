@@ -34,14 +34,14 @@
                                 <div class="d-flex flex-column justify-content-between h-100">
                                     <div class="pb-2">
                                         <i class="fas fa-certificate text-yellow"></i>
-                                        Guaranteed certificate
+                                        {!! $content['box']['certificate_guaranteed'] !!}
                                     </div>
                                     <div>
-                                        <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow font-weight-bold">Enroll Now</a>
+                                        <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow font-weight-bold">{!! $content['box']['enroll_now'] !!}</a>
                                     </div>
                                 </div>
                                 <div class="pt-2">
-                                    <h5>Includes:</h5>
+                                    <h5>{!! $content['box']['includes'] !!}:</h5>
                                     <ul class="fa-ul pb-0 pl-0 my-0 ml-4">
                                         <li><i class="fas fa-file-video fa-li"></i> {{ $course->includes->videos }}</li>
                                         <li><i class="fas fa-file fa-li"></i> {{ $course->includes->lessons }}</li>
@@ -70,7 +70,7 @@
             <div class="col-lg-8">
                 <div class="card bg-light">
                     <div class="card-body">
-                        <h2 class="text-montserrat">What you will learn</h2>
+                        <h2 class="text-montserrat">{!! $content['what_you_will_learn'] !!}</h2>
                         <div class="row">
                             @foreach ($course->what_you_will_learn as $item)
                                 <div class="col-sm-6 d-flex">
@@ -86,7 +86,7 @@
                 <div class="row mt-4">
                     <div class="col-lg-8">
                         <div>
-                            <h2 class="text-montserrat">Course content</h2>
+                            <h2 class="text-montserrat">{!! $content['course_content'] !!}</h2>
                             <div>
                                 <div class="accordion" id="accordion-course-content">
                                     @foreach ($course->course_content as $key => $item)
@@ -116,7 +116,7 @@
 
                         <div class="mt-5">
                             <div class="d-flex justify-content-between align-items-center border-bottom">
-                                <h4 class="text-montserrat">Reviews</h4>
+                                <h4 class="text-montserrat">{!! $content['reviews'] !!}</h4>
                                 {{-- <form action="" method="post">
                                     <div class="form-group">
                                         <div class="input-group">
@@ -167,7 +167,7 @@
                         <div class="pt-4 pt-lg-0">
                             <div class="card">
                                 <div class="card-body">
-                                    <h2 class="text-montserrat">Requirements</h2>
+                                    <h2 class="text-montserrat">{!! $content['requirements'] !!}</h2>
                                     <div>
                                         <ul class="pl-3">
                                             @foreach ($course->requirements as $item)
@@ -180,7 +180,7 @@
                         </div>
 
                         <div class="mt-5">
-                            <h2 class="text-montserrat">Description</h2>
+                            <h2 class="text-montserrat">{!! $content['description'] !!}</h2>
                             <div>
                                 {!! $course->description !!}
                             </div>
@@ -204,14 +204,14 @@
                             <div class="d-flex flex-column justify-content-between h-100">
                                 <div class="pb-2">
                                     <i class="fas fa-certificate text-yellow"></i>
-                                    Guaranteed certificate
+                                    {!! $content['box']['certificate_guaranteed'] !!}
                                 </div>
                                 <div>
-                                    <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow font-weight-bold">Enroll Now</a>
+                                    <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow font-weight-bold">{!! $content['box']['enroll_now'] !!}</a>
                                 </div>
                             </div>
                             <div class="pt-2">
-                                <h5>Includes:</h5>
+                                <h5>{!! $content['box']['includes'] !!}:</h5>
                                 <ul class="fa-ul pb-0 pl-0 my-0 ml-4">
                                     <li><i class="fas fa-file-video fa-li"></i> {{ $course->includes->videos }}</li>
                                     <li><i class="fas fa-file fa-li"></i> {{ $course->includes->lessons }}</li>
@@ -252,15 +252,15 @@
                                 <div class="">
                                     <div class="d-flex flex-column justify-content-between h-100">
                                         <div>
-                                            <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow btn-block w-50 text-large font-weight-bold">Enroll Now</a>
+                                            <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow btn-block w-50 text-large font-weight-bold">{!! $content['box']['enroll_now'] !!}</a>
                                         </div>
                                     </div>
                                     <div class="pt-2">
                                         <i class="fas fa-certificate text-yellow"></i>
-                                        Guaranteed certificate
+                                        {!! $content['box']['certificate_guaranteed'] !!}
                                     </div>
                                     <div class="pt-2">
-                                        <h5>Includes:</h5>
+                                        <h5>{!! $content['box']['includes'] !!}:</h5>
                                         <ul class="fa-ul pb-0 pl-0 my-0 ml-4">
                                             <li><i class="fas fa-file-video fa-li"></i> {{ $course->includes->videos }}</li>
                                             <li><i class="fas fa-file fa-li"></i> {{ $course->includes->lessons }}</li>

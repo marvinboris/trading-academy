@@ -57,7 +57,7 @@ class NotificationsController extends Controller
                 'content' => $content
             ];
         }
-        return view('user.notifications', compact('data'));
+        return view('pages.user.notifications', compact('data'));
     }
 
     public function show($id)
@@ -110,6 +110,6 @@ class NotificationsController extends Controller
             'datetime' => $notification->created_at->diffForHumans(),
             'content' => $content
         ];
-        return view('user.notification', compact('data'));
+        return view('pages.user.notification', compact('data'));
     }
 }

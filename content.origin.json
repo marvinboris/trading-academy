@@ -1,19 +1,14 @@
 {
     "global": {
+        "website": "infos@gitacademy.net",
         "phone": "+237 655 888 468",
         "email": "liyeplimal@gmail.com",
         "contact": "contact@gitacademy.net",
         "support": "support@gitacademy.net",
-        "logo": "/images/Groupe 130@2x.png",
-        "banner": "/images/wp2054297.jpg"
+        "logo": "/images/Groupe 130@2x.png"
     },
     "pages": {
         "en": {
-            "components": {
-                "post": {
-                    "read_more": "Read more"
-                }
-            },
             "frontend": {
                 "header": {
                     "nav": {

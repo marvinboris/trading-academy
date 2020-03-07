@@ -23,6 +23,6 @@ class TeamController extends Controller
             'headBgColor' => 'green',
             'bodyBgColor' => 'light',
         ];
-        return view('user.team', compact('data'));
+        return view('pages.user.team', compact('data'));
     }
 }

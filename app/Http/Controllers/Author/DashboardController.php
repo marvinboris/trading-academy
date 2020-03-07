@@ -49,6 +49,6 @@ class DashboardController extends Controller
         foreach ($commissions as $item) {
             $commission += $item->amount;
         }
-        return view('user.author.dashboard', compact('team', 'posts', 'balance', 'commission', 'teamTable'));
+        return view('pages.user.author.dashboard', compact('team', 'posts', 'balance', 'commission', 'teamTable'));
     }
 }

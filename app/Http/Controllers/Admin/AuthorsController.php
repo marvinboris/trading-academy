@@ -35,7 +35,7 @@ class AuthorsController extends Controller
                 ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->user->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
             ]
         ];
-        return view('admin.users.authors.index', compact('data'));
+        return view('pages.admin.users.authors.index', compact('data'));
     }
 
     /**
@@ -130,7 +130,7 @@ class AuthorsController extends Controller
                 ]
             ]
         ];
-        return view('admin.users.authors.create', compact('data'));
+        return view('pages.admin.users.authors.create', compact('data'));
     }
 
     /**

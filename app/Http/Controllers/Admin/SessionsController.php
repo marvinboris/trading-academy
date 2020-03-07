@@ -32,7 +32,7 @@ class SessionsController extends Controller
                 ['key' => 'Places', 'value' => function ($item) { return $item->places; }],
             ]
         ];
-        return view('admin.sessions.index', compact('data'));
+        return view('pages.admin.sessions.index', compact('data'));
     }
 
     /**

@@ -8,6 +8,6 @@ class MessagesController extends Controller
 {
     //
     public function index() {
-        return view('user.messages');
+        return view('pages.user.messages');
     }
 }

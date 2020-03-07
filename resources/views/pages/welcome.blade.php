@@ -7,7 +7,7 @@
 
 @section('content')
 <section class="home">
-    <div class="position-relative" style="height: calc(100vh - 95px);">
+    <div class="position-relative full-height-app">
         <div class="position-absolute h-100 w-100">
             <div id="carousel" class="carousel slide carousel-fade h-100" data-ride="carousel" data-interval="2000">
                 <ol class="carousel-indicators">
@@ -19,7 +19,7 @@
                 <div class="carousel-inner h-100 position-relative d-flex align-items-center">
                     <div id="banner" class="w-75 mx-auto text-center text-sm-left">
                         <div class=" text-orange text-montserrat h1 title">
-                            Welcome to
+                            {!! $content['slider']['content'][0]['first'] !!}
                         </div>
                         <div class="my-5">
                             <div>
@@ -30,26 +30,20 @@
                                         <div class="bullet-3 rounded-circle bg-green shadow position-absolute" style="width: 62px; height: 62px; top: 20px; right: -10px;"></div>
                                     </div>
 
-                                    <div class="text-allexist text-white content d-sm-none" style="font-size: 2.5rem;">The best African Crypto <br>Trading School</div>
-                                    <div class="text-allexist text-white display-4 d-none d-sm-block content pb-4 pl-4">The best African Crypto <br>Trading School</div>
+                                    <div class="text-allexist text-white content d-sm-none" style="font-size: 2.5rem;">{!! $content['slider']['content'][0]['second'] !!}</div>
+                                    <div class="text-allexist text-white display-4 d-none d-sm-block content pb-4 pl-4">{!! $content['slider']['content'][0]['second'] !!}</div>
                                 
                                 </div>
                                 <div class="lead text-white subcontent">
-                                    Get started with to learn the best crypto trading<br>Techniques and be the best
+                                    {!! $content['slider']['content'][0]['third'] !!}
                                 </div>
                             </div>
                         </div>
                         @guest
                         <div>
-                            {{-- <a href="{{ route('register') }}" class="btn-group text-allexist link text-decoration-none">
-                                <span class="btn btn-green btn-lg rounded-0 px-5 py-3">Sign Up</span>
-                                <div class="d-inline-flex justify-content-center align-items-center bg-darkblue text-white rounded-0 pr-3 pl-3">
-                                    <i class="fas fa-2x fa-arrow-alt-circle-right"></i>
-                                </div>
-                            </a> --}}
                             <a class="nav-link btn-group btn-animate" style="left: 0;" href="{{ route('register') }}">
                                 <div class="btn btn-lg btn-green primary pd-x-0 overflow-hidden rounded-sm static link text-allexist position-relative">
-                                    <span class="d-block pd-x-3 text-x-large py-1">{{ __('Sign Up') }}</span>
+                                    <span class="d-block pd-x-3 text-x-large py-1">{{ __($content['slider']['sign_up']) }}</span>
                                     <div class="bg-darkblue secondary align-items-center d-none active rounded-sm-right px-3 py-2 position-absolute h-100" style="top: 0; right: 0;">
                                         <i class="fas fa-lg fa-arrow-alt-circle-right"></i>
                                     </div>
@@ -60,15 +54,15 @@
 
                     </div>
                     <div class="carousel-item h-100 active">
-                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset('/images/wp2054297.jpg') }}'); background-size: cover; background-position: center;"></div>
+                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset($content['slider']['content'][0]['img']) }}'); background-size: cover; background-position: center;"></div>
                     </div>
 
                     <div class="carousel-item h-100">
-                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset('/images/DX-margin-trade-crypto.jpg') }}'); background-size: cover; background-position: center;"></div>
+                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset($content['slider']['content'][1]['img']) }}'); background-size: cover; background-position: center;"></div>
                     </div>
 
                     <div class="carousel-item h-100">
-                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset('/images/3commas-cover.jpg') }}'); background-size: cover; background-position: center;"></div>
+                        <div class="pt-5 h-100" style="background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url('{{ asset($content['slider']['content'][2]['img']) }}'); background-size: cover; background-position: center;"></div>
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
@@ -97,29 +91,20 @@
         <div class="px-md-5">
             <div class="row align-items-center">
                 <div class="col-lg-4 pr-lg-5 pb-3 pb-lg-0">
-                    <img src="{{ asset('/images/cryptocurrency_esoteric-768x768@2x.png') }}" alt="Pic" class="img-fluid w-100">
+                    <img src="{{ asset($content['presentation']['first_pic']) }}" alt="Pic" class="img-fluid w-100">
                 </div>
                 <div class="col-lg-4 pb-3 pb-lg-0">
                     <div class="d-inline-block h3 border-bottom pb-3 mb-3 text-montserrat text-700">
-                        What you have to know on your Crypto Trading Academy
+                        {!! $content['presentation']['title'] !!}
                     </div>
                     <div>
                         <p>
-                            Get started with to learn the best crypto trading <br>Technics and be the best
-                        </p>
-                        <p>
-                            In order to become financially independent, Global Investment Trading is tagged to bring to you the one and only way that has made his name. THE CRYPTO TRADING ACADEMY (by Global Investment Trading). From this site, you are going to learn all the needed skills to get familiar with Crypto Currency Market and become financially independent.
+                            {!! $content['presentation']['description'] !!}
                         </p>
                     </div>
-                    {{-- <a href="#" class="btn-group text-montserrat text-700 link text-decoration-none">
-                        <span class="btn btn-green btn-lg rounded-0 px-5 py-3 text-700 text-x-large">Play Video</span>
-                        <div class="d-inline-flex justify-content-center align-items-center bg-darkblue text-white rounded-0 pl-3 pr-3">
-                            <i class="fas fa-2x fa-arrow-alt-circle-right"></i>
-                        </div>
-                    </a> --}}
                     <a class="btn-animate" href="#">
                         <div class="btn btn-lg btn-green primary pd-x-0 overflow-hidden rounded-sm static link text-montserrat position-relative">
-                            <span class="d-block text-x-large py-1 pd-x-3">{{ __('Play Video') }}</span>
+                            <span class="d-block text-x-large py-1 pd-x-3">{{ __($content['presentation']['play_video']) }}</span>
                             <div class="bg-darkblue secondary align-items-center d-none active rounded-sm-right px-3 py-2 position-absolute h-100" style="top: 0; right: 0;">
                                 <i class="fas fa-lg fa-arrow-alt-circle-right"></i>
                             </div>
@@ -128,7 +113,7 @@
                 </div>
                 <div class="col-lg-4 pl-lg-5 pb-3 pb-lg-0">
                     <div class="rounded-lg shadow border bg-white" style="padding: 9px 12px;">
-                        <img src="{{ asset('/images/IronX-Crypto-exchange-Blog.jpg') }}" alt="Pic" class="img-fluid w-100 border shadow">
+                        <img src="{{ asset($content['presentation']['second_pic']) }}" alt="Pic" class="img-fluid w-100 border shadow">
                     </div>
                 </div>
             </div>
@@ -140,7 +125,7 @@
             <div class="bg-white w-100 h-100" style="clip-path: polygon(100% 0%, 20% 0%, 0% 20%, 50% 100%, 100% 100%);"></div>
         </div>
         <div class="polygone position-absolute" style="top: -5%; right: 0; width: 23%; height: 84%; filter: drop-shadow(-5px 0px 5px rgba(50, 50, 0, 0.5));">
-            <div class="w-100 h-100" style="clip-path: polygon(100% 0%, calc(20% + 15px) 0%, 30px 20%, calc(50% + 15px) 100%, 100% 100%); background-image: url('{{ asset('/images/ss-shattering-ath-bitcoin.jpg') }}'); background-position: center; background-size: cover;"></div>
+            <div class="w-100 h-100" style="clip-path: polygon(100% 0%, calc(20% + 15px) 0%, 30px 20%, calc(50% + 15px) 100%, 100% 100%); background-image: url('{{ asset($content['level_courses']['polygon']) }}'); background-position: center; background-size: cover;"></div>
         </div>
         <div class="px-md-5 row">
             <div class="courses-section col-12" style="transform: scale(.78) translate(-11%, -11%);">
@@ -148,11 +133,11 @@
                     <div class="d-flex">
                         <i class="fas fa-play fa-3x"></i>
                         <h1 class="text-montserrat text-700 d-inline-block border-bottom border-white-50 pb-3 ml-4 mb-3">
-                            We have the right course for you.
+                            {!! $content['level_courses']['title'] !!}
                         </h1>
                     </div>
                     <p class="pt-3 font-weight-light d-inline-block">
-                        The Crypto trading academy gives you the opportunity to start learning from the very basics. Getting into to Crypto Currency Trading has never been an easy decision to take. But as our Goal is to make everyone financially independent through this training, all the trainees will have to start from a beginner level and later can be qualified to go to the next level.
+                        {!! $content['level_courses']['description'] !!}
                     </p>
                 </div>
 
@@ -171,7 +156,7 @@
                             <i class="fas fa-play fa-3x" style="opacity: 0;"></i>
                             <h2 class="text-montserrat text-700 flex-fill border-bottom border-white-50 pb-3 ml-4 mb-3">
                                 <div class="d-inline-block position-relative">
-                                    Why choose us ?
+                                    {!! $content['statics']['title'] !!}
                                     <div class="rounded-circle bg-white position-absolute" style="bottom: -1rem; left: 50%; transform: translate(-50%, 50%); width: 12px; height: 12px;"></div>
                                 </div>
                             </h2>
@@ -185,7 +170,7 @@
                                     <i class="why-us-content  fas fa-book text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
                                 <div class="flex-fill text-center">
-                                    <div class="why-us-content text-x-large font-weight-light">Courses</div>
+                                    <div class="why-us-content text-x-large font-weight-light">{!! $content['statics']['course'] !!}</div>
                                     <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">03</span></div>
                                 </div>
                             </div>
@@ -196,7 +181,7 @@
                                     <i class="why-us-content fas fa-user-friends text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
                                 <div class="flex-fill text-center">
-                                    <div class="why-us-content text-x-large font-weight-light">Total enrolled</div>
+                                    <div class="why-us-content text-x-large font-weight-light">{!! $content['statics']['enrolled'] !!}</div>
                                     <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">51</span></div>
                                 </div>
                             </div>
@@ -207,7 +192,7 @@
                                     <i class="why-us-content fas fa-graduation-cap text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
                                 <div class="flex-fill text-center">
-                                    <div class="why-us-content text-x-large font-weight-light">Certified</div>
+                                    <div class="why-us-content text-x-large font-weight-light">{!! $content['statics']['certified'] !!}</div>
                                     <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">20</span></div>
                                 </div>
                             </div>
@@ -218,7 +203,7 @@
                                     <i class="why-us-content fas fa-user-tie text-orange fa-4x pr-3 mr-3 border-right border-white-50"></i>
                                 </div>
                                 <div class="flex-fill text-center">
-                                    <div class="why-us-content text-x-large font-weight-light">Trainers</div>
+                                    <div class="why-us-content text-x-large font-weight-light">{!! $content['statics']['trainer'] !!}</div>
                                     <div class="why-us-content text-allexist text-xx-large text-center"><span class="counter">05</span></div>
                                 </div>
                             </div>
@@ -234,9 +219,9 @@
         'fontColor' => 'dark',
         'title' => [
             'color' => 'green',
-            'text' => 'What they are saying on our course content'
+            'text' => $content['testimonial']['title']
         ],
-        'subtitle' => 'We always wanted go give out the best to all our trainees. We alone cannot convince you. Check out by yourself if we are credible or not.'
+        'subtitle' => $content['testimonial']['description']
     ])
         <div class="row">
             <div class="col-12">
@@ -256,7 +241,7 @@
             <div class="col-12 text-montserrat">
                 <div class="d-flex justify-content-end pt-4">
                     <a href="#" class="d-flex align-items-center text-dark">
-                        <div class="font-weight-bold pr-2">View full list</div>
+                        <div class="font-weight-bold pr-2">{!! $content['testimonial']['full_list'] !!}</div>
                         <div>
                             <div class="d-flex bg-dark position-relative justify-content-center align-items-center" style="width: 1px; height: 40px; border-radius: 5px;">
                             </div>
@@ -275,9 +260,9 @@
         'fontColor' => 'dark',
         'title' => [
             'color' => 'green',
-            'text' => 'Our Blog'
+            'text' => $content['blog']['title']
         ],
-        'subtitle' => 'Find out the latest news from our blog'
+        'subtitle' => $content['blog']['description']
     ])
         <div class="row justify-content-center">
             @foreach ($posts as $post)
@@ -288,7 +273,7 @@
             <div class="col-12 text-montserrat">
                 <div class="d-flex justify-content-end pt-4">
                     <a href="{{ route('blog') }}" class="d-flex align-items-center text-darkblue">
-                        <div class="font-weight-bold pr-2">View full list</div>
+                        <div class="font-weight-bold pr-2">{!! $content['testimonial']['full_list'] !!}</div>
                         <div>
                             <div class="d-flex bg-darkblue position-relative justify-content-center align-items-center" style="width: 1px; height: 40px; border-radius: 5px;">
                             </div>
@@ -308,6 +293,8 @@
     <script src="{{ asset('js/owl.carousel.min.js') }}" defer></script>
     <script>
         $(function () {
+            const sliders = {!! json_encode($content['slider']['content']) !!};
+
             $(".owl-carousel").owlCarousel({ responsive: {0: {items: 1}, 1000: {items: 2}}, loop: true });
 
             const carousel = $('#carousel');
@@ -318,27 +305,27 @@
 
             const data = [
                 {
-                    title: 'Welcome to',
-                    content: 'The best African Crypto <br>Trading School',
-                    subcontent: 'Get started with to learn the best crypto trading<br>Techniques and be the best',
+                    title: sliders[0].first,
+                    content: sliders[0].second,
+                    subcontent: sliders[0].third,
                     green: { top: 20 },
                     link: { text: 'Sign Up', href: '#' },
                     white: { top: 0, left: 0 },
                     orange: { bottom: -12, right: -22 }
                 },
                 {
-                    title: 'Learn More',
-                    content: 'We offer the best Crypto <br>Trading courses',
-                    subcontent: 'Want to know more ?',
+                    title: sliders[1].first,
+                    content: sliders[1].second,
+                    subcontent: sliders[1].third,
                     green: { top: 40 },
                     link: { text: 'Read more', href: '#' },
                     white: { top: 0, left: -20 },
                     orange: { bottom: 12, right: 60 }
                 },
                 {
-                    title: 'Get the best',
-                    content: 'Crypto Trading<br>courses here',
-                    subcontent: 'Get started with to learn the best crypto trading<br>Techniques and be the best',
+                    title: sliders[2].first,
+                    content: sliders[2].second,
+                    subcontent: sliders[2].third,
                     green: { top: 0 },
                     link: { text: 'Sign Up', href: '#' },
                     white: { top: -20, left: 20 },

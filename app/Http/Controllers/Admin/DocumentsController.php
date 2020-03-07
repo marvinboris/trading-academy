@@ -34,7 +34,7 @@ class DocumentsController extends Controller
                 }],
             ]
         ];
-        return view('admin.media.documents.index', compact('data'));
+        return view('pages.admin.media.documents.index', compact('data'));
     }
 
     /**

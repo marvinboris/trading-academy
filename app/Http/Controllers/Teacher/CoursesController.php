@@ -36,7 +36,7 @@ class CoursesController extends Controller
                 ['key' => 'Language', 'value' => function ($item) { return $item->lang; }],
             ]
         ];
-        return view('user.teacher.courses.index', compact('data'));
+        return view('pages.user.teacher.courses.index', compact('data'));
     }
 
     /**
@@ -47,7 +47,7 @@ class CoursesController extends Controller
     public function create()
     {
         //
-        return view('user.teacher.courses.create');
+        return view('pages.user.teacher.courses.create');
     }
 
     /**
@@ -82,7 +82,7 @@ class CoursesController extends Controller
     {
         //
         $course = Teacher::where('user_id', Auth::user()->id)->first()->courses()->findOrFail($id);
-        return view('user.teacher.courses.edit', compact('course'));
+        return view('pages.user.teacher.courses.edit', compact('course'));
     }
 
     /**

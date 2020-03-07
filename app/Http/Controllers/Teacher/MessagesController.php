@@ -28,7 +28,7 @@ class MessagesController extends Controller
             'headBgColor' => 'green',
             'bodyBgColor' => 'light',
         ];
-        return view('user.teacher.messages.index', compact('data'));
+        return view('pages.user.teacher.messages.index', compact('data'));
     }
 
     /**

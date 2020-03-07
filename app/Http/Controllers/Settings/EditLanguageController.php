@@ -12,7 +12,7 @@ class EditLanguageController extends Controller
     //
     public function get()
     {
-        return view('user.settings.edit-language', [
+        return view('pages.user.settings.edit-language', [
             'languages' => Language::get(),
             'selected' => Auth::user()->lang
         ]);

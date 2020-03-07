@@ -39,7 +39,7 @@ class PostsController extends Controller
                 ['key' => 'Updated at', 'value' => function ($item) { return $item->updated_at->diffForHumans(); }]
             ]
         ];
-        return view('user.author.posts.index', compact('data'));
+        return view('pages.user.author.posts.index', compact('data'));
     }
 
     /**
@@ -98,7 +98,7 @@ class PostsController extends Controller
                 ]
             ]
         ];
-        return view('user.author.posts.create', compact('data'));
+        return view('pages.user.author.posts.create', compact('data'));
     }
 
     /**
@@ -196,7 +196,7 @@ class PostsController extends Controller
                 ]
             ]
         ];
-        return view('user.author.posts.edit', compact('data'));
+        return view('pages.user.author.posts.edit', compact('data'));
     }
 
     /**

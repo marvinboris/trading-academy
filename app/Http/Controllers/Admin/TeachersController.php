@@ -34,7 +34,7 @@ class TeachersController extends Controller
                 ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->user->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
             ]
         ];
-        return view('admin.users.teachers.index', compact('data'));
+        return view('pages.admin.users.teachers.index', compact('data'));
     }
 
     /**

@@ -1,11 +1,17 @@
 @extends('layouts.app')
 
+@php
+    $jsonString = file_get_contents(base_path('content.json'));
+    $contentFile = json_decode($jsonString, true);
+    $content = $contentFile['pages'][Session::get('lang')]['frontend']['pages']['sign_in'];
+@endphp
+
 @section('content')
 <div class="container">
     <div class="row align-items-center justify-content-between full-height-app py-5">
         <div class="col-md-6">
             <div class="position-relative">
-                <img src="{{ asset('images/Groupe 157.png') }}" alt="First pic sign in" class="img-fluid">
+                <img src="{{ asset($content['img']) }}" alt="First pic sign in" class="img-fluid">
             </div>
         </div>
         <div class="col-md-5">
@@ -32,17 +38,17 @@
                     </ul>
                 </div>
             @endif
-            <h1 class="text-center text-montserrat font-weight-bold mb-3 text-green">Sign In</h1>
+            <h1 class="text-center text-montserrat font-weight-bold mb-3 text-green">{!! $content['title'] !!}</h1>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                @component('components.ui.form-group', ['id' => 'email', 'type' => 'email', 'required' => 'required', 'class' => '', 'icon' => 'fas fa-at', 'name' => 'email', 'placeholder' => 'E-Mail Address', 'message' => $message ?? '']) value="{{ old('email') }}" @endcomponent
-                @component('components.ui.form-group', ['id' => 'password', 'type' => 'password', 'required' => 'required', 'class' => '', 'icon' => 'fas fa-key', 'name' => 'password', 'placeholder' => 'Password', 'message' => $message ?? '']) value="{{ old('password') }}" @endcomponent
+                @component('components.ui.form-group', ['id' => 'email', 'type' => 'email', 'required' => 'required', 'class' => '', 'icon' => 'fas fa-at', 'name' => 'email', 'placeholder' => $content['form']['email'], 'message' => $message ?? '']) value="{{ old('email') }}" @endcomponent
+                @component('components.ui.form-group', ['id' => 'password', 'type' => 'password', 'required' => 'required', 'class' => '', 'icon' => 'fas fa-key', 'name' => 'password', 'placeholder' => $content['form']['password'], 'message' => $message ?? '']) value="{{ old('password') }}" @endcomponent
 
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                        <label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
+                        <label class="custom-control-label" for="remember">{{ __($content['form']['remember']) }}</label>
                     </div>
                 </div>
 
@@ -50,7 +56,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <button type="submit" class="btn btn-green btn-block py-3 font-weight-bold">
-                                {{ __('Sign In') }}
+                                {{ __($content['form']['sign_in']) }}
                                 <i class="fas fa-sign-in-alt ml-2"></i>
                             </button>
                         </div>
@@ -59,13 +65,13 @@
                         <div class="form-group">
                             @if (Route::has('password.request'))
                                 <a class="text-green" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password ?') }}
+                                    {{ __($content['form']['text']['forgot'] . ' ?') }}
                                 </a>
                             @endif
                             @if (Route::has('register'))
-                                Have no account ?
+                                {!! $content['form']['text']['have'] !!} ?
                                 <a class="text-green" href="{{ route('register') }}">
-                                    {{ __('Sign Up') }}
+                                    {{ __($content['form']['text']['sign_up']) }}
                                 </a>
                             @endif
                         </div>

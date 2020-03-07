@@ -46,7 +46,7 @@ class DocumentsController extends Controller
             ]
         ];
 
-        return view('user.teacher.documents.index', compact('data'));
+        return view('pages.user.teacher.documents.index', compact('data'));
     }
 
     /**
@@ -109,7 +109,7 @@ class DocumentsController extends Controller
             ]
         ];
 
-        return view('user.teacher.documents.create', compact('data'));
+        return view('pages.user.teacher.documents.create', compact('data'));
     }
 
     /**
@@ -212,7 +212,7 @@ class DocumentsController extends Controller
             ]
         ];
 
-        return view('user.teacher.documents.edit', compact('data'));
+        return view('pages.user.teacher.documents.edit', compact('data'));
     }
 
     /**

@@ -51,7 +51,7 @@ class DepositsController extends Controller
             'headBgColor' => 'green',
             'bodyBgColor' => 'light',
         ];
-        return view('user.finance.deposit.index', compact('data'));
+        return view('pages.user.finance.deposit.index', compact('data'));
     }
 
     /**
@@ -63,7 +63,7 @@ class DepositsController extends Controller
     {
         //
         $methods = Method::where('name', '!=', 'Admin')->get();
-        return view('user.finance.deposit.create', [
+        return view('pages.user.finance.deposit.create', [
             'methods' => $methods
         ]);
     }

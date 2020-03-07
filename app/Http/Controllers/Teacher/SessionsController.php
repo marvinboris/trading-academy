@@ -43,7 +43,7 @@ class SessionsController extends Controller
                 }],
             ]
         ];
-        return view('user.teacher.sessions.index', compact('data'));
+        return view('pages.user.teacher.sessions.index', compact('data'));
     }
 
     /**
@@ -125,7 +125,7 @@ class SessionsController extends Controller
                 ],
             ]
         ];
-        return view('user.teacher.sessions.create', compact('data'));
+        return view('pages.user.teacher.sessions.create', compact('data'));
     }
 
     /**
@@ -246,7 +246,7 @@ class SessionsController extends Controller
                 ],
             ]
         ];
-        return view('user.teacher.sessions.edit', compact('data'));
+        return view('pages.user.teacher.sessions.edit', compact('data'));
     }
 
     /**

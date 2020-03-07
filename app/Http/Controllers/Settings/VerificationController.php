@@ -19,7 +19,7 @@ class VerificationController extends Controller
             'voter_card' => "Voter's Card"
         ];
 
-        return view('user.settings.verification', [
+        return view('pages.user.settings.verification', [
             'types' => $types
         ]);
     }

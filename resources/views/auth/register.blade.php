@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @php
+    $jsonString = file_get_contents(base_path('content.json'));
+    $contentFile = json_decode($jsonString, true);
+    $content = $contentFile['pages'][Session::get('lang')]['frontend']['pages']['sign_up'];
+@endphp
+
+@php
 $phoneData = json_decode(file_get_contents('http://country.io/phone.json'), true);
 $namesData = json_decode(file_get_contents('http://country.io/names.json'), true);
 ksort($phoneData);
@@ -20,16 +26,15 @@ asort($namesData);
                     </ul>
                 </div>
             @endif
-            <h1 class="text-center text-montserrat font-weight-bold mb-3 text-green">Sign Up</h1>
+            <h1 class="text-center text-montserrat font-weight-bold mb-3 text-green">{{ $content['title'] }}</h1>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-
                 <div class="row">
-                    @component('components.ui.form-group', ['id' => 'first-name', 'type' => 'text', 'required' => 'required', 'class' => 'col-6 pr-1', 'icon' => 'fas fa-user', 'name' => 'first_name', 'placeholder' => 'First Name']) value="{{ old('first_name') }}" @endcomponent
-                    @component('components.ui.form-group', ['id' => 'last-name', 'type' => 'text', 'required' => 'required', 'class' => 'col-6 pl-1', 'icon' => 'fas fa-user', 'name' => 'last_name', 'placeholder' => 'Last Name']) value="{{ old('last_name') }}" @endcomponent
+                    @component('components.ui.form-group', ['id' => 'first-name', 'type' => 'text', 'required' => 'required', 'class' => 'col-6 pr-1', 'icon' => 'fas fa-user', 'name' => 'first_name', 'placeholder' => $content['form']['first_name']]) value="{{ old('first_name') }}" @endcomponent
+                    @component('components.ui.form-group', ['id' => 'last-name', 'type' => 'text', 'required' => 'required', 'class' => 'col-6 pl-1', 'icon' => 'fas fa-user', 'name' => 'last_name', 'placeholder' => $content['form']['last_name']]) value="{{ old('last_name') }}" @endcomponent
                     <div class="form-group col-4 pr-1">
                         <select id="country" name="country" class="form-control border-0 bg-black-10 h-100">
-                            <option>Select your country</option>
+                            <option>{!! $content['form']['country'] !!}</option>
                             @foreach ($namesData as $key => $value)
                             <option value="{{ $phoneData[$key] }}" country="{{ $key }}" @if (old('country') === $phoneData[$key]) selected @endif>{{ $value }}</option>
                             @endforeach
@@ -46,7 +51,7 @@ asort($namesData);
                             <div class="input-group-prepend">
                                 <input type="text" id="code" name="code" class="input-group-text border-0 rounded-0 bg-black-10" value="{{ old('code') }}" style="width: 4rem;" placeholder="Code" readonly required>
                             </div>
-                            <input id="phone" type="tel" class="form-control text-fa border-0 bg-black-10 py-4 px-3 @error('phone') border is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="{{ __('Phone Number') }}" required autocomplete="phone">
+                            <input id="phone" type="tel" class="form-control text-fa border-0 bg-black-10 py-4 px-3 @error('phone') border is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="{{ __($content['form']['phone']) }}" required autocomplete="phone">
                         </div>
 
                         @error('phone')
@@ -55,27 +60,27 @@ asort($namesData);
                             </span>
                         @enderror
                     </div>
-                    @component('components.ui.form-group', ['id' => 'email', 'type' => 'email', 'required' => 'required', 'class' => 'col-6 pr-1', 'icon' => 'fas fa-at', 'name' => 'email', 'placeholder' => 'E-Mail Address']) value="{{ old('email') }}" @endcomponent
-                    @component('components.ui.form-group', ['id' => 'sponsor', 'type' => 'text', 'class' => 'col-6 pl-1', 'icon' => 'fas fa-user-friends', 'name' => 'sponsor', 'placeholder' => 'Sponsor ID']) @if (Request::query('ref')) readonly value="{{ Request::query('ref') }}" @else value="{{ old('sponsor') }}" @endif @endcomponent
-                    @component('components.ui.form-group', ['id' => 'password', 'type' => 'password', 'required' => 'required', 'class' => 'col-6 pr-1', 'icon' => 'fas fa-key', 'name' => 'password', 'placeholder' => 'Password']) value="{{ old('password') }}" @endcomponent
-                    @component('components.ui.form-group', ['id' => 'password-confirmation', 'type' => 'password', 'required' => 'required', 'class' => 'col-6 pl-1', 'icon' => 'fas fa-lock', 'name' => 'password_confirmation', 'placeholder' => 'Confirm Password']) value="{{ old('password_confirmation') }}" @endcomponent
+                    @component('components.ui.form-group', ['id' => 'email', 'type' => 'email', 'required' => 'required', 'class' => 'col-6 pr-1', 'icon' => 'fas fa-at', 'name' => 'email', 'placeholder' => $content['form']['email']]) value="{{ old('email') }}" @endcomponent
+                    @component('components.ui.form-group', ['id' => 'sponsor', 'type' => 'text', 'class' => 'col-6 pl-1', 'icon' => 'fas fa-user-friends', 'name' => 'sponsor', 'placeholder' => $content['form']['sponsor']]) @if (Request::query('ref')) readonly value="{{ Request::query('ref') }}" @else value="{{ old('sponsor') }}" @endif @endcomponent
+                    @component('components.ui.form-group', ['id' => 'password', 'type' => 'password', 'required' => 'required', 'class' => 'col-6 pr-1', 'icon' => 'fas fa-key', 'name' => 'password', 'placeholder' => $content['form']['password']]) value="{{ old('password') }}" @endcomponent
+                    @component('components.ui.form-group', ['id' => 'password-confirmation', 'type' => 'password', 'required' => 'required', 'class' => 'col-6 pl-1', 'icon' => 'fas fa-lock', 'name' => 'password_confirmation', 'placeholder' => $content['form']['password_confirmation']]) value="{{ old('password_confirmation') }}" @endcomponent
 
                     <div class="form-group col-12">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" name="terms" id="terms" {{ old('terms') ? 'checked' : '' }}>
-                            <label class="custom-control-label" for="terms">{{ __('I have read and accepted Privacy policy and Terms and Conditions') }}</label>
+                            <label class="custom-control-label" for="terms">{{ __($content['form']['terms']) }}</label>
                         </div>
                     </div>
 
                     <div class="col-12">
-                        <div class="password alert alert-danger">
+                        <div class="password alert alert-danger d-none">
                             <div class="row">
-                                <div id="uppercase" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> An uppercase letter</div>
-                                <div id="lowercase" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> A lowercase letter</div>
-                                <div id="number" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> A number</div>
-                                <div id="special" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> A special character</div>
-                                <div id="minimum" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> At least 8 characters</div>
-                                <div id="confirm" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> Confirm password</div>
+                                <div id="uppercase" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> {!! $content['form']['password_block']['uppercase'] !!}</div>
+                                <div id="lowercase" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> {!! $content['form']['password_block']['lowercase'] !!}</div>
+                                <div id="number" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> {!! $content['form']['password_block']['number'] !!}</div>
+                                <div id="special" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> {!! $content['form']['password_block']['special'] !!}</div>
+                                <div id="minimum" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> {!! $content['form']['password_block']['minimum'] !!}</div>
+                                <div id="confirm" class="text-purered col-sm-6"><i class="fas fa-times-circle text-x-small"></i> {!! $content['form']['password_block']['confirm'] !!}</div>
                             </div>
                         </div>
                     </div>
@@ -84,7 +89,7 @@ asort($namesData);
                         <div class="row align-items-center">
                             <div class="form-group col-6">
                                 <button type="submit" class="btn btn-green btn-block py-3 font-weight-bold">
-                                    {{ __('Register') }}
+                                    {{ __($content['form']['register']) }}
                                     <i class="fas fa-fw fa-user-plus mr-3"></i>
                                 </button>
                             </div>
@@ -92,7 +97,7 @@ asort($namesData);
                             <div class="form-group col-6">
                                 @if (Route::has('login'))
                                     <a class="text-green" href="{{ route('login') }}">
-                                        {{ __('I already have an account.') }}
+                                        {{ __($content['form']['sign_in']) }}
                                     </a>
                                 @endif
                             </div>
@@ -104,7 +109,7 @@ asort($namesData);
         </div>
         <div class="col-lg-6 order-first order-lg-2">
             <div class="position-relative">
-                <img src="{{ asset('images/Groupe 196.png') }}" alt="First pic sign in" class="img-fluid">
+                <img src="{{ asset($content['img']) }}" alt="First pic sign in" class="img-fluid">
             </div>
         </div>
     </div>
@@ -124,7 +129,7 @@ asort($namesData);
         
         const passwordBlock = $('.password.alert');
 
-        passwordBlock.hide();
+        passwordBlock.hide().removeClass('d-none');
         
         $('#password').keyup(function () {
             passwordBlock.slideDown();

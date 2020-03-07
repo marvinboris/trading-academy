@@ -6,12 +6,17 @@ use App\Post;
 use App\Course;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class FrontEndController extends Controller
 {
     //
     public function welcome()
     {
+        $jsonString = file_get_contents(base_path('content.json'));
+        $contentFile = json_decode($jsonString, true);
+        $content = $contentFile['pages'][Session::get('lang')]['frontend']['pages']['home'];
+
         $coursesData = Course::get();
         $courses = [];
 
@@ -57,6 +62,7 @@ class FrontEndController extends Controller
 
         $postsData = Post::latest()->limit(3)->get();
         $posts = [];
+
         foreach ($postsData as $post) {
             $posts[] = [
                 'title' => $post->title,
@@ -67,6 +73,7 @@ class FrontEndController extends Controller
                 'add' => 'data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom"'
             ];
         }
+
         $testimonials = [
             [
                 'name' => 'John Doe',
@@ -114,7 +121,9 @@ class FrontEndController extends Controller
                 'text' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no'
             ]
         ];
-        return view('welcome', [
+
+        return view('pages.welcome', [
+            'content' => $content,
             'courses' => $courses,
             'posts' => $posts,
             'testimonials' => $testimonials,
@@ -123,6 +132,10 @@ class FrontEndController extends Controller
 
     public function blog()
     {
+        $jsonString = file_get_contents(base_path('content.json'));
+        $contentFile = json_decode($jsonString, true);
+        $content = $contentFile['pages'][Session::get('lang')]['frontend']['pages']['blog'];
+
         $postsData = Post::latest()->limit(12)->get();
         $posts = [];
         foreach ($postsData as $post) {
@@ -136,13 +149,18 @@ class FrontEndController extends Controller
             ];
         }
 
-        return view('blog', [
+        return view('pages.blog', [
+            'content' => $content,
             'posts' => $posts
         ]);
     }
 
     public function about_us()
     {
+        $jsonString = file_get_contents(base_path('content.json'));
+        $contentFile = json_decode($jsonString, true);
+        $content = $contentFile['pages'][Session::get('lang')]['frontend']['pages']['about'];
+
         $trainersData = [
             [
                 'img' => '/images/11-6.jpg',
@@ -201,23 +219,34 @@ class FrontEndController extends Controller
             ]
         ];
 
-        return view('about-us', [
+        return view('pages.about-us', [
+            'content' => $content,
             'trainersData' => $trainersData
         ]);
     }
 
     public function contact()
     {
-        return view('contact');
+        $jsonString = file_get_contents(base_path('content.json'));
+        $contentFile = json_decode($jsonString, true);
+        $content = $contentFile['pages'][Session::get('lang')]['frontend']['pages']['contact'];
+
+        return view('pages.contact', [
+            'content' => $content
+        ]);
     }
 
     public function faq()
     {
-        return view('faq');
+        return view('pages.faq');
     }
 
     public function course($level)
     {
+        $jsonString = file_get_contents(base_path('content.json'));
+        $contentFile = json_decode($jsonString, true);
+        $content = $contentFile['pages'][Session::get('lang')]['frontend']['pages']['courses'];
+
         $colors = [
             'bronze' => 'pink',
             'silver' => 'orange',
@@ -225,7 +254,8 @@ class FrontEndController extends Controller
         ];
         $course = Course::where('slug', $level)->first();
 
-        return view('course', [
+        return view('pages.course', [
+            'content' => $content,
             'course' => $course,
             'colors' => $colors
         ]);

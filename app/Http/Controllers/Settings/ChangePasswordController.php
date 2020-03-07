@@ -15,7 +15,7 @@ class ChangePasswordController extends Controller
     {
         $languages = Language::get();
 
-        return view('user.settings.change-password', [
+        return view('pages.user.settings.change-password', [
             'languages' => $languages
         ]);
     }

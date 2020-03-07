@@ -36,7 +36,7 @@ class CommissionsController extends Controller
             'bodyBgColor' => '',
         ];
 
-        return view('admin.about-user.commissions', [
+        return view('pages.admin.about-user.commissions', [
             'data' => $data
         ]);
     }

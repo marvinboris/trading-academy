@@ -29,7 +29,7 @@ class PhotosController extends Controller
                 ['key' => 'Path', 'value' => function ($item) { return $item->path; }],
             ]
         ];
-        return view('admin.media.photos.index', compact('data'));
+        return view('pages.admin.media.photos.index', compact('data'));
     }
 
     /**

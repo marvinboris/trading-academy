@@ -130,7 +130,7 @@ class CryptoboxController extends Controller
         // IPN function cryptobox_new_payment(..) will automatically appear for each new payment two times - payment received and payment confirmed
         // Read more - https://gourl.io/api-php.html#ipn
 
-        return view('user.finance.deposit.cryptobox.index', [
+        return view('pages.user.finance.deposit.cryptobox.index', [
             'box' => $box,
             'coins' => $coins,
             'def_coin' => $def_coin,

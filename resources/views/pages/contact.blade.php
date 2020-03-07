@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@component('components.banner', ['title' => 'Contact'])
+@component('components.banner', ['title' => $content['title']])
 @endcomponent
 
 @component('components.section', [
@@ -17,7 +17,7 @@
         <div class="col-md-10 col-lg-7">
             <div class="w-100 mb-3">
                 <h1 class="text-montserrat font-weight-bold text-green">
-                    Contact information
+                    {!! $content['contact_info']['title'] !!}
                 </h1>
                 <div class="border-top pt-3 text-montserrat mt-3">
                     <div class="row">
@@ -53,20 +53,20 @@
         <div class="col-md-10 col-lg-5">
             <div class="">
                 <h1 class="text-montserrat font-weight-bold text-green">
-                    Message us
+                    {!! $content['message_us']['title'] !!}
                 </h1>
                 <div class="border-top pt-3 mt-3">
                     <form action="" method="post">
                         <div class="row">
-                            @component('components.ui.form-group', ['id' => 'name', 'type' => 'text', 'required' => 'required', 'class' => 'col-md-6 col-lg-12', 'icon' => 'fas fa-user', 'name' => 'name', 'placeholder' => 'Your name']) @endcomponent
-                            @component('components.ui.form-group', ['id' => 'email', 'type' => 'email', 'required' => 'required', 'class' => 'col-md-6 col-lg-12', 'icon' => 'fas fa-at', 'name' => 'email', 'placeholder' => 'Your email address']) @endcomponent
-                            @component('components.ui.form-group', ['id' => 'subject', 'type' => 'text', 'required' => 'required', 'class' => ' col-lg-12', 'icon' => 'fas fa-book', 'name' => 'subject', 'placeholder' => 'Subject']) @endcomponent
-                            @component('components.ui.form-group', ['id' => 'message', 'type' => 'textarea', 'required' => 'required', 'class' => ' col-lg-12', 'icon' => 'fas fa-envelope', 'name' => 'message', 'placeholder' => 'Your message']) @endcomponent
+                            @component('components.ui.form-group', ['id' => 'name', 'type' => 'text', 'required' => 'required', 'class' => 'col-md-6 col-lg-12', 'icon' => 'fas fa-user', 'name' => 'name', 'placeholder' => $content['message_us']['form']['name']]) @endcomponent
+                            @component('components.ui.form-group', ['id' => 'email', 'type' => 'email', 'required' => 'required', 'class' => 'col-md-6 col-lg-12', 'icon' => 'fas fa-at', 'name' => 'email', 'placeholder' => $content['message_us']['form']['email']]) @endcomponent
+                            @component('components.ui.form-group', ['id' => 'subject', 'type' => 'text', 'required' => 'required', 'class' => ' col-lg-12', 'icon' => 'fas fa-book', 'name' => 'subject', 'placeholder' => $content['message_us']['form']['subject']]) @endcomponent
+                            @component('components.ui.form-group', ['id' => 'message', 'type' => 'textarea', 'required' => 'required', 'class' => ' col-lg-12', 'icon' => 'fas fa-envelope', 'name' => 'message', 'placeholder' => $content['message_us']['form']['message']]) @endcomponent
 
                             <div class="col-12 form-group">
                                 <button class="border-0 p-0 btn-animate" href="#">
                                     <div class="btn btn-lg btn-green primary pd-x-0 overflow-hidden rounded-sm static link text-montserrat position-relative">
-                                        <span class="d-block text-x-large py-1 pd-x-3">{{ __('Submit') }}</span>
+                                        <span class="d-block text-x-large py-1 pd-x-3">{{ __($content['message_us']['form']['submit']) }}</span>
                                         <div class="bg-darkblue secondary align-items-center d-none active rounded-sm-right px-3 py-2 position-absolute h-100" style="top: 0; right: 0;">
                                             <i class="fas fa-lg fa-arrow-alt-circle-right"></i>
                                         </div>
