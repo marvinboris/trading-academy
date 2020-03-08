@@ -1,3 +1,9 @@
+@php
+    $jsonString = file_get_contents(base_path('content.json'));
+    $contentFile = json_decode($jsonString, true);
+    $componentContent = $contentFile['pages'][Session::get('lang')]['components']['post'];
+@endphp
+
 <div class="col-xl-4 col-lg-6 col-md-8 col-sm-12 pb-3 post" {!! $add ?? '' !!}>
     <div class="card border-0 position-relative overflow-hidden bg-transparent">
         <div class="position-absolute w-100 h-100 bg" style="background-image: linear-gradient(rgba(0, 0, 0, .25), rgba(0, 0, 0, .25)), url('{{ $img ? asset($img) : 'https://placehold.it/150x100' }}');"></div>
@@ -32,7 +38,7 @@
                         <div>
                             <a class="btn-animate" href="#">
                                 <div class="btn btn-light btn-sm pd-x-0 primary text-green overflow-hidden rounded-sm static link text-montserrat position-relative">
-                                    <span class="d-block small font-weight-bold text-montserrat px-3 py-1">{{ __('Read More') }}</span>
+                                    <span class="d-block small font-weight-bold text-montserrat px-3 py-1">{{ __($componentContent['read_more']) }}</span>
                                     <div class="bg-black-20 secondary align-items-center d-none active rounded-sm-right px-3 py-2 position-absolute h-100" style="top: 0; right: 0;">
                                         <i class="fas fa-external-link-alt"></i>
                                     </div>

@@ -69,7 +69,7 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
         Route::resource('roles', 'RolesController');
         Route::resource('sessions', 'SessionsController');
         Route::resource('views', 'ViewsController');
-        
+
         Route::name('cms.')->prefix('cms')->namespace('CMS')->group(function () {
             Route::name('global')->get('global', 'GlobalController@index');
             Route::name('global.post')->post('global', 'GlobalController@post');
@@ -77,9 +77,9 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
             Route::name('components')->get('components', 'ComponentsController@index');
             Route::name('components.post')->post('components', 'ComponentsController@post');
 
-            Route::name('front-end.page')->get('front-end/{page}', 'FrontEndController@page');
-            Route::name('front-end.index')->get('front-end', 'FrontEndController@index');
-            
+            Route::name('front-end')->get('front-end', 'FrontEndController@index');
+            Route::name('front-end.post')->post('front-end', 'FrontEndController@post');
+
             Route::name('back-end.index')->get('back-end', 'BackEndController@index');
         });
     });
@@ -90,8 +90,7 @@ if (!Session::has('lang') || !Session::has('flag')) {
         $lang = Auth::user()->lang;
         Session::put('lang', $lang);
         Session::put('flag', Language::where('lang', $lang)->first()->flag);
-    }
-    else {
+    } else {
         Session::put('lang', 'en');
         Session::put('flag', 'gb');
     }

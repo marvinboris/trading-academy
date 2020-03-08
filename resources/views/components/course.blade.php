@@ -1,3 +1,9 @@
+@php
+    $jsonString = file_get_contents(base_path('content.json'));
+    $contentFile = json_decode($jsonString, true);
+    $componentContent = $contentFile['pages'][Session::get('lang')]['components']['course'];
+@endphp
+
 <div class="col-xl-4 col-lg-4 col-sm-6 pb-3 pb-lg-0 d-flex flex-column position-relative level-card" {!! $add ?? '' !!}>
     {!! ($popular ?? '') ? '' : '
         <div class="trader-level position-absolute d-none" style="top: -25px; left: 4%; width: 92%;">
@@ -32,7 +38,7 @@
                     </div>
                     <div class="pt-3 overflow-hidden small">
                         <div class="d-flex flex-nowrap position-relative" style="left: -100%;">
-                            <a href="{{ $link }}" class="btn btn-{{ $color }} btn-block btn-lg shadow-sm" style="left: 0; flex: 0 0 100%;">Enroll now <i class="fas fa-arrow-alt-circle-right text-white border-left border-white-50 ml-3 pl-3"></i></a>
+                            <a href="{{ $link }}" class="btn btn-{{ $color }} btn-block btn-lg shadow-sm" style="left: 0; flex: 0 0 100%;">{!! $componentContent['enroll_now'] !!} <i class="fas fa-arrow-alt-circle-right text-white border-left border-white-50 ml-3 pl-3"></i></a>
                             <div class="row m-0 position-relative" style="flex: 0 0 100%;">
                                 <div class="col-3 pl-0 pr-1">
                                     <div class="d-flex">
@@ -40,9 +46,9 @@
                                             <i class="fas fa-clock text-{{ $iconColor }}"></i>
                                         </div>
                                         <div class="pl-1">
-                                            <div>Duration</div>
+                                            <div>{!! $componentContent['duration'] !!} </div>
                                             <div class="small font-weight-bold">
-                                                {{ $duration }} Hrs
+                                                {{ $duration }} {!! $componentContent['hrs'] !!} 
                                             </div>
                                         </div>
                                     </div>
@@ -53,7 +59,7 @@
                                             <i class="fas fa-user-clock text-{{ $iconColor }}"></i>
                                         </div>
                                         <div class="pl-1">
-                                            <div>Difficulty</div>
+                                            <div>{!! $componentContent['difficulty'] !!} </div>
                                             <div class="small font-weight-bold">
                                                 <i class="fas fa-xs fa-star"></i>
                                                 <i class="fas fa-xs fa-star"></i>
@@ -70,7 +76,7 @@
                                             <i class="fas fa-user-friends text-{{ $iconColor }}"></i>
                                         </div>
                                         <div class="pl-1">
-                                            <div>Reviews</div>
+                                            <div>{!! $componentContent['reviews'] !!} </div>
                                             <div class="small font-weight-bold">
                                                 {{ $reviews['mark'] }} <i class="fas text-yellow fa-star"></i>
                                                 <span class="font-weight-normal">({{ $reviews['voters'] }})</span>
@@ -84,8 +90,8 @@
                                             <i class="fas fa-certificate text-{{ $iconColor }}"></i>
                                         </div>
                                         <div class="pl-1">
-                                            <div>Certificate</div>
-                                            <div class="small font-weight-bold">Yes</div>
+                                            <div>{!! $componentContent['certificate'] !!} </div>
+                                            <div class="small font-weight-bold">{!! $componentContent['yes'] !!} </div>
                                         </div>
                                     </div>
                                 </div>

@@ -32,7 +32,7 @@
 @component('components.auth.aside.admin.dropdown', ['name' => 'cms', 'icon' => 'fas fa-file-signature', 'title' => 'CMS', 'link' => url('admin/cms')])
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Global', 'link' => route('admin.cms.global')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Components', 'link' => route('admin.cms.components')]) @endcomponent
-    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Front-end', 'link' => route('admin.cms.front-end.index')]) @endcomponent
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Front-end', 'link' => route('admin.cms.front-end')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Back-end', 'link' => route('admin.cms.back-end.index')]) @endcomponent
 @endcomponent
 @component('components.auth.aside.admin.link', ['link' => url('admin/notifications'), 'icon' => 'fas fa-bell']) Notifications @endcomponent
