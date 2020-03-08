@@ -97,7 +97,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-3">
-                                    <label for="{{ $language->lang }}-frontend-header-auth-logout" class="control-label">logout</label>
+                                    <label for="{{ $language->lang }}-frontend-header-auth-logout" class="control-label">Logout</label>
                                 </div>
                                 <div class="col-md-9">
                                     <input type="text" name="{{ $language->lang }}[frontend][header][auth][logout]" id="{{ $language->lang }}-frontend-header-auth-logout" class="form-control" value="{!! $page_content[$language->lang]['frontend']['header']['auth']['logout'] !!}" required>
@@ -192,7 +192,7 @@
                                     <label for="{{ $language->lang }}-frontend-footer-newsletter-form-email" class="control-label">E-Mail</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="email" name="{{ $language->lang }}[frontend][footer][newsletter][form][email]" id="{{ $language->lang }}-frontend-footer-newsletter-form-email" class="form-control" value="{!! $page_content[$language->lang]['frontend']['footer']['newsletter']['form']['email'] !!}" required>
+                                    <input type="text" name="{{ $language->lang }}[frontend][footer][newsletter][form][email]" id="{{ $language->lang }}-frontend-footer-newsletter-form-email" class="form-control" value="{!! $page_content[$language->lang]['frontend']['footer']['newsletter']['form']['email'] !!}" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -485,6 +485,552 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="tab-pane fade show" id="pills-{{ $language->lang }}-about" role="tabpanel" aria-labelledby="pills-{{ $language->lang }}-about-tab">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-about-title" class="control-label">Title</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][about][title]" id="{{ $language->lang }}-frontend-about-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['about']['title'] !!}" required>
+                                </div>
+                            </div>
+
+                            <legend>About</legend>
+                            <div class="row align-items-center">
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-about-about-title" class="control-label">Title</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][about][about][title]" id="{{ $language->lang }}-frontend-about-about-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['about']['about']['title'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-about-about-description" class="control-label">Description</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <textarea name="{{ $language->lang }}[frontend][pages][about][about][description]" id="{{ $language->lang }}-frontend-about-about-description" class="form-control summernote" required>{!! $page_content[$language->lang]['frontend']['pages']['about']['about']['description'] !!}</textarea>
+                                        </div>
+                                    </div>
+                                    @if ($language->lang == 'en')
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-about-about-img" class="control-label">Picture</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="{{ $language->lang }}[frontend][pages][about][about][img]" id="{{ $language->lang }}-frontend-about-about-img">
+                                                <label class="custom-file-label" for="{{ $language->lang }}-frontend-about-about-img">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="col-md-3">
+                                    <img src="{{ asset($page_content[$language->lang]['frontend']['pages']['about']['about']['img']) }}" alt="First Picture" class="img-fluid img-thumbnail">
+                                </div>
+                            </div>
+
+                            <legend>Mission</legend>
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-about-mission-title" class="control-label">Title</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][about][mission][title]" id="{{ $language->lang }}-frontend-about-mission-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['about']['mission']['title'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-about-mission-description" class="control-label">Description</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <textarea name="{{ $language->lang }}[frontend][pages][about][mission][description]" id="{{ $language->lang }}-frontend-about-mission-description" class="form-control summernote" required>{!! $page_content[$language->lang]['frontend']['pages']['about']['mission']['description'] !!}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <legend>Trainers</legend>
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-about-trainers-title" class="control-label">Title</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][about][trainers][title]" id="{{ $language->lang }}-frontend-about-trainers-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['about']['trainers']['title'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-about-trainers-description" class="control-label">Description</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <textarea name="{{ $language->lang }}[frontend][pages][about][trainers][description]" id="{{ $language->lang }}-frontend-about-trainers-description" class="form-control summernote" required>{!! $page_content[$language->lang]['frontend']['pages']['about']['trainers']['description'] !!}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade show" id="pills-{{ $language->lang }}-courses" role="tabpanel" aria-labelledby="pills-{{ $language->lang }}-courses-tab">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-courses-what_you_will_learn" class="control-label">What You Will Learn</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][courses][what_you_will_learn]" id="{{ $language->lang }}-frontend-courses-what_you_will_learn" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['courses']['what_you_will_learn'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-courses-course_content" class="control-label">Course Content</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][courses][course_content]" id="{{ $language->lang }}-frontend-courses-course_content" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['courses']['course_content'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-courses-requirements" class="control-label">Requirements</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][courses][requirements]" id="{{ $language->lang }}-frontend-courses-requirements" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['courses']['requirements'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-courses-description" class="control-label">Description</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][courses][description]" id="{{ $language->lang }}-frontend-courses-description" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['courses']['description'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-courses-reviews" class="control-label">Reviews</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][courses][reviews]" id="{{ $language->lang }}-frontend-courses-reviews" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['courses']['reviews'] !!}" required>
+                                </div>
+                            </div>
+
+                            <legend>Course Box</legend>
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-courses-box-includes" class="control-label">Includes</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][courses][box][includes]" id="{{ $language->lang }}-frontend-courses-box-includes" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['courses']['box']['includes'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-courses-box-certificate_guaranteed" class="control-label">Guaranteed Certificate</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][courses][box][certificate_guaranteed]" id="{{ $language->lang }}-frontend-courses-box-certificate_guaranteed" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['courses']['box']['certificate_guaranteed'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-courses-box-enroll_now" class="control-label">Enroll Now</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][courses][box][enroll_now]" id="{{ $language->lang }}-frontend-courses-box-enroll_now" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['courses']['box']['enroll_now'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade show" id="pills-{{ $language->lang }}-contact" role="tabpanel" aria-labelledby="pills-{{ $language->lang }}-contact-tab">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-contact-title" class="control-label">Title</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][contact][title]" id="{{ $language->lang }}-frontend-contact-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['contact']['title'] !!}" required>
+                                </div>
+                            </div>
+
+                            <legend>Contact Information</legend>
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-contact-contact_info-title" class="control-label">Title</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][contact][contact_info][title]" id="{{ $language->lang }}-frontend-contact-contact_info-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['contact']['contact_info']['title'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <legend>Message Us</legend>
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-contact-message_us-title" class="control-label">Title</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][contact][message_us][title]" id="{{ $language->lang }}-frontend-contact-message_us-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['contact']['message_us']['title'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-contact-message_us-form-email" class="control-label">E-Mail</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][contact][message_us][form][email]" id="{{ $language->lang }}-frontend-contact-message_us-form-email" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['contact']['message_us']['form']['email'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-contact-message_us-form-subject" class="control-label">Subject</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][contact][message_us][form][subject]" id="{{ $language->lang }}-frontend-contact-message_us-form-subject" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['contact']['message_us']['form']['subject'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-contact-message_us-form-message" class="control-label">Message</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][contact][message_us][form][message]" id="{{ $language->lang }}-frontend-contact-message_us-form-message" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['contact']['message_us']['form']['message'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-contact-message_us-form-submit" class="control-label">Submit</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][contact][message_us][form][submit]" id="{{ $language->lang }}-frontend-contact-message_us-form-submit" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['contact']['message_us']['form']['submit'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade show" id="pills-{{ $language->lang }}-blog" role="tabpanel" aria-labelledby="pills-{{ $language->lang }}-blog-tab">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-blog-title" class="control-label">Title</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][blog][title]" id="{{ $language->lang }}-frontend-blog-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['blog']['title'] !!}" required>
+                                </div>
+                            </div>
+
+                            <legend>Blog</legend>
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-blog-blog-title" class="control-label">Title</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][blog][blog][title]" id="{{ $language->lang }}-frontend-blog-blog-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['blog']['blog']['title'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-blog-blog-description" class="control-label">Description</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][blog][blog][description]" id="{{ $language->lang }}-frontend-blog-blog-description" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['blog']['blog']['description'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade show" id="pills-{{ $language->lang }}-sign_in" role="tabpanel" aria-labelledby="pills-{{ $language->lang }}-sign_in-tab">
+                            <div class="row align-items-center">
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_in-title" class="control-label">Title</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_in][title]" id="{{ $language->lang }}-frontend-sign_in-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_in']['title'] !!}" required>
+                                        </div>
+                                    </div>
+                                    @if ($language->lang == 'en')
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_in-img" class="control-label">Picture</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="{{ $language->lang }}[frontend][pages][sign_in][img]" id="{{ $language->lang }}-frontend-sign_in-img">
+                                                <label class="custom-file-label" for="{{ $language->lang }}-frontend-sign_in-img">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="col-md-3">
+                                    <img src="{!! asset($page_content[$language->lang]['frontend']['pages']['sign_in']['img']) !!}" alt="Picture" class="img-fluid img-thumbnail bg-white-10">
+                                </div>
+                            </div>
+
+                            <legend>Form</legend>
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_in-form-email" class="control-label">E-Mail</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_in][form][email]" id="{{ $language->lang }}-frontend-sign_in-form-email" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_in']['form']['email'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_in-form-password" class="control-label">Password</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_in][form][password]" id="{{ $language->lang }}-frontend-sign_in-form-password" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_in']['form']['password'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_in-form-remember" class="control-label">Remember</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_in][form][remember]" id="{{ $language->lang }}-frontend-sign_in-form-remember" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_in']['form']['remember'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_in-form-sign_in" class="control-label">Sign In</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_in][form][sign_in]" id="{{ $language->lang }}-frontend-sign_in-form-sign_in" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_in']['form']['sign_in'] !!}" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_in-form-text-forgot" class="control-label">Forgot</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_in][form][text][forgot]" id="{{ $language->lang }}-frontend-sign_in-form-text-forgot" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_in']['form']['text']['forgot'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_in-form-text-have" class="control-label">Have No Account</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_in][form][text][have]" id="{{ $language->lang }}-frontend-sign_in-form-text-have" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_in']['form']['text']['have'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_in-form-text-sign_up" class="control-label">Sign Up</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_in][form][text][sign_up]" id="{{ $language->lang }}-frontend-sign_in-form-text-sign_up" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_in']['form']['text']['sign_up'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade show" id="pills-{{ $language->lang }}-sign_up" role="tabpanel" aria-labelledby="pills-{{ $language->lang }}-sign_up-tab">
+                            <div class="row align-items-center">
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-title" class="control-label">Title</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][title]" id="{{ $language->lang }}-frontend-sign_up-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['title'] !!}" required>
+                                        </div>
+                                    </div>
+                                    @if ($language->lang == 'en')
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-img" class="control-label">Picture</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="{{ $language->lang }}[frontend][pages][sign_up][img]" id="{{ $language->lang }}-frontend-sign_up-img">
+                                                <label class="custom-file-label" for="{{ $language->lang }}-frontend-sign_up-img">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="col-md-3">
+                                    <img src="{!! asset($page_content[$language->lang]['frontend']['pages']['sign_up']['img']) !!}" alt="Picture" class="img-fluid img-thumbnail bg-white-10">
+                                </div>
+                            </div>
+
+                            <legend>Form</legend>
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-first_name" class="control-label">First Name</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][first_name]" id="{{ $language->lang }}-frontend-sign_up-form-first_name" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['first_name'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-last_name" class="control-label">Last Name</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][last_name]" id="{{ $language->lang }}-frontend-sign_up-form-last_name" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['last_name'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-phone" class="control-label">Phone</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][phone]" id="{{ $language->lang }}-frontend-sign_up-form-phone" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['phone'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-email" class="control-label">E-Mail</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][email]" id="{{ $language->lang }}-frontend-sign_up-form-email" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['email'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-sponsor" class="control-label">Sponsor</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][sponsor]" id="{{ $language->lang }}-frontend-sign_up-form-sponsor" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['sponsor'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-country" class="control-label">Country</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][country]" id="{{ $language->lang }}-frontend-sign_up-form-country" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['country'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-password" class="control-label">Password</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][password]" id="{{ $language->lang }}-frontend-sign_up-form-password" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['password'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-password_confirmation" class="control-label">Password Confirmation</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][password_confirmation]" id="{{ $language->lang }}-frontend-sign_up-form-password_confirmation" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['password_confirmation'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-terms" class="control-label">Terms</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][terms]" id="{{ $language->lang }}-frontend-sign_up-form-terms" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['terms'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-register" class="control-label">Register</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][register]" id="{{ $language->lang }}-frontend-sign_up-form-register" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['register'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-sign_in" class="control-label">Sign In</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][sign_in]" id="{{ $language->lang }}-frontend-sign_up-form-sign_in" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['sign_in'] !!}" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-password_block-uppercase" class="control-label">Uppercase</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][password_block][uppercase]" id="{{ $language->lang }}-frontend-sign_up-form-password_block-uppercase" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['password_block']['uppercase'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-password_block-lowercase" class="control-label">Lowercase</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][password_block][lowercase]" id="{{ $language->lang }}-frontend-sign_up-form-password_block-lowercase" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['password_block']['lowercase'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-password_block-number" class="control-label">Number</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][password_block][number]" id="{{ $language->lang }}-frontend-sign_up-form-password_block-number" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['password_block']['number'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-password_block-special" class="control-label">Special</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][password_block][special]" id="{{ $language->lang }}-frontend-sign_up-form-password_block-special" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['password_block']['special'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-password_block-minimum" class="control-label">Minimum</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][password_block][minimum]" id="{{ $language->lang }}-frontend-sign_up-form-password_block-minimum" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['password_block']['minimum'] !!}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-sign_up-form-password_block-confirm" class="control-label">Confirm</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][sign_up][form][password_block][confirm]" id="{{ $language->lang }}-frontend-sign_up-form-password_block-confirm" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['sign_up']['form']['password_block']['confirm'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 @endforeach
@@ -493,7 +1039,7 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-xl-10 col-lg-9 col-md-8 offset-xl-2 offset-lg-3 offset-md-4">
-                    <button class="btn btn-green">Save <i class="fas fa-arrow-circle-right ml-2"></i></button>
+                    <button type="submit" class="btn btn-green">Save <i class="fas fa-arrow-circle-right ml-2"></i></button>
                 </div>
             </div>
         </div>
