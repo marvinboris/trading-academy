@@ -691,6 +691,16 @@
                                 <div class="col-md-12">
                                     <div class="form-group row">
                                         <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-contact-message_us-form-name" class="control-label">Name</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][contact][message_us][form][name]" id="{{ $language->lang }}-frontend-contact-message_us-form-name" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['contact']['message_us']['form']['name'] !!}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
                                             <label for="{{ $language->lang }}-frontend-contact-message_us-form-email" class="control-label">E-Mail</label>
                                         </div>
                                         <div class="col-md-9">
