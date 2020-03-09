@@ -19,6 +19,24 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
+if (!Session::has('lang') || !Session::has('flag')) {
+    if (Auth::check()) {
+        $lang = Auth::user()->lang;
+        Session::put('lang', $lang);
+        Session::put('flag', Language::where('lang', $lang)->first()->flag);
+    } else {
+        Session::put('lang', 'en');
+        Session::put('flag', 'gb');
+    }
+}
+
+Route::name('lang')->get('lang/{lang}', function ($lang) {
+    Session::put('lang', $lang);
+    Session::put('flag', Language::where('lang', $lang)->first()->flag);
+    return redirect()
+        ->back();
+});
+
 Auth::routes();
 
 Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
@@ -85,24 +103,6 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
     });
 });
 
-if (!Session::has('lang') || !Session::has('flag')) {
-    if (Auth::check()) {
-        $lang = Auth::user()->lang;
-        Session::put('lang', $lang);
-        Session::put('flag', Language::where('lang', $lang)->first()->flag);
-    } else {
-        Session::put('lang', 'en');
-        Session::put('flag', 'gb');
-    }
-}
-
-Route::name('lang')->get('lang/{lang}', function ($lang) {
-    Session::put('lang', $lang);
-    Session::put('flag', Language::where('lang', $lang)->first()->flag);
-    return redirect()
-        ->back();
-});
-
 Route::get('email/verify/{id}/{code}', function ($id, $code) {
     $user = User::findOrFail($id);
     if ($user->email_verified_at) {
@@ -139,6 +139,8 @@ Route::namespace('Method')->group(function () {
     Route::post('/cryptobox/callback', 'CryptoboxController@callback');
     Route::get('/cryptobox/callback', 'CryptoboxController@callback');
 });
+
+Route::get('ajax-pagination','AjaxController@ajaxPagination')->name('ajax.pagination');
 
 Route::middleware(['auth', 'verification'])->group(function () {
     Route::get('dashboard', function () {

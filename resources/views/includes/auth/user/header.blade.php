@@ -62,21 +62,17 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             @foreach ($notifications as $key => $notification)
-                            <li class="list-group-item py-2 px-3">
+                            <a href="{{ route('user.notifications.show', $notification->id) }}" class="list-group-item py-2 text-decoration-none text-reset {{ !$notification->read_at ? 'font-weight-bold' : '' }} px-3">
                                 <div class="text-truncate">
-                                    @switch($notification->type)
-                                        @case('App\Notifications\NewTeamMember')
-                                            <i class="text-orange fas fa-bell fa-fw"></i><strong>{{ App\User::find($notification->data['user_id'])->name() }}</strong> just joined your team.
-                                            @break
-                                        @case('App\Notifications\Commission')
-                                            <i class="text-orange fas fa-bell fa-fw"></i>You received a referral commission of <strong>${{ App\Commission::find($notification->data['commission_id'])->amount }}</strong>.
-                                            @break
-                                    @endswitch
+                                    @php
+                                        $shortcut = true;
+                                    @endphp
+                                    @include('notifications.shortcut')
                                 </div>
-                            </li>
+                            </a>
                             @endforeach
                         </ul>
-                        <a href="#" class="card-footer small p-2 text-center">
+                        <a href="{{ route('user.notifications') }}" class="card-footer small p-2 text-center">
                             View all notifications
                         </a>
                     </div>

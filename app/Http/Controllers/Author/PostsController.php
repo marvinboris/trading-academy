@@ -19,10 +19,12 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $posts = Author::where('user_id', Auth::id())->first()->posts;
+        $show = $request->show ?? 10;
+        $posts = Author::where('user_id', Auth::id())->first()->posts()->paginate($show);
+        $all = Author::where('user_id', Auth::id())->first()->posts;
         $data = [
             'links' => [
                 'base' => 'author.posts.',
@@ -31,6 +33,7 @@ class PostsController extends Controller
                 'edit' => 'Edit Post',
             ],
             'list' => $posts,
+            'all' => $all,
             'table' => [
                 ['key' => 'Title', 'value' => function ($item) { return $item->title; }],
                 ['key' => 'Body', 'value' => function ($item) { return Str::limit($item->body); }],
@@ -39,6 +42,16 @@ class PostsController extends Controller
                 ['key' => 'Updated at', 'value' => function ($item) { return $item->updated_at->diffForHumans(); }]
             ]
         ];
+        
+        if ($request->ajax()) {
+            return view('table', [
+                'list' => $data['list'], 
+                'links' => $data['links'], 
+                'all' => $data['all'], 
+                'table' => $data['table']
+            ])->render();
+        }
+
         return view('pages.user.author.posts.index', compact('data'));
     }
 

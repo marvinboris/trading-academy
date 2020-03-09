@@ -82,10 +82,10 @@
 
 <div class="d-flex justify-content-between align-items-center">
     <div>
-        Showing <strong>1 to 10</strong> of <strong>{{ count($list) }}</strong> entries.
+        Showing <strong>1 to {{ count($list) }}</strong> of <strong>{{ count($all) }}</strong> entries.
     </div>
 
     <div>
-
+        {!! $list->render() !!}
     </div>
 </div>

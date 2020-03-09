@@ -2,7 +2,7 @@
     <div class="col-6 pb-2 pb-lg-0 col-lg-2">
         <div class="d-flex align-items-center text-secondary bg-black-10">
             <div class="px-3 py-2 font-weight-bold border-right border-black-20">Show</div>
-            <select class="px-3 py-2 text-center d-block text-reset form-control border-0 bg-black-10">
+            <select name="show" class="px-3 py-2 text-center d-block text-reset form-control border-0 bg-black-10">
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
@@ -51,45 +51,52 @@
     </div>
 </div>
 
-<div class="table-responsive mb-2">
-    <table class="table table-hover table-bordered">
-        <thead class="bg-green text-white text-montserrat">
-            <tr>
-                <th scope="row" class="py-2">SL</th>
-                @foreach ($table as $value)
-                <th scope="row" class="py-2">{{ $value['key'] }}</th>
+<div id="tag_container">
+    <div class="table-responsive mb-2">
+        <table class="table table-hover table-bordered">
+            <thead class="bg-green text-white text-montserrat">
+                <tr>
+                    <th scope="row" class="py-2">SL</th>
+                    @foreach ($table as $value)
+                    <th scope="row" class="py-2">{{ $value['key'] }}</th>
+                    @endforeach
+                    <th scope="row" class="py-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($list as $index => $item)
+                <tr>
+                    <th scope="row">{{ $index + 1 }}</th>
+                    @foreach ($table as $key => $value)
+                    <td>{{ $value['value']($item) }}</td>
+                    @endforeach
+                    <td>
+                        <form action="{{ route($links['base'] . 'destroy', $item->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <a href="{{ route($links['base'] . 'show', $item->id) }}" class="fas text-decoration-none mr-2 fa-eye text-success"></a>
+                            <button class="border-0 p-0 fas text-decoration-none mr-2 fa-trash text-danger"></button>
+                            <a href="{{ route($links['base'] . 'edit', $item->id) }}" class="fas text-decoration-none fa-edit text-primary"></a>
+                        </form>
+                    </td>
+                </tr>
                 @endforeach
-                <th scope="row" class="py-2">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($list as $index => $item)
-            <tr>
-                <th scope="row">{{ $index + 1 }}</th>
-                @foreach ($table as $key => $value)
-                <td>{{ $value['value']($item) }}</td>
-                @endforeach
-                <td>
-                    <form action="{{ route($links['base'] . 'destroy', $item->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <a href="{{ route($links['base'] . 'show', $item->id) }}" class="fas text-decoration-none mr-2 fa-eye text-success"></a>
-                        <button class="border-0 p-0 fas text-decoration-none mr-2 fa-trash text-danger"></button>
-                        <a href="{{ route($links['base'] . 'edit', $item->id) }}" class="fas text-decoration-none fa-edit text-primary"></a>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-
-<div class="d-flex justify-content-between align-items-center">
-    <div>
-        Showing <strong>1 to 10</strong> of <strong>{{ count($list) }}</strong> entries.
+            </tbody>
+        </table>
     </div>
 
-    <div>
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            Showing <strong>1 to {{ count($list) }}</strong> of <strong>{{ count($all) }}</strong> entries.
+        </div>
 
-    </div>
+        <div>
+            {!! $list->render() !!}
+        </div>
+    </div>    
 </div>
+
+
+@section('scripts')
+@include('scripts.pagination')
+@endsection

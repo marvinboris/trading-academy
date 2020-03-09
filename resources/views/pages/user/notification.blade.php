@@ -28,7 +28,9 @@
     </div>
     <div class="card-body">
         <span class="text-medium">Hi, <strong>{{ Auth::user()->name() }}</strong></span>
-        <div class="pt-2">{!! $data['content'] !!}</div>
+        <div class="pt-2">
+            @include('notifications.shortcut')    
+        </div>
     </div>
 </div>
 @endcomponent

@@ -6,6 +6,8 @@ use App\Commission;
 use App\Course;
 use App\Http\Controllers\Controller;
 use App\Notifications\Commission as NotificationsCommission;
+use App\Notifications\Payment as NotificationsPayment;
+use App\Payment;
 use App\Photo;
 use App\Session;
 use App\SessionStudent;
@@ -269,7 +271,9 @@ class CoursesController extends Controller
         $user = Auth::user();
         $student = Student::where('user_id', Auth::id())->first();
 
-        if ($user->balance < $price) return back()->with('balance', 'Insufficient balance');
+        if ($user->balance < $price) return redirect()
+            ->back()
+            ->with('balance', 'Insufficient balance');
 
         $user->update(['balance' => $user->balance - $price]);
 
@@ -301,6 +305,13 @@ class CoursesController extends Controller
             ]);
         }
 
+        $payment = Payment::create([
+            'student_id' => $student->id,
+            'session_id' => $session->id,
+            'amount' => $price
+        ]);
+        
+        $user->notify(new NotificationsPayment($payment));
         $sponsor->notify(new NotificationsCommission($commission));
 
         return redirect(route('student.courses.mine'));

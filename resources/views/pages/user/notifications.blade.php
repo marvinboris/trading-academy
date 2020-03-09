@@ -18,10 +18,11 @@
         </div>
     </div>
     <div class="row m-0">
-        @foreach ($data as $item)
-            @component('components.auth.content.notification', $item)
-                {!! $item['content'] !!}
-            @endcomponent
+        @foreach ($notifications as $notification)
+            @php
+                $item = $data[$notification->id];
+            @endphp
+            @include('notifications.list-item')
         @endforeach
     </div>
 </div>

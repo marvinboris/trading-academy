@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Commission;
-use App\Deposit;
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class NotificationsController extends Controller
@@ -24,32 +19,29 @@ class NotificationsController extends Controller
             if ($notification->type === 'App\Notifications\NewTeamMember') {
                 $icon = 'fas fa-user text-orange';
                 $title = 'New Team Member';
-                $content = '
-                <div class="text-truncate">
-                    <strong>' . User::find($notification->data['user_id'])->name() . '</strong> just joined your team.
-                </div>
-                ';
             }
             if ($notification->type === 'App\Notifications\Commission') {
                 $icon = 'fas fa-dollar-sign text-orange';
                 $title = 'Commission';
-                $content = '
-                    <div class="text-truncate">
-                        You received a referral commission of <strong>$' . Commission::find($notification->data['commission_id'])->amount . '</strong>.
-                    </div>
-                    ';
             }
             if ($notification->type === 'App\Notifications\Deposit') {
                 $icon = 'fas fa-wallet text-orange';
                 $title = 'Deposit';
-                $content = '
-                    <div class="text-truncate">
-                        You successfully made a deposit of <strong>$' . Deposit::find($notification->data['deposit_id'])->amount . '</strong>.
-                    </div>
-                    ';
+            }
+            if ($notification->type === 'App\Notifications\Payment') {
+                $icon = 'fas fa-hand-holding-usd text-orange';
+                $title = 'Payment';
+            }
+            if ($notification->type === 'App\Notifications\Withdraw') {
+                $icon = 'fas fa-money-bill-wave-alt text-orange';
+                $title = 'Withdraw';
+            }
+            if ($notification->type === 'App\Notifications\Transfer') {
+                $icon = 'fas fa-exchange-alt text-orange';
+                $title = 'Transfer';
             }
 
-            $data[] = [
+            $data[$notification->id] = [
                 'id' => $notification->id,
                 'icon' => $icon,
                 'title' => $title,
@@ -57,7 +49,11 @@ class NotificationsController extends Controller
                 'content' => $content
             ];
         }
-        return view('pages.user.notifications', compact('data'));
+
+        return view('pages.user.notifications', [
+            'data' => $data,
+            'notifications' => $notifications
+        ]);
     }
 
     public function show($id)
@@ -73,43 +69,41 @@ class NotificationsController extends Controller
 
         $icon = '';
         $title = '';
-        $content = '';
 
         if ($notification->type === 'App\Notifications\NewTeamMember') {
             $icon = 'fas fa-user text-orange';
             $title = 'New Team Member';
-            $content = '
-                <div class="text-truncate">
-                    <strong>' . User::find($notification->data['user_id'])->name() . '</strong> just joined your team.
-                </div>
-                ';
         }
         if ($notification->type === 'App\Notifications\Commission') {
             $icon = 'fas fa-dollar-sign text-orange';
             $title = 'Commission';
-            $content = '
-                <div class="text-truncate">
-                    You received a referral commission of <strong>$' . Commission::find($notification->data['commission_id'])->amount . '</strong>.
-                </div>
-                ';
         }
         if ($notification->type === 'App\Notifications\Deposit') {
             $icon = 'fas fa-wallet text-orange';
             $title = 'Deposit';
-            $content = '
-                <div class="text-truncate">
-                    You successfully made a deposit of <strong>$' . Deposit::find($notification->data['deposit_id'])->amount . '</strong>.
-                </div>
-                ';
+        }
+        if ($notification->type === 'App\Notifications\Payment') {
+            $icon = 'fas fa-hand-holding-usd text-orange';
+            $title = 'Payment';
+        }
+        if ($notification->type === 'App\Notifications\Withdraw') {
+            $icon = 'fas fa-money-bill-wave-alt text-orange';
+            $title = 'Withdraw';
+        }
+        if ($notification->type === 'App\Notifications\Transfer') {
+            $icon = 'fas fa-exchange-alt text-orange';
+            $title = 'Transfer';
         }
 
         $data = [
             'id' => $notification->id,
             'icon' => $icon,
             'title' => $title,
-            'datetime' => $notification->created_at->diffForHumans(),
-            'content' => $content
+            'datetime' => $notification->created_at->diffForHumans()
         ];
-        return view('pages.user.notification', compact('data'));
+        return view('pages.user.notification', [
+            'data' => $data,
+            'notification' => $notification,
+        ]);
     }
 }

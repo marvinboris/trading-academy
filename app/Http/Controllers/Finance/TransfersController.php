@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Finance;
 
-use App\Http\Controllers\Controller;
-use App\Mail\VerificationCode;
-use App\Transfer;
 use App\User;
+use App\Transfer;
 use Illuminate\Http\Request;
+use App\Mail\VerificationCode;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
+use App\Notifications\Transfer as NotificationsTransfer;
 
 class TransfersController extends Controller
 {
@@ -111,13 +112,18 @@ class TransfersController extends Controller
             $receiver = User::where('ref', $data->receiver)->first();
             $sender->update(['balance' => $sender->balance - $data->amount * 1.01]);
             $receiver->update(['balance' => $receiver->balance + $data->amount]);
-            Transfer::create([
+            
+            $transfer = Transfer::create([
                 'sender' => $sender->ref,
                 'receiver' => $receiver->ref,
                 'amount' => $data->amount,
                 'fees' => $data->amount * .01,
                 'comments' => $data->comments
             ]);
+
+            $receiver->notify(new NotificationsTransfer($transfer));
+            $sender->notify(new NotificationsTransfer($transfer));
+
             return redirect()
                 ->route('user.finance.transfers.index');
         }
