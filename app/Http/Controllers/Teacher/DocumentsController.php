@@ -16,10 +16,14 @@ class DocumentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $courses = Teacher::where('user_id', Auth::id())->first()->courses;
+        $show = $request->show ?? 10;
+
+        $courses = Teacher::where('user_id', Auth::id())->first()->courses()->latest()->paginate($show);
+        $all = Teacher::where('user_id', Auth::id())->first()->courses()->latest()->get();
+
         $documents = [];
         $documentsId = [];
 
@@ -40,6 +44,7 @@ class DocumentsController extends Controller
                 'edit' => 'Edit a Document',
             ],
             'list' => $documents,
+            'all' => $all,
             'table' => [
                 ['key' => 'Name', 'value' => function ($item) { return ($item->name); }],
                 ['key' => 'Path', 'value' => function ($item) { return ($item->path); }],

@@ -16,10 +16,14 @@ class SessionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $sessions = Teacher::where('user_id', Auth::id())->first()->sessions;
+        $show = $request->show ?? 10;
+
+        $sessions = Teacher::where('user_id', Auth::id())->first()->sessions()->latest()->paginate($show);
+        $all = Teacher::where('user_id', Auth::id())->first()->sessions()->latest()->get();
+
         $data = [
             'links' => [
                 'base' => 'teacher.sessions.',
@@ -28,6 +32,7 @@ class SessionsController extends Controller
                 'edit' => 'Edit Session',
             ],
             'list' => $sessions,
+            'all' => $all,
             'table' => [
                 ['key' => 'Course', 'value' => function ($item) {
                     return $item->course->title;

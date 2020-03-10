@@ -71,12 +71,17 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function mine()
+    public function mine(Request $request)
     {
         //
-        $sessions = Student::where('user_id', Auth::id())->first()->sessions;
+        $show = $request->show ?? 10;
+
+        $sessions = Student::where('user_id', Auth::id())->first()->sessions()->latest()->paginate($show);
+        $all = Student::where('user_id', Auth::id())->first()->sessions()->latest()->get();
+
         $data = [
             'list' => $sessions,
+            'all' => $all,
             'table' => [
                 ['key' => 'Course', 'value' => function ($item) {
                     return $item->course->title;
@@ -310,7 +315,7 @@ class CoursesController extends Controller
             'session_id' => $session->id,
             'amount' => $price
         ]);
-        
+
         $user->notify(new NotificationsPayment($payment));
         $sponsor->notify(new NotificationsCommission($commission));
 

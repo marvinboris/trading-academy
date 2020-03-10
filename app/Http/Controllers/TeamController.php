@@ -9,10 +9,15 @@ use Illuminate\Support\Facades\Auth;
 class TeamController extends Controller
 {
     //
-    public function index() {
-        $team = User::where('sponsor', Auth::user()->ref)->get();
+    public function index(Request $request) {
+        $show = $request->show ?? 10;
+
+        $team = User::where('sponsor', Auth::user()->ref)->latest()->paginate($show);
+        $all = User::where('sponsor', Auth::user()->ref)->latest()->get();
+
         $data = [
             'list' => $team,
+            'all' => $all,
             'table' => [
                 ['key' => 'User ID', 'value' => function ($item) { return $item->ref; }],
                 ['key' => 'Name', 'value' => function ($item) { return $item->name(); }],

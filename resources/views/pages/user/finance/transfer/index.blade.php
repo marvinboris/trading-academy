@@ -5,7 +5,7 @@
 
 @section('content')
 @component('components.auth.page')
-@component('components.auth.content.table', $data)
+@component('components.auth.pages.list', $data)
 @endcomponent
 @endcomponent
 @endsection

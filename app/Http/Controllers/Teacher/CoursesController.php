@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Teacher;
 
+use App\Course;
 use App\Http\Controllers\Controller;
 use App\Photo;
 use App\Teacher;
@@ -16,10 +17,14 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $courses = Teacher::where('user_id', Auth::user()->id)->first()->courses;
+        $show = $request->show ?? 10;
+
+        $courses = Teacher::where('user_id', Auth::user()->id)->first()->courses()->latest()->paginate($show);
+        $all = Teacher::where('user_id', Auth::user()->id)->first()->courses()->latest()->get();
+
         $data = [
             'links' => [
                 'base' => 'teacher.courses.',
@@ -28,12 +33,23 @@ class CoursesController extends Controller
                 'edit' => 'Edit a Course',
             ],
             'list' => $courses,
+            'all' => $all,
             'table' => [
-                ['key' => 'Title', 'value' => function ($item) { return ($item->title); }],
-                ['key' => 'Subtitle', 'value' => function ($item) { return Str::limit($item->subtitle); }],
-                ['key' => 'Price', 'value' => function ($item) { return $item->price; }],
-                ['key' => 'Duration', 'value' => function ($item) { return $item->duration; }],
-                ['key' => 'Language', 'value' => function ($item) { return $item->lang; }],
+                ['key' => 'Title', 'value' => function ($item) {
+                    return ($item->title);
+                }],
+                ['key' => 'Subtitle', 'value' => function ($item) {
+                    return Str::limit($item->subtitle);
+                }],
+                ['key' => 'Price', 'value' => function ($item) {
+                    return $item->price;
+                }],
+                ['key' => 'Duration', 'value' => function ($item) {
+                    return $item->duration;
+                }],
+                ['key' => 'Language', 'value' => function ($item) {
+                    return $item->lang;
+                }],
             ]
         ];
         return view('pages.user.teacher.courses.index', compact('data'));
@@ -70,6 +86,10 @@ class CoursesController extends Controller
     public function show($id)
     {
         //
+        $slug = Course::findOrFail($id)->slug;
+
+        return redirect()
+            ->route('courses.show', $slug);
     }
 
     /**
@@ -115,7 +135,7 @@ class CoursesController extends Controller
         $input['includes'] = json_encode($input['includes']);
 
         $course->update($input);
-        
+
         return redirect()
             ->route('teacher.courses.index')
             ->with('success', 'The course was successfully updated.');

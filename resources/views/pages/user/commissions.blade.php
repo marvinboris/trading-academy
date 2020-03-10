@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
-@section('section', 'Finance')
-@section('title', 'My Courses')
+@section('section', 'Commissions')
+@section('title', 'Commissions')
 
 @section('content')
 @component('components.auth.page')

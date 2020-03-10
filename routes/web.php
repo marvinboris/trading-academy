@@ -140,8 +140,6 @@ Route::namespace('Method')->group(function () {
     Route::get('/cryptobox/callback', 'CryptoboxController@callback');
 });
 
-Route::get('ajax-pagination','AjaxController@ajaxPagination')->name('ajax.pagination');
-
 Route::middleware(['auth', 'verification'])->group(function () {
     Route::get('dashboard', function () {
         return redirect(route(strtolower(Auth::user()->role->name) . '.dashboard'));
@@ -157,6 +155,7 @@ Route::middleware(['auth', 'verification'])->group(function () {
 
     Route::name('user.')->prefix('user')->group(function () {
         Route::name('team')->get('team', 'TeamController@index');
+        Route::name('commissions')->get('commissions', 'CommissionsController@index');
         Route::name('messages')->get('messages', 'MessagesController@index');
         Route::name('notifications.show')->get('notifications/details/{id}', 'NotificationsController@show');
         Route::name('notifications')->get('notifications', 'NotificationsController@index');

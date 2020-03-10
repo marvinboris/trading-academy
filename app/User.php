@@ -115,9 +115,16 @@ class User extends Authenticatable
         return self::where('ref', $this->sponsor)->first();
     }
 
-    public function transfers()
+    public function transfers($latest = false, $show = null)
     {
-        return Transfer::where('sender', $this->ref)->orWhere('receiver', $this->ref)->get();
+        $return = Transfer::where('sender', $this->ref)->orWhere('receiver', $this->ref);
+
+        if ($latest) $return = $return->latest();
+
+        if ($show) $return = $return->paginate($show);
+        else $return = $return->get();
+
+        return $return;
     }
 
     public function verification()

@@ -20,9 +20,14 @@ class DepositsController extends Controller
     public function index()
     {
         //
-        $deposits = Auth::user()->deposits;
+        $show = $request->show ?? 10;
+
+        $deposits = Auth::user()->deposits()->latest()->paginate($show);
+        $all = Auth::user()->deposits()->latest()->get();
+
         $data = [
             'list' => $deposits,
+            'all' => $all,
             'table' => [
                 ['key' => 'Amount', 'value' => function ($item) {
                     return $item->amount;

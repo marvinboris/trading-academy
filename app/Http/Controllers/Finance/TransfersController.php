@@ -20,12 +20,17 @@ class TransfersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $transfers = Auth::user()->transfers();
+        $show = $request->show ?? 10;
+
+        $transfers = Auth::user()->transfers(true, $show);
+        $all = Auth::user()->transfers(true);
+
         $data = [
             'list' => $transfers,
+            'all' => $all,
             'table' => [
                 ['key' => 'Sender', 'value' => function ($item) {
                     return $item->sender;
@@ -95,7 +100,7 @@ class TransfersController extends Controller
     /**
      * Display the specified resource.
      *
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function confirm(Request $request)
@@ -112,7 +117,7 @@ class TransfersController extends Controller
             $receiver = User::where('ref', $data->receiver)->first();
             $sender->update(['balance' => $sender->balance - $data->amount * 1.01]);
             $receiver->update(['balance' => $receiver->balance + $data->amount]);
-            
+
             $transfer = Transfer::create([
                 'sender' => $sender->ref,
                 'receiver' => $receiver->ref,

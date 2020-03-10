@@ -25,22 +25,28 @@
 
     @component('components.auth.content.dashboard.item', ['size' => 'col-lg-5 mb-4', 'bgColor' => 'white', 'color' => 'dark', 'headBgColor' => 'black-10', 'borderColor' => 'black-20', 'icon' => 'fas fa-money-bill-wave text-green', 'title' => 'Commissions'])
     <div class="row mx-0 mb-4">
-        <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Date</div>
-        <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">User ID</div>
-        <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Amount</div>
-        <div class="col-3 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Action</div>
+        <div class="col-4 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Date</div>
+        <div class="col-4 text-green py-1 font-weight-bold border-right border-bottom border-black-20">User ID</div>
+        <div class="col-4 text-green py-1 font-weight-bold border-right border-bottom border-black-20">Amount</div>
 
-        <div class="col-3 border-right border-bottom border-black-20">
-            <div class="py-1 overflow-hidden text-truncate">Date</div>
+        <div class="col-12 mb-3">
+            @foreach ($commissions as $item)
+                <div class="row">
+                    <div class="col-4 border-right border-bottom border-black-20">
+                        <div class="py-1 overflow-hidden text-truncate">{{ $item->created_at }}</div>
+                    </div>
+                    <div class="col-4 border-right border-bottom border-black-20">
+                        <div class="py-1 overflow-hidden text-truncate">{{ $item->referral }}</div>
+                    </div>
+                    <div class="col-4 border-right border-bottom border-black-20">
+                        <div class="py-1 overflow-hidden text-truncate">{{ $item->amount }}</div>
+                    </div>
+                </div>
+            @endforeach
+
         </div>
-        <div class="col-3 border-right border-bottom border-black-20">
-            <div class="py-1 overflow-hidden text-truncate">User ID</div>
-        </div>
-        <div class="col-3 border-right border-bottom border-black-20">
-            <div class="py-1 overflow-hidden text-truncate">Amount</div>
-        </div>
-        <div class="col-3 border-right border-bottom border-black-20">
-            <div class="py-1 overflow-hidden text-truncate">Action</div>
+        <div>
+            <a href="{{ route('user.commissions') }}" class="text-green">Show all entries</a>
         </div>
     </div>
     @endcomponent
