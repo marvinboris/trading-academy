@@ -7,12 +7,12 @@ ksort($phoneData);
 asort($namesData);
 @endphp
 
-@section('section', 'Authors')
-@section('title', 'Add an Author')
+@section('section', 'Admins')
+@section('title', 'Add an Admin')
 
 @section('content')
 @component('components.auth.pages.admin.page')
-<form action="{{ route('admin.users.authors.store') }}" method="post">
+<form action="{{ route('admin.users.admins.store') }}" method="post">
     <div class="row">
         <div class="col-lg-9">
             @if (count($errors->all()) > 0)

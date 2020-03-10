@@ -13,10 +13,14 @@ class AdminsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $admins = Admin::get();
+        $show = $request->show ?? 10;
+
+        $admins = Admin::latest()->paginate($show);
+        $all = Admin::latest()->get();
+        
         $data = [
             'links' => [
                 'base' => 'admin.users.admins.',
@@ -25,6 +29,7 @@ class AdminsController extends Controller
                 'edit' => 'Edit an Admin',
             ],
             'list' => $admins,
+            'all' => $all,
             'table' => [
                 ['key' => 'Name', 'value' => function ($item) { return $item->name; }],
                 ['key' => 'E-Mail Address', 'value' => function ($item) { return $item->email; }],

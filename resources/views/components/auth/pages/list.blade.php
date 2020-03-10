@@ -18,10 +18,10 @@
 
     <div class="col-lg-4 pb-2 pb-lg-0">
         <div class="bg-black-10 d-flex text-black justify-content-around align-items-center font-weight-bold py-2">
-            <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-file-excel text-darkblue mr-2"></i>Excel</a>
-            <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-file-pdf text-danger mr-2"></i>PDF</a>
-            <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-file-csv text-green mr-2"></i>CSV</a>
-            <a href="#" class="px-2 text-decoration-none text-reset"><i class="fas fa-print text-primary mr-2"></i>Print</a>
+            <a href="{{ route('export.xlsx') }}" class="px-2 export text-decoration-none text-reset"><i class="fas fa-file-excel text-darkblue mr-2"></i>Excel</a>
+            <a href="{{ route('export.pdf') }}" class="px-2 export text-decoration-none text-reset"><i class="fas fa-file-pdf text-danger mr-2"></i>PDF</a>
+            <a href="{{ route('export.csv') }}" class="px-2 export text-decoration-none text-reset"><i class="fas fa-file-csv text-green mr-2"></i>CSV</a>
+            <a href="{{ route('export.pdf') }}" class="px-2 export text-decoration-none text-reset"><i class="fas fa-print text-primary mr-2"></i>Print</a>
         </div>
     </div>
 
@@ -31,6 +31,8 @@
 </div>
 
 <div id="tag_container">
+    @csrf
+    <input type="hidden" name="data" value="{{ json_encode($list) }}">
     <div class="table-responsive mb-2">
         <table class="table table-hover table-bordered">
             <thead class="bg-green text-white text-montserrat">
@@ -46,7 +48,7 @@
                 <tr>
                     <th scope="row">{{ $index + 1 }}</th>
                     @foreach ($table as $key => $value)
-                    <td>{{ $value['value']($item) }}</td>
+                    <td>{!! $value['value']($item) !!}</td>
                     @endforeach
                 </tr>
                 @endforeach
@@ -56,7 +58,7 @@
 
     <div class="d-flex justify-content-between align-items-center">
         <div>
-            Showing <strong>1 to {{ count($list) }}</strong> of <strong>{{ count($all) }}</strong> entries.
+            Showing <strong>{{ count($list) ? 1 : 0 }} to {{ count($list) }}</strong> of <strong>{{ count($all) }}</strong> entries.
         </div>
 
         <div>

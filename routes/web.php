@@ -136,9 +136,13 @@ Route::name('courses.show')->get('courses/{course}', 'FrontEndController@course'
 Route::name('posts.show')->get('blog/{post}', 'FrontEndController@post');
 
 Route::namespace('Method')->group(function () {
-    Route::post('/cryptobox/callback', 'CryptoboxController@callback');
-    Route::get('/cryptobox/callback', 'CryptoboxController@callback');
+    Route::post('cryptobox/callback', 'CryptoboxController@callback');
+    Route::get('cryptobox/callback', 'CryptoboxController@callback');
 });
+
+Route::name('export.xlsx')->post('export/xlsx', 'ExportController@xlsx');
+Route::name('export.csv')->post('export/csv', 'ExportController@csv');
+Route::name('export.pdf')->post('export/pdf', 'ExportController@pdf');
 
 Route::middleware(['auth', 'verification'])->group(function () {
     Route::get('dashboard', function () {

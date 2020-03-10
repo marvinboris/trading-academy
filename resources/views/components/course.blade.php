@@ -16,7 +16,7 @@
     <div class="card overflow-hidden border-0 bg-transparent shadow-lg"  {!! ($popular ?? '') ? '' : 'style="transform: scale(.9) translateY(5%);"' !!}>
         <div class="card-img-top position-relative overflow-hidden embed-responsive embed-responsive-4by3" style="background: url({{ asset($img) }}) no-repeat center; background-size: cover;">
             {{-- <img src="{{ $img ? asset($img) : "https://placehold.it/150x100" }}" alt="card-1" class="card-img-top"> --}}
-            {!! ($popular ?? '') ? '<div class="bg-' . $color . ' w-100 pt-2 pb-1 text-uppercase h3 text-center text-white position-absolute" style="top: -30%; right: -50%; transform: rotate(45deg); transform-origin: 0 0;">Bronze</div>' : '' !!}
+            {!! ($popular ?? '') ? '<div class="bg-' . $color . ' w-100 pt-2 pb-1 text-uppercase h3 text-center text-white position-absolute" style="top: -30%; right: -50%; transform: rotate(45deg); transform-origin: 0 0;">' . $trader['level'] . '</div>' : '' !!}
         </div>
         <div class="card-body bg-{{ $color }}-gradient text-white position-relative">
             <div class="position-absolute bg-white d-flex justify-content-center align-items-center" style="width: 38px; height: 1px; left: 0; top: 25px;">
