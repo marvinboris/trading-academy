@@ -11,7 +11,7 @@ class Post extends Model
     use Sluggable;
 
     protected $fillable = [
-        'photo_id', 'title', 'body', 'postable_id', 'postable_type', 'slug'
+        'photo_id', 'title', 'body', 'author_id', 'slug'
     ];
 
     public function sluggable()
@@ -22,9 +22,10 @@ class Post extends Model
             ]
         ];
     }
-    
-    public function postable() {
-        return $this->morphTo();
+
+    public function author()
+    {
+        return $this->belongsTo('App\Author');
     }
 
     public function photo()

@@ -134,27 +134,33 @@ Route::name('contact')->get('contact', 'FrontEndController@contact');
 Route::name('faq')->get('faq', 'FrontEndController@faq');
 Route::name('courses.show')->get('courses/{course}', 'FrontEndController@course');
 Route::name('posts.show')->get('blog/{post}', 'FrontEndController@post');
+Route::name('posts.store')->post('blog/{post}', 'FrontEndController@store');
 
 Route::namespace('Method')->group(function () {
     Route::post('cryptobox/callback', 'CryptoboxController@callback');
     Route::get('cryptobox/callback', 'CryptoboxController@callback');
 });
 
-Route::name('export.xlsx')->post('export/xlsx', 'ExportController@xlsx');
-Route::name('export.csv')->post('export/csv', 'ExportController@csv');
-Route::name('export.pdf')->post('export/pdf', 'ExportController@pdf');
+Route::name('export.')->prefix('export')->group(function () {
+    Route::name('xlsx')->post('xlsx', 'ExportController@xlsx');
+    Route::name('csv')->post('csv', 'ExportController@csv');
+    Route::name('pdf')->post('pdf', 'ExportController@pdf');
+});
 
-Route::middleware(['auth', 'verification'])->group(function () {
+Route::middleware(['auth', 'verification', 'status'])->group(function () {
     Route::get('dashboard', function () {
-        return redirect(route(strtolower(Auth::user()->role->name) . '.dashboard'));
+        return redirect()
+            ->route(strtolower(Auth::user()->role->name) . '.dashboard');
     });
 
     Route::namespace('Method')->group(function () {
         Route::name('user.finance.deposits.cryptobox.post')->post('user/finance/deposits/cryptobox', 'CryptoboxController@index');
         Route::name('user.finance.deposits.cryptobox.get')->get('user/finance/deposits/cryptobox', 'CryptoboxController@index');
 
-        Route::name('monetbil.notify.post')->post('monetbil/notify', 'MonetbilController@notify');
-        Route::name('monetbil.notify.get')->get('monetbil/notify', 'MonetbilController@notify');
+        Route::name('monetbil.notify.')->prefix('monetbil')->group(function () {
+            Route::name('post')->post('notify', 'MonetbilController@notify');
+            Route::name('get')->get('notify', 'MonetbilController@notify');
+        });
     });
 
     Route::name('user.')->prefix('user')->group(function () {

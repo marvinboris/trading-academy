@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Course;
 use App\Http\Controllers\Controller;
 use App\Session;
+use App\Teacher;
 use Illuminate\Http\Request;
 
 class SessionsController extends Controller
@@ -13,10 +15,13 @@ class SessionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $sessions = Session::get();
+        $show = $request->show ?? 10;
+
+        $sessions = Session::latest()->paginate($show);
+        $all = Session::latest()->get();
         $data = [
             'links' => [
                 'base' => 'admin.sessions.',
@@ -25,11 +30,20 @@ class SessionsController extends Controller
                 'edit' => 'Edit a Session',
             ],
             'list' => $sessions,
+            'all' => $all,
             'table' => [
-                ['key' => 'Course', 'value' => function ($item) { return $item->course->title; }],
-                ['key' => 'Start date', 'value' => function ($item) { return ($item->start); }],
-                ['key' => 'End date', 'value' => function ($item) { return $item->end; }],
-                ['key' => 'Places', 'value' => function ($item) { return $item->places; }],
+                ['key' => 'Course', 'value' => function ($item) {
+                    return $item->course->title;
+                }],
+                ['key' => 'Start date', 'value' => function ($item) {
+                    return ($item->start);
+                }],
+                ['key' => 'End date', 'value' => function ($item) {
+                    return $item->end;
+                }],
+                ['key' => 'Places', 'value' => function ($item) {
+                    return $item->places;
+                }],
             ]
         ];
         return view('pages.admin.sessions.index', compact('data'));
@@ -43,6 +57,81 @@ class SessionsController extends Controller
     public function create()
     {
         //
+        $courses = Course::get();
+        $data = [
+            'links' => [
+                'base' => 'admin.sessions.',
+                'index' => 'My Sessions',
+                'create' => 'Add Session',
+                'edit' => 'Edit Session',
+            ],
+            'action' => route('admin.sessions.store'),
+            'method' => 'post',
+            'file' => false,
+            'size' => '9',
+            'content' => [
+                [
+                    'type' => 'select',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'course_id',
+                        'label' => 'Course',
+                        'required' => 'required',
+                        'placeholder' => 'Select a Course',
+                        'size' => '3',
+                        'data' => [
+                            'list' => $courses,
+                            'value' => function ($item) {
+                                return $item->id;
+                            },
+                            'label' => function ($item) {
+                                return $item->title;
+                            },
+                        ]
+                    ]
+                ],
+                [
+                    'type' => 'date',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'start',
+                        'label' => 'Starts on',
+                        'type' => 'date',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dc;   Start',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'date',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'end',
+                        'label' => 'Ends on',
+                        'type' => 'date',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dc;   End',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'number',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'places',
+                        'label' => 'Available places',
+                        'type' => 'number',
+                        'required' => 'required',
+                        'placeholder' => '&#xf1dc;   Places',
+                        'size' => '3'
+                    ]
+                ],
+            ]
+        ];
+
+        return view('pages.admin.sessions.create', [
+            'data' => $data
+        ]);
     }
 
     /**
@@ -54,6 +143,20 @@ class SessionsController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->validate([
+            'course_id' => 'required|numeric',
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'places' => 'required|numeric',
+        ]);
+        $session = Session::create($input);
+
+        Course::findOrFail($input['course_id'])->sessions()->save($session);
+        Teacher::first()->sessions()->save($session);
+
+        return redirect()
+            ->route('admin.sessions.index')
+            ->with('success', 'The session has been successfully added.');
     }
 
     /**
@@ -76,6 +179,83 @@ class SessionsController extends Controller
     public function edit($id)
     {
         //
+        $session = Session::findOrFail($id);
+        $courses = Course::get();
+        $data = [
+            'links' => [
+                'base' => 'admin.sessions.',
+                'index' => 'Sessions',
+                'create' => 'Add Session',
+                'edit' => 'Edit Session',
+            ],
+            'action' => route('admin.sessions.update', $id),
+            'method' => 'post',
+            'file' => false,
+            'size' => '9',
+            'content' => [
+                [
+                    'type' => 'select',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'course_id',
+                        'label' => 'Course',
+                        'required' => 'required',
+                        'value' =>  $session->course_id,
+                        'placeholder' => 'Select a Course',
+                        'size' => '3',
+                        'data' => [
+                            'list' => $courses,
+                            'value' => function ($item) {
+                                return $item->id;
+                            },
+                            'label' => function ($item) {
+                                return $item->title;
+                            },
+                        ]
+                    ]
+                ],
+                [
+                    'type' => 'date',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'start',
+                        'label' => 'Starts on',
+                        'type' => 'date',
+                        'required' => 'required',
+                        'value' =>  $session->start->format('Y-m-d'),
+                        'placeholder' => '&#xf1dc;   Start',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'date',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'end',
+                        'label' => 'Ends on',
+                        'type' => 'date',
+                        'required' => 'required',
+                        'value' =>  $session->end->format('Y-m-d'),
+                        'placeholder' => '&#xf1dc;   End',
+                        'size' => '3'
+                    ]
+                ],
+                [
+                    'type' => 'number',
+                    'size' => '12',
+                    'data' => [
+                        'name' => 'places',
+                        'label' => 'Available places',
+                        'type' => 'number',
+                        'required' => 'required',
+                        'value' =>  $session->places,
+                        'placeholder' => '&#xf1dc;   Places',
+                        'size' => '3'
+                    ]
+                ],
+            ]
+        ];
+        return view('pages.admin.sessions.edit', compact('data'));
     }
 
     /**
@@ -88,6 +268,18 @@ class SessionsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $session = Session::findOrFail($id);
+        $input = $request->validate([
+            'course_id' => 'required|numeric',
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'places' => 'required|numeric',
+        ]);
+        $session->update($input);
+
+        return redirect()
+            ->route('admin.sessions.index')
+            ->with('success', 'The session has been successfully added.');        
     }
 
     /**

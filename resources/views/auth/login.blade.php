@@ -28,6 +28,9 @@
             @if (Session::has('already_verified'))
             <div class="alert alert-info">{!! Session::get('already_verified') !!}</div>
             @endif
+            @if (Session::has('inactive'))
+            <div class="alert alert-danger">{!! Session::get('inactive') !!}</div>
+            @endif
 
             @if (count($errors->all()) > 0)
                 <div class="alert alert-danger">

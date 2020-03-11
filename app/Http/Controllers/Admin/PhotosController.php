@@ -13,10 +13,13 @@ class PhotosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $photos = Photo::get();
+        $show = $request->show ?? 10;
+
+        $photos = Photo::latest()->paginate($show);
+        $all = Photo::latest()->get();
         $data = [
             'links' => [
                 'base' => 'admin.media.photos.',
@@ -25,6 +28,7 @@ class PhotosController extends Controller
                 'edit' => 'Edit an Photo',
             ],
             'list' => $photos,
+            'all' => $all,
             'table' => [
                 ['key' => 'Path', 'value' => function ($item) { return $item->path; }],
             ]

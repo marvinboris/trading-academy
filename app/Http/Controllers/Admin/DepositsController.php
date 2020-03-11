@@ -16,10 +16,13 @@ class DepositsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $deposits = Deposit::latest()->get();
+        $show = $request->show ?? 10;
+
+        $deposits = Deposit::latest()->paginate($show);
+        $all = Deposit::latest()->get();
         $data = [
             'links' => [
                 'base' => 'admin.deposits.',
@@ -28,6 +31,7 @@ class DepositsController extends Controller
                 'edit' => 'Edit a Deposit',
             ],
             'list' => $deposits,
+            'all' => $all,
             'table' => [
                 ['key' => 'Amount', 'value' => function ($item) {
                     return $item->amount;

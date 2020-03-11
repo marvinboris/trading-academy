@@ -7,6 +7,7 @@ use App\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Notifications\NewTeamMember;
+use App\Photo;
 use Illuminate\Support\Facades\Hash;
 
 class StudentsController extends Controller
@@ -97,24 +98,24 @@ class StudentsController extends Controller
             'password' => Hash::make($input['password']),
             'phone' => $input['code'] . $input['phone'],
             'is_active' => $input['is_active'],
-            'role_id' => 3,
+            'role_id' => 1,
             'sponsor' => $input['sponsor'] ?? User::first()->ref,
-            'ref' => User::ref()
+            'ref' => User::ref(),
+            'email_verified_at' => time()
         ];
 
         if ($file = $request->file('photo')) {
             $fileName = time() . $file->getClientOriginalName();
             $file->move('images', $fileName);
-            $userData['photo'] = htmlspecialchars($fileName);
+            $photo = Photo::create(['path' => htmlspecialchars($fileName)]);
+            $userData['photo_id'] = $photo->id;
         }
 
         $user = User::create($userData);
 
-        $user = User::find($user->id);
-        $sponsor = User::where('ref', $user->sponsor)->first();
         Student::create(['user_id' => $user->id]);
 
-        $sponsor->notify(new NewTeamMember($user));
+        $user->sponsor()->notify(new NewTeamMember($user));
 
         return redirect()
             ->route('admin.users.students.index')
@@ -130,6 +131,11 @@ class StudentsController extends Controller
     public function show($id)
     {
         //
+        $student = Student::findOrFail($id);
+
+        return view('pages.admin.users.students.show', [
+            'student' => $student
+        ]);
     }
 
     /**
@@ -141,6 +147,11 @@ class StudentsController extends Controller
     public function edit($id)
     {
         //
+        $student = Student::findOrFail($id);
+
+        return view('pages.admin.users.students.edit', [
+            'student' => $student
+        ]);
     }
 
     /**
@@ -153,6 +164,51 @@ class StudentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = Student::findOrFail($id)->user;
+
+        foreach (User::get() as $item) {
+            if ($item->email === $request->email && $item->id !== $user->id) return redirect()
+                ->back()
+                ->with('danger', 'E-Mail already taken');
+        }
+
+        $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'phone' => ['required', 'numeric'],
+            'country_code' => ['required'],
+        ]);
+
+        $input = $request->all();
+
+        $userData = [
+            'first_name' => $input['first_name'],
+            'last_name' => $input['last_name'],
+            'email' => $input['email'],
+            'country' => $input['country_code'],
+            'phone' => $input['code'] . $input['phone'],
+            'is_active' => $input['is_active'],
+        ];
+
+        if ($file = $request->file('photo')) {
+            $fileName = time() . $file->getClientOriginalName();
+            $file->move('images', $fileName);
+            if ($user->photo) {
+                unlink(public_path() . $user->photo->path);
+                $user->photo->path = htmlspecialchars($fileName);
+                $user->photo->save();
+            } else {
+                $photo = Photo::create(['path' => htmlspecialchars($fileName)]);
+                $userData['photo_id'] = $photo->id;
+            }
+        }
+
+        $user->update($userData);
+
+        return redirect()
+            ->route('admin.users.students.index')
+            ->with('success', 'Student successfully updated');
     }
 
     /**

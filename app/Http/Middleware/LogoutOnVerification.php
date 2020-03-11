@@ -22,11 +22,12 @@ class LogoutOnVerification
             Auth::logout();
             if (Session::has('new_registered')) {
                 $request->session()->reflash();
-                $request->session()->flash('not_verified', 'Account created successfully. We sent a mail to <strong class="text-green">'. $user->email . '</strong>. Please, check your mailbox and click on the activation link.');
+                $request->session()->flash('not_verified', 'Account created successfully. We sent a mail to <strong class="text-green">' . $user->email . '</strong>. Please, check your mailbox and click on the activation link.');
             } else {
                 $request->session()->flash('not_verified', 'Please, check your mailbox and click on the activation link.');
             }
-            return redirect(route('login'));
+            return redirect()
+                ->route('login');
         }
         return $next($request);
     }

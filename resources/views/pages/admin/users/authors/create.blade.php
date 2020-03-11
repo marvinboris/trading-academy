@@ -12,7 +12,7 @@ asort($namesData);
 
 @section('content')
 @component('components.auth.pages.admin.page')
-<form action="{{ route('admin.users.authors.store') }}" method="post">
+<form action="{{ route('admin.users.authors.store') }}" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-lg-9">
             @if (count($errors->all()) > 0)
@@ -190,7 +190,15 @@ asort($namesData);
                 else confirm.addClass('text-purered').removeClass('text-green').find('.fas').addClass('fa-times-circle').removeClass('fa-check-circle');
             });
 
+            $('#password').change(function () {
+                $('#password').keyup();
+            });
+
             $('#password-confirmation').keyup(function () {
+                $('#password').keyup();
+            });
+
+            $('#password-confirmation').change(function () {
                 $('#password').keyup();
             });
 

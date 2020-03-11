@@ -25,7 +25,7 @@ class Admin extends Authenticatable
 
     public function posts()
     {
-        return $this->morphMany('App\Post', 'postable');
+        return $this->hasMany('App\Post');
     }
 
     public function abbreviation()

@@ -190,7 +190,15 @@ asort($namesData);
                 else confirm.addClass('text-purered').removeClass('text-green').find('.fas').addClass('fa-times-circle').removeClass('fa-check-circle');
             });
 
+            $('#password').change(function () {
+                $('#password').keyup();
+            });
+
             $('#password-confirmation').keyup(function () {
+                $('#password').keyup();
+            });
+
+            $('#password-confirmation').change(function () {
                 $('#password').keyup();
             });
 

@@ -8,11 +8,12 @@ class Comment extends Model
 {
     //
     protected $fillable = [
-        'post_id', 'body', 'is_active', 'commentable_id', 'commentable_type'
+        'post_id', 'body', 'is_active', 'user_id'
     ];
 
-    public function commentable() {
-        return $this->morphTo();
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     public function post()

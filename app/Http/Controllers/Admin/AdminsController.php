@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminsController extends Controller
 {
@@ -20,7 +21,7 @@ class AdminsController extends Controller
 
         $admins = Admin::latest()->paginate($show);
         $all = Admin::latest()->get();
-        
+
         $data = [
             'links' => [
                 'base' => 'admin.users.admins.',
@@ -31,11 +32,21 @@ class AdminsController extends Controller
             'list' => $admins,
             'all' => $all,
             'table' => [
-                ['key' => 'Name', 'value' => function ($item) { return $item->name; }],
-                ['key' => 'E-Mail Address', 'value' => function ($item) { return $item->email; }],
-                ['key' => 'Phone Number', 'value' => function ($item) { return $item->phone; }],
-                ['key' => 'Country', 'value' => function ($item) { return '<span class="flag-icon flag-icon-' . strtolower($item->country) . '"></span> ' . $item->country; }],
-                ['key' => 'Status', 'raw' => true, 'value' => function ($item) { return $item->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; }],
+                ['key' => 'Name', 'value' => function ($item) {
+                    return $item->name;
+                }],
+                ['key' => 'E-Mail Address', 'value' => function ($item) {
+                    return $item->email;
+                }],
+                ['key' => 'Phone Number', 'value' => function ($item) {
+                    return $item->phone;
+                }],
+                ['key' => 'Country', 'value' => function ($item) {
+                    return '<span class="flag-icon flag-icon-' . strtolower($item->country) . '"></span> ' . $item->country;
+                }],
+                ['key' => 'Status', 'raw' => true, 'value' => function ($item) {
+                    return $item->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>';
+                }],
             ]
         ];
         return view('pages.admin.users.admins.index', compact('data'));
@@ -58,11 +69,31 @@ class AdminsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Admin $request)
+    public function store(Request $request)
     {
         //
-        $validated = $request->validated();
-        return $validated;
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
+            'phone' => ['required', 'numeric'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $input = $request->all();
+
+        $adminData = [
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
+            'phone' => $input['phone'],
+            'is_active' => $input['is_active'],
+        ];
+
+        Admin::create($adminData);
+
+        return redirect()
+            ->route('admin.users.admins.index')
+            ->with('success', 'Admin created successfully');
     }
 
     /**
@@ -85,6 +116,11 @@ class AdminsController extends Controller
     public function edit($id)
     {
         //
+        $admin = Admin::findOrFail($id);
+
+        return view('pages.admin.users.admins.edit', [
+            'admin' => $admin
+        ]);
     }
 
     /**
@@ -97,6 +133,34 @@ class AdminsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $admin = Admin::findOrFail($id);
+
+        foreach (Admin::get() as $item) {
+            if ($item->email === $request->email && $item->id !== $admin->id) return redirect()
+                ->back()
+                ->with('danger', 'E-Mail already taken');
+        }
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'phone' => ['required', 'numeric'],
+        ]);
+
+        $input = $request->all();
+
+        $adminData = [
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'phone' => $input['phone'],
+            'is_active' => $input['is_active'],
+        ];
+
+        $admin->update($adminData);
+
+        return redirect()
+            ->route('admin.users.admins.index')
+            ->with('success', 'Admin updated successfully');
     }
 
     /**

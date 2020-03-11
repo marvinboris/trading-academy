@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Course;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Photo;
 use Illuminate\Http\Request;
 
 class CoursesController extends Controller
@@ -14,10 +15,13 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $courses = Course::get();
+        $show = $request->show ?? 10;
+
+        $courses = Course::latest()->paginate($show);
+        $all = Course::latest()->get();
         $data = [
             'links' => [
                 'base' => 'admin.courses.',
@@ -26,6 +30,7 @@ class CoursesController extends Controller
                 'edit' => 'Edit a Course',
             ],
             'list' => $courses,
+            'all' => $all,
             'table' => [
                 ['key' => 'Teacher', 'value' => function ($item) { return $item->teacher->user->name(); }],
                 ['key' => 'Title', 'value' => function ($item) { return ($item->title); }],
@@ -68,6 +73,10 @@ class CoursesController extends Controller
     public function show($id)
     {
         //
+        $slug = Course::findOrFail($id)->slug;
+
+        return redirect()
+            ->route('courses.show', $slug);
     }
 
     /**
@@ -79,6 +88,8 @@ class CoursesController extends Controller
     public function edit($id)
     {
         //
+        $course = Course::findOrFail($id);
+        return view('pages.admin.courses.edit', compact('course'));
     }
 
     /**
@@ -91,6 +102,30 @@ class CoursesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $course = Course::findOrFail($id);
+        $input = $request->all();
+
+        if ($file = $request->file('photo')) {
+            $photo = Photo::findOrFail($course->photo_id);
+            unlink(public_path() . $photo->path);
+
+            $fileName = time() . $file->getClientOriginalName();
+            $file->move('images', $fileName);
+            $photo->path = htmlspecialchars($fileName);
+
+            $photo->save();
+        }
+
+        $input['course_content'] = json_encode($input['course_content']);
+        $input['what_you_will_learn'] = json_encode($input['what_you_will_learn']);
+        $input['requirements'] = json_encode($input['requirements']);
+        $input['includes'] = json_encode($input['includes']);
+
+        $course->update($input);
+
+        return redirect()
+            ->route('admin.courses.index')
+            ->with('success', 'The course was successfully updated.');
     }
 
     /**

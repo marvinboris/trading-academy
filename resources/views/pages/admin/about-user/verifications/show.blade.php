@@ -203,7 +203,7 @@
                         <label for="lang" class="control-label font-weight-bold">Language</label>
                     </div>
                     <div class="col-sm-8">
-                        {{ $verification->user->lang }}
+                        {{ App\Language::whereLang($student->user->lang)->first()->name }}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -251,7 +251,7 @@
                         <label for="created_at" class="control-label font-weight-bold">Registration Date</label>
                     </div>
                     <div class="col-sm-8">
-                        {{ $verification->user->created_at }}
+                        {{ $verification->user->created_at->format('d M Y') }}
                     </div>
                 </div>
             </div>

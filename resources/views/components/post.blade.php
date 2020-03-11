@@ -36,7 +36,7 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <a class="btn-animate" href="#">
+                            <a class="btn-animate" href="{{ $link }}">
                                 <div class="btn btn-light btn-sm pd-x-0 primary text-green overflow-hidden rounded-sm static link text-montserrat position-relative">
                                     <span class="d-block small font-weight-bold text-montserrat px-3 py-1">{{ __($componentContent['read_more']) }}</span>
                                     <div class="bg-black-20 secondary align-items-center d-none active rounded-sm-right px-3 py-2 position-absolute h-100" style="top: 0; right: 0;">

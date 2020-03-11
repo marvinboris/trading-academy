@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
         //
         User::create([
             'role_id' => 1,
-            'ref' => User::ref(),
+            'ref' => 'GITDEV',
             'sponsor' => '0',
             'is_active' => 1,
             'is_verified' => 1,

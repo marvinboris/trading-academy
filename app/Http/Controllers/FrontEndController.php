@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
+use App\CommentReply;
 use App\Post;
 use App\Course;
 use App\Testimonial;
 use App\Trainer;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class FrontEndController extends Controller
@@ -69,7 +72,7 @@ class FrontEndController extends Controller
             $posts[] = [
                 'title' => $post->title,
                 'img' => $post->photo->path,
-                'link' => '#',
+                'link' => route('posts.show', $post->slug),
                 'date' => $post->updated_at->format('d-m-Y'),
                 'body' => Str::limit($post->body),
                 'add' => 'data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom"'
@@ -102,7 +105,7 @@ class FrontEndController extends Controller
             $posts[] = [
                 'title' => $post->title,
                 'img' => $post->photo->path,
-                'link' => '#',
+                'link' => route('posts.show', $post->slug),
                 'date' => $post->updated_at->format('d-m-Y'),
                 'body' => Str::limit($post->body),
                 'add' => 'data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom"'
@@ -163,5 +166,43 @@ class FrontEndController extends Controller
             'course' => $course,
             'colors' => $colors
         ]);
+    }
+
+    public function post($slug)
+    {
+        $post = Post::whereSlug($slug)->first();
+
+        return view('pages.post', [
+            'post' => $post
+        ]);
+    }
+
+    public function store($slug, Request $request)
+    {
+        $post = Post::whereSlug($slug)->first();
+
+        $request->validate([
+            'body' => 'required'
+        ]);
+
+        if ($request->comment_id) CommentReply::create([
+            'body' => $request->body,
+            'user_id' => Auth::id(),
+            'comment_id' => $request->comment_id
+        ]);
+        else Comment::create([
+            'body' => $request->body,
+            'user_id' => Auth::id(),
+            'post_id' => $post->id
+        ]);
+
+        if ($request->ajax()) {
+            return view('post', [
+                'post' => $post
+            ]);
+        }
+
+        return redirect()
+            ->route('posts.show', $slug);
     }
 }
