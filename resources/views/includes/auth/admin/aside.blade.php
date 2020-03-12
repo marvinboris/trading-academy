@@ -4,7 +4,7 @@
             <div class="d-flex align-items-end">
                 <div>
                     <a href="{{ url('/') }}" class="d-flex align-items-center" style="top: 10px; height: 50px;">
-                        <img src="{{ asset('/images/Groupe 130@2x.png') }}" class="h-100" alt="Logo">
+                        <img src="{{ asset($globalContent['logo']) }}" class="h-100" alt="Logo">
                     </a>
                 </div>
                 <div class="text-baloo d-none text-white pl-2 text-medium" style="line-height: 1.2;">

@@ -1,4 +1,4 @@
-<footer class="bg-darkblue text-white text-montserrat container-fluid p-5">
+<footer class="bg-darkblue text-white text-montserrat container-fluid p-5 overflow-hidden">
     <div class="row pb-3">
         <div class="col-sm-6 pb-3 pb-sm-0 col-lg-3">
             <div class="pb-0 mb-3 d-inline-block position-relative mb-3">

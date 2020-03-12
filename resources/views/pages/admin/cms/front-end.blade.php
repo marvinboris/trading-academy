@@ -774,6 +774,134 @@
                             </div>
                         </div>
 
+                        <div class="tab-pane fade show" id="pills-{{ $language->lang }}-faq" role="tabpanel" aria-labelledby="pills-{{ $language->lang }}-faq-tab">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-faq-title" class="control-label">Title</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][faq][title]" id="{{ $language->lang }}-frontend-faq-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['faq']['title'] !!}" required>
+                                </div>
+                            </div>
+
+                            <legend>Content</legend>
+                            @foreach ($page_content[$language->lang]['frontend']['pages']['faq']['content'] as $key => $value)
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <h5 class="font-weight-700">
+                                        <label class="section-number">Section {{ $key + 1 }}</label>
+                                        <button type="button" class="btn btn-transparent p-0 text-blue ml-1 add section"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-plus fa-stack-1x fa-inverse"></i></span></button>
+                                        <button type="button" class="btn btn-transparent p-0 text-purered delete section"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-minus fa-stack-1x fa-inverse"></i></span></button>
+                                    </h5>
+                                    <div class="form-group row section-title" prefix-id="{{ $language->lang }}-frontend-faq-content-" prefix-name="{{ $language->lang }}[frontend][pages][faq][content][">
+                                        <div class="col-md-3">
+                                            <label for="{{ $language->lang }}-frontend-faq-content-{{ $key }}-title" class="control-label">Title</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="{{ $language->lang }}[frontend][pages][faq][content][{{ $key }}][title]" id="{{ $language->lang }}-frontend-faq-content-{{ $key }}-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['faq']['content'][$key]['title'] !!}" required>
+                                        </div>
+                                    </div>
+
+                                    @foreach ($value['content'] as $itemKey => $item)
+                                    <div>
+                                        <h5>
+                                            <label class="item-number">Item {{ $itemKey + 1 }}</label>
+                                            <button type="button" class="btn btn-transparent p-0 text-blue ml-1 add item"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-plus fa-stack-1x fa-inverse"></i></span></button>
+                                            <button type="button" class="btn btn-transparent p-0 text-purered delete item"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-minus fa-stack-1x fa-inverse"></i></span></button>
+                                        </h5>
+                                        <div class="form-group row item-title">
+                                            <div class="col-md-3">
+                                                <label for="{{ $language->lang }}-frontend-faq-content-{{ $key }}-content-{{ $itemKey }}-title" class="control-label">Title</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" name="{{ $language->lang }}[frontend][pages][faq][content][{{ $key }}][content][{{ $itemKey }}][title]" id="{{ $language->lang }}-frontend-faq-content-{{ $key }}-content-{{ $itemKey }}-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['faq']['content'][$key]['content'][$itemKey]['title'] !!}" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row item-content">
+                                            <div class="col-md-3">
+                                                <label for="{{ $language->lang }}-frontend-faq-content-{{ $key }}-content-{{ $itemKey }}-body" class="control-label">Body</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <textarea required class="form-control summernote" name="{{ $language->lang }}[frontend][pages][faq][content][{{ $key }}][content][{{ $itemKey }}][body]" id="{{ $language->lang }}-frontend-faq-content-{{ $key }}-content-{{ $itemKey }}-body">
+                                                    {!! $page_content[$language->lang]['frontend']['pages']['faq']['content'][$key]['content'][$itemKey]['body'] !!}
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>    
+                            @endforeach
+                        </div>
+
+                        <div class="tab-pane fade show" id="pills-{{ $language->lang }}-post" role="tabpanel" aria-labelledby="pills-{{ $language->lang }}-post-tab">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-post-title" class="control-label">Title</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][post][title]" id="{{ $language->lang }}-frontend-post-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['post']['title'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-post-by" class="control-label">By</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][post][by]" id="{{ $language->lang }}-frontend-post-by" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['post']['by'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-post-posted_on" class="control-label">Posted On</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][post][posted_on]" id="{{ $language->lang }}-frontend-post-posted_on" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['post']['posted_on'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-post-leave_comment" class="control-label">Leave Comment</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][post][leave_comment]" id="{{ $language->lang }}-frontend-post-leave_comment" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['post']['leave_comment'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-post-submit" class="control-label">Submit</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][post][submit]" id="{{ $language->lang }}-frontend-post-submit" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['post']['submit'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-post-search" class="control-label">Search</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][post][search]" id="{{ $language->lang }}-frontend-post-search" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['post']['search'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-post-search_for" class="control-label">Search For</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][post][search_for]" id="{{ $language->lang }}-frontend-post-search_for" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['post']['search_for'] !!}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-post-go" class="control-label">Go</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][post][go]" id="{{ $language->lang }}-frontend-post-go" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['post']['go'] !!}" required>
+                                </div>
+                            </div>
+                            
+                        </div>
+
                         <div class="tab-pane fade show" id="pills-{{ $language->lang }}-sign_in" role="tabpanel" aria-labelledby="pills-{{ $language->lang }}-sign_in-tab">
                             <div class="row align-items-center">
                                 <div class="col-md-9">
@@ -1056,4 +1184,59 @@
     </div>
 </form>
 @endcomponent
+@endsection
+
+@section('scripts')
+    <script>
+        $(function () {
+            const deleteBtnEvent = function () {
+                const current = $(this);
+                current.parent().parent().remove();
+
+                if (current.hasClass('section')) {
+                    const parents = current.parent().parent().children('.col-12');
+                    parents.each(function (index) {
+                        const elem = $(this);
+                        elem.find('label.title').html('Section ' + (index + 1));
+                        elem.find('label:not(.text-large)').attr('for', "course_content[" + index + "]['title']");
+                        elem.find('input.title').attr('name', "course_content[" + index + "]['title']");
+                        elem.find('input.subitem').attr('name', "course_content[" + index + "]['content'][]");
+                    });
+                }
+            };
+            const addBtnEvent = function () {
+                const current = $(this);
+                const clone = current.parent().parent().clone();
+                
+                current.parent().parent().after(clone);
+                clone.find('.btn.delete').click(deleteBtnEvent);
+                clone.find('.btn.add').click(addBtnEvent);
+
+                if (current.hasClass('section')) {
+                    const parents = current.parent().parent().children('.col-12');
+                    parents.each(function (index) {
+                        const elem = $(this);
+                        elem.find('label.section-number').html('Section ' + (index + 1));
+
+                        console.log('Section', index);
+                        
+                        const sectionTitle = elem.find('label.section-title');
+                        const prefixId = sectionTitle.attr('prefix-id');
+                        const prefixName = sectionTitle.attr('prefix-name');
+
+                        const sectionTitleId = prefixId + index + '-title';
+                        const sectionTitleName = prefixId + index + '][title]';
+                        sectionTitle.find('label').attr('for', sectionTitleId);
+                        sectionTitle.find('input').attr('id', sectionTitleId).attr('name', sectionTitleName);
+
+                        // elem.find('label.').attr('for', "course_content[" + index + "]['title']");
+                        // elem.find('input.title').attr('name', "course_content[" + index + "]['title']");
+                        // elem.find('input.subitem').attr('name', "course_content[" + index + "]['content'][]");
+                    });
+                }
+            };
+            $('.btn.delete').click(deleteBtnEvent);
+            $('.btn.add').click(addBtnEvent);
+        });
+    </script>
 @endsection

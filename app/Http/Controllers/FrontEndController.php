@@ -145,7 +145,13 @@ class FrontEndController extends Controller
 
     public function faq()
     {
-        return view('pages.faq');
+        $jsonString = file_get_contents(base_path('content.json'));
+        $contentFile = json_decode($jsonString, true);
+        $content = $contentFile['pages'][Session::get('lang')]['frontend']['pages']['faq'];
+
+        return view('pages.faq', [
+            'content' => $content
+        ]);
     }
 
     public function course($level)
@@ -170,10 +176,15 @@ class FrontEndController extends Controller
 
     public function post($slug)
     {
+        $jsonString = file_get_contents(base_path('content.json'));
+        $contentFile = json_decode($jsonString, true);
+        $content = $contentFile['pages'][Session::get('lang')]['frontend']['pages']['post'];
+
         $post = Post::whereSlug($slug)->first();
 
         return view('pages.post', [
-            'post' => $post
+            'post' => $post,
+            'content' => $content
         ]);
     }
 

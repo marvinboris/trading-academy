@@ -4,7 +4,7 @@
             <div class="d-flex align-items-end">
                 <div>
                     <a href="{{ url('/') }}" class="d-flex align-items-center" style="top: 10px; height: 50px;">
-                        <img src="{{ asset('/images/Groupe 130@2x.png') }}" class="h-100" alt="Logo">
+                        <img src="{{ asset($globalContent['logo']) }}" class="h-100" alt="Logo">
                     </a>
                 </div>
                 <div class="text-baloo d-none text-white pl-2 text-medium" style="line-height: 1.2;">
@@ -14,14 +14,18 @@
         </div>
         <div class="py-3 text-center text-white text-montserrat">
             <div class="d-flex justify-content-center position-relative">
-                <form id="photo-form" action="{{ route('user.settings.profile.post') }}" class="d-flex justify-content-end position-absolute w-100 pr-5" enctype="multipart/form-data" method="POST">
+                <form id="photo-form" action="{{ route('user.settings.profile.post') }}" class="d-flex justify-content-end position-absolute w-100 pr-4" enctype="multipart/form-data" method="POST">
                     @csrf
                     <input type="file" name="photo" class="d-none" id="photo-form-photo">
-                    <label for="photo-form-photo" class="fas fa-lg fa-edit text-yellow bg-transparent border-0"></label>
+                    <div class="text-right">
+                        <label for="photo-form-photo" class="fas fa-lg fa-edit text-yellow bg-transparent border-0"></label>
+                        <br>
+                        <button class="btn btn-link p-0 text-yellow d-none text-small">Edit</button>
+                    </div>
                 </form>
                 <div class="embed-responsive embed-responsive-1by1 bg-transparent p-1 rounded-circle d-flex justify-content-center align-items-center" style="width: 70px; border: 3px solid orange;">
                     {!! Auth::user()->photo ?
-                    '<img src="' . Auth::user()->photo .'" alt="User" class="rounded-circle w-100 h-100">'
+                    '<div style="background: url(' . asset(Auth::user()->photo->path) . ') no-repeat center; background-size: cover;" class="rounded-circle embed-responsive embed-responsive-1by1 w-100"></div>'
                     :
                     '<div class="d-flex justify-content-center align-items-center w-100 h-100 font-weight-bold text-white text-montserrat rounded-circle bg-black-50 text-large">' . Auth::user()->abbreviation() . '</div>'
                     !!}
@@ -60,7 +64,7 @@
                 <div class="d-flex align-items-end">
                     <div>
                         <a href="{{ url('/') }}" class="d-flex align-items-center" style="top: 10px; height: 50px;">
-                            <img src="{{ asset('/images/Groupe 130@2x.png') }}" class="h-100" alt="Logo">
+                            <img src="{{ asset($globalContent['logo']) }}" class="h-100" alt="Logo">
                         </a>
                     </div>
                     <div class="text-baloo d-none text-white pl-2 text-medium" style="line-height: 1.2;">
@@ -70,9 +74,18 @@
             </div>
             <div class="py-3 text-center text-white text-montserrat">
                 <div class="d-flex justify-content-center position-relative">
+                    <form id="photo-form-aside" action="{{ route('user.settings.profile.post') }}" class="d-flex justify-content-end position-absolute w-100 pr-4" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <input type="file" name="photo" class="d-none" id="photo-form-aside-photo">
+                        <div class="text-right">
+                            <label for="photo-form-aside-photo" class="fas fa-lg fa-edit text-yellow bg-transparent border-0"></label>
+                            <br>
+                            <button class="btn btn-link p-0 text-yellow d-none text-small">Edit</button>
+                        </div>
+                    </form>
                     <div class="embed-responsive embed-responsive-1by1 bg-transparent p-1 rounded-circle d-flex justify-content-center align-items-center" style="width: 70px; border: 3px solid orange;">
                         {!! Auth::user()->photo ?
-                        '<img src="' . Auth::user()->photo .'" alt="User" class="rounded-circle w-100 h-100">'
+                        '<div style="background: url(' . asset(Auth::user()->photo->path) . ') no-repeat center; background-size: cover;" class="rounded-circle embed-responsive embed-responsive-1by1 w-100"></div>'
                         :
                         '<div class="d-flex justify-content-center align-items-center w-100 h-100 font-weight-bold text-white text-montserrat rounded-circle bg-black-50 text-large">' . Auth::user()->abbreviation() . '</div>'
                         !!}

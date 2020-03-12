@@ -16,7 +16,7 @@ class FrontEndController extends Controller
         $page_content = $contentFile['pages'];
 
         $languages = Language::get();
-        $items = ['header' => 'Header', 'footer' => 'Footer', 'home' => 'Home', 'about' => 'About Us', 'courses' => 'Courses', 'contact' => 'Contact', 'faq' => 'FAQ', 'blog' => 'Blog', 'sign_up' => 'Register', 'sign_in' => 'Sign In'];
+        $items = ['header' => 'Header', 'footer' => 'Footer', 'home' => 'Home', 'about' => 'About Us', 'courses' => 'Courses', 'contact' => 'Contact', 'faq' => 'FAQ', 'blog' => 'Blog', 'post' => 'Post', 'sign_up' => 'Register', 'sign_in' => 'Sign In'];
 
         return view('pages.admin.cms.front-end', [
             'items' => $items,

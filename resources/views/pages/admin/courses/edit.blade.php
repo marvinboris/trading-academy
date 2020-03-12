@@ -101,7 +101,7 @@
                         <div class="col-12">
                             <label class="control-label title text-large">Section {{ $key + 1 }}</label>
                             <button type="button" class="btn btn-transparent p-0 text-blue ml-1 add section"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-plus fa-stack-1x fa-inverse"></i></span></button>
-                            <button type="button" class="btn btn-transparent p-0 text-purered delete"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-minus fa-stack-1x fa-inverse"></i></span></button>
+                            <button type="button" class="btn btn-transparent p-0 text-purered delete section"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-minus fa-stack-1x fa-inverse"></i></span></button>
                             <div class="row mb-3">
                                 <div class="col md-3">
                                     <label for="course_content[{{ $key }}][title]" class="control-label">Title</label>

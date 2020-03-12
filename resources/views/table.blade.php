@@ -33,7 +33,7 @@
 
 <div class="d-flex justify-content-between align-items-center">
     <div>
-        Showing <strong>1 to {{ count($list) }}</strong> of <strong>{{ count($all) }}</strong> entries.
+        Showing <strong>{{ count($list) ? 1 : 0 }} to {{ count($list) }}</strong> of <strong>{{ count($all) }}</strong> entries.
     </div>
 
     <div>

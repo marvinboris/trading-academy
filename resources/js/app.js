@@ -76,6 +76,19 @@ $(function () {
 });
 
 $(function () {
+    const editBtn = $('#photo-form').find('button');
+    const editBtnAside = $('#photo-form-aside').find('button');
+    editBtn.hide().removeClass('d-none');
+    editBtnAside.hide().removeClass('d-none');
+    $('#photo-form-photo').change(function () {
+        editBtn.show();
+    });
+    $('#photo-form-aside-photo').change(function () {
+        editBtnAside.show();
+    });
+});
+
+$(function () {
     $('#messages-controller').click(function () {
         if ($('#notifications').hasClass('show') || $('#menu').hasClass('show')) $('#notifications, #menu').removeClass('show');
     });

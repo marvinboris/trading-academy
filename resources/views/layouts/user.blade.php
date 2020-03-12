@@ -1,3 +1,9 @@
+@php
+    $jsonString = file_get_contents(base_path('content.json'));
+    $contentFile = json_decode($jsonString, true);
+    $globalContent = $contentFile['global'];
+@endphp
+
 @include('includes.head')
 
 <div class="d-flex min-vh-100 mw-100">
