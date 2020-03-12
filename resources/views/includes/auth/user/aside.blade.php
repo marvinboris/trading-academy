@@ -14,6 +14,11 @@
         </div>
         <div class="py-3 text-center text-white text-montserrat">
             <div class="d-flex justify-content-center position-relative">
+                <form id="photo-form" action="{{ route('user.settings.profile.post') }}" class="d-flex justify-content-end position-absolute w-100 pr-5" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <input type="file" name="photo" class="d-none" id="photo-form-photo">
+                    <label for="photo-form-photo" class="fas fa-lg fa-edit text-yellow bg-transparent border-0"></label>
+                </form>
                 <div class="embed-responsive embed-responsive-1by1 bg-transparent p-1 rounded-circle d-flex justify-content-center align-items-center" style="width: 70px; border: 3px solid orange;">
                     {!! Auth::user()->photo ?
                     '<img src="' . Auth::user()->photo .'" alt="User" class="rounded-circle w-100 h-100">'

@@ -178,14 +178,15 @@ Route::middleware(['auth', 'verification', 'status'])->group(function () {
             Route::resource('withdraws', 'WithdrawsController');
         });
         Route::name('settings.')->prefix('settings')->namespace('Settings')->group(function () {
-            Route::post('change-password', 'ChangePasswordController@post')->name('change-password.post');
-            Route::get('change-password', 'ChangePasswordController@get')->name('change-password.get');
+            Route::name('profile.')->group(function () {
+                Route::get('change-password', 'ProfileController@change_password')->name('change-password');
+                Route::get('edit-language', 'ProfileController@edit_language')->name('edit-language');
+
+                Route::post('profile', 'ProfileController@post')->name('post');
+            });
 
             Route::post('verification', 'VerificationController@post')->name('verification.post');
             Route::get('verification', 'VerificationController@get')->name('verification.get');
-
-            Route::post('edit-language', 'EditLanguageController@post')->name('edit-language.post');
-            Route::get('edit-language', 'EditLanguageController@get')->name('edit-language.get');
         });
     });
 
