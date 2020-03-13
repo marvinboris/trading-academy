@@ -33,7 +33,7 @@
 <div id="tag_container">
     @csrf
     <input type="hidden" name="data" value="{{ json_encode($list) }}">
-    @include('table')
+    @include('list')
 </div>
 
 

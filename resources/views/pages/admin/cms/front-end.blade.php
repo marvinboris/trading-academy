@@ -787,7 +787,7 @@
                             <legend>Content</legend>
                             @foreach ($page_content[$language->lang]['frontend']['pages']['faq']['content'] as $key => $value)
                             <div class="row align-items-center">
-                                <div class="col-md-12">
+                                <div class="col-12">
                                     <h5 class="font-weight-700">
                                         <label class="section-number">Section {{ $key + 1 }}</label>
                                         <button type="button" class="btn btn-transparent p-0 text-blue ml-1 add section"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-plus fa-stack-1x fa-inverse"></i></span></button>
@@ -803,13 +803,13 @@
                                     </div>
 
                                     @foreach ($value['content'] as $itemKey => $item)
-                                    <div>
+                                    <div class="item" prefix-id="{{ $language->lang }}-frontend-faq-content-{{ $key }}-content-" prefix-name="{{ $language->lang }}[frontend][pages][faq][content][{{ $key }}][content][">
                                         <h5>
                                             <label class="item-number">Item {{ $itemKey + 1 }}</label>
                                             <button type="button" class="btn btn-transparent p-0 text-blue ml-1 add item"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-plus fa-stack-1x fa-inverse"></i></span></button>
                                             <button type="button" class="btn btn-transparent p-0 text-purered delete item"><span class="fa-stack fa-1x"><i class="fas fa-circle fa-stack-2x"></i><i class="fas fa-minus fa-stack-1x fa-inverse"></i></span></button>
                                         </h5>
-                                        <div class="form-group row item-title">
+                                        <div class="form-group row item-title" section-suffix-id="-content-{{ $itemKey }}-title" section-suffix-name="][content][{{ $itemKey }}][title]">
                                             <div class="col-md-3">
                                                 <label for="{{ $language->lang }}-frontend-faq-content-{{ $key }}-content-{{ $itemKey }}-title" class="control-label">Title</label>
                                             </div>
@@ -817,12 +817,12 @@
                                                 <input type="text" name="{{ $language->lang }}[frontend][pages][faq][content][{{ $key }}][content][{{ $itemKey }}][title]" id="{{ $language->lang }}-frontend-faq-content-{{ $key }}-content-{{ $itemKey }}-title" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['faq']['content'][$key]['content'][$itemKey]['title'] !!}" required>
                                             </div>
                                         </div>
-                                        <div class="form-group row item-content">
+                                        <div class="form-group row item-content" section-suffix-id="-content-{{ $itemKey }}-body" section-suffix-name="][content][{{ $itemKey }}][body]">
                                             <div class="col-md-3">
                                                 <label for="{{ $language->lang }}-frontend-faq-content-{{ $key }}-content-{{ $itemKey }}-body" class="control-label">Body</label>
                                             </div>
                                             <div class="col-md-9">
-                                                <textarea required class="form-control summernote" name="{{ $language->lang }}[frontend][pages][faq][content][{{ $key }}][content][{{ $itemKey }}][body]" id="{{ $language->lang }}-frontend-faq-content-{{ $key }}-content-{{ $itemKey }}-body">
+                                                <textarea required class="form-control" name="{{ $language->lang }}[frontend][pages][faq][content][{{ $key }}][content][{{ $itemKey }}][body]" id="{{ $language->lang }}-frontend-faq-content-{{ $key }}-content-{{ $itemKey }}-body">
                                                     {!! $page_content[$language->lang]['frontend']['pages']['faq']['content'][$key]['content'][$itemKey]['body'] !!}
                                                 </textarea>
                                             </div>
@@ -1194,13 +1194,43 @@
                 current.parent().parent().remove();
 
                 if (current.hasClass('section')) {
-                    const parents = current.parent().parent().children('.col-12');
-                    parents.each(function (index) {
-                        const elem = $(this);
-                        elem.find('label.title').html('Section ' + (index + 1));
-                        elem.find('label:not(.text-large)').attr('for', "course_content[" + index + "]['title']");
-                        elem.find('input.title').attr('name', "course_content[" + index + "]['title']");
-                        elem.find('input.subitem').attr('name', "course_content[" + index + "]['content'][]");
+                    const sections = current.parent().parent().parent().children('.col-12');
+                    sections.each(function (sectionIndex) {
+                        const section = $(this);
+                        section.find('label.section-number').html('Section ' + (sectionIndex + 1));
+
+                        const sectionTitle = section.find('.section-title');
+                        const prefixId = sectionTitle.attr('prefix-id');
+                        const prefixName = sectionTitle.attr('prefix-name');
+
+                        const sectionTitleId = prefixId + sectionIndex + '-title';
+                        const sectionTitleName = prefixName + sectionIndex + '][title]';
+                        sectionTitle.find('label').attr('for', sectionTitleId);
+                        sectionTitle.find('input').attr('id', sectionTitleId).attr('name', sectionTitleName);
+
+                        const items = section.children('.item');
+
+                        items.each(function (itemIndex) {
+                            const item = $(this);
+
+                            const itemTitle = item.find('.item-title');
+                            const titleSectionSuffixId = itemTitle.attr('section-suffix-id');
+                            const titleSectionSuffixName = itemTitle.attr('section-suffix-name');
+
+                            const itemTitleId = prefixId + sectionIndex + titleSectionSuffixId;
+                            const itemTitleName = prefixName + sectionIndex + titleSectionSuffixName;
+                            itemTitle.find('label').attr('for', itemTitleId);
+                            itemTitle.find('input').attr('id', itemTitleId).attr('name', itemTitleName);
+
+                            const itemContent = item.find('.item-content');
+                            const contentSectionSuffixId = itemContent.attr('section-suffix-id');
+                            const contentSectionSuffixName = itemContent.attr('section-suffix-name');
+
+                            const itemContentId = prefixId + sectionIndex + contentSectionSuffixId;
+                            const itemContentName = prefixName + sectionIndex + contentSectionSuffixName;
+                            itemContent.find('label').attr('for', itemContentId);
+                            itemContent.find('textarea').attr('id', itemContentId).attr('name', itemContentName);
+                        });
                     });
                 }
             };
@@ -1213,26 +1243,71 @@
                 clone.find('.btn.add').click(addBtnEvent);
 
                 if (current.hasClass('section')) {
-                    const parents = current.parent().parent().children('.col-12');
-                    parents.each(function (index) {
-                        const elem = $(this);
-                        elem.find('label.section-number').html('Section ' + (index + 1));
+                    const sections = current.parent().parent().parent().children('.col-12');
+                    sections.each(function (sectionIndex) {
+                        const section = $(this);
+                        section.find('label.section-number').html('Section ' + (sectionIndex + 1));
 
-                        console.log('Section', index);
-                        
-                        const sectionTitle = elem.find('label.section-title');
+                        const sectionTitle = section.find('.section-title');
                         const prefixId = sectionTitle.attr('prefix-id');
                         const prefixName = sectionTitle.attr('prefix-name');
 
-                        const sectionTitleId = prefixId + index + '-title';
-                        const sectionTitleName = prefixId + index + '][title]';
+                        const sectionTitleId = prefixId + sectionIndex + '-title';
+                        const sectionTitleName = prefixName + sectionIndex + '][title]';
                         sectionTitle.find('label').attr('for', sectionTitleId);
-                        sectionTitle.find('input').attr('id', sectionTitleId).attr('name', sectionTitleName);
+                        sectionTitle.find('textarea').attr('id', sectionTitleId).attr('name', sectionTitleName);
 
-                        // elem.find('label.').attr('for', "course_content[" + index + "]['title']");
-                        // elem.find('input.title').attr('name', "course_content[" + index + "]['title']");
-                        // elem.find('input.subitem').attr('name', "course_content[" + index + "]['content'][]");
+                        const items = section.children('.item');
+
+                        items.each(function (itemIndex) {
+                            const item = $(this);
+
+                            const itemTitle = item.find('.item-title');
+                            const titleSectionSuffixId = itemTitle.attr('section-suffix-id');
+                            const titleSectionSuffixName = itemTitle.attr('section-suffix-name');
+
+                            const itemTitleId = prefixId + sectionIndex + titleSectionSuffixId;
+                            const itemTitleName = prefixName + sectionIndex + titleSectionSuffixName;
+                            itemTitle.find('label').attr('for', itemTitleId);
+                            itemTitle.find('input').attr('id', itemTitleId).attr('name', itemTitleName);
+
+                            const itemContent = item.find('.item-content');
+                            const contentSectionSuffixId = itemContent.attr('section-suffix-id');
+                            const contentSectionSuffixName = itemContent.attr('section-suffix-name');
+
+                            const itemContentId = prefixId + sectionIndex + contentSectionSuffixId;
+                            const itemContentName = prefixName + sectionIndex + contentSectionSuffixName;
+                            itemContent.find('label').attr('for', itemContentId);
+                            itemContent.find('textarea').attr('id', itemContentId).attr('name', itemContentName);
+                        });
                     });
+                }
+
+                if (current.hasClass('item')) {
+                    const items = current.parent().parent().parent().children('.item');
+
+                    items.each(function (itemIndex) {
+                        const item = $(this);
+
+                        const prefixId = item.attr('prefix-id');
+                        const prefixName = item.attr('prefix-name');
+
+                        item.find('label.item-number').html('Item ' + (itemIndex + 1));
+
+                        const itemTitle = item.find('.item-title');
+                        const itemTitleId = prefixId + itemIndex + '-title';
+                        const itemTitleName = prefixName + itemIndex + '][title]';
+
+                        itemTitle.find('label').attr('for', itemTitleId);
+                        itemTitle.find('input').attr('id', itemTitleId).attr('name', itemTitleName);
+                        
+                        const itemContent = item.find('.item-content');
+                        const itemContentId = prefixId + itemIndex + '-body';
+                        const itemContentName = prefixName + itemIndex + '][body]';
+
+                        itemContent.find('label').attr('for', itemContentId);
+                        itemContent.find('input').attr('id', itemContentId).attr('name', itemContentName);
+                    })
                 }
             };
             $('.btn.delete').click(deleteBtnEvent);

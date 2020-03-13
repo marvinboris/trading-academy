@@ -50525,6 +50525,26 @@ $(function () {
       $('.counter').countUp();
     });
   });
+  $.getScript('/js/jquery.star-rating-svg.js', function () {
+    $(".ranking-stars").starRating({
+      totalStars: 5,
+      starShape: 'rounded',
+      starSize: 40,
+      emptyColor: 'lightgray',
+      hoverColor: 'salmon',
+      activeColor: 'orange',
+      useGradient: false,
+      callback: function callback(currentRating) {
+        $('input[name="mark"]').val(currentRating);
+        console.log(currentRating);
+      }
+    });
+    $(".read-only-stars").starRating({
+      readOnly: true,
+      starShape: 'rounded',
+      starSize: 20
+    });
+  });
 });
 $(function () {
   var activeNavLink = $('.nav-link.active span');

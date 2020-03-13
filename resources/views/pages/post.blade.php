@@ -63,6 +63,16 @@
                     </div>
                 </div>
             </div>
+            <div class="card mb-4">
+                <h5 class="card-header">{{ $content['latest_posts'] }}</h5>
+                <div class="card-body">
+                    @foreach ($latest_posts as $post)
+                    <a href="{{ route('blog', $post->slug) }}" class="text-reset py-3 border-bottom d-block">
+                        <h6 class="m-0">{{ $post->title }}</h6>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 @endcomponent

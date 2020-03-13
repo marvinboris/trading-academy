@@ -6,8 +6,10 @@ use App\Comment;
 use App\CommentReply;
 use App\Post;
 use App\Course;
+use App\Student;
 use App\Testimonial;
 use App\Trainer;
+use App\View;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -166,12 +168,55 @@ class FrontEndController extends Controller
             'diamond' => 'blue',
         ];
         $course = Course::where('slug', $level)->first();
+        $can_comment = false;
+        
+        if (Auth::check()) {
+            $student = Student::where('user_id', Auth::id())->first();
+            $can_comment = $this->can_comment($student, $course);
+        }
 
         return view('pages.course', [
             'content' => $content,
             'course' => $course,
-            'colors' => $colors
+            'colors' => $colors,
+            'can_comment' => $can_comment
         ]);
+    }
+
+    private function can_comment($student, $course)
+    {
+        if (!$student) return false;
+        if (View::where('user_id', $student->user->id)->where('course_id', $course->id)->first()) return false;
+        foreach ($student->sessions as $session) {
+            if ($session->course->id === $course->id) return true;
+        }
+        return false;
+    }
+
+    public function view($level, Request $request)
+    {
+        $course = Course::whereSlug($level)->first();
+        $student = Student::where('user_id', Auth::id())->first();
+
+        if (!$this->can_comment($student, $course))
+            return redirect()
+                ->route('courses.show', $level)
+                ->with('danger', 'You cannot comment this course.');
+
+        $request->validate([
+            'mark' => 'numeric|required',
+            'body' => 'required'
+        ]);
+
+        View::create([
+            'mark' => $request->mark,
+            'body' => $request->body,
+            'user_id' => Auth::id(),
+            'course_id' => $course->id
+        ]);
+
+        return redirect()
+            ->back();
     }
 
     public function post($slug)
@@ -181,10 +226,12 @@ class FrontEndController extends Controller
         $content = $contentFile['pages'][Session::get('lang')]['frontend']['pages']['post'];
 
         $post = Post::whereSlug($slug)->first();
+        $latest_posts = Post::where('slug', '!=', $slug)->latest()->limit(3)->get();
 
         return view('pages.post', [
             'post' => $post,
-            'content' => $content
+            'content' => $content,
+            'latest_posts' => $latest_posts
         ]);
     }
 

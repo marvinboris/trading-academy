@@ -133,6 +133,7 @@ Route::name('about-us')->get('about-us', 'FrontEndController@about_us');
 Route::name('contact')->get('contact', 'FrontEndController@contact');
 Route::name('faq')->get('faq', 'FrontEndController@faq');
 Route::name('courses.show')->get('courses/{course}', 'FrontEndController@course');
+Route::name('courses.view')->post('courses/{course}', 'FrontEndController@view');
 Route::name('posts.show')->get('blog/{post}', 'FrontEndController@post');
 Route::name('posts.store')->post('blog/{post}', 'FrontEndController@store');
 

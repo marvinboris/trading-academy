@@ -8,10 +8,14 @@ class View extends Model
 {
     //
     protected $fillable = [
-        'course_id', 'mark', 'body', 'author', 'email', 'photo'
+        'course_id', 'mark', 'body', 'user_id'
     ];
 
     public function course() {
         return $this->belongsTo('App\Course');
+    }
+
+    public function user() {
+        return $this->belongsTo('App\User');
     }
 }

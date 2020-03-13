@@ -48,6 +48,27 @@ $(function () {
             $('.counter').countUp();
         });
     });
+    $.getScript('/js/jquery.star-rating-svg.js', function () {
+        $(".ranking-stars").starRating({
+            totalStars: 5,
+            starShape: 'rounded',
+            starSize: 40,
+            emptyColor: 'lightgray',
+            hoverColor: 'salmon',
+            activeColor: 'orange',
+            useGradient: false,
+            callback: function (currentRating) {
+                $('input[name="mark"]').val(currentRating);
+                console.log(currentRating);
+            }
+        });
+
+        $(".read-only-stars").starRating({
+            readOnly: true,
+            starShape: 'rounded',
+            starSize: 20,
+        });
+    });
 });
 
 $(function () {
@@ -105,7 +126,7 @@ $(function () {
     $('.btn-animate .primary').hover(function () {
         const current = $(this);
         const secondary = current.find('.secondary');
-        
+
         const secondaryWidth = secondary.outerWidth();
 
         current.stop().animate({ paddingRight: secondaryWidth }, 'fast');

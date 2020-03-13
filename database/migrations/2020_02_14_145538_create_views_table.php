@@ -16,9 +16,7 @@ class CreateViewsTable extends Migration
         Schema::create('views', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('course_id')->unsigned()->index();
-            $table->string('author');
-            $table->string('email');
-            $table->string('photo');
+            $table->bigInteger('user_id')->unsigned()->index();
             $table->integer('mark');
             $table->text('body');
             $table->timestamps();

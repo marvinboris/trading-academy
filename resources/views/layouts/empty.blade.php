@@ -1,9 +1,15 @@
+@php
+    $jsonString = file_get_contents(base_path('content.json'));
+    $contentFile = json_decode($jsonString, true);
+    $globalContent = $contentFile['global'];
+@endphp
+
 @include('includes.head')
 <div class="min-vh-100 bg-dark d-flex flex-column">
     <div class="container-fluid py-3 text-white border-bottom border-white-20 d-flex bg-dark justify-content-between align-items-center">
         <div>
             <a href="{{ url('/') }}" class="d-block position-sticky" style="top: 10px; height: 60px;">
-                <img src="{{ asset('/images/Groupe 130@2x.png') }}" class="h-100" alt="Logo">
+                <img src="{{ asset($globalContent['logo']) }}" class="h-100" alt="Logo">
             </a>
         </div>
         <div class="text-montserrat text-700 text-right">
@@ -12,7 +18,7 @@
         </div>
     </div>
 
-    <main class="d-flex flex-column flex-fill">
+    <main class="d-flex flex-column py-5 py-md-0 flex-fill">
         @yield('content')
     </main>
 

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/star-rating-svg.css') }}">
+@endsection
+
 @section('content')
     <div id="static-banner" class="container-fluid px-md-5 px-4 py-4 bg-dark text-white" style="background: linear-gradient(to right, rgba(0, 0, 0, .9), rgba(0, 0, 0, .9)), url('{{ asset($course->photo->path) }}') no-repeat center; background-size: cover;">
         <div class="px-md-5 py-2">
@@ -132,34 +136,54 @@
                             </div>
 
                             <div class="row">
-                                @foreach ($course->views as $comment)
+                                @foreach ($course->views()->latest()->get() as $view)
                                 <div class="col-12 py-3 border-bottom">
                                     <div class="row">
                                         <div class="col-lg-4 d-flex">
-                                            <div class="rounded-circle bg-secondary d-inline-flex mr-2 justify-content-center align-items-center text-white" style="width: 46px; height: 46px">{{ $comment['author']['abbr'] }}</div>
+                                            {!! $view->user->photo ?
+                                            '<div style="background: url(' . asset($view->user->photo->path) . ') no-repeat center; background-size: cover; width: 46px; outline-offset: 4px; box-shadow: 0 0 0 2px white;" class="rounded-circle embed-responsive embed-responsive-1by1 mr-2"></div>'
+                                            :
+                                            '<div class="d-flex justify-content-center align-items-center font-weight-bold text-white text-montserrat rounded-circle bg-black-50 text-x-small mr-2" style="width: 46px; height: 46px; outline-offset: 4px; box-shadow: 0 0 0 2px white;">' . $view->user->abbreviation() . '</div>'
+                                            !!}
+                                            {{-- <div class="rounded-circle bg-secondary d-inline-flex mr-2 justify-content-center align-items-center text-white" style="width: 46px; height: 46px">{{ $view->user->abbreviation() }}</div> --}}
                                             <div class="flex-fill">
-                                                <div class="text-muted">{{ Carbon\Carbon::parse($comment['date'])->diffForHumans() }}</div>
-                                                {{ $comment['author']['name'] }}
+                                                <div class="text-muted">{{ $view->created_at->diffForHumans() }}</div>
+                                                {{ $view->user->name() }}
                                             </div>
                                         </div>
                                         <div class="col-lg-8">
                                             <div class="pb-3">
-                                                @for ($i = 0; $i < 5; $i++)
-                                                    @if ($i < $comment['mark'])
-                                                    <i class="fas fa-star text-yellow"></i>
-                                                    @else
-                                                    <i class="fas fa-star text-black-50"></i>
-                                                    @endif
-                                                @endfor
+                                                <div class="read-only-stars" data-rating="{{ $view->mark }}"></div>
                                             </div>
                                             <div>
-                                                {{ $comment['text'] }}
+                                                {{ $view->body }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
+
+                            @if ($can_comment)
+                            <div class="card mt-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <span>{{ $content['leave_comment'] }} :</span>
+                                    <div>
+                                        <div class="ranking-stars" data-rating="2.5"></div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{{ route('courses.view', $course->slug) }}" method="post" class="ajax">
+                                        @csrf
+                                        <input type="hidden" name="mark">
+                                        <div class="form-group">
+                                            <textarea name="body" id="body" class="form-control"></textarea>
+                                        </div>
+                                        <button class="btn btn-green">{{ $content['submit'] }} <i class="fas fa-arrow-circle-right ml-1"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                     </div>
 
