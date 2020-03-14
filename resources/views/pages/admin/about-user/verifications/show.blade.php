@@ -203,7 +203,7 @@
                         <label for="lang" class="control-label font-weight-bold">Language</label>
                     </div>
                     <div class="col-sm-8">
-                        {{ App\Language::whereLang($student->user->lang)->first()->name }}
+                        {{ App\Language::whereLang($verification->user->lang)->first()->name }}
                     </div>
                 </div>
                 <div class="form-group row">
