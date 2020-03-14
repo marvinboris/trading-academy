@@ -9,36 +9,38 @@
     @csrf
     <div class="card w-100">
         <div class="card-body">
-            <div class="form-group">
-                <label for="first-name" class="control-label">First Name</label>
-                <input type="text" required class="form-control" name="first_name" id="first-name">
-            </div>
-            <div class="form-group">
-                <label for="last-name" class="control-label">Last Name</label>
-                <input type="text" required class="form-control" name="last_name" id="last-name">
-            </div>
-            <div class="form-group">
-                <label for="gender" class="control-label">Gender</label>
-                <select name="gender" class="form-control" id="gender">
-                    <option value="m">Male</option>
-                    <option value="f">Female</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="type" class="control-label">Document Type</label>
-                <select name="type" class="form-control" id="type">
-                    @foreach ($types as $key => $type)
-                    <option value="{{ $key }}">{{ $type }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="nid" class="control-label">NID</label>
-                <input type="text" required class="form-control" name="nid" id="nid">
-            </div>
-            <div class="form-group">
-                <label for="expiry-date" class="control-label">Expiry Date</label>
-                <input type="date" required class="form-control" name="expiry_date" id="expiry-date">
+            <div class="row">
+                <div class="form-group col-lg-6">
+                    <label for="first-name" class="control-label">First Name</label>
+                    <input type="text" required class="form-control" name="first_name" id="first-name">
+                </div>
+                <div class="form-group col-lg-6">
+                    <label for="last-name" class="control-label">Last Name</label>
+                    <input type="text" required class="form-control" name="last_name" id="last-name">
+                </div>
+                <div class="form-group col-lg-6">
+                    <label for="gender" class="control-label">Gender</label>
+                    <select name="gender" class="form-control" id="gender">
+                        <option value="m">Male</option>
+                        <option value="f">Female</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label for="type" class="control-label">Document Type</label>
+                    <select name="type" class="form-control" id="type">
+                        @foreach ($types as $key => $type)
+                        <option value="{{ $key }}">{{ $type }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label for="nid" class="control-label">NID</label>
+                    <input type="text" required class="form-control" name="nid" id="nid">
+                </div>
+                <div class="form-group col-lg-6">
+                    <label for="expiry-date" class="control-label">Expiry Date</label>
+                    <input type="date" required class="form-control" name="expiry_date" id="expiry-date">
+                </div>
             </div>
             <div class="form-group">
                 <label for="doc-1" class="control-label">Doc I</label>
