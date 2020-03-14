@@ -5,7 +5,7 @@
 
 @section('content')
 @component('components.auth.page')
-<form action="{{ route('user.settings.edit-language.post') }}" class="d-flex justify-content-center align-items-center" method="post">
+<form action="{{ route('user.settings.profile.post') }}" class="d-flex justify-content-center align-items-center" method="post">
     @csrf
     <div class="card col-md-6">
         <div class="card-body">

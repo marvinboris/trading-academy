@@ -5,7 +5,7 @@
 
 @section('content')
 @component('components.auth.page')
-<form action="{{ route('user.settings.change-password.post') }}" class="d-flex justify-content-center align-items-center" method="post">
+<form action="{{ route('user.settings.profile.post') }}" class="d-flex justify-content-center align-items-center" method="post">
     @csrf
     <div class="card w-100">
         <div class="card-body">
