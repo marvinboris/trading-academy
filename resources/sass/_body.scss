@@ -13,6 +13,16 @@
   border-radius: 26px;
 }
 
+.badge-block {
+  display: block !important;
+  width: 80%;
+  transform: translateX(10%);
+  border-radius: 2px !important;
+  padding-top: .25rem !important;
+  padding-bottom: .25rem !important;
+  text-align: center !important;
+}
+
 .btn,
 .form-control {
   border-radius: 0 !important;

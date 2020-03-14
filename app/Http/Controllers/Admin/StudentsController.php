@@ -51,7 +51,7 @@ class StudentsController extends Controller
                     return '<span class="flag-icon flag-icon-' . strtolower($item->user->country) . '"></span> ' . $item->user->country;
                 }],
                 ['key' => 'Status', 'raw' => true, 'value' => function ($item) {
-                    return $item->user->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>';
+                    return $item->user->is_active ? '<span class="badge badge-success badge-block"><i class="fas fa-check-circle mr-2"></i> Active</span>' : '<span class="badge badge-danger badge-block"><i class="fas fa-times-circle mr-2"></i> Inactive</span>';
                 }],
             ]
         ];

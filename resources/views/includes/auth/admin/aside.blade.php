@@ -23,6 +23,7 @@
                 </div>
             </div>
             <div class="text-700 pt-2 text-large text-montserrat-alt">{{ Auth::guard('admin')->user()->name }}</div>
+            <div class="text-yellow text-300"><i class="fas fa-check-circle"></i> Admin User</div>
         </div>
         <div class="flex-fill text-white text-montserrat border-top border-white-20 pt-4">
             @include('includes.auth.admin.aside-content')

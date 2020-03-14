@@ -45,7 +45,7 @@ class AdminsController extends Controller
                     return '<span class="flag-icon flag-icon-' . strtolower($item->country) . '"></span> ' . $item->country;
                 }],
                 ['key' => 'Status', 'raw' => true, 'value' => function ($item) {
-                    return $item->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>';
+                    return $item->is_active ? '<span class="badge badge-success badge-block"><i class="fas fa-check-circle mr-2"></i> Active</span>' : '<span class="badge badge-danger badge-block"><i class="fas fa-times-circle mr-2"></i> Inactive</span>';
                 }],
             ]
         ];

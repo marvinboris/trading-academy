@@ -82,6 +82,7 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
         Route::resource('comments', 'CommentsController');
         Route::resource('courses', 'CoursesController');
         Route::resource('deposits', 'DepositsController');
+        Route::resource('expenses', 'ExpensesController');
         Route::resource('messages', 'MessagesController');
         Route::resource('posts', 'PostsController');
         Route::resource('roles', 'RolesController');

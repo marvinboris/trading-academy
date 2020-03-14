@@ -29,14 +29,18 @@
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Deposits List', 'link' => route('admin.deposits.index')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Deposit', 'link' => route('admin.deposits.create')]) @endcomponent
 @endcomponent
+@component('components.auth.aside.admin.dropdown', ['name' => 'expense', 'icon' => 'fas fa-money-bill', 'title' => 'Expenses', 'link' => route('admin.expenses.index')])
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Expenses List', 'link' => route('admin.expenses.index')]) @endcomponent
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add an Expense', 'link' => route('admin.expenses.create')]) @endcomponent
+@endcomponent
 @component('components.auth.aside.admin.dropdown', ['name' => 'cms', 'icon' => 'fas fa-file-signature', 'title' => 'CMS', 'link' => url('admin/cms')])
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Global', 'link' => route('admin.cms.global')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Components', 'link' => route('admin.cms.components')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Front-end', 'link' => route('admin.cms.front-end')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Back-end', 'link' => route('admin.cms.back-end.index')]) @endcomponent
 @endcomponent
-@component('components.auth.aside.admin.link', ['link' => url('admin/notifications'), 'icon' => 'fas fa-bell']) Notifications @endcomponent
-@component('components.auth.aside.admin.dropdown', ['name' => 'settings', 'icon' => 'fas fa-cog', 'title' => 'Settings', 'link' => url('admin/settings')])
+{{-- @component('components.auth.aside.admin.link', ['link' => url('admin/notifications'), 'icon' => 'fas fa-bell']) Notifications @endcomponent --}}
+{{-- @component('components.auth.aside.admin.dropdown', ['name' => 'settings', 'icon' => 'fas fa-cog', 'title' => 'Settings', 'link' => url('admin/settings')])
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Change password', 'link' => '#']) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Edit language', 'link' => '#']) @endcomponent
-@endcomponent
+@endcomponent --}}

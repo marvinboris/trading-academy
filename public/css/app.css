@@ -20641,6 +20641,17 @@ a.text-dark:focus {
   border-radius: 26px;
 }
 
+.badge-block {
+  display: block !important;
+  width: 80%;
+  -webkit-transform: translateX(10%);
+          transform: translateX(10%);
+  border-radius: 2px !important;
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+  text-align: center !important;
+}
+
 .btn,
 .form-control {
   border-radius: 0 !important;
