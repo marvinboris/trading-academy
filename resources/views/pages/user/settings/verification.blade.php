@@ -41,26 +41,26 @@
                     <label for="expiry-date" class="control-label">Expiry Date</label>
                     <input type="date" required class="form-control" name="expiry_date" id="expiry-date">
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="doc-1" class="control-label">Doc I</label>
-                <div class="custom-file">
-                    <input type="file" name="doc_1" id="doc-1" class="custom-file-input" required>
-                    <label for="doc-1" class="custom-file-label">Send a selfie of yourself showing your document</label>
+                <div class="form-group col-lg-6">
+                    <label for="doc-1" class="control-label">Doc I</label>
+                    <div class="custom-file">
+                        <input type="file" name="doc_1" id="doc-1" class="custom-file-input" required>
+                        <label for="doc-1" class="custom-file-label">Send a selfie of yourself showing your document</label>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="doc-2" class="control-label">Doc II</label>
-                <div class="custom-file">
-                    <input type="file" name="doc_2" id="doc-2" class="custom-file-input" required>
-                    <label for="doc-2" class="custom-file-label">Send a photo of the front of your document</label>
+                <div class="form-group col-lg-6">
+                    <label for="doc-2" class="control-label">Doc II</label>
+                    <div class="custom-file">
+                        <input type="file" name="doc_2" id="doc-2" class="custom-file-input" required>
+                        <label for="doc-2" class="custom-file-label">Send a photo of the front of your document</label>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="doc-3" class="control-label">Doc III</label>
-                <div class="custom-file">
-                    <input type="file" name="doc_3" id="doc-3" class="custom-file-input" required>
-                    <label for="doc-3" class="custom-file-label">Send a photo of the back of your document</label>
+                <div class="form-group col-lg-6">
+                    <label for="doc-3" class="control-label">Doc III</label>
+                    <div class="custom-file">
+                        <input type="file" name="doc_3" id="doc-3" class="custom-file-input" required>
+                        <label for="doc-3" class="custom-file-label">Send a photo of the back of your document</label>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
