@@ -146,6 +146,9 @@
                         "description": "Description",
                         "reviews": "Reviews",
                         "submit": "Submit",
+                        "already_enrolled": "Already enrolled",
+                        "title": "Title",
+                        "body": "Body",
                         "leave_comment": "Leave a comment",
                         "box": {
                             "includes": "Includes",
@@ -392,7 +395,10 @@
                         "course_content": "Course content",
                         "requirements": "Comments",
                         "description": "Description",
+                        "already_enrolled": "Already enrolled",
                         "reviews": "Reviews",
+                        "title": "Title",
+                        "body": "Body",
                         "box": {
                             "includes": "Includes",
                             "certificate_guaranteed": "Guaranteed certificate",

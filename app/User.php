@@ -56,6 +56,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Deposit');
     }
 
+    public function withdraws()
+    {
+        return $this->hasMany('App\Withdraw');
+    }
+
     public static function generateNewRef()
     {
         $letters = range('A', 'Z');

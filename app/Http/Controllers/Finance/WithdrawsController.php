@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Finance;
 
 use App\Http\Controllers\Controller;
+use App\Method;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WithdrawsController extends Controller
 {
@@ -12,9 +14,43 @@ class WithdrawsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $show = $request->show ?? 10;
+
+        $withdraws = Auth::user()->withdraws()->latest()->paginate($show);
+        $all = Auth::user()->withdraws()->latest()->get();
+
+        $data = [
+            'list' => $withdraws,
+            'all' => $all,
+            'table' => [
+                ['key' => 'Amount', 'value' => function ($item) {
+                    return $item->amount;
+                }],
+                ['key' => 'Method', 'value' => function ($item) {
+                    return ($item->method->name);
+                }],
+                ['key' => 'Comments', 'value' => function ($item) {
+                    return $item->comments;
+                }],
+                ['key' => 'Date', 'value' => function ($item) {
+                    return $item->created_at->format('D, d M Y');
+                }],
+                ['key' => 'Status', 'value' => function ($item) {
+                    $statuses = [
+                        'Pending',
+                        'Failed',
+                        'Success'
+                    ];
+                    return $statuses[$item->status];
+                }],
+            ],
+            'headBgColor' => 'green',
+            'bodyBgColor' => 'light',
+        ];
+        return view('pages.user.finance.withdraw.index', compact('data'));
     }
 
     /**
@@ -25,6 +61,10 @@ class WithdrawsController extends Controller
     public function create()
     {
         //
+        $methods = Method::where('name', '!=', 'Admin')->where('is_active', 1)->get();
+        return view('pages.user.finance.withdraw.create', [
+            'methods' => $methods
+        ]);
     }
 
     /**

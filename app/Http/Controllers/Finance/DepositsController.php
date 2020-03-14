@@ -17,7 +17,7 @@ class DepositsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $show = $request->show ?? 10;
@@ -67,7 +67,7 @@ class DepositsController extends Controller
     public function create()
     {
         //
-        $methods = Method::where('name', '!=', 'Admin')->get();
+        $methods = Method::where('name', '!=', 'Admin')->where('is_active', 1)->get();
         return view('pages.user.finance.deposit.create', [
             'methods' => $methods
         ]);
@@ -82,6 +82,12 @@ class DepositsController extends Controller
     public function store(Request $request)
     {
         //
+        $method = Method::findOrFail($request->id);
+        if ($method->is_active === 0)
+            return redirect()
+                ->back()
+                ->with('danger', 'This deposit method is not available.');
+
         $user = Auth::user();
 
         $request->validate([

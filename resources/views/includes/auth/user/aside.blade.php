@@ -20,7 +20,7 @@
                     <div class="text-right">
                         <label for="photo-form-photo" class="fas fa-lg fa-edit text-yellow bg-transparent border-0"></label>
                         <br>
-                        <button class="btn btn-link p-0 text-yellow d-none text-small">Edit</button>
+                        <button class="btn btn-link p-0 text-yellow d-none text-small">Save</button>
                     </div>
                 </form>
                 <div class="embed-responsive embed-responsive-1by1 bg-transparent p-1 rounded-circle d-flex justify-content-center align-items-center" style="width: 70px; border: 3px solid orange;">
@@ -80,7 +80,7 @@
                         <div class="text-right">
                             <label for="photo-form-aside-photo" class="fas fa-lg fa-edit text-yellow bg-transparent border-0"></label>
                             <br>
-                            <button class="btn btn-link p-0 text-yellow d-none text-small">Edit</button>
+                            <button class="btn btn-link p-0 text-yellow d-none text-small">Save</button>
                         </div>
                     </form>
                     <div class="embed-responsive embed-responsive-1by1 bg-transparent p-1 rounded-circle d-flex justify-content-center align-items-center" style="width: 70px; border: 3px solid orange;">

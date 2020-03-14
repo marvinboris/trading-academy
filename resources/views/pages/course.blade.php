@@ -41,7 +41,11 @@
                                         {!! $content['box']['certificate_guaranteed'] !!}
                                     </div>
                                     <div>
+                                        @if ($can_enroll)
                                         <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow font-weight-bold">{!! $content['box']['enroll_now'] !!}</a>
+                                        @else
+                                        <h4 class="text-700 text-white"><i class="fas fa-check-circle"></i> {{ $content['already_enrolled'] }}</h4>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="pt-2">
@@ -140,19 +144,23 @@
                                 <div class="col-12 py-3 border-bottom">
                                     <div class="row">
                                         <div class="col-lg-4 d-flex">
-                                            {!! $view->user->photo ?
-                                            '<div style="background: url(' . asset($view->user->photo->path) . ') no-repeat center; background-size: cover; width: 46px; outline-offset: 4px; box-shadow: 0 0 0 2px white;" class="rounded-circle embed-responsive embed-responsive-1by1 mr-2"></div>'
-                                            :
-                                            '<div class="d-flex justify-content-center align-items-center font-weight-bold text-white text-montserrat rounded-circle bg-black-50 text-x-small mr-2" style="width: 46px; height: 46px; outline-offset: 4px; box-shadow: 0 0 0 2px white;">' . $view->user->abbreviation() . '</div>'
-                                            !!}
+                                            <div>
+                                                {!! $view->user->photo ?
+                                                '<div style="background: url(' . asset($view->user->photo->path) . ') no-repeat center; background-size: cover; width: 46px; outline-offset: 4px; box-shadow: 0 0 0 2px white;" class="rounded-circle embed-responsive embed-responsive-1by1 mr-2"></div>'
+                                                :
+                                                '<div class="d-flex justify-content-center align-items-center font-weight-bold text-white text-montserrat rounded-circle bg-black-50 text-x-small mr-2" style="width: 46px; height: 46px; outline-offset: 4px; box-shadow: 0 0 0 2px white;">' . $view->user->abbreviation() . '</div>'
+                                                !!}    
+                                            </div>
+                                            
                                             {{-- <div class="rounded-circle bg-secondary d-inline-flex mr-2 justify-content-center align-items-center text-white" style="width: 46px; height: 46px">{{ $view->user->abbreviation() }}</div> --}}
                                             <div class="flex-fill">
                                                 <div class="text-muted">{{ $view->created_at->diffForHumans() }}</div>
-                                                {{ $view->user->name() }}
+                                                <span class="text-700 text-montserrat">{{ $view->user->name() }}</span>
                                             </div>
                                         </div>
                                         <div class="col-lg-8">
                                             <div class="pb-3">
+                                                <h5 class="text-700 text-montserrat">{{ $view->title }}</h5>
                                                 <div class="read-only-stars" data-rating="{{ $view->mark }}"></div>
                                             </div>
                                             <div>
@@ -177,7 +185,10 @@
                                         @csrf
                                         <input type="hidden" name="mark">
                                         <div class="form-group">
-                                            <textarea name="body" id="body" class="form-control"></textarea>
+                                            <input type="text" name="title" id="title" class="form-control" required placeholder="{{ $content['title'] }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="body" id="body" class="form-control" placeholder="{{ $content['body'] }}" required></textarea>
                                         </div>
                                         <button class="btn btn-green">{{ $content['submit'] }} <i class="fas fa-arrow-circle-right ml-1"></i></button>
                                     </form>
@@ -231,7 +242,11 @@
                                     {!! $content['box']['certificate_guaranteed'] !!}
                                 </div>
                                 <div>
+                                    @if ($can_enroll)
                                     <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow font-weight-bold">{!! $content['box']['enroll_now'] !!}</a>
+                                    @else
+                                    <h4 class="text-700 text-white"><i class="fas fa-check-circle"></i> {{ $content['already_enrolled'] }}</h4>
+                                    @endif
                                 </div>
                             </div>
                             <div class="pt-2">
@@ -276,7 +291,11 @@
                                 <div class="">
                                     <div class="d-flex flex-column justify-content-between h-100">
                                         <div>
+                                            @if ($can_enroll)
                                             <a href="{{ route('student.courses.enroll', $course->id) }}" class="btn btn-yellow btn-block w-50 text-large font-weight-bold">{!! $content['box']['enroll_now'] !!}</a>
+                                            @else
+                                            <h4 class="text-700 text-white"><i class="fas fa-check-circle"></i> {{ $content['already_enrolled'] }}</h4>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="pt-2">

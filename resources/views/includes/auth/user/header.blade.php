@@ -35,7 +35,7 @@
                             You have 0 messages
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item py-2 px-3">
+                            {{-- <li class="list-group-item py-2 px-3">
                                 <div>
                                     <h5 class="d-inline">Newsletter</h5>
                                     <span class="float-right small text-muted">
@@ -45,9 +45,9 @@
                                         New subscriber : <strong>{{ 'demo@admin.com' }}</strong>
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
                         </ul>
-                        <a href="#" class="card-footer small p-2 text-center">
+                        <a href="{{ route('user.messages') }}" class="card-footer small p-2 text-center">
                             View all messages
                         </a>
                     </div>

@@ -17,7 +17,8 @@ class CreateViewsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('course_id')->unsigned()->index();
             $table->bigInteger('user_id')->unsigned()->index();
-            $table->integer('mark');
+            $table->float('mark');
+            $table->string('title');
             $table->text('body');
             $table->timestamps();
 

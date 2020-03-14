@@ -6,6 +6,7 @@ use App\Comment;
 use App\CommentReply;
 use App\Post;
 use App\Course;
+use App\SessionStudent;
 use App\Student;
 use App\Testimonial;
 use App\Trainer;
@@ -169,17 +170,20 @@ class FrontEndController extends Controller
         ];
         $course = Course::where('slug', $level)->first();
         $can_comment = false;
+        $can_enroll = false;
         
         if (Auth::check()) {
             $student = Student::where('user_id', Auth::id())->first();
             $can_comment = $this->can_comment($student, $course);
+            $can_enroll = $this->can_enroll($student, $course);
         }
 
         return view('pages.course', [
             'content' => $content,
             'course' => $course,
             'colors' => $colors,
-            'can_comment' => $can_comment
+            'can_comment' => $can_comment,
+            'can_enroll' => $can_enroll,
         ]);
     }
 
@@ -191,6 +195,15 @@ class FrontEndController extends Controller
             if ($session->course->id === $course->id) return true;
         }
         return false;
+    }
+
+    private function can_enroll($student, $course)
+    {
+        if (!$student) return true;
+        foreach ($student->sessions as $session) {
+            if ($session->course->id === $course->id) return false;
+        }
+        return true;
     }
 
     public function view($level, Request $request)
@@ -205,11 +218,13 @@ class FrontEndController extends Controller
 
         $request->validate([
             'mark' => 'numeric|required',
-            'body' => 'required'
+            'body' => 'required',
+            'title' => 'required',
         ]);
 
         View::create([
             'mark' => $request->mark,
+            'title' => $request->title,
             'body' => $request->body,
             'user_id' => Auth::id(),
             'course_id' => $course->id

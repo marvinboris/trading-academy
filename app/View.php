@@ -8,7 +8,7 @@ class View extends Model
 {
     //
     protected $fillable = [
-        'course_id', 'mark', 'body', 'user_id'
+        'course_id', 'mark', 'title', 'body', 'user_id'
     ];
 
     public function course() {

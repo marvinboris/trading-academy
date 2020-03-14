@@ -35,19 +35,29 @@ class PostsController extends Controller
             'list' => $posts,
             'all' => $all,
             'table' => [
-                ['key' => 'Title', 'value' => function ($item) { return $item->title; }],
-                ['key' => 'Body', 'value' => function ($item) { return Str::limit($item->body); }],
-                ['key' => 'Slug', 'value' => function ($item) { return $item->slug; }],
-                ['key' => 'Created at', 'value' => function ($item) { return $item->created_at->diffForHumans(); }],
-                ['key' => 'Updated at', 'value' => function ($item) { return $item->updated_at->diffForHumans(); }]
+                ['key' => 'Title', 'value' => function ($item) {
+                    return $item->title;
+                }],
+                ['key' => 'Body', 'value' => function ($item) {
+                    return Str::limit($item->body);
+                }],
+                ['key' => 'Slug', 'value' => function ($item) {
+                    return $item->slug;
+                }],
+                ['key' => 'Created at', 'value' => function ($item) {
+                    return $item->created_at->diffForHumans();
+                }],
+                ['key' => 'Updated at', 'value' => function ($item) {
+                    return $item->updated_at->diffForHumans();
+                }]
             ]
         ];
-        
+
         if ($request->ajax()) {
             return view('table', [
-                'list' => $data['list'], 
-                'links' => $data['links'], 
-                'all' => $data['all'], 
+                'list' => $data['list'],
+                'links' => $data['links'],
+                'all' => $data['all'],
                 'table' => $data['table']
             ])->render();
         }
@@ -134,7 +144,8 @@ class PostsController extends Controller
         $post = Post::create($input);
         Author::find(Auth::id())->posts()->save($post);
         $request->session()->flash('success', 'The post ' . $post->title . ' has been successfully added.');
-        return redirect(route('user.author.posts.index'));
+        return redirect()
+            ->route('author.posts.index');
     }
 
     /**
@@ -146,6 +157,8 @@ class PostsController extends Controller
     public function show($id)
     {
         //
+        return redirect()
+            ->route('posts.show', Post::findOrFail($id)->slug);
     }
 
     /**
