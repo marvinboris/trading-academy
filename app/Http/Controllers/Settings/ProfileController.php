@@ -45,7 +45,7 @@ class ProfileController extends Controller
                 ]);
 
                 return redirect()
-                    ->route('user.settings.change-password')
+                    ->route('user.settings.profile.change-password')
                     ->with('success', 'Password has been successfully updated.');
             }
 
@@ -60,7 +60,7 @@ class ProfileController extends Controller
             $user->update(['lang' => $request->lang]);
 
             return redirect()
-                ->route('user.settings.edit-language')
+                ->route('user.settings.profile.edit-language')
                 ->with('success', 'Language has been successfully updated.');
         } else if ($request->has('photo')) {
             $request->validate([
