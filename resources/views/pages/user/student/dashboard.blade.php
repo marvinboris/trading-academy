@@ -93,3 +93,7 @@
 @endcomponent
 
 @endsection
+
+@section('scripts')
+    @include('scripts.notifications')
+@endsection

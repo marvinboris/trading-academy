@@ -152,7 +152,8 @@ Route::name('export.')->prefix('export')->group(function () {
 Route::middleware(['auth', 'verification', 'status'])->group(function () {
     Route::get('dashboard', function () {
         return redirect()
-            ->route(strtolower(Auth::user()->role->name) . '.dashboard');
+            ->route(strtolower(Auth::user()->role->name) . '.dashboard')
+            ->with('new', true);
     });
 
     Route::namespace('Method')->group(function () {

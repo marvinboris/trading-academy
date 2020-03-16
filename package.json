@@ -32,6 +32,7 @@
         "counterup2": "^1.0.4",
         "flag-icon-css": "^3.4.6",
         "jquery": "^3.4.1",
+        "noty": "^3.2.0-beta",
         "popper.js": "^1.16.1"
     }
 }
