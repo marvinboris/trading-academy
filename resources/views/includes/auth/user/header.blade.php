@@ -21,8 +21,7 @@
         </div>
 
         @php
-            $unreadNotifications = Auth::user()->unreadNotifications;
-            $notifications = Auth::user()->notifications()->latest()->limit(5)->get();
+            $unreadNotifications = Auth::user()->unreadNotifications()->latest()->limit(5)->get();
         @endphp
 
         <div>
@@ -61,7 +60,7 @@
                             You have {{ count($unreadNotifications) }} notification{{ count($unreadNotifications) > 1 ? 's' : '' }}
                         </div>
                         <ul class="list-group list-group-flush">
-                            @foreach ($notifications as $key => $notification)
+                            @foreach ($unreadNotifications as $key => $notification)
                             <a href="{{ route('user.notifications.show', $notification->id) }}" class="list-group-item py-2 text-decoration-none text-reset {{ !$notification->read_at ? 'font-weight-bold' : '' }} px-3">
                                 <div class="text-truncate">
                                     @php

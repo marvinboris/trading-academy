@@ -6,7 +6,9 @@ use App\Commission;
 use App\Course;
 use App\Http\Controllers\Controller;
 use App\Notifications\Commission as NotificationsCommission;
+use App\Notifications\FirstInstallment;
 use App\Notifications\Payment as NotificationsPayment;
+use App\Notifications\SecondInstallment;
 use App\Payment;
 use App\Photo;
 use App\Session;
@@ -296,12 +298,16 @@ class CoursesController extends Controller
 
         if ($new == 1) {
             $session->update(['places' => $session->places - 1]);
-            SessionStudent::create([
+            $session_student = SessionStudent::create([
                 'student_id' => $student->id,
                 'session_id' => $session->id,
                 'amount' => $price,
                 'status' => $payment
             ]);
+            $user->notify(new FirstInstallment($session_student))
+                ->delay($session->start->subDays(3));
+            $user->notify(new SecondInstallment($session_student))
+                ->delay($session->start->addDays(27));
         } else {
             $pivot = SessionStudent::where('student_id', $student->id)->where('session_id', $session->id)->first();
             $pivot->update([

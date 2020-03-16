@@ -142,7 +142,7 @@ class PostsController extends Controller
         $photo = Photo::create(['path' => $input['photo']]);
         $input['photo_id'] = $photo->id;
         $post = Post::create($input);
-        Author::find(Auth::id())->posts()->save($post);
+        Author::where('user_id', Auth::id())->first()->posts()->save($post);
         $request->session()->flash('success', 'The post ' . $post->title . ' has been successfully added.');
         return redirect()
             ->route('author.posts.index');

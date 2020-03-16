@@ -17,15 +17,7 @@ asort($namesData);
 <div class="container">
     <div class="row align-items-center justify-content-between full-height-app py-5">
         <div class="col-lg-6">
-            @if (count($errors->all()) > 0)
-                <div class="alert alert-danger">
-                    <ul class="pb-0 mb-0">
-                        @foreach ($errors->all() as $message)
-                        <li>{{ $message }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            @include('includes.form-errors')
             <h1 class="text-center text-montserrat font-weight-bold mb-3 text-green">{{ $content['title'] }}</h1>
             <form method="POST" action="{{ route('register') }}">
                 @csrf

@@ -20,7 +20,7 @@ class CreateSessionStudentTable extends Migration
             $table->float('amount')->default(0);
             $table->enum('status', ['preregistration', 'first-installment', 'cash'])->default('preregistration');
             $table->timestamps();
-            
+
             $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });

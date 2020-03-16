@@ -17,16 +17,38 @@
 
     <div class="py-2 py-sm-4 px-4 position-relative">
         <div>
-            @if (Session::has('info'))
-            <div class="alert alert-info">{{ Session::get('info') }}</div>
+            @if (Session::has('info') || Session::has('success') || Session::has('danger'))
+            <div id="normal-notifications-block" class="d-flex mb-3"></div>
             @endif
-            @if (Session::has('success'))
-            <div class="alert alert-success">{{ Session::get('success') }}</div>
-            @endif
-            @if (Session::has('danger'))
-            <div class="alert alert-danger">{{ Session::get('danger') }}</div>
+            @if (Session::has('new'))
+            <div id="notifications-block" class="d-flex mb-3"></div>
             @endif
             {{ $slot }}
         </div>
     </div>
 </div>
+
+@section('notifications')
+    
+    @if (Session::has('info') || Session::has('success') || Session::has('danger'))
+        @php
+            $type = "";
+            if (Session::has('info')) $type = 'info';
+            if (Session::has('success')) $type = 'success';
+            if (Session::has('danger')) $type = 'danger';
+        @endphp
+        <script>
+            $(function () {
+                const text = @json(Session::get($type));
+                const type = @json($type);
+                new Noty({
+                    theme: 'metroui',
+                    text,
+                    type,
+                    container: '#normal-notifications-block',
+                    timeout: 5000
+                }).show();
+            });
+        </script>
+    @endif
+@endsection

@@ -1,4 +1,5 @@
 <form action="{{ $action }}" class="overflow-hidden" method="{{ $method }}" @if ($file) enctype="multipart/form-data" @endif>
+    @include('includes.form-errors')
     @csrf
     <div class="row justify-content-center">
         <div class="col-{{ $size }}">

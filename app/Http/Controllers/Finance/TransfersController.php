@@ -80,6 +80,7 @@ class TransfersController extends Controller
         $request->validate([
             'ref' => 'required|exists:users',
             'amount' => 'required|numeric',
+            'media' => 'required',
             'policy' => 'accepted'
         ]);
         $code = User::ref();
@@ -129,12 +130,19 @@ class TransfersController extends Controller
             $receiver->notify(new NotificationsTransfer($transfer));
             $sender->notify(new NotificationsTransfer($transfer));
 
-            return redirect()
-                ->route('user.finance.transfers.index');
+            if ($request->ajax()) {
+                return "true";
+            }
+            // return redirect()
+            //     ->route('user.finance.transfers.index')
+            //     ->with('success', 'Transfer successful.');
+        } else {
+            if ($request->ajax()) {
+                return "false";
+            }
+            // return redirect()
+            // ->back();
         }
-
-        return redirect()
-            ->back();
     }
 
     /**

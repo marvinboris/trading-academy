@@ -5,7 +5,7 @@
 
 @section('content')
 @component('components.auth.page')
-<form action="{{ route('user.finance.transfers.confirm') }}" method="post">
+<form action="{{ route('user.finance.transfers.confirm') }}" method="post" home="{{ route('user.finance.transfers.index') }}">
     @csrf
     <div class="row">
         <div class="col-lg-9">
@@ -44,4 +44,49 @@
     </div>
 </form>
 @endcomponent
+@endsection
+
+@section('scripts')
+    <script>
+        $(function () {
+            $('form').submit(function (e) {
+                const current = $(this);
+                const url = current.attr('action');
+                const method = current.attr('method');
+                const home = current.attr('home');
+                const data = {};
+
+                data._token = current.find('input[name="_token"]').val();
+                data.code = current.find('input[name="code"]').val();
+
+                e.preventDefault();
+
+                $.ajax({
+                    url,
+                    method,
+                    data,
+                    success: function (data) {
+                        if (data === 'true') {
+                            Swal.fire({
+                                title: 'Good job!',
+                                text: 'Transaction completed !',
+                                icon: 'success',
+                                onClose: function () {
+                                    window.location = home;
+                                }
+                            });
+                        } else {
+                            window.location = url;
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                })
+                .fail(function () {
+                    alert('Cannot proceed');
+                })
+            })
+        });
+    </script>
 @endsection

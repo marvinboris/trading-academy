@@ -11,7 +11,7 @@
     <div class="flex-fill w-100 bg-white position-relative pb-4">
         @include('includes.auth.user.header')
         <div class="d-flex flex-column justify-content-between full-height-user">
-            <main class="flex-fill">
+            <main class="flex-fill position-relative">
                 <div class="mw-100">
                     @yield('content')
                 </div>

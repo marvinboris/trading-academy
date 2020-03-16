@@ -170,7 +170,7 @@ class FrontEndController extends Controller
         ];
         $course = Course::where('slug', $level)->first();
         $can_comment = false;
-        $can_enroll = false;
+        $can_enroll = true;
         
         if (Auth::check()) {
             $student = Student::where('user_id', Auth::id())->first();

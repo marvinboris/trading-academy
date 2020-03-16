@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18602e2f8ca4d5f7588ed7e3effe9613",
+    "content-hash": "8b78098b6e213804e988496bed0aa4b0",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -131,6 +131,53 @@
                 "slugify"
             ],
             "time": "2019-12-14T13:04:14+00:00"
+        },
+        {
+            "name": "coderello/laravel-relevance-ensurer",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coderello/laravel-relevance-ensurer.git",
+                "reference": "42c30dbb328338ae6691921ed691e8aa486cd251"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coderello/laravel-relevance-ensurer/zipball/42c30dbb328338ae6691921ed691e8aa486cd251",
+                "reference": "42c30dbb328338ae6691921ed691e8aa486cd251",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/events": "5.5.*|5.6.*|5.7.*|5.8.*|6.*|7.*",
+                "illuminate/notifications": "5.5.*|5.6.*|5.7.*|5.8.*|6.*|7.*",
+                "illuminate/queue": "5.5.*|5.6.*|5.7.*|5.8.*|6.*|7.*",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*|6.*|7.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Coderello\\RelevanceEnsurer\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Coderello\\RelevanceEnsurer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Relevance Ensurer",
+            "keywords": [
+                "ensurer",
+                "job",
+                "laravel",
+                "notification",
+                "relevance"
+            ],
+            "time": "2020-03-03T11:26:39+00:00"
         },
         {
             "name": "cviebrock/eloquent-sluggable",
