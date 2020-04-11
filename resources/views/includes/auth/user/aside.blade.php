@@ -51,7 +51,7 @@
             @endif
             <div class="text-yellow text-x-small text-comfortaa pt-1"><i class="far fa-address-card fa-fw mr-1"></i>ID: <span class="text-900" id="ref">{{ Auth::user()->ref }}</span><i class="far fa-copy btn-copy ml-2 text-lightblue bg-transparent fa-lg" type="button" data-clipboard-target="#ref"></i></div>
         </div>
-        <div class="flex-fill text-white text-montserrat border-top border-white-20 pt-4">
+        <div class="flex-fill text-white text-montserrat border-top border-white-20 pt-4 accordion" id="user-aside-content">
             @include('includes.auth.user.aside-content')
         </div>
     </div>
@@ -98,7 +98,7 @@
                 <div class="text-x-small {{ Auth::user()->is_verified ? 'text-lemongreen' : 'text-purered' }}"><i class="far {{ Auth::user()->is_verified ? 'fa-check-circle' : 'fa-times-circle' }} mr-2"></i>Account {{ Auth::user()->is_verified ? 'Verified' : 'not Verified' }}</div>
                 <div class="text-yellow text-x-small text-comfortaa pt-1"><i class="far fa-address-card fa-fw mr-1"></i>ID: <span class="text-900" id="ref">{{ Auth::user()->ref }}</span><i class="far fa-copy btn-copy ml-2 text-lightblue bg-transparent fa-lg" type="button" data-clipboard-target="#ref"></i></div>
             </div>
-            <div class="text-white text-montserrat border-top border-white-20 pt-4" style="height: calc(100vh - 248.25px); overflowY: auto;">
+            <div class="text-white text-montserrat border-top border-white-20 pt-4 accordion" id="user-aside-content" style="height: calc(100vh - 248.25px); overflowY: auto;">
                 @include('includes.auth.user.aside-content')
             </div>
         </div>

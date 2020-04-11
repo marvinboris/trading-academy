@@ -9,7 +9,7 @@
             <i class="fas fa-caret-down"></i>
         </div>
     </a>
-    <div class="collapse @if (strpos(url()->current(), $link) !== false)) show @endif bg-black-50 border-gray border-top border-thin pl-4" id="dropdown-item-{{ $name }}">
+    <div class="collapse @if (strpos(url()->current(), $link) !== false)) show @endif bg-black-50 border-gray border-top border-thin pl-4" data-parent="#user-aside-content" id="dropdown-item-{{ $name }}">
         <div class="border-white-20 border-left text-small">
             {{ $slot }}
         </div>
