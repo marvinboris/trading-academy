@@ -17,6 +17,16 @@
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
         </script>
 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164818912-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-164818912-1');
+        </script>
+
         <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
         <link href="{{ asset('css/summernote-bs4.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
