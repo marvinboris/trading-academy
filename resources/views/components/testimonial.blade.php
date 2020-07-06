@@ -27,10 +27,6 @@
                 </div>
                 <div class="text-small flex-fill" style="overflow-y: auto;">
                     {{ $text }}
-                    {{ $text }}
-                    {{ $text }}
-                    {{ $text }}
-                    {{ $text }}
                 </div>
             </div>
         </div>
