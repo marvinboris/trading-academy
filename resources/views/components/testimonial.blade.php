@@ -17,15 +17,19 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="bg-white rounded-0 shadow-sm px-3 py-4 h-100">
+        <div class="col-lg-6 position-relative">
+            <div class="bg-white rounded-0 shadow-sm px-3 py-4 h-100 position-absolute d-flex flex-column">
                 <div class="d-flex align-items-end pb-3 mb-3 border-bottom">
                     <div class="bg-black-33 d-flex justify-content-center align-items-center position-relative" style="width: 2px; height: 70px;">
                         <div class="bg-white border rounded-circle border-secondary position-absolute" style="width: 12px; height: 12px;"></div>
                     </div>
                     <div class="text-green pl-3 font-weight-bold h4 m-0 text-montserrat">{{ $postTitle }}</div>
                 </div>
-                <div class="text-small">
+                <div class="text-small flex-fill" style="overflow-y: auto;">
+                    {{ $text }}
+                    {{ $text }}
+                    {{ $text }}
+                    {{ $text }}
                     {{ $text }}
                 </div>
             </div>
