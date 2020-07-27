@@ -309,7 +309,7 @@ class CoursesController extends Controller
             $user->notify(new SecondInstallment($session_student))
                 ->delay($session->start->addDays(27));
         } else {
-            $pivot = SessionStudent::where('student_id', $student->id)->where('session_id', $session->id)->first();
+            $pivot = SessionStudent::where('student_id', $student->id)->where('session_id', $sessionId)->first();
             $pivot->update([
                 'amount' => $pivot->amount + $price,
                 'status' => $payment

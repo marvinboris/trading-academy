@@ -32,7 +32,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $deposits = Deposit::get();
+        $deposits = Deposit::whereStatus(2)->get();
 
         $total_deposit = 0;
         foreach ($deposits as $deposit) {
