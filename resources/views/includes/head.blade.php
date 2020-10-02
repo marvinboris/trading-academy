@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         @yield('styles')
 
-        <title>Trading Academy</title>
+        <title>{{ env('APP_NAME', "Trading Academy") }}</title>
     </head>
     <body class="min-vh-100">
 

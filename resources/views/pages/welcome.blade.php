@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
     <meta name="msvalidate.01" content="BF7990362D0510206E7C65506F247C25" />
+    <meta name="description" content="Faites passer votre trading au niveau supérieur avec nos cours de formation gratuits. Convient aux traders novices et avancés pour se perfectionner au trading grace à nos meilleurs cours au cameroun et dans le monde." />
 @endsection
 
 @section('content')
