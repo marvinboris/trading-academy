@@ -52,9 +52,9 @@
         </div>
         <div class="col-md-10 col-lg-5">
             <div class="">
-                <h1 class="text-montserrat font-weight-bold text-green">
+                <div class="text-montserrat h1 font-weight-bold text-green">
                     {!! $content['message_us']['title'] !!}
-                </h1>
+                </div>
                 <div class="border-top pt-3 mt-3">
                     <form action="" method="post">
                         <div class="row">

@@ -134,9 +134,9 @@
                 <div class="text-left">
                     <div class="d-flex">
                         <i class="fas fa-play fa-3x"></i>
-                        <h1 class="text-montserrat text-700 d-inline-block border-bottom border-white-50 pb-3 ml-4 mb-3">
+                        <div class="text-montserrat h1 text-700 d-inline-block border-bottom border-white-50 pb-3 ml-4 mb-3">
                             {!! $content['level_courses']['title'] !!}
-                        </h1>
+                        </div>
                     </div>
                     <p class="pt-3 font-weight-light d-inline-block">
                         {!! $content['level_courses']['description'] !!}

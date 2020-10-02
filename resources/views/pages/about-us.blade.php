@@ -43,7 +43,7 @@
         ],
         'subtitle' => ''
     ])
-        <h1 class="text-white text-montserrat font-weight-bold">{!! $content['mission']['title'] !!}</h1>
+        <div class="text-white text-montserrat h1 font-weight-bold">{!! $content['mission']['title'] !!}</div>
         <div class="pt-3 mt-3 border-top bborder-white-50">
             {!! $content['mission']['description'] !!}
         </div>
@@ -58,9 +58,9 @@
         ],
         'subtitle' => ''
     ])
-        <h1 class="text-center text-montserrat font-weight-bold text-green mb-5">
+        <div class="text-center text-montserrat h1 font-weight-bold text-green mb-5">
             <span class="pb-3 border-bottom">{!! $content['trainers']['title'] !!}</span>
-        </h1>
+        </div>
         <div class="w-75 mx-auto text-center">
             {!! $content['trainers']['description'] !!}
         </div>
