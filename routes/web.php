@@ -25,8 +25,8 @@ if (!Session::has('lang') || !Session::has('flag')) {
         Session::put('lang', $lang);
         Session::put('flag', Language::where('lang', $lang)->first()->flag);
     } else {
-        Session::put('lang', 'en');
-        Session::put('flag', 'gb');
+        Session::put('lang', 'fr');
+        Session::put('flag', 'fr');
     }
 }
 
