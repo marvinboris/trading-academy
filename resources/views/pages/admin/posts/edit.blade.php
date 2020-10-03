@@ -1,11 +1,11 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 
 @section('section', 'Blog')
-@section('parent') <a href="{{ route('author.posts.index') }}" class="text-green text-900">My Posts</a> @endsection
-@section('title', 'Edit Post')
+@section('parent') <a href="{{ route('admin.posts.index') }}" class="text-green text-900">Posts List</a> @endsection
+@section('title', 'Edit a Post')
 
 @section('content')
-@component('components.auth.page')
+@component('components.auth.pages.admin.page')
 @component('components.auth.pages.create', ['data' => $data])
 @method('PATCH')
 <div class="col-lg-3">

@@ -237,7 +237,7 @@ class PostsController extends Controller
         //
         $post = Author::where('user_id', Auth::id())->first()->posts()->find($id);
         $photo = $post->photo;
-        $input = $request->validated();
+        $input = $request->all();
         if ($file = $request->file('photo')) {
             $path = public_path() . '/images/' . $photo->path;
             if (file_exists($path)) unlink($path);
@@ -245,8 +245,8 @@ class PostsController extends Controller
             $file->move('images', $fileName);
             $photo->update(['path' => htmlspecialchars($fileName)]);
         }
-        $post->save($input);
-        Session::flash('updated_post', 'The post ' . $post->title . ' has been successfully updated.');
+        $post->update($input);
+        $request->session()->flash('updated_post', 'The post ' . $post->title . ' has been successfully updated.');
         return redirect(route('user.author.posts.index'));
     }
 

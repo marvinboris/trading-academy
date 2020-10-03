@@ -21,18 +21,27 @@
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Courses List', 'link' => route('admin.courses.index')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Course', 'link' => route('admin.courses.create')]) @endcomponent
 @endcomponent
+
+@component('components.auth.aside.admin.dropdown', ['name' => 'blog', 'icon' => 'fas fa-blog', 'title' => 'Blog', 'link' => route('admin.posts.index')])
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Posts List', 'link' => route('admin.posts.index')]) @endcomponent
+    @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Post', 'link' => route('admin.posts.create')]) @endcomponent
+@endcomponent
+
 @component('components.auth.aside.admin.dropdown', ['name' => 'session', 'icon' => 'fas fa-clock', 'title' => 'Sessions', 'link' => route('admin.sessions.index')])
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Sessions List', 'link' => route('admin.sessions.index')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Session', 'link' => route('admin.sessions.create')]) @endcomponent
 @endcomponent
+
 @component('components.auth.aside.admin.dropdown', ['name' => 'deposit', 'icon' => 'fas fa-dollar-sign', 'title' => 'Deposits', 'link' => route('admin.deposits.index')])
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Deposits List', 'link' => route('admin.deposits.index')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add a Deposit', 'link' => route('admin.deposits.create')]) @endcomponent
 @endcomponent
+
 @component('components.auth.aside.admin.dropdown', ['name' => 'expense', 'icon' => 'fas fa-money-bill', 'title' => 'Expenses', 'link' => route('admin.expenses.index')])
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Expenses List', 'link' => route('admin.expenses.index')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Add an Expense', 'link' => route('admin.expenses.create')]) @endcomponent
 @endcomponent
+
 @component('components.auth.aside.admin.dropdown', ['name' => 'cms', 'icon' => 'fas fa-file-signature', 'title' => 'CMS', 'link' => url('admin/cms')])
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Global', 'link' => route('admin.cms.global')]) @endcomponent
     @component('components.auth.aside.admin.dropdown-item', ['name' => 'Components', 'link' => route('admin.cms.components')]) @endcomponent
