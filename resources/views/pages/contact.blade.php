@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<meta name="description" content="Contactez-nous sur GIT Trading Academy Cameroun." />
+@endsection
+
 @section('content')
 @component('components.banner', ['title' => $content['title']])
 @endcomponent

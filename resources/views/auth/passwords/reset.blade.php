@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<meta name="description" content="Réinitialisez votre mot de passe." />
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row align-items-center justify-content-between full-height-app py-5">

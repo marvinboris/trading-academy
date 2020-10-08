@@ -3,6 +3,7 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+    <meta name="description" content="Tout savoir sur GIT Trading Academy Cameroun." />
 @endsection
 
 @section('content')

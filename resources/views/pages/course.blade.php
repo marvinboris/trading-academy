@@ -2,6 +2,7 @@
 
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/star-rating-svg.css') }}">
+<meta name="description" content="Commencez à apprendre le trading en ligne des crytomonnaies avec GIT Trading Academy Cameroun au niveau {{ $course->title }}." />
 @endsection
 
 @section('content')

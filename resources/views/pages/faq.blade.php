@@ -4,6 +4,10 @@
 @component('components.banner', ['title' => $content['title']])
 @endcomponent
 
+@section('styles')
+<meta name="description" content="Posez-nous vos questions sur GIT Trading Academy Cameroun." />
+@endsection
+
 @component('components.section', [
     'bgColor' => 'light',
     'fontColor' => 'dark',

@@ -13,6 +13,10 @@ ksort($phoneData);
 asort($namesData);
 @endphp
 
+@section('styles')
+<meta name="description" content="Connectez-vous sur Trading Academy Cameroun et apprennez le trading en ligne." />
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row align-items-center justify-content-between full-height-app py-5">
