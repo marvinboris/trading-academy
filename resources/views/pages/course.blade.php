@@ -10,8 +10,8 @@
         <div class="px-md-5 py-2">
             <div class="row text-montserrat">
                 <div class="col-lg-8">
-                    <h1>{{ $course->title }}</h1>
-                    <h4>{{ $course->subtitle }}</h4>
+                    <div class="h1">{{ $course->title }}</div>
+                    <h1 class="text-x-large">{{ $course->subtitle }}</h1>
                     <div class="pt-2">
                         <span class="rounded-sm bg-{{ $colors[$course->slug] }}-gradient py-2 px-3 font-weight-bold d-inline-flex mr-2 mb-2 d-lg-none align-items-center">{{ $course->level_name }}<i class="fas fa-medal text-large fa-rotate-180 ml-2 pr-2 border-right border-white-50"></i> </span>
                         <span class="rounded-sm bg-{{ $colors[$course->slug] }}-gradient py-2 px-3 font-weight-bold d-lg-inline-flex d-none mr-2 align-items-center">{{ $course->level_name }}<i class="fas fa-medal text-large fa-rotate-180 ml-2 pr-2 border-right border-white-50"></i> </span>

@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-5">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <h1 class="card-header">{{ __('Réinitialisez votre mot de passe') }}</h1>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
