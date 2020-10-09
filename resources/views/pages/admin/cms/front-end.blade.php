@@ -899,6 +899,14 @@
                                     <input type="text" name="{{ $language->lang }}[frontend][pages][post][go]" id="{{ $language->lang }}-frontend-post-go" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['post']['go'] !!}" required>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="{{ $language->lang }}-frontend-post-latest_posts" class="control-label">Go</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="{{ $language->lang }}[frontend][pages][post][latest_posts]" id="{{ $language->lang }}-frontend-post-latest_posts" class="form-control" value="{!! $page_content[$language->lang]['frontend']['pages']['post']['latest_posts'] !!}" required>
+                                </div>
+                            </div>
                             
                         </div>
 
